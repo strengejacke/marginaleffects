@@ -757,7 +757,7 @@ Expression   : Linear prediction, predict()
 <span class="co">#&gt; 0.07014014 0.05437810 0.09159280</span></code></pre></div>
 <p>Compute AMEs with <code>brmsmargins</code>:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brmsmargins/man/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
   <span class="va">bayes.logistic</span>,
   add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span> <span class="op">+</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
   contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME MPG"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
@@ -834,7 +834,7 @@ Expression   : Linear prediction, predict()
 <h4 id="ame-including-random-effects">AME: Including Random Effects<a class="anchor" aria-label="anchor" href="#ame-including-random-effects"></a>
 </h4>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brmsmargins/man/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
   <span class="va">mlogit</span>,
   add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
   contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
@@ -860,7 +860,7 @@ Expression   : Linear prediction, predict()
 <h4 id="ame-fixed-effects-only-grand-mean">AME: Fixed Effects Only (Grand Mean)<a class="anchor" aria-label="anchor" href="#ame-fixed-effects-only-grand-mean"></a>
 </h4>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brmsmargins/man/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
   <span class="va">mlogit</span>,
   add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
   contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
@@ -917,7 +917,7 @@ Expression   : Linear prediction, predict()
 <h4 id="fixed-effects-only">Fixed effects only<a class="anchor" aria-label="anchor" href="#fixed-effects-only"></a>
 </h4>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brmsmargins/man/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
   <span class="va">ls.fe</span>,
   add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
   contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
@@ -944,7 +944,7 @@ Expression   : Linear prediction, predict()
 </h4>
 <p>Compute the contrast between adjusted predictions on the <code>sigma</code> parameter, when <code>grp=0</code> and <code>grp=1</code>:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brmsmargins/man/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
   <span class="va">ls.fe</span>,
   at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
   contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME grp"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
@@ -973,7 +973,7 @@ Expression   : Linear prediction, predict()
 <h4 id="marginal-effect-continuous-on-sigma">Marginal effect (continuous) on sigma<a class="anchor" aria-label="anchor" href="#marginal-effect-continuous-on-sigma"></a>
 </h4>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brmsmargins/man/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span>
   <span class="va">ls.fe</span>,
   add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,
   contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,

@@ -124,8 +124,8 @@
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;   term   estimate std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1   hp -0.0654324 0.0115287 -5.675608 27.77922 4.519512e-06</span></code></pre></div>
+<span class="co">#&gt;   term    estimate  std.error statistic       df      p.value</span>
+<span class="co">#&gt; 1   hp -0.06500744 0.01146509 -5.670031 28.71439 4.089583e-06</span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>
@@ -138,7 +138,8 @@
     <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,
     <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span>
+<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -178,7 +179,7 @@ hp
 (0.010)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.012)
+(0.011)
 </td>
 </tr>
 <tr>
@@ -212,13 +213,11 @@ Num.Imp.
 R2
 </td>
 <td style="text-align:center;">
-0.573
 </td>
 <td style="text-align:center;">
-0.602
 </td>
 <td style="text-align:center;">
-0.538
+0.531
 </td>
 </tr>
 <tr>
@@ -226,65 +225,11 @@ R2
 R2 Adj.
 </td>
 <td style="text-align:center;">
-0.555
-</td>
-<td style="text-align:center;">
-0.589
-</td>
-<td style="text-align:center;">
-0.522
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-143.6
-</td>
-<td style="text-align:center;">
-181.2
 </td>
 <td style="text-align:center;">
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
 <td style="text-align:center;">
-147.3
-</td>
-<td style="text-align:center;">
-185.6
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-F
-</td>
-<td style="text-align:center;">
-30.881
-</td>
-<td style="text-align:center;">
-45.460
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-3.79
-</td>
-<td style="text-align:center;">
-3.74
-</td>
-<td style="text-align:center;">
+0.515
 </td>
 </tr>
 </tbody>
@@ -315,8 +260,8 @@ RMSE
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;   term  estimate std.error statistic       df    p.value</span>
-<span class="co">#&gt; 1  cyl -9.233929   2.76986 -3.333717 8.015337 0.01029896</span></code></pre></div>
+<span class="co">#&gt;   term estimate std.error statistic       df    p.value</span>
+<span class="co">#&gt; 1  cyl -8.99375  2.851731 -3.153786 8.190638 0.01312315</span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span>
@@ -338,9 +283,9 @@ RMSE
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;        term   estimate std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1 cyl 6 - 4  -7.073571  1.844973 -3.833971 22.46891 8.769743e-04</span>
-<span class="co">#&gt; 2 cyl 8 - 4 -11.394286  1.475909 -7.720182 25.04154 4.419011e-08</span></code></pre></div>
+<span class="co">#&gt;        term estimate std.error statistic       df      p.value</span>
+<span class="co">#&gt; 1 cyl 6 - 4  -6.7350  1.814606 -3.711550 26.08192 9.836794e-04</span>
+<span class="co">#&gt; 2 cyl 8 - 4 -11.2525  1.508834 -7.457744 26.22810 6.080598e-08</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -358,8 +303,8 @@ RMSE
 <span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span>
-<span class="co">#&gt;   term   estimate  std.error statistic       df      p.value</span>
-<span class="co">#&gt; 1  mpg 0.04803002 0.01025506  4.683542 25.20637 8.306438e-05</span></code></pre></div>
+<span class="co">#&gt;   term  estimate std.error statistic       df      p.value</span>
+<span class="co">#&gt; 1  mpg 0.0500714 0.0103908   4.81882 25.93702 5.453021e-05</span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>
@@ -372,7 +317,8 @@ RMSE
     <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,
     <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span>
+<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -399,7 +345,7 @@ mpg
 0.046
 </td>
 <td style="text-align:center;">
-0.048
+0.050
 </td>
 </tr>
 <tr>
@@ -439,58 +385,6 @@ Num.Imp.
 </td>
 <td style="text-align:center;">
 20
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-24.0
-</td>
-<td style="text-align:center;">
-33.7
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
-<td style="text-align:center;">
-26.4
-</td>
-<td style="text-align:center;">
-36.6
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-F
-</td>
-<td style="text-align:center;">
-5.702
-</td>
-<td style="text-align:center;">
-7.148
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-0.37
-</td>
-<td style="text-align:center;">
-0.39
-</td>
-<td style="text-align:center;">
 </td>
 </tr>
 </tbody>
@@ -539,7 +433,8 @@ RMSE
     <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,
     <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span>
 
-<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span>
+<span class="co">#&gt; Objects of class 'NULL' are currently not supported.</span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -606,19 +501,6 @@ Num.Imp.
 </td>
 <td style="text-align:center;">
 20
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-23.55
-</td>
-<td style="text-align:center;">
-23.44
-</td>
-<td style="text-align:center;">
 </td>
 </tr>
 </tbody>
