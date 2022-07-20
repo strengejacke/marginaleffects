@@ -19,6 +19,9 @@
     <loc>/articles/documentation.html</loc>
   </url>
   <url>
+    <loc>/articles/elasticity.html</loc>
+  </url>
+  <url>
     <loc>/articles/faq.html</loc>
   </url>
   <url>
@@ -116,6 +119,9 @@
   </url>
   <url>
     <loc>/reference/glance.marginaleffects.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hush.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>

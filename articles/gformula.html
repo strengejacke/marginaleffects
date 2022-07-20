@@ -126,33 +126,33 @@
 <p>Let’s illustrate this method by replicating an example from Chapter 13 of Hernán and Robins. The data come from the National Health and Nutrition Examination Survey Data I Epidemiologic Follow-up Study (NHEFS). The outcome is <code>wt82_71</code>, a measure of weight gain. The treatment is <code>qsmk</code>, a binary measure of smoking cessation. There are many confounders.</p>
 <p>Step 1 is to fit a regression model of the outcome on the treatment and control variables:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">boot</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-
-<span class="va">f</span> <span class="op">&lt;-</span> <span class="va">wt82_71</span> <span class="op">~</span> <span class="va">qsmk</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">race</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">age</span> <span class="op">*</span> <span class="va">age</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">education</span><span class="op">)</span> <span class="op">+</span>
-     <span class="va">smokeintensity</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">smokeintensity</span> <span class="op">*</span> <span class="va">smokeintensity</span><span class="op">)</span> <span class="op">+</span> <span class="va">smokeyrs</span> <span class="op">+</span>
-     <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">smokeyrs</span> <span class="op">*</span> <span class="va">smokeyrs</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">exercise</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">active</span><span class="op">)</span> <span class="op">+</span> <span class="va">wt71</span> <span class="op">+</span>
-     <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">wt71</span> <span class="op">*</span> <span class="va">wt71</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">qsmk</span> <span class="op">*</span> <span class="va">smokeintensity</span><span class="op">)</span>
-
-<span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/vincentarelbundock/modelarchive/main/data-raw/nhefs.csv"</span>
-<span class="va">nhefs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
-<span class="va">nhefs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">nhefs</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/allnames.html" class="external-link">all.vars</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-
-<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">f</span>, data <span class="op">=</span> <span class="va">nhefs</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">boot</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">wt82_71</span> <span class="op">~</span> <span class="va">qsmk</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">race</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">age</span> <span class="op">*</span> <span class="va">age</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">education</span><span class="op">)</span> <span class="op">+</span></span>
+<span>     <span class="va">smokeintensity</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">smokeintensity</span> <span class="op">*</span> <span class="va">smokeintensity</span><span class="op">)</span> <span class="op">+</span> <span class="va">smokeyrs</span> <span class="op">+</span></span>
+<span>     <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">smokeyrs</span> <span class="op">*</span> <span class="va">smokeyrs</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">exercise</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">active</span><span class="op">)</span> <span class="op">+</span> <span class="va">wt71</span> <span class="op">+</span></span>
+<span>     <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">wt71</span> <span class="op">*</span> <span class="va">wt71</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">qsmk</span> <span class="op">*</span> <span class="va">smokeintensity</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/vincentarelbundock/modelarchive/main/data-raw/nhefs.csv"</span></span>
+<span><span class="va">nhefs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span>
+<span><span class="va">nhefs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">nhefs</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/allnames.html" class="external-link">all.vars</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">f</span>, data <span class="op">=</span> <span class="va">nhefs</span><span class="op">)</span></span></code></pre></div>
 <p>Steps 2 and 3 require us to replicate the full dataset by setting the <code>qsmk</code> treatment to counterfactual values. We can do this automatically by calling <code><a href="../reference/comparisons.html">comparisons()</a></code>.</p>
 <div class="section level3">
 <h3 id="tldr">TLDR<a class="anchor" aria-label="anchor" href="#tldr"></a>
 </h3>
 <p>These simple commands do everything we need to apply the parametric g-formula:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Average contrasts </span>
-<span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span>
-<span class="co">## </span>
-<span class="co">## Model type:  glm </span>
-<span class="co">## Prediction type:  response</span></code></pre>
+<code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Average contrasts </span></span>
+<span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Model type:  glm </span></span>
+<span><span class="co">## Prediction type:  response</span></span></code></pre>
 <p>The rest of the vignette walks through the process in a bit more detail and compares to replication code from Hernán and Robins.</p>
 </div>
 <div class="section level3">
@@ -160,59 +160,59 @@
 </h3>
 <p>We can compute average predictions in the original data, and average predictions in the two counterfactual datasets like this:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># average predicted outcome in the original data</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">p</span><span class="op">$</span><span class="va">predicted</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 2.6383</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># average predicted outcome in the original data</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">p</span><span class="op">$</span><span class="va">predicted</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 2.6383</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># average predicted outcome in the two counterfactual datasets</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">predicted</span> <span class="op">~</span> <span class="va">qsmk</span>, data <span class="op">=</span> <span class="va">p</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##   qsmk predicted</span>
-<span class="co">## 1    0  1.756213</span>
-<span class="co">## 2    1  5.273587</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># average predicted outcome in the two counterfactual datasets</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">predicted</span> <span class="op">~</span> <span class="va">qsmk</span>, data <span class="op">=</span> <span class="va">p</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   qsmk predicted</span></span>
+<span><span class="co">## 1    0  1.756213</span></span>
+<span><span class="co">## 2    1  5.273587</span></span></code></pre>
 <p>In the <code>R</code> code that accompanies their book, Hernán and Robins compute the same quantities manually, as follows:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># create a dataset with 3 copies of each subject</span>
-<span class="va">nhefs</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span> <span class="co"># 1st copy: equal to original one</span>
-
-<span class="va">interv0</span> <span class="op">&lt;-</span> <span class="va">nhefs</span> <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span>
-<span class="va">interv0</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">0</span>
-<span class="va">interv0</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">0</span>
-<span class="va">interv0</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-
-<span class="va">interv1</span> <span class="op">&lt;-</span> <span class="va">nhefs</span> <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span>
-<span class="va">interv1</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">interv1</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">interv1</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-
-<span class="va">onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">nhefs</span>, <span class="va">interv0</span>, <span class="va">interv1</span><span class="op">)</span> <span class="co"># combining datasets</span>
-
-<span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span>
-<span class="co"># parameters are estimated using original observations only (nhefs)</span>
-<span class="co"># parameter estimates are used to predict mean outcome for observations with </span>
-<span class="co"># treatment set to 0 (interv=0) and to 1 (interv=1)</span>
-
-<span class="va">std</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">f</span>, data <span class="op">=</span> <span class="va">onesample</span><span class="op">)</span>
-<span class="va">onesample</span><span class="op">$</span><span class="va">predicted_meanY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">std</span>, <span class="va">onesample</span><span class="op">)</span>
-
-<span class="co"># estimate mean outcome in each of the groups interv=0, and interv=1</span>
-<span class="co"># this mean outcome is a weighted average of the mean outcomes in each combination </span>
-<span class="co"># of values of treatment and confounders, that is, the standardized outcome</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 2.6383</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># create a dataset with 3 copies of each subject</span></span>
+<span><span class="va">nhefs</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span> <span class="co"># 1st copy: equal to original one</span></span>
+<span></span>
+<span><span class="va">interv0</span> <span class="op">&lt;-</span> <span class="va">nhefs</span> <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span></span>
+<span><span class="va">interv0</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">interv0</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">interv0</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="va">interv1</span> <span class="op">&lt;-</span> <span class="va">nhefs</span> <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span></span>
+<span><span class="va">interv1</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">interv1</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">interv1</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="va">onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">nhefs</span>, <span class="va">interv0</span>, <span class="va">interv1</span><span class="op">)</span> <span class="co"># combining datasets</span></span>
+<span></span>
+<span><span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
+<span><span class="co"># parameters are estimated using original observations only (nhefs)</span></span>
+<span><span class="co"># parameter estimates are used to predict mean outcome for observations with </span></span>
+<span><span class="co"># treatment set to 0 (interv=0) and to 1 (interv=1)</span></span>
+<span></span>
+<span><span class="va">std</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">f</span>, data <span class="op">=</span> <span class="va">onesample</span><span class="op">)</span></span>
+<span><span class="va">onesample</span><span class="op">$</span><span class="va">predicted_meanY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">std</span>, <span class="va">onesample</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># estimate mean outcome in each of the groups interv=0, and interv=1</span></span>
+<span><span class="co"># this mean outcome is a weighted average of the mean outcomes in each combination </span></span>
+<span><span class="co"># of values of treatment and confounders, that is, the standardized outcome</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 2.6383</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 1.756213</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 1.756213</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 5.273587</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 5.273587</span></span></code></pre>
 <p>It may be useful to note that the <code><a href="../reference/datagrid.html">datagrid()</a></code> function provided by <code>marginaleffects</code> can create counterfactual datasets automatically. This is equivalent to the <code>onesample</code> dataset:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>
-    model <span class="op">=</span> <span class="va">fit</span>,
-    qsmk <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,
-    grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span></span>
+<span>    model <span class="op">=</span> <span class="va">fit</span>,</span>
+<span>    qsmk <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="contrast">Contrast<a class="anchor" aria-label="anchor" href="#contrast"></a>
@@ -224,79 +224,79 @@
 <code><a href="../reference/comparisons.html">comparisons()</a></code> automatically produces estimates of uncertainty.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">std</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Average contrasts </span>
-<span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span>
-<span class="co">## </span>
-<span class="co">## Model type:  glm </span>
-<span class="co">## Prediction type:  response</span></code></pre>
+<code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">std</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Average contrasts </span></span>
+<span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Model type:  glm </span></span>
+<span><span class="co">## Prediction type:  response</span></span></code></pre>
 <p>Under the hood, <code><a href="../reference/comparisons.html">comparisons()</a></code> did exactly what we described in the g-formula steps above:</p>
 <p>We can obtain the same result by manually computing the quantities, using the replication code from Hernán and Robins:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span> <span class="op">-</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 3.517374</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span> <span class="op">-</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 3.517374</span></span></code></pre>
 <p>Although manual computation is simple, it does not provide uncertainty estimates. In contrast, <code><a href="../reference/comparisons.html">comparisons()</a></code> has already computed the standard error and confidence interval using the delta method.</p>
 <p>Instead of the delta method, most analysts will rely on bootstraping. For example, the replication code from Hernán and Robins does this:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># function to calculate difference in means</span>
-<span class="va">standardization</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">indices</span><span class="op">)</span> <span class="op">{</span>
-    <span class="co"># create a dataset with 3 copies of each subject</span>
-    <span class="va">d</span> <span class="op">&lt;-</span> <span class="va">data</span><span class="op">[</span><span class="va">indices</span>, <span class="op">]</span> <span class="co"># 1st copy: equal to original one`</span>
-    <span class="va">d</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span>
-    <span class="va">d0</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span>
-    <span class="va">d0</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">0</span>
-    <span class="va">d0</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">0</span>
-    <span class="va">d0</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-    <span class="va">d1</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span>
-    <span class="va">d1</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-    <span class="va">d1</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-    <span class="va">d1</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-    <span class="va">d.onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">d0</span>, <span class="va">d1</span><span class="op">)</span> <span class="co"># combining datasets</span>
-
-    <span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span>
-    <span class="co"># parameters are estimated using original observations only (interv= -1)</span>
-    <span class="co"># parameter estimates are used to predict mean outcome for observations with set</span>
-    <span class="co"># treatment (interv=0 and interv=1)</span>
-    <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">f</span>, data <span class="op">=</span> <span class="va">d.onesample</span><span class="op">)</span>
-
-    <span class="va">d.onesample</span><span class="op">$</span><span class="va">predicted_meanY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, <span class="va">d.onesample</span><span class="op">)</span>
-
-    <span class="co"># estimate mean outcome in each of the groups interv=-1, interv=0, and interv=1</span>
-    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">[</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">-</span>
-           <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">[</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># bootstrap</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/boot/man/boot.html" class="external-link">boot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nhefs</span>, statistic <span class="op">=</span> <span class="va">standardization</span>, R <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
-
-<span class="co"># generating confidence intervals</span>
-<span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">t</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-<span class="va">meant0</span> <span class="op">&lt;-</span> <span class="va">results</span><span class="op">$</span><span class="va">t0</span>
-<span class="va">ll</span> <span class="op">&lt;-</span> <span class="va">meant0</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">se</span>
-<span class="va">ul</span> <span class="op">&lt;-</span> <span class="va">meant0</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">se</span>
-
-<span class="va">bootstrap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-    <span class="st">" "</span> <span class="op">=</span> <span class="st">"Treatment - No Treatment"</span>,
-    estimate <span class="op">=</span> <span class="va">meant0</span>,
-    std.error <span class="op">=</span> <span class="va">se</span>,
-    conf.low <span class="op">=</span> <span class="va">ll</span>,
-    conf.high <span class="op">=</span> <span class="va">ul</span>,
-    check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">bootstrap</span></code></pre></div>
-<pre><code><span class="co">##                            estimate std.error conf.low conf.high</span>
-<span class="co">## 1 Treatment - No Treatment 3.517374 0.4826354 2.571426  4.463322</span></code></pre>
+<code class="sourceCode R"><span><span class="co"># function to calculate difference in means</span></span>
+<span><span class="va">standardization</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">indices</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># create a dataset with 3 copies of each subject</span></span>
+<span>    <span class="va">d</span> <span class="op">&lt;-</span> <span class="va">data</span><span class="op">[</span><span class="va">indices</span>, <span class="op">]</span> <span class="co"># 1st copy: equal to original one`</span></span>
+<span>    <span class="va">d</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span></span>
+<span>    <span class="va">d0</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span></span>
+<span>    <span class="va">d0</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span>    <span class="va">d0</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span>    <span class="va">d0</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span>    <span class="va">d1</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span></span>
+<span>    <span class="va">d1</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>    <span class="va">d1</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>    <span class="va">d1</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span>    <span class="va">d.onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">d0</span>, <span class="va">d1</span><span class="op">)</span> <span class="co"># combining datasets</span></span>
+<span></span>
+<span>    <span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
+<span>    <span class="co"># parameters are estimated using original observations only (interv= -1)</span></span>
+<span>    <span class="co"># parameter estimates are used to predict mean outcome for observations with set</span></span>
+<span>    <span class="co"># treatment (interv=0 and interv=1)</span></span>
+<span>    <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">f</span>, data <span class="op">=</span> <span class="va">d.onesample</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">d.onesample</span><span class="op">$</span><span class="va">predicted_meanY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit</span>, <span class="va">d.onesample</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="co"># estimate mean outcome in each of the groups interv=-1, interv=0, and interv=1</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">[</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">-</span></span>
+<span>           <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">[</span><span class="va">d.onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># bootstrap</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/boot/man/boot.html" class="external-link">boot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nhefs</span>, statistic <span class="op">=</span> <span class="va">standardization</span>, R <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># generating confidence intervals</span></span>
+<span><span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">t</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">meant0</span> <span class="op">&lt;-</span> <span class="va">results</span><span class="op">$</span><span class="va">t0</span></span>
+<span><span class="va">ll</span> <span class="op">&lt;-</span> <span class="va">meant0</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">se</span></span>
+<span><span class="va">ul</span> <span class="op">&lt;-</span> <span class="va">meant0</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">se</span></span>
+<span></span>
+<span><span class="va">bootstrap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>    <span class="st">" "</span> <span class="op">=</span> <span class="st">"Treatment - No Treatment"</span>,</span>
+<span>    estimate <span class="op">=</span> <span class="va">meant0</span>,</span>
+<span>    std.error <span class="op">=</span> <span class="va">se</span>,</span>
+<span>    conf.low <span class="op">=</span> <span class="va">ll</span>,</span>
+<span>    conf.high <span class="op">=</span> <span class="va">ul</span>,</span>
+<span>    check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">bootstrap</span></span></code></pre></div>
+<pre><code><span><span class="co">##                            estimate std.error conf.low conf.high</span></span>
+<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4884423 2.560045  4.474703</span></span></code></pre>
 <p>The results are close to those that we obtained with <code><a href="../reference/comparisons.html">comparisons()</a></code>, but the confidence interval differs slightly because of the difference between bootstraping and the delta method.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Average contrasts </span>
-<span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span>
-<span class="co">## </span>
-<span class="co">## Model type:  glm </span>
-<span class="co">## Prediction type:  response</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Average contrasts </span></span>
+<span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Model type:  glm </span></span>
+<span><span class="co">## Prediction type:  response</span></span></code></pre>
 </div>
 </div>
   </div>
@@ -318,7 +318,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

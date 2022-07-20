@@ -96,36 +96,36 @@
 </ol>
 <p>This simulation illustrates how computation time varies for a model with 25 regressors and 100,000 observations:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-
-<span class="co"># simulate data and fit a large model</span>
-<span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1e5</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span> <span class="op">*</span> <span class="fl">26</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">26</span><span class="op">)</span><span class="op">)</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">X1</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">dat</span><span class="op">)</span>
-
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-    <span class="co"># marginal effects at the mean; no standard error</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>,
-    <span class="co"># marginal effects at the mean</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
-    <span class="co"># 1 variable; no standard error</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,
-    <span class="co"># 1 variable</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,
-    <span class="co"># 26 variables; no standard error</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-    <span class="co"># 26 variables</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>,
-    iterations <span class="op">=</span> <span class="fl">1</span>, check <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#   &lt;bch:expr&gt;                                               &lt;bch:tm&gt; &lt;bch:byt&gt;</span>
-<span class="co"># 1 marginaleffects(mod, vcov = FALSE, newdata = "mean") 141.04ms  233.94MB</span>
-<span class="co"># 2 marginaleffects(mod, newdata = "mean")               276.61ms  236.18MB</span>
-<span class="co"># 3 marginaleffects(mod, vcov = FALSE, variables = "X3")     193.81ms  385.33MB</span>
-<span class="co"># 4 marginaleffects(mod, variables = "X3")                      2.85s    3.14GB</span>
-<span class="co"># 5 marginaleffects(mod, vcov = FALSE)                          4.32s    7.62GB</span>
-<span class="co"># 6 marginaleffects(mod)                                        1.15m   76.55GB</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># simulate data and fit a large model</span></span>
+<span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1e5</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span> <span class="op">*</span> <span class="fl">26</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">26</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">X1</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">dat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>    <span class="co"># marginal effects at the mean; no standard error</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>,</span>
+<span>    <span class="co"># marginal effects at the mean</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="co"># 1 variable; no standard error</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,</span>
+<span>    <span class="co"># 1 variable</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,</span>
+<span>    <span class="co"># 26 variables; no standard error</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>    <span class="co"># 26 variables</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>,</span>
+<span>    iterations <span class="op">=</span> <span class="fl">1</span>, check <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#   &lt;bch:expr&gt;                                               &lt;bch:tm&gt; &lt;bch:byt&gt;</span></span>
+<span><span class="co"># 1 marginaleffects(mod, vcov = FALSE, newdata = "mean") 141.04ms  233.94MB</span></span>
+<span><span class="co"># 2 marginaleffects(mod, newdata = "mean")               276.61ms  236.18MB</span></span>
+<span><span class="co"># 3 marginaleffects(mod, vcov = FALSE, variables = "X3")     193.81ms  385.33MB</span></span>
+<span><span class="co"># 4 marginaleffects(mod, variables = "X3")                      2.85s    3.14GB</span></span>
+<span><span class="co"># 5 marginaleffects(mod, vcov = FALSE)                          4.32s    7.62GB</span></span>
+<span><span class="co"># 6 marginaleffects(mod)                                        1.15m   76.55GB</span></span></code></pre></div>
 <p>The benchmarks above were conducted using the development version of <code>marginaleffects</code> on 2022-04-15.</p>
 </div>
 <div class="section level2">
@@ -133,39 +133,39 @@
 </h2>
 <p>The <code>marginaleffects</code> functions are relatively fast. This simulation was conducted using the development version of the package on 2022-04-04:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/margins" class="external-link">margins</a></span><span class="op">)</span>
-
-<span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1e3</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="va">N</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-    x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,
-    x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,
-    x3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,
-    x4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="va">N</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="va">x4</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/margins" class="external-link">margins</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1e3</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="va">N</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,</span>
+<span>    x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,</span>
+<span>    x3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>,</span>
+<span>    x4 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="va">N</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="va">x4</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></code></pre></div>
 <p><code>marginaleffects</code> is about 6x faster than <code>margins</code> when unit-level standard errors are <em>not</em> computed:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, unit_ses <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,
-    check <span class="op">=</span> <span class="cn">FALSE</span>, relative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span>
-
-<span class="co">#   expression                        median mem_alloc</span>
-<span class="co">#   &lt;bch:expr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co"># 1 marginaleffects(mod, vcov = FALSE)   1         1</span>
-<span class="co"># 2 margins(mod, unit_ses = FALSE)       6.15      4.17</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, unit_ses <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>    check <span class="op">=</span> <span class="cn">FALSE</span>, relative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co">#   expression                        median mem_alloc</span></span>
+<span><span class="co">#   &lt;bch:expr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co"># 1 marginaleffects(mod, vcov = FALSE)   1         1</span></span>
+<span><span class="co"># 2 margins(mod, unit_ses = FALSE)       6.15      4.17</span></span></code></pre></div>
 <p><code>marginaleffects</code> can be nearly 600x times faster than <code>margins</code> when unit-level standard errors are computed:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span>
-    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-    <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, unit_ses <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-    check <span class="op">=</span> <span class="cn">FALSE</span>, relative <span class="op">=</span> <span class="cn">TRUE</span>, iterations <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span>
-
-<span class="co">#   expression                        median mem_alloc</span>
-<span class="co"># 1 marginaleffects(mod, vcov = TRUE)     1        1</span>
-<span class="co"># 2 margins(mod, unit_ses = TRUE)       581.      20.5</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, unit_ses <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    check <span class="op">=</span> <span class="cn">FALSE</span>, relative <span class="op">=</span> <span class="cn">TRUE</span>, iterations <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co">#   expression                        median mem_alloc</span></span>
+<span><span class="co"># 1 marginaleffects(mod, vcov = TRUE)     1        1</span></span>
+<span><span class="co"># 2 margins(mod, unit_ses = TRUE)       581.      20.5</span></span></code></pre></div>
 <p>Models estimated on larger datasets (&gt; 1000 observations) can be difficult to process using the <code>margins</code> package, because of memory and time constraints. In contrast, <code>marginaleffects</code> can work well on much larger datasets.</p>
 <p>In some cases, <code>marginaleffects</code> will be considerably slower than packages like <code>emmeans</code> or <code>modmarg</code>. This is because these packages make extensive use of hard-coded analytical derivatives, or reimplement their own fast prediction functions.</p>
 </div>
@@ -188,7 +188,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

@@ -94,29 +94,29 @@
 </ol>
 <p>For example, consider a model with a numeric, a factor, and a logical predictor:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <p>Using the <code>predictions</code> function, we set the <code>hp</code> variable at its mean and compute predictions for all combinations for <code>am</code> and <code>cyl</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"am"</span>, <span class="st">"cyl"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high</span>
-<span class="co">#&gt; 1     1 response  21.03914  1.213043  17.34411  2.185338e-67 18.66162  23.41666</span>
-<span class="co">#&gt; 2     2 response  24.96372  1.176830  21.21268 7.293661e-100 22.65718  27.27027</span>
-<span class="co">#&gt; 3     3 response  21.43031  1.826126  11.73540  8.393303e-32 17.85117  25.00945</span>
-<span class="co">#&gt; 4     4 response  16.88129  1.272938  13.26168  3.861645e-40 14.38638  19.37620</span>
-<span class="co">#&gt; 5     5 response  20.80587  1.756564  11.84464  2.294018e-32 17.36306  24.24867</span>
-<span class="co">#&gt; 6     6 response  17.27245  1.116885  15.46485  5.991525e-54 15.08340  19.46151</span>
-<span class="co">#&gt;        mpg       hp    am cyl</span>
-<span class="co">#&gt; 1 20.09062 146.6875  TRUE   6</span>
-<span class="co">#&gt; 2 20.09062 146.6875  TRUE   4</span>
-<span class="co">#&gt; 3 20.09062 146.6875  TRUE   8</span>
-<span class="co">#&gt; 4 20.09062 146.6875 FALSE   6</span>
-<span class="co">#&gt; 5 20.09062 146.6875 FALSE   4</span>
-<span class="co">#&gt; 6 20.09062 146.6875 FALSE   8</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"am"</span>, <span class="st">"cyl"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1     1 response  21.03914  1.213043  17.34411  2.185338e-67 18.55019  23.52810</span></span>
+<span><span class="co">#&gt; 2     2 response  24.96372  1.176830  21.21268 7.293661e-100 22.54907  27.37838</span></span>
+<span><span class="co">#&gt; 3     3 response  21.43031  1.826126  11.73540  8.393303e-32 17.68341  25.17721</span></span>
+<span><span class="co">#&gt; 4     4 response  16.88129  1.272938  13.26168  3.861645e-40 14.26944  19.49314</span></span>
+<span><span class="co">#&gt; 5     5 response  20.80587  1.756564  11.84464  2.294018e-32 17.20169  24.41004</span></span>
+<span><span class="co">#&gt; 6     6 response  17.27245  1.116885  15.46485  5.991525e-54 14.98079  19.56411</span></span>
+<span><span class="co">#&gt;        mpg       hp    am cyl</span></span>
+<span><span class="co">#&gt; 1 20.09062 146.6875  TRUE   6</span></span>
+<span><span class="co">#&gt; 2 20.09062 146.6875  TRUE   4</span></span>
+<span><span class="co">#&gt; 3 20.09062 146.6875  TRUE   8</span></span>
+<span><span class="co">#&gt; 4 20.09062 146.6875 FALSE   6</span></span>
+<span><span class="co">#&gt; 5 20.09062 146.6875 FALSE   4</span></span>
+<span><span class="co">#&gt; 6 20.09062 146.6875 FALSE   8</span></span></code></pre></div>
 <p>For illustration purposes, it is useful to reshape the above results:</p>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -206,141 +206,144 @@ Marginal means of am
 </table>
 <p>The marginal means of <code>am</code> and <code>cyl</code> are obtained by taking the mean of the adjusted predictions across cells. The <code>marginalmeans</code> function gives us the same results easily:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
-<span class="co">#&gt;   term value marginalmean std.error conf.low conf.high       p.value statistic</span>
-<span class="co">#&gt; 1   am FALSE     18.31987 0.7853925 16.78053  19.85921 2.429618e-120  23.32575</span>
-<span class="co">#&gt; 2   am  TRUE     22.47772 0.8343346 20.84246  24.11299 7.291801e-160  26.94090</span>
-<span class="co">#&gt; 3  cyl     4     22.88479 1.3566479 20.22581  25.54378  7.654792e-64  16.86863</span>
-<span class="co">#&gt; 4  cyl     6     18.96022 1.0729360 16.85730  21.06313  6.972277e-70  17.67134</span>
-<span class="co">#&gt; 5  cyl     8     19.35138 1.3770817 16.65235  22.05041  7.440777e-45  14.05246</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   term value marginalmean std.error conf.low conf.high       p.value statistic</span></span>
+<span><span class="co">#&gt; 1   am FALSE     18.31987 0.7853925 16.78053  19.85921 2.429618e-120  23.32575</span></span>
+<span><span class="co">#&gt; 2   am  TRUE     22.47772 0.8343346 20.84246  24.11299 7.291801e-160  26.94090</span></span>
+<span><span class="co">#&gt; 3  cyl     4     22.88479 1.3566479 20.22581  25.54378  7.654792e-64  16.86863</span></span>
+<span><span class="co">#&gt; 4  cyl     6     18.96022 1.0729360 16.85730  21.06313  6.972277e-70  17.67134</span></span>
+<span><span class="co">#&gt; 5  cyl     8     19.35138 1.3770817 16.65235  22.05041  7.440777e-45  14.05246</span></span></code></pre></div>
 <p>The same results can be obtained using the <a href="https://cran.r-project.org/package=emmeans" class="external-link">very powerful <code>emmeans</code> package</a>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span>
-<span class="co">#&gt;  cyl emmean   SE df lower.CL upper.CL</span>
-<span class="co">#&gt;  4     22.9 1.36 27     20.1     25.7</span>
-<span class="co">#&gt;  6     19.0 1.07 27     16.8     21.2</span>
-<span class="co">#&gt;  8     19.4 1.38 27     16.5     22.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Results are averaged over the levels of: am </span>
-<span class="co">#&gt; Confidence level used: 0.95</span>
-<span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span>
-<span class="co">#&gt;  am    emmean    SE df lower.CL upper.CL</span>
-<span class="co">#&gt;  FALSE   18.3 0.785 27     16.7     19.9</span>
-<span class="co">#&gt;   TRUE   22.5 0.834 27     20.8     24.2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Results are averaged over the levels of: cyl </span>
-<span class="co">#&gt; Confidence level used: 0.95</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  cyl emmean   SE df lower.CL upper.CL</span></span>
+<span><span class="co">#&gt;  4     22.9 1.36 27     20.1     25.7</span></span>
+<span><span class="co">#&gt;  6     19.0 1.07 27     16.8     21.2</span></span>
+<span><span class="co">#&gt;  8     19.4 1.38 27     16.5     22.2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Results are averaged over the levels of: am </span></span>
+<span><span class="co">#&gt; Confidence level used: 0.95</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  am    emmean    SE df lower.CL upper.CL</span></span>
+<span><span class="co">#&gt;  FALSE   18.3 0.785 27     16.7     19.9</span></span>
+<span><span class="co">#&gt;   TRUE   22.5 0.834 27     20.8     24.2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Results are averaged over the levels of: cyl </span></span>
+<span><span class="co">#&gt; Confidence level used: 0.95</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="interactions">Interactions<a class="anchor" aria-label="anchor" href="#interactions"></a>
 </h2>
 <p>By default, the <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function calculates marginal means for each categorical predictor one after the other. We can also compute marginal means for <em>combinations</em> of categories by setting <code>interaction=TRUE</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/glmmTMB/glmmTMB" class="external-link">glmmTMB</a></span><span class="op">)</span>
-
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Stat2Data/Titanic.csv"</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>
-<span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html" class="external-link">glmmTMB</a></span><span class="op">(</span>
-    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">*</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">PClass</span><span class="op">)</span>,
-    family <span class="op">=</span> <span class="va">binomial</span>,
-    data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Stat2Data/Titanic.csv"</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span></span>
+<span>    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">*</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">PClass</span><span class="op">)</span>,</span>
+<span>    family <span class="op">=</span> <span class="va">binomial</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <p>Regardless of the scale of the predictions (<code>type</code> argument), <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> always computes standard errors using the Delta Method:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">titanic</span>,
-    type <span class="op">=</span> <span class="st">"response"</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;      Sex PClass marginalmean  std.error</span>
-<span class="co">#&gt; 1 female    1st    0.9701724 0.01392585</span>
-<span class="co">#&gt; 2 female    2nd    0.8803769 0.03608862</span>
-<span class="co">#&gt; 3 female    3rd    0.3644761 0.05020662</span>
-<span class="co">#&gt; 4   male    1st    0.4450399 0.05150155</span>
-<span class="co">#&gt; 5   male    2nd    0.1422606 0.03045734</span>
-<span class="co">#&gt; 6   male    3rd    0.1189557 0.02124176</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
+<span>    <span class="va">titanic</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      Sex PClass marginalmean  std.error</span></span>
+<span><span class="co">#&gt; 1 female    1st    0.9701725 0.01392589</span></span>
+<span><span class="co">#&gt; 2 female    2nd    0.8803768 0.03608866</span></span>
+<span><span class="co">#&gt; 3 female    3rd    0.3644761 0.05020683</span></span>
+<span><span class="co">#&gt; 4   male    1st    0.4450399 0.05150232</span></span>
+<span><span class="co">#&gt; 5   male    2nd    0.1422606 0.03045760</span></span>
+<span><span class="co">#&gt; 6   male    3rd    0.1189557 0.02124204</span></span></code></pre></div>
 <p>When the model is linear or on the link scale, it also produces confidence intervals:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span>
-    <span class="va">titanic</span>,
-    type <span class="op">=</span> <span class="st">"link"</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;      Sex PClass marginalmean std.error   conf.low  conf.high      p.value</span>
-<span class="co">#&gt; 1 female    1st    3.4820408 0.4811625  2.5389797  4.4251019 4.596459e-13</span>
-<span class="co">#&gt; 2 female    2nd    1.9960037 0.3426777  1.3243678  2.6676396 5.720620e-09</span>
-<span class="co">#&gt; 3 female    3rd   -0.5559886 0.2167161 -0.9807443 -0.1312329 1.030224e-02</span>
-<span class="co">#&gt; 4   male    1st   -0.2207321 0.2085377 -0.6294584  0.1879942 2.898384e-01</span>
-<span class="co">#&gt; 5   male    2nd   -1.7966396 0.2495423 -2.2857336 -1.3075456 6.032821e-13</span>
-<span class="co">#&gt; 6   male    3rd   -2.0023565 0.2025903 -2.3994262 -1.6052869 4.895366e-23</span>
-<span class="co">#&gt;   statistic</span>
-<span class="co">#&gt; 1  7.236726</span>
-<span class="co">#&gt; 2  5.824727</span>
-<span class="co">#&gt; 3 -2.565516</span>
-<span class="co">#&gt; 4 -1.058476</span>
-<span class="co">#&gt; 5 -7.199738</span>
-<span class="co">#&gt; 6 -9.883774</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
+<span>    <span class="va">titanic</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"link"</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      Sex PClass marginalmean std.error   conf.low  conf.high      p.value</span></span>
+<span><span class="co">#&gt; 1 female    1st    3.4820418 0.4811643  2.5389771  4.4251065 4.597322e-13</span></span>
+<span><span class="co">#&gt; 2 female    2nd    1.9960034 0.3426780  1.3243669  2.6676399 5.720827e-09</span></span>
+<span><span class="co">#&gt; 3 female    3rd   -0.5559886 0.2167170 -0.9807461 -0.1312311 1.030256e-02</span></span>
+<span><span class="co">#&gt; 4   male    1st   -0.2207323 0.2085408 -0.6294648  0.1880001 2.898452e-01</span></span>
+<span><span class="co">#&gt; 5   male    2nd   -1.7966393 0.2495444 -2.2857374 -1.3075413 6.035481e-13</span></span>
+<span><span class="co">#&gt; 6   male    3rd   -2.0023565 0.2025929 -2.3994313 -1.6052817 4.901659e-23</span></span>
+<span><span class="co">#&gt;   statistic</span></span>
+<span><span class="co">#&gt; 1  7.236700</span></span>
+<span><span class="co">#&gt; 2  5.824720</span></span>
+<span><span class="co">#&gt; 3 -2.565506</span></span>
+<span><span class="co">#&gt; 4 -1.058461</span></span>
+<span><span class="co">#&gt; 5 -7.199678</span></span>
+<span><span class="co">#&gt; 6 -9.883645</span></span></code></pre></div>
 <p>It is easy to transform those link-scale marginal means with arbitrary functions using the <code>transform_post</code> argument:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">titanic</span>,
-    type <span class="op">=</span> <span class="st">"link"</span>,
-    transform_post <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/link_inverse.html" class="external-link">link_inverse</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;      Sex PClass marginalmean   conf.low conf.high      p.value</span>
-<span class="co">#&gt; 1 female    1st    0.9701724 0.92682967 0.9881687 4.596459e-13</span>
-<span class="co">#&gt; 2 female    2nd    0.8803769 0.78990748 0.9350899 5.720620e-09</span>
-<span class="co">#&gt; 3 female    3rd    0.3644761 0.27274413 0.4672388 1.030224e-02</span>
-<span class="co">#&gt; 4   male    1st    0.4450399 0.34763335 0.5468606 2.898384e-01</span>
-<span class="co">#&gt; 5   male    2nd    0.1422606 0.09231141 0.2128979 6.032821e-13</span>
-<span class="co">#&gt; 6   male    3rd    0.1189557 0.08321647 0.1672440 4.895366e-23</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
+<span>    <span class="va">titanic</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"link"</span>,</span>
+<span>    transform_post <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/link_inverse.html" class="external-link">link_inverse</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      Sex PClass marginalmean   conf.low conf.high      p.value</span></span>
+<span><span class="co">#&gt; 1 female    1st    0.9701725 0.92682949 0.9881687 4.597322e-13</span></span>
+<span><span class="co">#&gt; 2 female    2nd    0.8803768 0.78990733 0.9350899 5.720827e-09</span></span>
+<span><span class="co">#&gt; 3 female    3rd    0.3644761 0.27274377 0.4672392 1.030256e-02</span></span>
+<span><span class="co">#&gt; 4   male    1st    0.4450399 0.34763191 0.5468621 2.898452e-01</span></span>
+<span><span class="co">#&gt; 5   male    2nd    0.1422606 0.09231109 0.2128986 6.035481e-13</span></span>
+<span><span class="co">#&gt; 6   male    3rd    0.1189557 0.08321607 0.1672447 4.901659e-23</span></span></code></pre></div>
 <p>When a model does not include interactions, <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> defaults to reporting EMMs for each category individually, without interactions:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">titanic2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html" class="external-link">glmmTMB</a></span><span class="op">(</span>
-    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">+</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">PClass</span><span class="op">)</span>,
-    family <span class="op">=</span> <span class="va">binomial</span>,
-    data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>
-<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span>
-    <span class="va">titanic2</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;     term  value marginalmean  std.error</span>
-<span class="co">#&gt; 1 PClass    1st    0.7065907 0.02889053</span>
-<span class="co">#&gt; 2 PClass    2nd    0.4935160 0.02871382</span>
-<span class="co">#&gt; 3 PClass    3rd    0.2910045 0.02680176</span>
-<span class="co">#&gt; 4    Sex female    0.7408546 0.02402629</span>
-<span class="co">#&gt; 5    Sex   male    0.2532196 0.02031785</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">titanic2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span></span>
+<span>    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">+</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">PClass</span><span class="op">)</span>,</span>
+<span>    family <span class="op">=</span> <span class="va">binomial</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
+<span>    <span class="va">titanic2</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     term  value marginalmean  std.error</span></span>
+<span><span class="co">#&gt; 1 PClass    1st    0.7065907 0.02889111</span></span>
+<span><span class="co">#&gt; 2 PClass    2nd    0.4935160 0.02871385</span></span>
+<span><span class="co">#&gt; 3 PClass    3rd    0.2910045 0.02680176</span></span>
+<span><span class="co">#&gt; 4    Sex female    0.7408546 0.02402630</span></span>
+<span><span class="co">#&gt; 5    Sex   male    0.2532196 0.02031793</span></span></code></pre></div>
 <p>We can force the interactions:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span>
-    <span class="va">titanic2</span>,
-    interaction <span class="op">=</span> <span class="cn">TRUE</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;      Sex PClass marginalmean  std.error</span>
-<span class="co">#&gt; 1 female    1st   0.92882414 0.01610223</span>
-<span class="co">#&gt; 2 female    2nd   0.78190513 0.03564791</span>
-<span class="co">#&gt; 3 female    3rd   0.51183442 0.04583722</span>
-<span class="co">#&gt; 4   male    1st   0.48435732 0.04680392</span>
-<span class="co">#&gt; 5   male    2nd   0.20512692 0.03080665</span>
-<span class="co">#&gt; 6   male    3rd   0.07017461 0.01354387</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
+<span>    <span class="va">titanic2</span>,</span>
+<span>    interaction <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      Sex PClass marginalmean  std.error</span></span>
+<span><span class="co">#&gt; 1 female    1st   0.92882414 0.01610257</span></span>
+<span><span class="co">#&gt; 2 female    2nd   0.78190514 0.03564796</span></span>
+<span><span class="co">#&gt; 3 female    3rd   0.51183442 0.04583719</span></span>
+<span><span class="co">#&gt; 4   male    1st   0.48435732 0.04680467</span></span>
+<span><span class="co">#&gt; 5   male    2nd   0.20512692 0.03080674</span></span>
+<span><span class="co">#&gt; 6   male    3rd   0.07017461 0.01354394</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="subgroup-analyses-with-the-by-argument">Subgroup analyses with the <code>by</code> argument<a class="anchor" aria-label="anchor" href="#subgroup-analyses-with-the-by-argument"></a>
 </h2>
 <p>We can compute marginal means within subgroups using the <code>by</code> argument:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">vs</span><span class="op">)</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">gear</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">vs</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">poisson</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span>
-<span class="co">#&gt;    am term value marginalmean std.error</span>
-<span class="co">#&gt; 1   1  cyl     4     4.409677 0.8929303</span>
-<span class="co">#&gt; 2   0  cyl     4     3.320843 0.7605466</span>
-<span class="co">#&gt; 3   1  cyl     6     4.490837 1.0269364</span>
-<span class="co">#&gt; 4   0  cyl     6     3.381963 0.7146252</span>
-<span class="co">#&gt; 5   1  cyl     8     4.140533 0.8263885</span>
-<span class="co">#&gt; 6   0  cyl     8     3.118155 0.8929303</span>
-<span class="co">#&gt; 7   1   vs     0     4.375655 0.7605466</span>
-<span class="co">#&gt; 8   0   vs     0     3.295221 1.0269364</span>
-<span class="co">#&gt; 9   1   vs     1     4.318377 0.7146252</span>
-<span class="co">#&gt; 10  0   vs     1     3.252086 0.8263885</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">vs</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">gear</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">vs</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">poisson</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    am term value marginalmean std.error</span></span>
+<span><span class="co">#&gt; 1   1  cyl     4     4.409677 0.8929303</span></span>
+<span><span class="co">#&gt; 2   0  cyl     4     3.320843 0.7605466</span></span>
+<span><span class="co">#&gt; 3   1  cyl     6     4.490837 1.0269364</span></span>
+<span><span class="co">#&gt; 4   0  cyl     6     3.381963 0.7146252</span></span>
+<span><span class="co">#&gt; 5   1  cyl     8     4.140533 0.8263885</span></span>
+<span><span class="co">#&gt; 6   0  cyl     8     3.118155 0.8929303</span></span>
+<span><span class="co">#&gt; 7   1   vs     0     4.375655 0.7605466</span></span>
+<span><span class="co">#&gt; 8   0   vs     0     3.295221 1.0269364</span></span>
+<span><span class="co">#&gt; 9   1   vs     1     4.318377 0.7146252</span></span>
+<span><span class="co">#&gt; 10  0   vs     1     3.252086 0.8263885</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="custom-contrasts-and-linear-combinations">Custom Contrasts and Linear Combinations<a class="anchor" aria-label="anchor" href="#custom-contrasts-and-linear-combinations"></a>
@@ -352,36 +355,36 @@ Marginal means of am
 </h2>
 <p>The <code>summary</code>, <code>tidy</code>, and <code>glance</code> functions are also available to summarize and manipulate the results:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
-
-<span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span>
-<span class="co">#&gt;   term value estimate std.error statistic      p.value conf.low conf.high</span>
-<span class="co">#&gt; 1   am     0 3.273654 0.5047350  6.485886 8.821160e-11 2.284391  4.262916</span>
-<span class="co">#&gt; 2   am     1 4.347016 0.7059572  6.157619 7.384676e-10 2.963365  5.730666</span>
-<span class="co">#&gt; 3  cyl     4 3.865260 0.8929303  4.328736 1.499673e-05 2.115149  5.615371</span>
-<span class="co">#&gt; 4  cyl     6 3.936400 0.7605466  5.175751 2.269955e-07 2.445756  5.427044</span>
-<span class="co">#&gt; 5  cyl     8 3.629344 1.0269364  3.534147 4.090939e-04 1.616586  5.642102</span>
-<span class="co">#&gt; 6   vs     0 3.835438 0.7146252  5.367062 8.002961e-08 2.434798  5.236077</span>
-<span class="co">#&gt; 7   vs     1 3.785232 0.8263885  4.580451 4.639752e-06 2.165540  5.404923</span>
-
-<span class="fu"><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span>
-<span class="co">#&gt;        aic     bic r2.nagelkerke      rmse nobs         F</span>
-<span class="co">#&gt; 1 113.0034 120.332     0.6720045 0.4368402   32 0.7371939</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span>
-<span class="co">#&gt; Estimated marginal means </span>
-<span class="co">#&gt;   Term Value  Mean Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1   am     0 3.274     0.5047   6.486 8.8212e-11 2.284  4.263</span>
-<span class="co">#&gt; 2   am     1 4.347     0.7060   6.158 7.3847e-10 2.963  5.731</span>
-<span class="co">#&gt; 3  cyl     4 3.865     0.8929   4.329 1.4997e-05 2.115  5.615</span>
-<span class="co">#&gt; 4  cyl     6 3.936     0.7605   5.176 2.2700e-07 2.446  5.427</span>
-<span class="co">#&gt; 5  cyl     8 3.629     1.0269   3.534 0.00040909 1.617  5.642</span>
-<span class="co">#&gt; 6   vs     0 3.835     0.7146   5.367 8.0030e-08 2.435  5.236</span>
-<span class="co">#&gt; 7   vs     1 3.785     0.8264   4.580 4.6398e-06 2.166  5.405</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response </span>
-<span class="co">#&gt; Results averaged over levels of: cyl, vs, am</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   term value estimate std.error statistic      p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1   am     0 3.273654 0.5047350  6.485886 8.821160e-11 2.284391  4.262916</span></span>
+<span><span class="co">#&gt; 2   am     1 4.347016 0.7059572  6.157619 7.384676e-10 2.963365  5.730666</span></span>
+<span><span class="co">#&gt; 3  cyl     4 3.865260 0.8929303  4.328736 1.499673e-05 2.115149  5.615371</span></span>
+<span><span class="co">#&gt; 4  cyl     6 3.936400 0.7605466  5.175751 2.269955e-07 2.445756  5.427044</span></span>
+<span><span class="co">#&gt; 5  cyl     8 3.629344 1.0269364  3.534147 4.090939e-04 1.616586  5.642102</span></span>
+<span><span class="co">#&gt; 6   vs     0 3.835438 0.7146252  5.367062 8.002961e-08 2.434798  5.236077</span></span>
+<span><span class="co">#&gt; 7   vs     1 3.785232 0.8263885  4.580451 4.639752e-06 2.165540  5.404923</span></span>
+<span></span>
+<span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        aic     bic r2.nagelkerke      rmse nobs         F    logLik</span></span>
+<span><span class="co">#&gt; 1 113.0034 120.332     0.6720045 0.4368402   32 0.7371939 -51.50168</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Estimated marginal means </span></span>
+<span><span class="co">#&gt;   Term Value  Mean Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1   am     0 3.274     0.5047   6.486 8.8212e-11 2.284  4.263</span></span>
+<span><span class="co">#&gt; 2   am     1 4.347     0.7060   6.158 7.3847e-10 2.963  5.731</span></span>
+<span><span class="co">#&gt; 3  cyl     4 3.865     0.8929   4.329 1.4997e-05 2.115  5.615</span></span>
+<span><span class="co">#&gt; 4  cyl     6 3.936     0.7605   5.176 2.2700e-07 2.446  5.427</span></span>
+<span><span class="co">#&gt; 5  cyl     8 3.629     1.0269   3.534 0.00040909 1.617  5.642</span></span>
+<span><span class="co">#&gt; 6   vs     0 3.835     0.7146   5.367 8.0030e-08 2.435  5.236</span></span>
+<span><span class="co">#&gt; 7   vs     1 3.785     0.8264   4.580 4.6398e-06 2.166  5.405</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Results averaged over levels of: cyl, vs, am</span></span></code></pre></div>
 <p>Thanks to those tidiers, we can also present the results in the style of a regression table <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">using the <code>modelsummary</code> package.</a> For examples, see <a href="https://vincentarelbundock.github.io/marginaleffects/articles/modelsummary.html" class="external-link">the tables and plots vignette.</a></p>
 </div>
 <div class="section level2">
@@ -390,33 +393,33 @@ Marginal means of am
 <p>This example requires version 0.2.0 of the <code>marginaleffects</code> package.</p>
 <p>To begin, we generate data and estimate a large model:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1839</span><span class="op">)</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1200</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, <span class="va">n</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span>length <span class="op">=</span> <span class="va">n</span><span class="op">)</span>
-<span class="va">y</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="st">"a"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"a"</span><span class="op">)</span>, <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">y</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">)</span>, <span class="cn">TRUE</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">4</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">4</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-<span class="va">y</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>, <span class="cn">TRUE</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">5</span>, <span class="fl">3</span> <span class="op">/</span> <span class="fl">5</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
-<span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">7</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span>, <span class="va">n</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">tmp</span><span class="op">)</span>
-<span class="va">void</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html" class="external-link">capture.output</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">dat</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1839</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1200</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, <span class="va">n</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span>length <span class="op">=</span> <span class="va">n</span><span class="op">)</span></span>
+<span><span class="va">y</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="st">"a"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"a"</span><span class="op">)</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">y</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"b"</span><span class="op">)</span>, <span class="cn">TRUE</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">4</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">4</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">y</span><span class="op">[</span><span class="va">x</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>, <span class="cn">TRUE</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="fl">5</span>, <span class="fl">3</span> <span class="op">/</span> <span class="fl">5</span>, <span class="fl">2</span> <span class="op">/</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">7</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span>, <span class="va">n</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">tmp</span><span class="op">)</span></span>
+<span><span class="va">void</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html" class="external-link">capture.output</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">dat</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <p>Try to compute marginal means, but realize that your grid won’t fit in memory:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span>
-<span class="co">#&gt; Error: You are trying to create a prediction grid with more than 1 billion rows, which is likely to exceed the memory and computational power available on your local machine. Presumably this is because you are considering many variables with many levels. All of the functions in the `marginaleffects` package include arguments to specify a restricted list of variables over which to create a prediction grid.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error: You are trying to create a prediction grid with more than 1 billion rows, which is likely to exceed the memory and computational power available on your local machine. Presumably this is because you are considering many variables with many levels. All of the functions in the `marginaleffects` package include arguments to specify a restricted list of variables over which to create a prediction grid.</span></span></code></pre></div>
 <p>Use the <code>variables</code> and <code>variables_grid</code> arguments to compute marginal means over a more reasonably sized grid:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>,
-              type <span class="op">=</span> <span class="st">"probs"</span>,
-              variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"V1"</span><span class="op">)</span>,
-              variables_grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"V"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>,</span>
+<span>              type <span class="op">=</span> <span class="st">"probs"</span>,</span>
+<span>              variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"V1"</span><span class="op">)</span>,</span>
+<span>              variables_grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"V"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
@@ -437,7 +440,7 @@ Marginal means of am
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

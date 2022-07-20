@@ -100,88 +100,88 @@
 </h3>
 <p>Consider a simple model with a logical and a factor variable:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
-
-<span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">mtcars</span>
-<span class="va">tmp</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span><span class="op">)</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">tmp</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
+<span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">tmp</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>marginaleffects</code> function automatically computes contrasts for each level of the categorical variables, relative to the baseline category (<code>FALSE</code> for logicals, and the reference level for factors), while holding all other values at their mode or mean:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
-<span class="co">#&gt; Average marginal effects </span>
-<span class="co">#&gt;   Term     Contrast  Effect Std. Error z value   Pr(&gt;|z|)     2.5 % 97.5 %</span>
-<span class="co">#&gt; 1   am TRUE - FALSE   2.560      1.298   1.973    0.04851   0.01675  5.103</span>
-<span class="co">#&gt; 2  cyl        6 - 4  -6.156      1.536  -4.009 6.1077e-05  -9.16608 -3.146</span>
-<span class="co">#&gt; 3  cyl        8 - 4 -10.068      1.452  -6.933 4.1146e-12 -12.91359 -7.222</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  lm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average marginal effects </span></span>
+<span><span class="co">#&gt;   Term     Contrast  Effect Std. Error z value   Pr(&gt;|z|)     2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1   am TRUE - FALSE   2.560      1.298   1.973    0.04851   0.01675  5.103</span></span>
+<span><span class="co">#&gt; 2  cyl        6 - 4  -6.156      1.536  -4.009 6.1077e-05  -9.16608 -3.146</span></span>
+<span><span class="co">#&gt; 3  cyl        8 - 4 -10.068      1.452  -6.933 4.1146e-12 -12.91359 -7.222</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  lm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>The summary printed above says that moving from the reference category <code>4</code> to the level <code>6</code> on the <code>cyl</code> factor variable is associated with a change of -6.156 in the adjusted prediction. Similarly, the contrast from <code>FALSE</code> to <code>TRUE</code> on the <code>am</code> variable is equal to 2.560.</p>
 <p>We can obtain different contrasts by using the <code><a href="../reference/comparisons.html">comparisons()</a></code> function. For example:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term contrast  estimate std.error statistic      p.value  conf.low</span>
-<span class="co">#&gt; 1 response  cyl    6 - 4 -6.156118  1.535723 -4.008612 6.107658e-05 -9.166079</span>
-<span class="co">#&gt; 2 response  cyl    8 - 6 -3.911442  1.470254 -2.660385 7.805144e-03 -6.793087</span>
-<span class="co">#&gt;   conf.high</span>
-<span class="co">#&gt; 1 -3.146156</span>
-<span class="co">#&gt; 2 -1.029797</span>
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term contrast   estimate std.error statistic      p.value   conf.low</span>
-<span class="co">#&gt; 1 response  cyl    6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.166079</span>
-<span class="co">#&gt; 2 response  cyl    8 - 4 -10.067560  1.452082 -6.933187 4.114626e-12 -12.913589</span>
-<span class="co">#&gt; 3 response  cyl    8 - 6  -3.911442  1.470254 -2.660385 7.805144e-03  -6.793087</span>
-<span class="co">#&gt;   conf.high</span>
-<span class="co">#&gt; 1 -3.146156</span>
-<span class="co">#&gt; 2 -7.221530</span>
-<span class="co">#&gt; 3 -1.029797</span>
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"reference"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term contrast   estimate std.error statistic      p.value   conf.low</span>
-<span class="co">#&gt; 1 response  cyl    6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.166079</span>
-<span class="co">#&gt; 2 response  cyl    8 - 4 -10.067560  1.452082 -6.933187 4.114626e-12 -12.913589</span>
-<span class="co">#&gt;   conf.high</span>
-<span class="co">#&gt; 1 -3.146156</span>
-<span class="co">#&gt; 2 -7.221530</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast  estimate std.error statistic      p.value  conf.low</span></span>
+<span><span class="co">#&gt; 1 response  cyl    6 - 4 -6.156118  1.535723 -4.008612 6.107658e-05 -9.166079</span></span>
+<span><span class="co">#&gt; 2 response  cyl    8 - 6 -3.911442  1.470254 -2.660385 7.805144e-03 -6.793087</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1 -3.146156</span></span>
+<span><span class="co">#&gt; 2 -1.029797</span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast   estimate std.error statistic      p.value   conf.low</span></span>
+<span><span class="co">#&gt; 1 response  cyl    6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.166079</span></span>
+<span><span class="co">#&gt; 2 response  cyl    8 - 4 -10.067560  1.452082 -6.933187 4.114626e-12 -12.913589</span></span>
+<span><span class="co">#&gt; 3 response  cyl    8 - 6  -3.911442  1.470254 -2.660385 7.805144e-03  -6.793087</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1 -3.146156</span></span>
+<span><span class="co">#&gt; 2 -7.221530</span></span>
+<span><span class="co">#&gt; 3 -1.029797</span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"reference"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast   estimate std.error statistic      p.value   conf.low</span></span>
+<span><span class="co">#&gt; 1 response  cyl    6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.166079</span></span>
+<span><span class="co">#&gt; 2 response  cyl    8 - 4 -10.067560  1.452082 -6.933187 4.114626e-12 -12.913589</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1 -3.146156</span></span>
+<span><span class="co">#&gt; 2 -7.221530</span></span></code></pre></div>
 <p>For comparison, this code produces the same results using the <code>emmeans</code> package:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span>
-<span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"revpairwise"</span><span class="op">)</span>
-<span class="co">#&gt;  contrast    estimate   SE df t.ratio p.value</span>
-<span class="co">#&gt;  cyl6 - cyl4    -6.16 1.54 28  -4.009  0.0012</span>
-<span class="co">#&gt;  cyl8 - cyl4   -10.07 1.45 28  -6.933  &lt;.0001</span>
-<span class="co">#&gt;  cyl8 - cyl6    -3.91 1.47 28  -2.660  0.0331</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Results are averaged over the levels of: am </span>
-<span class="co">#&gt; P value adjustment: tukey method for comparing a family of 3 estimates</span>
-
-<span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"revpairwise"</span><span class="op">)</span>
-<span class="co">#&gt;  contrast     estimate  SE df t.ratio p.value</span>
-<span class="co">#&gt;  TRUE - FALSE     2.56 1.3 28   1.973  0.0585</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Results are averaged over the levels of: cyl</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
+<span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"revpairwise"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  contrast    estimate   SE df t.ratio p.value</span></span>
+<span><span class="co">#&gt;  cyl6 - cyl4    -6.16 1.54 28  -4.009  0.0012</span></span>
+<span><span class="co">#&gt;  cyl8 - cyl4   -10.07 1.45 28  -6.933  &lt;.0001</span></span>
+<span><span class="co">#&gt;  cyl8 - cyl6    -3.91 1.47 28  -2.660  0.0331</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Results are averaged over the levels of: am </span></span>
+<span><span class="co">#&gt; P value adjustment: tukey method for comparing a family of 3 estimates</span></span>
+<span></span>
+<span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"revpairwise"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  contrast     estimate  SE df t.ratio p.value</span></span>
+<span><span class="co">#&gt;  TRUE - FALSE     2.56 1.3 28   1.973  0.0585</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Results are averaged over the levels of: cyl</span></span></code></pre></div>
 <p>Note that these commands also work on for other types of models, such as GLMs, on different scales:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod_logit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod_logit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term contrast  estimate    std.error    statistic     p.value</span>
-<span class="co">#&gt; 1 response gear    4 - 3 0.6666667 1.360805e-01     4.899061 9.62957e-07</span>
-<span class="co">#&gt; 2 response gear    5 - 3 1.0000000 1.071403e-05 93335.529594 0.00000e+00</span>
-<span class="co">#&gt;    conf.low conf.high</span>
-<span class="co">#&gt; 1 0.3999538 0.9333795</span>
-<span class="co">#&gt; 2 0.9999790 1.0000210</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod_logit</span>, type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;   type term contrast estimate std.error   statistic   p.value   conf.low</span>
-<span class="co">#&gt; 1 link gear    4 - 3 21.25922  4577.962 0.004643817 0.9962948  -8951.381</span>
-<span class="co">#&gt; 2 link gear    5 - 3 41.13214  9155.924 0.004492407 0.9964156 -17904.148</span>
-<span class="co">#&gt;   conf.high</span>
-<span class="co">#&gt; 1   8993.90</span>
-<span class="co">#&gt; 2  17986.41</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod_logit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod_logit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast  estimate    std.error    statistic     p.value</span></span>
+<span><span class="co">#&gt; 1 response gear    4 - 3 0.6666667 1.360805e-01     4.899061 9.62957e-07</span></span>
+<span><span class="co">#&gt; 2 response gear    5 - 3 1.0000000 1.071403e-05 93335.529594 0.00000e+00</span></span>
+<span><span class="co">#&gt;    conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 0.3999538 0.9333795</span></span>
+<span><span class="co">#&gt; 2 0.9999790 1.0000210</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod_logit</span>, type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   type term contrast estimate std.error   statistic   p.value   conf.low</span></span>
+<span><span class="co">#&gt; 1 link gear    4 - 3 21.25922  4577.962 0.004643817 0.9962948  -8951.381</span></span>
+<span><span class="co">#&gt; 2 link gear    5 - 3 41.13214  9155.924 0.004492407 0.9964156 -17904.148</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1   8993.90</span></span>
+<span><span class="co">#&gt; 2  17986.41</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="character-predictors">Character predictors<a class="anchor" aria-label="anchor" href="#character-predictors"></a>
@@ -193,53 +193,53 @@
 </h3>
 <p>We can also compute contrasts for differences in numeric variables. For example, we can see what happens to the adjusted predictions when we increment the <code>hp</code> variable by 1 unit (default) or by 5 units:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term    contrast    estimate std.error statistic      p.value</span>
-<span class="co">#&gt; 1 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
-<span class="co">#&gt;      conf.low   conf.high</span>
-<span class="co">#&gt; 1 -0.08806175 -0.04839481</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term    contrast   estimate  std.error statistic      p.value</span>
-<span class="co">#&gt; 1 response   hp (x + 5) - x -0.3411414 0.05059652 -6.742389 1.558038e-11</span>
-<span class="co">#&gt;     conf.low conf.high</span>
-<span class="co">#&gt; 1 -0.4403087 -0.241974</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term    contrast    estimate std.error statistic      p.value</span></span>
+<span><span class="co">#&gt; 1 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558037e-11</span></span>
+<span><span class="co">#&gt;      conf.low   conf.high</span></span>
+<span><span class="co">#&gt; 1 -0.08806175 -0.04839481</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term    contrast   estimate  std.error statistic      p.value</span></span>
+<span><span class="co">#&gt; 1 response   hp (x + 5) - x -0.3411414 0.05059652 -6.742389 1.558038e-11</span></span>
+<span><span class="co">#&gt;     conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 -0.4403087 -0.241974</span></span></code></pre></div>
 <p>Compare adjusted predictions for a change in the regressor between two arbitrary values:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term contrast  estimate std.error statistic      p.value  conf.low</span>
-<span class="co">#&gt; 1 response   hp 110 - 90 -1.364566 0.2023861 -6.742389 1.558038e-11 -1.761235</span>
-<span class="co">#&gt;    conf.high</span>
-<span class="co">#&gt; 1 -0.9678961</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast  estimate std.error statistic      p.value  conf.low</span></span>
+<span><span class="co">#&gt; 1 response   hp 110 - 90 -1.364566 0.2023861 -6.742389 1.558038e-11 -1.761235</span></span>
+<span><span class="co">#&gt;    conf.high</span></span>
+<span><span class="co">#&gt; 1 -0.9678961</span></span></code></pre></div>
 <p>Compare adjusted predictions when the regressor changes across the interquartile range, across one or two standard deviations about its mean, or from across its full range:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"iqr"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term contrast  estimate std.error statistic      p.value  conf.low</span>
-<span class="co">#&gt; 1 response   hp  Q3 - Q1 -5.697061 0.8449619 -6.742389 1.558038e-11 -7.353156</span>
-<span class="co">#&gt;   conf.high</span>
-<span class="co">#&gt; 1 -4.040966</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term                contrast  estimate std.error statistic</span>
-<span class="co">#&gt; 1 response   hp (x + sd/2) - (x - sd/2) -4.677926 0.6938085 -6.742389</span>
-<span class="co">#&gt;        p.value  conf.low conf.high</span>
-<span class="co">#&gt; 1 1.558038e-11 -6.037766 -3.318087</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"2sd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term            contrast  estimate std.error statistic      p.value</span>
-<span class="co">#&gt; 1 response   hp (x + sd) - (x - sd) -9.355853  1.387617 -6.742389 1.558038e-11</span>
-<span class="co">#&gt;    conf.low conf.high</span>
-<span class="co">#&gt; 1 -12.07553 -6.636174</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"minmax"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;       type term  contrast estimate std.error statistic      p.value  conf.low</span>
-<span class="co">#&gt; 1 response   hp Max - Min -19.3086  2.863763 -6.742389 1.558038e-11 -24.92147</span>
-<span class="co">#&gt;   conf.high</span>
-<span class="co">#&gt; 1 -13.69573</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"iqr"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast  estimate std.error statistic      p.value  conf.low</span></span>
+<span><span class="co">#&gt; 1 response   hp  Q3 - Q1 -5.697061 0.8449619 -6.742389 1.558038e-11 -7.353156</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1 -4.040966</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term                contrast  estimate std.error statistic</span></span>
+<span><span class="co">#&gt; 1 response   hp (x + sd/2) - (x - sd/2) -4.677926 0.6938085 -6.742389</span></span>
+<span><span class="co">#&gt;        p.value  conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 1.558038e-11 -6.037766 -3.318087</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"2sd"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term            contrast  estimate std.error statistic      p.value</span></span>
+<span><span class="co">#&gt; 1 response   hp (x - sd) - (x + sd) -9.355853  1.387617 -6.742389 1.558038e-11</span></span>
+<span><span class="co">#&gt;    conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 -12.07553 -6.636174</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"minmax"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term  contrast estimate std.error statistic      p.value  conf.low</span></span>
+<span><span class="co">#&gt; 1 response   hp Max - Min -19.3086  2.863763 -6.742389 1.558038e-11 -24.92147</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1 -13.69573</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -248,19 +248,19 @@
 <p>In some contexts we would like to know what happens when two (or more) predictors change at the same time. In the <code>marginaleffects</code> package terminology, this is an “interaction between contrasts.”</p>
 <p>For example, consider a model with two factor variables:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p>What happens if <code>am</code> increases by 1 unit and <code>cyl</code> changes from a baseline reference to another level?</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;     cyl          am Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="co">#&gt; 1 4 - 4 (x + 1) - x -1.158      2.057 -0.5630  0.57344 -5.189  2.873</span>
-<span class="co">#&gt; 2 6 - 4 (x + 1) - x -1.186      2.102 -0.5640  0.57275 -5.305  2.934</span>
-<span class="co">#&gt; 3 8 - 4 (x + 1) - x -1.513      2.096 -0.7218  0.47043 -5.620  2.595</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  lm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;     cyl          am Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1 4 - 4 (x + 1) - x -1.158      2.057 -0.5630  0.57344 -5.189  2.873</span></span>
+<span><span class="co">#&gt; 2 6 - 4 (x + 1) - x -1.186      2.102 -0.5640  0.57275 -5.305  2.934</span></span>
+<span><span class="co">#&gt; 3 8 - 4 (x + 1) - x -1.513      2.096 -0.7218  0.47043 -5.620  2.595</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  lm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>When the <code>variables</code> argument is used and the model formula includes interactions, the “cross-contrasts” will automatically be displayed. You can also force <code><a href="../reference/comparisons.html">comparisons()</a></code> to do it by setting <code>interactions=TRUE</code> and using the <code>variables</code> argument to specify which variables should be manipulated simultaneously.</p>
 </div>
 <div class="section level2">
@@ -280,38 +280,38 @@
 <p>In models with interactions or non-linear components (e.g., link function), the value of a contrast or marginal effect can depend on the value of all the predictors in the model. As a result, contrasts and marginal effects are fundamentally <em>unit-level</em> quantities. The effect of a 1 unit increase in <span class="math inline">\(X\)</span> can be different for Mary or John. Every row of a dataset has a different contrast and marginal effect.</p>
 <p>The <code>mtcars</code> dataset has 32 rows, so the <code><a href="../reference/comparisons.html">comparisons()</a></code> function produces 32 contrast estimates:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">mpg</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
-<span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"mpg"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
-<span class="co">#&gt; [1] 32</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">mpg</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"mpg"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 32</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="average-contrasts">Average contrasts<a class="anchor" aria-label="anchor" href="#average-contrasts"></a>
 </h3>
 <p>By default, the <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> and <code><a href="../reference/comparisons.html">comparisons()</a></code> functions compute marginal effects and contrasts for every row of the original dataset. These unit-level estimates can be unwieldy and hard to interpret. To help interpretation, the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function computes the “Average Marginal Effect” or “Average Contrast,” by taking the mean of all the unit-level estimates.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term    Contrast  Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1) - x 0.06081    0.01284   4.737 2.1714e-06 0.03565 0.08597</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term    Contrast  Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg (x + 1) - x 0.06081    0.01284   4.737 2.1714e-06 0.03565 0.08597</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>which is equivalent to:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">comparison</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.06080995</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">comparison</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.06080995</span></span></code></pre></div>
 <p>We could also show the full distribution of contrasts across our dataset with a histogram:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-
-<span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cmp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">comparison</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">contrast</span>, scale <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Distribution of unit-level contrasts"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cmp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">comparison</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">contrast</span>, scale <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Distribution of unit-level contrasts"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contrasts_files/figure-html/unnamed-chunk-15-1.png" width="576"></p>
 <p>This graph display the effect of a change of 1 unit in the <code>mpg</code> variable, for each individual in the observed data.</p>
 </div>
@@ -321,11 +321,11 @@
 <p>An alternative which used to be very common but has now fallen into a bit of disfavor is to compute “Contrasts at the mean.” The idea is to create a “synthetic” or “hypothetical” individual (row of the dataset) whose characteristics are completely average. Then, we compute and report the contrast for this specific hypothetical individual.</p>
 <p>This can be achieved by setting <code>newdata="mean"</code> or to <code>newdata=datagrid()</code>, both of which fix variables to their means or modes:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"mpg"</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type term    contrast comparison  std.error statistic     p.value</span>
-<span class="co">#&gt; 1     1 response  mpg (x + 1) - x  0.1664787 0.06245542   2.66556 0.007686022</span>
-<span class="co">#&gt;     conf.low conf.high gear      mpg</span>
-<span class="co">#&gt; 1 0.04406829  0.288889    3 20.09062</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"mpg"</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid     type term    contrast comparison  std.error statistic     p.value</span></span>
+<span><span class="co">#&gt; 1     1 response  mpg (x + 1) - x  0.1664787 0.06245542   2.66556 0.007686022</span></span>
+<span><span class="co">#&gt;     conf.low conf.high     vs gear      mpg</span></span>
+<span><span class="co">#&gt; 1 0.04406829  0.288889 0.4375    3 20.09062</span></span></code></pre></div>
 <p>Contrasts at the mean can differ substantially from average contrasts.</p>
 <p>The advantage of this approach is that it is very cheap and fast computationally. The disadvantage is that the interpretation is somewhat ambiguous. Often times, there simply does not exist an individual who is perfectly average across all dimensions of the dataset. It is also not clear why the analyst should be particularly interested in the contrast for this one, synthetic, perfectly average individual.</p>
 </div>
@@ -349,54 +349,54 @@
 <p>For example, imagine that one of the control variables in your model is a variable measuring educational attainment in 4 categories: No high school, High school, Some college, Completed college. The contrast between marginal is a weighted average of contrasts estimated in the 4 cells, and each of those contrasts will be weighted equally in the overall estimate. If the population of interest is highly unbalanced in the educational categories, then the estimate computed in this way will not be most useful.</p>
 <p>If the contrasts between marginal means is really the quantity of interest, it is easy to use the <code><a href="../reference/comparisons.html">comparisons()</a></code> to estimate contrasts between marginal means. The <code>newdata</code> determines the values of the predictors at which we want to compute contrasts. We can set <code>newdata="marginalmeans"</code> to emulate the <code>emmeans</code> behavior. For example, here we compute contrasts in a model with an interaction:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/palmerpenguins/penguins.csv"</span><span class="op">)</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">species</span> <span class="op">*</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">island</span> <span class="op">+</span> <span class="va">body_mass_g</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span>
-
-<span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    newdata <span class="op">=</span> <span class="st">"marginalmeans"</span>,
-    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"island"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;              species             island   Effect Std. Error z value   Pr(&gt;|z|)</span>
-<span class="co">#&gt; 1    Adelie - Adelie     Dream - Biscoe -0.45571     0.4533  -1.005    0.31472</span>
-<span class="co">#&gt; 2    Adelie - Adelie Torgersen - Biscoe  0.08507     0.4701   0.181    0.85639</span>
-<span class="co">#&gt; 3 Chinstrap - Adelie    Biscoe - Biscoe 10.26934     0.4067  25.252 &lt; 2.22e-16</span>
-<span class="co">#&gt; 4 Chinstrap - Adelie     Dream - Biscoe  9.81362     0.4336  22.630 &lt; 2.22e-16</span>
-<span class="co">#&gt; 5 Chinstrap - Adelie Torgersen - Biscoe 10.35441     0.6217  16.656 &lt; 2.22e-16</span>
-<span class="co">#&gt; 6    Gentoo - Adelie    Biscoe - Biscoe  5.89568     0.6773   8.705 &lt; 2.22e-16</span>
-<span class="co">#&gt; 7    Gentoo - Adelie     Dream - Biscoe  5.43996     0.9413   5.779  7.504e-09</span>
-<span class="co">#&gt; 8    Gentoo - Adelie Torgersen - Biscoe  5.98075     0.9542   6.268  3.667e-10</span>
-<span class="co">#&gt;     2.5 %  97.5 %</span>
-<span class="co">#&gt; 1 -1.3441  0.4327</span>
-<span class="co">#&gt; 2 -0.8363  1.0064</span>
-<span class="co">#&gt; 3  9.4723 11.0664</span>
-<span class="co">#&gt; 4  8.9637 10.6636</span>
-<span class="co">#&gt; 5  9.1360 11.5728</span>
-<span class="co">#&gt; 6  4.5683  7.2231</span>
-<span class="co">#&gt; 7  3.5951  7.2849</span>
-<span class="co">#&gt; 8  4.1105  7.8510</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  lm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/palmerpenguins/penguins.csv"</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">species</span> <span class="op">*</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">island</span> <span class="op">+</span> <span class="va">body_mass_g</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    newdata <span class="op">=</span> <span class="st">"marginalmeans"</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"island"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;              species             island   Effect Std. Error z value   Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt; 1    Adelie - Adelie     Dream - Biscoe -0.45571     0.4533  -1.005    0.31472</span></span>
+<span><span class="co">#&gt; 2    Adelie - Adelie Torgersen - Biscoe  0.08507     0.4701   0.181    0.85639</span></span>
+<span><span class="co">#&gt; 3 Chinstrap - Adelie    Biscoe - Biscoe 10.26934     0.4067  25.252 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 4 Chinstrap - Adelie     Dream - Biscoe  9.81362     0.4336  22.630 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 5 Chinstrap - Adelie Torgersen - Biscoe 10.35441     0.6217  16.656 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 6    Gentoo - Adelie    Biscoe - Biscoe  5.89568     0.6773   8.705 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 7    Gentoo - Adelie     Dream - Biscoe  5.43996     0.9413   5.779  7.504e-09</span></span>
+<span><span class="co">#&gt; 8    Gentoo - Adelie Torgersen - Biscoe  5.98075     0.9542   6.268  3.667e-10</span></span>
+<span><span class="co">#&gt;     2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1 -1.3441  0.4327</span></span>
+<span><span class="co">#&gt; 2 -0.8363  1.0064</span></span>
+<span><span class="co">#&gt; 3  9.4723 11.0664</span></span>
+<span><span class="co">#&gt; 4  8.9637 10.6636</span></span>
+<span><span class="co">#&gt; 5  9.1360 11.5728</span></span>
+<span><span class="co">#&gt; 6  4.5683  7.2231</span></span>
+<span><span class="co">#&gt; 7  3.5951  7.2849</span></span>
+<span><span class="co">#&gt; 8  4.1105  7.8510</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  lm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>Which is equivalent to this in <code>emmeans</code>:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    specs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"island"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"trt.vs.ctrl1"</span><span class="op">)</span>
-<span class="co">#&gt;  contrast                            estimate    SE  df t.ratio p.value</span>
-<span class="co">#&gt;  Chinstrap Biscoe - Adelie Biscoe     10.2693 0.407 324  25.252  &lt;.0001</span>
-<span class="co">#&gt;  Gentoo Biscoe - Adelie Biscoe         5.8957 0.677 324   8.705  &lt;.0001</span>
-<span class="co">#&gt;  Adelie Dream - Adelie Biscoe         -0.4557 0.453 324  -1.005  0.8274</span>
-<span class="co">#&gt;  Chinstrap Dream - Adelie Biscoe       9.8136 0.434 324  22.630  &lt;.0001</span>
-<span class="co">#&gt;  Gentoo Dream - Adelie Biscoe          5.4400 0.941 324   5.779  &lt;.0001</span>
-<span class="co">#&gt;  Adelie Torgersen - Adelie Biscoe      0.0851 0.470 324   0.181  0.9994</span>
-<span class="co">#&gt;  Chinstrap Torgersen - Adelie Biscoe  10.3544 0.622 324  16.656  &lt;.0001</span>
-<span class="co">#&gt;  Gentoo Torgersen - Adelie Biscoe      5.9808 0.954 324   6.268  &lt;.0001</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Results are averaged over the levels of: sex </span>
-<span class="co">#&gt; P value adjustment: dunnettx method for 8 tests</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    specs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"island"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"trt.vs.ctrl1"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  contrast                            estimate    SE  df t.ratio p.value</span></span>
+<span><span class="co">#&gt;  Chinstrap Biscoe - Adelie Biscoe     10.2693 0.407 324  25.252  &lt;.0001</span></span>
+<span><span class="co">#&gt;  Gentoo Biscoe - Adelie Biscoe         5.8957 0.677 324   8.705  &lt;.0001</span></span>
+<span><span class="co">#&gt;  Adelie Dream - Adelie Biscoe         -0.4557 0.453 324  -1.005  0.8274</span></span>
+<span><span class="co">#&gt;  Chinstrap Dream - Adelie Biscoe       9.8136 0.434 324  22.630  &lt;.0001</span></span>
+<span><span class="co">#&gt;  Gentoo Dream - Adelie Biscoe          5.4400 0.941 324   5.779  &lt;.0001</span></span>
+<span><span class="co">#&gt;  Adelie Torgersen - Adelie Biscoe      0.0851 0.470 324   0.181  0.9994</span></span>
+<span><span class="co">#&gt;  Chinstrap Torgersen - Adelie Biscoe  10.3544 0.622 324  16.656  &lt;.0001</span></span>
+<span><span class="co">#&gt;  Gentoo Torgersen - Adelie Biscoe      5.9808 0.954 324   6.268  &lt;.0001</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Results are averaged over the levels of: sex </span></span>
+<span><span class="co">#&gt; P value adjustment: dunnettx method for 8 tests</span></span></code></pre></div>
 <p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html#emmeans" class="external-link"><code>emmeans</code> section of the Alternative Software vignette</a> shows further examples.</p>
 <p>The <a href="https://CRAN.R-project.org/package=emmeans/vignettes/basics.html" class="external-link">excellent vignette of the <code>emmeans</code> package</a> discuss the same issues in a slightly different (and more positive) way:</p>
 <blockquote>
@@ -412,11 +412,14 @@
 </h2>
 <p>Consider a model with an interaction term. What happens to the dependent variable when the <code>hp</code> variable increases by 10 units?</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,
-    condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>    condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contrasts_files/figure-html/unnamed-chunk-19-1.png" width="576"></p>
 </div>
 <div class="section level2">
@@ -449,133 +452,131 @@
 <p>The <code>transform_avg</code> argument is available in the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> functions. It applies a custom transformation to the average contrast.</p>
 <p>The difference between <code>transform_post</code> and <code>transform_avg</code> is that the former is applied <em>before</em> we take the average, and the latter is applied <em>to the average</em>. This seems like a subtle distinction, but it can be important practical implications, since a function of the average is rarely the same as the average of a function:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1024</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.9806912</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1.587238</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1024</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.9806912</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1.587238</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="differences">Differences<a class="anchor" aria-label="anchor" href="#differences"></a>
 </h2>
 <p>The default contrast calculate by the <code><a href="../reference/comparisons.html">comparisons()</a></code> function is a (untransformed) difference between two adjusted predictions. For instance, to estimate the effect of a change of 1 unit, we do:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
-
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>
-
-<span class="co"># construct data</span>
-
-<span class="va">mtcars_minus</span> <span class="op">&lt;-</span> <span class="va">mtcars_plus</span> <span class="op">&lt;-</span> <span class="va">mtcars</span>
-<span class="va">mtcars_minus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">&lt;-</span> <span class="va">mtcars_minus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">-</span> <span class="fl">0.5</span>
-<span class="va">mtcars_plus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">&lt;-</span> <span class="va">mtcars_plus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">+</span> <span class="fl">0.5</span>
-
-<span class="co"># adjusted predictions</span>
-<span class="va">yhat_minus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">mtcars_minus</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>
-<span class="va">yhat_plus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">mtcars_plus</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span>
-
-<span class="co"># unit-level contrasts</span>
-<span class="va">con</span> <span class="op">&lt;-</span> <span class="va">yhat_plus</span> <span class="op">-</span> <span class="va">yhat_minus</span>
-
-<span class="co"># average contrasts</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.05540227</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># construct data</span></span>
+<span></span>
+<span><span class="va">mtcars_minus</span> <span class="op">&lt;-</span> <span class="va">mtcars_plus</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
+<span><span class="va">mtcars_minus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">&lt;-</span> <span class="va">mtcars_minus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">-</span> <span class="fl">0.5</span></span>
+<span><span class="va">mtcars_plus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">&lt;-</span> <span class="va">mtcars_plus</span><span class="op">$</span><span class="va">mpg</span> <span class="op">+</span> <span class="fl">0.5</span></span>
+<span></span>
+<span><span class="co"># adjusted predictions</span></span>
+<span><span class="va">yhat_minus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">mtcars_minus</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span>
+<span><span class="va">yhat_plus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">mtcars_plus</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># unit-level contrasts</span></span>
+<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="va">yhat_plus</span> <span class="op">-</span> <span class="va">yhat_minus</span></span>
+<span></span>
+<span><span class="co"># average contrasts</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.05540227</span></span></code></pre></div>
 <p>We can use the <code><a href="../reference/comparisons.html">comparisons()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> functions to obtain the same results:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1) - x 0.0554   0.008327   6.653 2.8699e-11 0.03908 0.07172</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg (x + 1) - x 0.0554   0.008327   6.653 2.8699e-11 0.03908 0.07172</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="ratios">Ratios<a class="anchor" aria-label="anchor" href="#ratios"></a>
 </h2>
 <p>Instead of taking simple differences between adjusted predictions, it can sometimes be useful to compute ratios or other functions of predictions. For example, <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X1301300304" class="external-link">the <code>adjrr</code> function the <code>Stata</code> software package</a> can compute “adjusted risk ratios”, which are ratios of adjusted predictions. To do this in <code>R</code>, we use the <code>transform_pre</code> argument:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>This result is the average adjusted risk ratio, that is, the adjusted predictions when the <code>mpg</code> are incremented by 1, divided by the adjusted predictions when <code>mpg</code> is at its original value.</p>
 <p>The <code>transform_pre</code> accepts different values for common types of contrasts: ‘difference’, ‘ratio’, ‘lnratio’, ‘ratioavg’, ‘lnratioavg’, ‘lnoravg’, ‘differenceavg’. These strings are shortcuts for functions that accept two vectors of adjusted predictions and returns a single vector of contrasts. For example, these two commands yield identical results:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term   Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1), x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response </span>
-<span class="co">#&gt; Pre-transformation:  function(hi, lo) hi/lo</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg   custom  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>This mechanism is powerful, because it lets users create fully customized contrasts. Here is a non-sensical example:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">lo</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term   Contrast Effect Std. Error z value   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1), x 0.2641    0.02614    10.1 &lt; 2.22e-16 0.2128 0.3153</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response </span>
-<span class="co">#&gt; Pre-transformation:  function(hi, lo) sqrt(hi)/log(lo + 10)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">lo</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg   custom 0.2641    0.02614    10.1 &lt; 2.22e-16 0.2128 0.3153</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>The same arguments work in the plotting function <code><a href="../reference/plot_cco.html">plot_cco()</a></code> as well, which allows us to plot various custom contrasts. Here is a comparison of Adjusted Risk Ratio and Adjusted Risk Difference in a model of the probability of survival aboard the Titanic:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span>
-<span class="va">titanic</span> <span class="op">&lt;-</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Stat2Data/Titanic.csv"</span>
-<span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span>
-<span class="va">mod_titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span>
-    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">*</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">Age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,
-    family <span class="op">=</span> <span class="va">binomial</span>,
-    data <span class="op">=</span> <span class="va">titanic</span><span class="op">)</span>
-
-<span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod_titanic</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;     Term      Contrast    Effect Std. Error z value   Pr(&gt;|z|)     2.5 %</span>
-<span class="co">#&gt; 1    Sex male - female -0.484676   0.030607 -15.835 &lt; 2.22e-16 -0.544665</span>
-<span class="co">#&gt; 2 PClass     2nd - 1st -0.205782   0.039374  -5.226 1.7296e-07 -0.282954</span>
-<span class="co">#&gt; 3 PClass     3rd - 1st -0.404283   0.039839 -10.148 &lt; 2.22e-16 -0.482367</span>
-<span class="co">#&gt; 4    Age   (x + 1) - x -0.006504   0.001072  -6.069 1.2904e-09 -0.008605</span>
-<span class="co">#&gt;      97.5 %</span>
-<span class="co">#&gt; 1 -0.424687</span>
-<span class="co">#&gt; 2 -0.128609</span>
-<span class="co">#&gt; 3 -0.326199</span>
-<span class="co">#&gt; 4 -0.004403</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response</span>
-
-<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span>
-    <span class="va">mod_titanic</span>,
-    effect <span class="op">=</span> <span class="st">"Age"</span>,
-    condition <span class="op">=</span> <span class="st">"Age"</span>,
-    transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Adjusted Risk Ratio\nP(Survival | Age + 1) / P(Survival | Age)"</span><span class="op">)</span>
-
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span>
-    <span class="va">mod_titanic</span>,
-    effect <span class="op">=</span> <span class="st">"Age"</span>,
-    condition <span class="op">=</span> <span class="st">"Age"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Adjusted Risk Difference\nP(Survival | Age + 1) - P(Survival | Age)"</span><span class="op">)</span>
-
-<span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
+<span><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Stat2Data/Titanic.csv"</span></span>
+<span><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span></span>
+<span><span class="va">mod_titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span></span>
+<span>    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">*</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">Age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
+<span>    family <span class="op">=</span> <span class="va">binomial</span>,</span>
+<span>    data <span class="op">=</span> <span class="va">titanic</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod_titanic</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;     Term      Contrast    Effect Std. Error z value   Pr(&gt;|z|)     2.5 %</span></span>
+<span><span class="co">#&gt; 1    Sex male - female -0.484676   0.030607 -15.835 &lt; 2.22e-16 -0.544665</span></span>
+<span><span class="co">#&gt; 2 PClass     2nd - 1st -0.205782   0.039374  -5.226 1.7296e-07 -0.282954</span></span>
+<span><span class="co">#&gt; 3 PClass     3rd - 1st -0.404283   0.039839 -10.148 &lt; 2.22e-16 -0.482367</span></span>
+<span><span class="co">#&gt; 4    Age   (x + 1) - x -0.006504   0.001072  -6.069 1.2904e-09 -0.008605</span></span>
+<span><span class="co">#&gt;      97.5 %</span></span>
+<span><span class="co">#&gt; 1 -0.424687</span></span>
+<span><span class="co">#&gt; 2 -0.128609</span></span>
+<span><span class="co">#&gt; 3 -0.326199</span></span>
+<span><span class="co">#&gt; 4 -0.004403</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod_titanic</span>,</span>
+<span>    effect <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span>    condition <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span>    transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Adjusted Risk Ratio\nP(Survival | Age + 1) / P(Survival | Age)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod_titanic</span>,</span>
+<span>    effect <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span>    condition <span class="op">=</span> <span class="st">"Age"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Adjusted Risk Difference\nP(Survival | Age + 1) - P(Survival | Age)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div>
 <p><img src="contrasts_files/figure-html/unnamed-chunk-26-1.png" width="576"></p>
 <p>By default, the standard errors around contrasts are computed using the delta method on the scale determined by the <code>type</code> argument (e.g., “link” or “response”). Some analysts may prefer to proceed differently. For example, in <code>Stata</code>, the <code>adjrr</code> computes adjusted risk ratios (ARR) in two steps:</p>
 <ol style="list-style-type: decimal">
@@ -584,19 +585,17 @@
 </ol>
 <p>Step 1 is easy to achieve with the <code>transform_pre</code> argument described above. Step 2 can be achieved with the <code>transform_post</code> argument:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span>,
-    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span> |&gt;
-    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term   Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1), x  1.287    0.09313   13.82 &lt; 2.22e-16 1.105   1.47</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response </span>
-<span class="co">#&gt; Pre-transformation:  function(hi, lo) log(hi/lo) </span>
-<span class="co">#&gt; Post-transformation:  exp</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span>,</span>
+<span>    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg   custom  1.287    0.09313   13.82 &lt; 2.22e-16 1.105   1.47</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>Note that we can use the <code>lnratioavg</code> shortcut instead of defining the function ourselves.</p>
 <p>The order of operations in previous command was:</p>
 <ol style="list-style-type: decimal">
@@ -606,48 +605,47 @@
 </ol>
 <p>There is a very subtle difference between the procedure above and this code:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>transform_avg <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
-<span class="co">#&gt; Average contrasts </span>
-<span class="co">#&gt;   Term   Contrast Effect  Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="co">#&gt; 1  mpg (x + 1), x  1.274 0.0093462 1.061  1.529</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Model type:  glm </span>
-<span class="co">#&gt; Prediction type:  response </span>
-<span class="co">#&gt; Pre-transformation:  function(hi, lo) log(hi/lo) </span>
-<span class="co">#&gt; Average-transformation:</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>transform_avg <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Average contrasts </span></span>
+<span><span class="co">#&gt;   Term Contrast Effect  Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg   custom  1.274 0.0093462 1.061  1.529</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Average-transformation:</span></span></code></pre></div>
 <p>Since the <code>exp</code> function is now passed to the <code>transform_avg</code> argument of <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function, the exponentiation is now done only <em>after</em> unit-level contrasts have been averaged. This is what <code>Stata</code> appears to does under the hood, and the results are slightly different.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span>,
-    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
-<span class="co">#&gt;       type term   contrast comparison      p.value conf.low conf.high</span>
-<span class="co">#&gt; 1 response  mpg (x + 1), x   1.135065 2.380805e-10 1.091432  1.180442</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast comparison      p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response  mpg   custom   1.135065 2.380805e-10 1.091432  1.180442</span></span></code></pre></div>
 <p>Note that equivalent results can be obtained using shortcut strings in the <code>transform_pre</code> argument: “ratio”, “lnratio”, “lnratioavg”.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-    <span class="va">mod</span>,
-    transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span>,
-    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
-<span class="co">#&gt;       type term                  contrast comparison      p.value conf.low</span>
-<span class="co">#&gt; 1 response  mpg ln(mean(x + 1) / mean(x))   1.135065 2.380805e-10 1.091432</span>
-<span class="co">#&gt;   conf.high</span>
-<span class="co">#&gt; 1  1.180442</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span>,</span>
+<span>    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term                  contrast comparison      p.value conf.low</span></span>
+<span><span class="co">#&gt; 1 response  mpg ln(mean(x + 1) / mean(x))   1.135065 2.380805e-10 1.091432</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1  1.180442</span></span></code></pre></div>
 <p>All the same arguments apply to the plotting functions of the <code>marginaleffects</code> package as well. For example we can plot the Adjusted Risk Ratio in a model with a quadratic term:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-
-<span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">mpg</span><span class="op">^</span><span class="fl">2</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span>
-    <span class="va">mod2</span>,
-    effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"mpg"</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,
-    condition <span class="op">=</span> <span class="st">"mpg"</span>,
-    transformation_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Adjusted Risk Ratio\nP(vs = 1 | mpg + 10) / P(vs = 1 | mpg)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">mpg</span><span class="op">^</span><span class="fl">2</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod2</span>,</span>
+<span>    effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"mpg"</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>    condition <span class="op">=</span> <span class="st">"mpg"</span>,</span>
+<span>    transformation_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Adjusted Risk Ratio\nP(vs = 1 | mpg + 10) / P(vs = 1 | mpg)"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contrasts_files/figure-html/unnamed-chunk-31-1.png" width="576"></p>
 </div>
 <div class="section level2">
@@ -661,183 +659,186 @@
 <p>We can calculate predictions and marginal effects for each of these hurdle model processes, but doing so requires some variable transformation since the stages of these models use different link functions.</p>
 <p>The <code><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal()</a></code> family in <code>brms</code> uses logistic regression (with a logit link) for the hurdle part of the model and lognormal regression (where the outcome is logged before getting used in the model) for the non-hurdled part. Let’s look at an example of predicting GDP per capita (which is distributed exponentially) using life expectancy. We’ll add some artificial zeros so that we can work with a hurdle stage of the model.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
-
-<span class="co"># Build some 0s into the GDP column</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span>
-<span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="co"># Make a bunch of GDP values 0</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,
-         will_be_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span>, prob <span class="op">=</span> <span class="va">prob_zero</span><span class="op">)</span>,
-         gdpPercap0 <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">will_be_zero</span>, <span class="fl">0</span>, <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">prob_zero</span>, <span class="op">-</span><span class="va">will_be_zero</span><span class="op">)</span>
-
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsformula.html" class="external-link">bf</a></span><span class="op">(</span><span class="va">gdpPercap0</span> <span class="op">~</span> <span class="va">lifeExp</span>,
-     <span class="va">hu</span> <span class="op">~</span> <span class="va">lifeExp</span><span class="op">)</span>,
-  data <span class="op">=</span> <span class="va">gapminder</span>,
-  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal</a></span><span class="op">(</span><span class="op">)</span>,
-  chains <span class="op">=</span> <span class="fl">4</span>, cores <span class="op">=</span> <span class="fl">4</span>, seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Build some 0s into the GDP column</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="co"># Make a bunch of GDP values 0</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,</span>
+<span>         will_be_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span>, prob <span class="op">=</span> <span class="va">prob_zero</span><span class="op">)</span>,</span>
+<span>         gdpPercap0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">will_be_zero</span>, <span class="fl">0</span>, <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">prob_zero</span>, <span class="op">-</span><span class="va">will_be_zero</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsformula.html" class="external-link">bf</a></span><span class="op">(</span><span class="va">gdpPercap0</span> <span class="op">~</span> <span class="va">lifeExp</span>,</span>
+<span>     <span class="va">hu</span> <span class="op">~</span> <span class="va">lifeExp</span><span class="op">)</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">gapminder</span>,</span>
+<span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  chains <span class="op">=</span> <span class="fl">4</span>, cores <span class="op">=</span> <span class="fl">4</span>, seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span></code></pre></div>
 <p>We have two different sets of coefficients here for the two different processes. The hurdle part (<code>hu</code>) uses a logit link, and the non-hurdle part (<code>mu</code>) uses an identity link. However, that’s a slight misnomer—a true identity link would show the coefficients on a non-logged dollar value scale. Because we’re using a <code>lognormal</code> family, GDP per capita is pre-logged, so the “original” identity scale is actually logged dollars.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">#&gt;  Family: hurdle_lognormal </span>
-<span class="co">#&gt;   Links: mu = identity; sigma = identity; hu = logit </span>
-<span class="co">#&gt; Formula: gdpPercap0 ~ lifeExp </span>
-<span class="co">#&gt;          hu ~ lifeExp</span>
-<span class="co">#&gt;    Data: gapminder (Number of observations: 1680) </span>
-<span class="co">#&gt;   Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;</span>
-<span class="co">#&gt;          total post-warmup draws = 4000</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Population-Level Effects: </span>
-<span class="co">#&gt;              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS</span>
-<span class="co">#&gt; Intercept        3.47      0.09     3.29     3.65 1.00     4757     3378</span>
-<span class="co">#&gt; hu_Intercept     3.16      0.40     2.37     3.96 1.00     2773     2679</span>
-<span class="co">#&gt; lifeExp          0.08      0.00     0.08     0.08 1.00     5112     3202</span>
-<span class="co">#&gt; hu_lifeExp      -0.10      0.01    -0.12    -0.08 1.00     2385     2652</span>
-<span class="co">#&gt; ...</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt;  Family: hurdle_lognormal </span></span>
+<span><span class="co">#&gt;   Links: mu = identity; sigma = identity; hu = logit </span></span>
+<span><span class="co">#&gt; Formula: gdpPercap0 ~ lifeExp </span></span>
+<span><span class="co">#&gt;          hu ~ lifeExp</span></span>
+<span><span class="co">#&gt;    Data: gapminder (Number of observations: 1680) </span></span>
+<span><span class="co">#&gt;   Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;</span></span>
+<span><span class="co">#&gt;          total post-warmup draws = 4000</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Population-Level Effects: </span></span>
+<span><span class="co">#&gt;              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS</span></span>
+<span><span class="co">#&gt; Intercept        3.47      0.09     3.29     3.65 1.00     4757     3378</span></span>
+<span><span class="co">#&gt; hu_Intercept     3.16      0.40     2.37     3.96 1.00     2773     2679</span></span>
+<span><span class="co">#&gt; lifeExp          0.08      0.00     0.08     0.08 1.00     5112     3202</span></span>
+<span><span class="co">#&gt; hu_lifeExp      -0.10      0.01    -0.12    -0.08 1.00     2385     2652</span></span>
+<span><span class="co">#&gt; ...</span></span></code></pre>
 <p>We can get predictions for the <code>hu</code> part of the model on the link (logit) scale:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,
-            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid type predicted  conf.low  conf.high lifeExp</span>
-<span class="co">#&gt; 1     1 link -0.817487 -1.033982 -0.6043308      40</span>
-<span class="co">#&gt; 2     2 link -2.805488 -3.062906 -2.5550801      60</span>
-<span class="co">#&gt; 3     3 link -4.790200 -5.337808 -4.2745563      80</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
+<span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid type predicted  conf.low  conf.high gdpPercap0 lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 link -0.817487 -1.033982 -0.6043308     6797.2      40</span></span>
+<span><span class="co">#&gt; 2     2 link -2.805488 -3.062906 -2.5550801     6797.2      60</span></span>
+<span><span class="co">#&gt; 3     3 link -4.790200 -5.337808 -4.2745563     6797.2      80</span></span></code></pre></div>
 <p>…or on the response (percentage point) scale:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,
-            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type   predicted    conf.low  conf.high lifeExp</span>
-<span class="co">#&gt; 1     1 response 0.306297360 0.262312829 0.35335351      40</span>
-<span class="co">#&gt; 2     2 response 0.057028334 0.044663565 0.07208594      60</span>
-<span class="co">#&gt; 3     3 response 0.008242295 0.004783404 0.01372716      80</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid     type   predicted    conf.low  conf.high gdpPercap0 lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 response 0.306297360 0.262312829 0.35335351     6797.2      40</span></span>
+<span><span class="co">#&gt; 2     2 response 0.057028334 0.044663565 0.07208594     6797.2      60</span></span>
+<span><span class="co">#&gt; 3     3 response 0.008242295 0.004783404 0.01372716     6797.2      80</span></span></code></pre></div>
 <p>We can also get slopes for the <code>hu</code> part of the model on the link (logit) or response (percentage point) scales:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,
-                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid type    term        dydx   conf.low   conf.high lifeExp</span>
-<span class="co">#&gt; 1     1 link lifeExp -0.09930925 -0.1157859 -0.08366088      40</span>
-<span class="co">#&gt; 2     2 link lifeExp -0.09930925 -0.1157859 -0.08366088      60</span>
-<span class="co">#&gt; 3     3 link lifeExp -0.09930925 -0.1157859 -0.08366088      80</span>
-
-<span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,
-                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type    term          dydx     conf.low     conf.high lifeExp</span>
-<span class="co">#&gt; 1     1 response lifeExp -0.0210776902 -0.025913450 -0.0165879119      40</span>
-<span class="co">#&gt; 2     2 response lifeExp -0.0053208087 -0.006148655 -0.0045608559      60</span>
-<span class="co">#&gt; 3     3 response lifeExp -0.0008118892 -0.001154388 -0.0005429417      80</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
+<span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid type    term        dydx   conf.low   conf.high gdpPercap0 lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 link lifeExp -0.09930925 -0.1157859 -0.08366088     6797.2      40</span></span>
+<span><span class="co">#&gt; 2     2 link lifeExp -0.09930925 -0.1157859 -0.08366088     6797.2      60</span></span>
+<span><span class="co">#&gt; 3     3 link lifeExp -0.09930925 -0.1157859 -0.08366088     6797.2      80</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid     type    term          dydx     conf.low     conf.high gdpPercap0</span></span>
+<span><span class="co">#&gt; 1     1 response lifeExp -0.0210776902 -0.025913450 -0.0165879119     6797.2</span></span>
+<span><span class="co">#&gt; 2     2 response lifeExp -0.0053208087 -0.006148655 -0.0045608559     6797.2</span></span>
+<span><span class="co">#&gt; 3     3 response lifeExp -0.0008118892 -0.001154388 -0.0005429417     6797.2</span></span>
+<span><span class="co">#&gt;   lifeExp</span></span>
+<span><span class="co">#&gt; 1      40</span></span>
+<span><span class="co">#&gt; 2      60</span></span>
+<span><span class="co">#&gt; 3      80</span></span></code></pre></div>
 <p>Working with the <code>mu</code> part of the model is trickier. Switching between <code>type = "link"</code> and <code>type = "response"</code> doesn’t change anything, since the outcome is pre-logged:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,
-            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid type predicted conf.low conf.high lifeExp</span>
-<span class="co">#&gt; 1     1 link  6.612435 6.542113  6.685787      40</span>
-<span class="co">#&gt; 2     2 link  8.183520 8.145944  8.220893      60</span>
-<span class="co">#&gt; 3     3 link  9.753512 9.687209  9.820665      80</span>
-<span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,
-            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type predicted conf.low conf.high lifeExp</span>
-<span class="co">#&gt; 1     1 response  6.612435 6.542113  6.685787      40</span>
-<span class="co">#&gt; 2     2 response  8.183520 8.145944  8.220893      60</span>
-<span class="co">#&gt; 3     3 response  9.753512 9.687209  9.820665      80</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
+<span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid type predicted conf.low conf.high gdpPercap0 lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 link  6.612435 6.542113  6.685787     6797.2      40</span></span>
+<span><span class="co">#&gt; 2     2 link  8.183520 8.145944  8.220893     6797.2      60</span></span>
+<span><span class="co">#&gt; 3     3 link  9.753512 9.687209  9.820665     6797.2      80</span></span>
+<span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid     type predicted conf.low conf.high gdpPercap0 lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 response  6.612435 6.542113  6.685787     6797.2      40</span></span>
+<span><span class="co">#&gt; 2     2 response  8.183520 8.145944  8.220893     6797.2      60</span></span>
+<span><span class="co">#&gt; 3     3 response  9.753512 9.687209  9.820665     6797.2      80</span></span></code></pre></div>
 <p>For <strong>predictions</strong>, we need to exponentiate the results to scale them back up to dollar amounts. We can do this by post-processing the results (e.g. with <code>dplyr::mutate(predicted = exp(predicted))</code>), or we can use the <code>transform_post</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> to pass the results to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> after getting calculated:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, 
-            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,
-            transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span>
-<span class="co">#&gt;   rowid     type  predicted   conf.low  conf.high lifeExp</span>
-<span class="co">#&gt; 1     1 response   744.2932   693.7513   800.9406      40</span>
-<span class="co">#&gt; 2     2 response  3581.4392  3449.3601  3717.8204      60</span>
-<span class="co">#&gt; 3     3 response 17214.5804 16110.2130 18410.2831      80</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, </span>
+<span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>            transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid     type  predicted   conf.low  conf.high gdpPercap0 lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 response   744.2932   693.7513   800.9406     6797.2      40</span></span>
+<span><span class="co">#&gt; 2     2 response  3581.4392  3449.3601  3717.8204     6797.2      60</span></span>
+<span><span class="co">#&gt; 3     3 response 17214.5804 16110.2130 18410.2831     6797.2      80</span></span></code></pre></div>
 <p>We can pass <code>transform_post = exp</code> to <code><a href="../reference/plot_cap.html">plot_cap()</a></code> too:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span>
-  <span class="va">mod</span>,
-  dpar <span class="op">=</span> <span class="st">"hu"</span>,
-  type <span class="op">=</span> <span class="st">"link"</span>,
-  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"hu"</span>,
-       title <span class="op">=</span> <span class="st">"Hurdle part (hu)"</span>,
-       subtitle <span class="op">=</span> <span class="st">"Logit-scale predictions"</span><span class="op">)</span> <span class="op">+</span>
-<span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span>
-  <span class="va">mod</span>,
-  dpar <span class="op">=</span> <span class="st">"hu"</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"hu"</span>,
-       subtitle <span class="op">=</span> <span class="st">"Percentage point-scale predictions"</span><span class="op">)</span> <span class="op">+</span>
-<span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span>
-  <span class="va">mod</span>,
-  dpar <span class="op">=</span> <span class="st">"mu"</span>,
-  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"mu"</span>,
-       title <span class="op">=</span> <span class="st">"Non-hurdle part (mu)"</span>,
-       subtitle <span class="op">=</span> <span class="st">"Log-scale predictions"</span><span class="op">)</span> <span class="op">+</span>
-<span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span>
-  <span class="va">mod</span>,
-  dpar <span class="op">=</span> <span class="st">"mu"</span>,
-  transform_post <span class="op">=</span> <span class="va">exp</span>,
-  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"mu"</span>,
-       subtitle <span class="op">=</span> <span class="st">"Dollar-scale predictions"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  dpar <span class="op">=</span> <span class="st">"hu"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"link"</span>,</span>
+<span>  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"hu"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Hurdle part (hu)"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Logit-scale predictions"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  dpar <span class="op">=</span> <span class="st">"hu"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"hu"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Percentage point-scale predictions"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  dpar <span class="op">=</span> <span class="st">"mu"</span>,</span>
+<span>  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"mu"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Non-hurdle part (mu)"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Log-scale predictions"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  dpar <span class="op">=</span> <span class="st">"mu"</span>,</span>
+<span>  transform_post <span class="op">=</span> <span class="va">exp</span>,</span>
+<span>  condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"mu"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Dollar-scale predictions"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contrasts_files/figure-html/plot-hurdle-parts-1.png" width="768"></p>
 <p>For <strong>marginal effects</strong>, we need to transform the predictions <em>before</em> calculating the instantaneous slopes. We also can’t use the <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function directly—we need to use <code><a href="../reference/comparisons.html">comparisons()</a></code> and compute the numerical derivative ourselves (i.e. predict <code>gdpPercap</code> at <code>lifeExp</code> of 40 and 40.001 and calculate the slope between those predictions). We can use the <code>transform_pre</code> argument to pass the pair of predicted values to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> before calculating the slopes:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># step size of the numerical derivative</span>
-<span class="va">eps</span> <span class="op">&lt;-</span> <span class="fl">0.001</span>
-
-<span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-  <span class="va">mod</span>,
-  dpar <span class="op">=</span> <span class="st">"mu"</span>,
-  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="va">eps</span><span class="op">)</span>,
-  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,
-  <span class="co"># rescale the elements of the slope</span>
-  <span class="co"># (exp(40.001) - exp(40)) / exp(0.001)</span>
-  transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">eps</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="va">eps</span>
-<span class="op">)</span>
-<span class="co">#&gt;   rowid     type    term       contrast comparison   conf.low  conf.high</span>
-<span class="co">#&gt; 1     1 response lifeExp (x + 0.001), x   58.39448   55.84743   61.02206</span>
-<span class="co">#&gt; 2     2 response lifeExp (x + 0.001), x  280.89410  266.57621  295.50894</span>
-<span class="co">#&gt; 3     3 response lifeExp (x + 0.001), x 1349.40503 1222.58608 1490.38119</span>
-<span class="co">#&gt;   lifeExp</span>
-<span class="co">#&gt; 1      40</span>
-<span class="co">#&gt; 2      60</span>
-<span class="co">#&gt; 3      80</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># step size of the numerical derivative</span></span>
+<span><span class="va">eps</span> <span class="op">&lt;-</span> <span class="fl">0.001</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  dpar <span class="op">=</span> <span class="st">"mu"</span>,</span>
+<span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="va">eps</span><span class="op">)</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="co"># rescale the elements of the slope</span></span>
+<span>  <span class="co"># (exp(40.001) - exp(40)) / exp(0.001)</span></span>
+<span>  transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">eps</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="va">eps</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rowid     type    term contrast comparison   conf.low  conf.high gdpPercap0</span></span>
+<span><span class="co">#&gt; 1     1 response lifeExp   custom   58.39448   55.84743   61.02206     6797.2</span></span>
+<span><span class="co">#&gt; 2     2 response lifeExp   custom  280.89410  266.57621  295.50894     6797.2</span></span>
+<span><span class="co">#&gt; 3     3 response lifeExp   custom 1349.40503 1222.58608 1490.38119     6797.2</span></span>
+<span><span class="co">#&gt;   lifeExp</span></span>
+<span><span class="co">#&gt; 1      40</span></span>
+<span><span class="co">#&gt; 2      60</span></span>
+<span><span class="co">#&gt; 3      80</span></span></code></pre></div>
 <p>We can visually confirm that these are the instantaneous slopes at each of these levels of life expectancy:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">predictions_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span>
-  <span class="va">mod</span>,
-  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">80</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
-  dpar <span class="op">=</span> <span class="st">"mu"</span>,
-  transform_post <span class="op">=</span> <span class="va">exp</span>
-<span class="op">)</span>
-
-<span class="va">slopes_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span>
-  <span class="va">mod</span>,
-  dpar <span class="op">=</span> <span class="st">"mu"</span>,
-  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="va">eps</span><span class="op">)</span>,
-  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,
-  transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">eps</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="va">eps</span>
-<span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">predictions_data</span>, by <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="co"># Point-slope formula: (y - y1) = m(x - x1)</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="va">comparison</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="va">lifeExp</span><span class="op">)</span> <span class="op">+</span> <span class="va">predicted</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">predictions_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, y <span class="op">=</span> <span class="va">predicted</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">slopes_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="va">comparison</span>, intercept <span class="op">=</span> <span class="va">intercept</span><span class="op">)</span>, 
-              size <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">slopes_data</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">slopes_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Slope: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">comparison</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
-             nudge_x <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">predictions_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">80</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  dpar <span class="op">=</span> <span class="st">"mu"</span>,</span>
+<span>  transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">slopes_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>  <span class="va">mod</span>,</span>
+<span>  dpar <span class="op">=</span> <span class="st">"mu"</span>,</span>
+<span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="va">eps</span><span class="op">)</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">eps</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="va">eps</span></span>
+<span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">predictions_data</span>, by <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># Point-slope formula: (y - y1) = m(x - x1)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="va">comparison</span> <span class="op">*</span> <span class="op">(</span><span class="op">-</span><span class="va">lifeExp</span><span class="op">)</span> <span class="op">+</span> <span class="va">predicted</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">predictions_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lifeExp</span>, y <span class="op">=</span> <span class="va">predicted</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">slopes_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="va">comparison</span>, intercept <span class="op">=</span> <span class="va">intercept</span><span class="op">)</span>, </span>
+<span>              size <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">slopes_data</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">slopes_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Slope: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">comparison</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>             nudge_x <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contrasts_files/figure-html/hurdle-dollar-slopes-1.png" width="672"></p>
 </div>
   </div>
@@ -859,7 +860,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

@@ -62,252 +62,254 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">vcov</span>, <span class="va">conf_level</span>, <span class="va">type</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for polr</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"probs"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for glmmPQL</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for afex_aov</span>
-<span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for glimML</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for betareg</span>
-<span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for bife</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for biglm</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for multinom</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"probs"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for brmultinom</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"probs"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for brmsfit</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for crch</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="cn">NULL</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"location"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for fixest</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for glmmTMB</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for merMod</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for lmerModLmerTest</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for lmerMod</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for mblogit</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"probs"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for mhurdle</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">NULL</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for mlogit</span>
-<span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for clm</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for rq</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">NULL</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for rlmerMod</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for stanreg</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for coxph</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">FALSE</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"lp"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for tobit1</span>
-<span class="fu">get_predict</span><span class="op">(</span>
-  <span class="va">model</span>,
-  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,
-  vcov <span class="op">=</span> <span class="cn">NULL</span>,
-  conf_level <span class="op">=</span> <span class="fl">0.95</span>,
-  type <span class="op">=</span> <span class="st">"response"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">vcov</span>, <span class="va">conf_level</span>, <span class="va">type</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for polr</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"probs"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for glmmPQL</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for afex_aov</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for glimML</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for betareg</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for bife</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for biglm</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for multinom</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"probs"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for brmultinom</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"probs"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for brmsfit</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for crch</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"location"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for fixest</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for glmmTMB</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for merMod</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for lmerModLmerTest</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for lmerMod</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for mblogit</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"probs"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for mhurdle</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for mlogit</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for clm</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for rq</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for rlmerMod</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for stanreg</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for coxph</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"lp"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for tobit1</span></span>
+<span><span class="fu">get_predict</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"response"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>model</dt>
 <dd><p>Model object</p></dd>
+
+
 <dt>newdata</dt>
 <dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute marginal effects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
 <li><p>data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
@@ -319,6 +321,8 @@
 <li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
 </ul></li>
 </ul></dd>
+
+
 <dt>vcov</dt>
 <dd><p>Type of uncertainty estimates to report (e.g., for robust standard errors). Acceptable values:</p><ul><li><p>FALSE: Do not compute standard errors. This can speed up computation considerably.</p></li>
 <li><p>TRUE: Unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
@@ -330,14 +334,20 @@
 <li><p>Square covariance matrix</p></li>
 <li><p>Function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
 </ul></dd>
+
+
 <dt>conf_level</dt>
 <dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>string indicates the type (scale) of the predictions used to
 compute marginal effects or contrasts. This can differ based on the model
 type, but will typically be a string such as: "response", "link", "probs",
 or "zero". When an unsupported string is entered, the model-specific list of
 acceptable values is returned in an error message.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments are passed to the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method
 supplied by the modeling package.These arguments are particularly useful
@@ -347,10 +357,13 @@ model, depending on the range of supported arguments by each modeling
 package. See the "Model-Specific Arguments" section of the
 <code><a href="marginaleffects.html">?marginaleffects</a></code> documentation for a non-exhaustive list of available
 arguments.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A vector of predicted values of length equal to the number of rows
+    
+
+<p>A vector of predicted values of length equal to the number of rows
 in <code>newdata</code>. For models with multi-level outcomes (e.g., multinomial
 logit), this function returns a matrix of predicted values with column names
 equal to each of the levels/groups.</p>
@@ -368,7 +381,7 @@ equal to each of the levels/groups.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

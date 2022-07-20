@@ -1,11 +1,12 @@
 pandoc: 2.9.2.1
-pkgdown: 2.0.3
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   alternative_software: alternative_software.html
   brms: brms.html
   contrasts: contrasts.html
   documentation: documentation.html
+  elasticity: elasticity.html
   faq: faq.html
   gam: gam.html
   gformula: gformula.html
@@ -23,5 +24,5 @@ articles:
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-06-28T13:10Z
+last_built: 2022-07-20T23:23Z
 
