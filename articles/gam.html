@@ -179,13 +179,13 @@
 <span><span class="co">#&gt; 4     4 response Time 0.02600520 0.001282381  20.27884  1.977388e-91 0.02349178</span></span>
 <span><span class="co">#&gt; 5     5 response Time 0.02588800 0.001201131  21.55302 4.960033e-103 0.02353382</span></span>
 <span><span class="co">#&gt; 6     6 response Time 0.02571676 0.001092275  23.54421 1.438981e-122 0.02357594</span></span>
-<span><span class="co">#&gt;    conf.high         Y  Group      Time Subject</span></span>
-<span><span class="co">#&gt; 1 0.02879700 0.7554469 Adults   0.00000     a01</span></span>
-<span><span class="co">#&gt; 2 0.02877454 2.7834759 Adults  20.20202     a01</span></span>
-<span><span class="co">#&gt; 3 0.02869086 1.9696963 Adults  40.40404     a01</span></span>
-<span><span class="co">#&gt; 4 0.02851862 0.6814298 Adults  60.60606     a01</span></span>
-<span><span class="co">#&gt; 5 0.02824217 1.6939195 Adults  80.80808     a01</span></span>
-<span><span class="co">#&gt; 6 0.02785758 2.3651969 Adults 101.01010     a01</span></span></code></pre></div>
+<span><span class="co">#&gt;    conf.high predicted_lo predicted_hi         Y  Group      Time Subject</span></span>
+<span><span class="co">#&gt; 1 0.02879700   -1.8738546   -1.8686312 0.7554469 Adults   0.00000     a01</span></span>
+<span><span class="co">#&gt; 2 0.02877454   -1.3462927   -1.3410710 2.7834759 Adults  20.20202     a01</span></span>
+<span><span class="co">#&gt; 3 0.02869086   -0.8191262   -0.8139112 1.9696963 Adults  40.40404     a01</span></span>
+<span><span class="co">#&gt; 4 0.02851862   -0.2929805   -0.2877795 0.6814298 Adults  60.60606     a01</span></span>
+<span><span class="co">#&gt; 5 0.02824217    0.2312910    0.2364686 1.6939195 Adults  80.80808     a01</span></span>
+<span><span class="co">#&gt; 6 0.02785758    0.7526640    0.7578073 2.3651969 Adults 101.01010     a01</span></span></code></pre></div>
 <p>We can plot marginal effects for different values of a regressor using the <code><a href="../reference/plot_cme.html">plot_cme()</a></code> function. This next plot shows the slope of the prediction equation, that is, the slope of the previous plot, at every value of the <code>Time</code> variable.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">model</span>, effect <span class="op">=</span> <span class="st">"Time"</span>, condition <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span></code></pre></div>

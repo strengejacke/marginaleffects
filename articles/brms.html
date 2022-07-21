@@ -218,11 +218,16 @@
 <span><span class="co">#&gt; 2     1 response            age     dY/dX -0.0002383118 -0.001355295</span></span>
 <span><span class="co">#&gt; 3     1 response passengerClass 2nd - 1st -0.1574415687 -0.223274987</span></span>
 <span><span class="co">#&gt; 4     1 response passengerClass 3rd - 1st -0.3653763624 -0.438319255</span></span>
-<span><span class="co">#&gt;       conf.high  survived      age woman passengerClass</span></span>
-<span><span class="co">#&gt; 1  0.2087557243 0.4082218 29.88113     1            1st</span></span>
-<span><span class="co">#&gt; 2  0.0008710313 0.4082218 29.88113     1            1st</span></span>
-<span><span class="co">#&gt; 3 -0.1028896556 0.4082218 29.88113     1            1st</span></span>
-<span><span class="co">#&gt; 4 -0.2947694986 0.4082218 29.88113     1            1st</span></span></code></pre></div>
+<span><span class="co">#&gt;       conf.high predicted_lo predicted_hi  survived      age woman</span></span>
+<span><span class="co">#&gt; 1  0.2087557243    0.9364135    0.9364295 0.4082218 29.88113     1</span></span>
+<span><span class="co">#&gt; 2  0.0008710313    0.9364135    0.9364102 0.4082218 29.88113     1</span></span>
+<span><span class="co">#&gt; 3 -0.1028896556    0.9364135    0.7782929 0.4082218 29.88113     1</span></span>
+<span><span class="co">#&gt; 4 -0.2947694986    0.9364135    0.5701027 0.4082218 29.88113     1</span></span>
+<span><span class="co">#&gt;   passengerClass</span></span>
+<span><span class="co">#&gt; 1            1st</span></span>
+<span><span class="co">#&gt; 2            1st</span></span>
+<span><span class="co">#&gt; 3            1st</span></span>
+<span><span class="co">#&gt; 4            1st</span></span></code></pre></div>
 <p>Compute and plot conditional marginal effects:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"woman"</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
@@ -232,7 +237,7 @@
 <code class="sourceCode R"><span><span class="va">draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 16736000       13</span></span>
+<span><span class="co">#&gt; [1] 16736000       15</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   drawid      draw rowid     type  term contrast       dydx   conf.low</span></span>
@@ -242,13 +247,13 @@
 <span><span class="co">#&gt; 4      1 0.7088821     4 response woman    dY/dX 0.65453708 0.56699300</span></span>
 <span><span class="co">#&gt; 5      1 0.1473759     5 response woman    dY/dX 0.13828737 0.09722433</span></span>
 <span><span class="co">#&gt; 6      1 0.6635099     6 response woman    dY/dX 0.70740470 0.58935737</span></span>
-<span><span class="co">#&gt;   conf.high survived woman     age passengerClass</span></span>
-<span><span class="co">#&gt; 1 0.2051898        1     1 29.0000            1st</span></span>
-<span><span class="co">#&gt; 2 0.2970409        1     0  0.9167            1st</span></span>
-<span><span class="co">#&gt; 3 0.1009453        0     1  2.0000            1st</span></span>
-<span><span class="co">#&gt; 4 0.7442501        0     0 30.0000            1st</span></span>
-<span><span class="co">#&gt; 5 0.1863969        0     1 25.0000            1st</span></span>
-<span><span class="co">#&gt; 6 0.8406470        1     0 48.0000            1st</span></span></code></pre></div>
+<span><span class="co">#&gt;   conf.high predicted_lo predicted_hi survived woman     age passengerClass</span></span>
+<span><span class="co">#&gt; 1 0.2051898    0.9366604    0.9366751        1     1 29.0000            1st</span></span>
+<span><span class="co">#&gt; 2 0.2970409    0.8493050    0.8493174        1     0  0.9167            1st</span></span>
+<span><span class="co">#&gt; 3 0.1009453    0.9433293    0.9433358        0     1  2.0000            1st</span></span>
+<span><span class="co">#&gt; 4 0.7442501    0.5131011    0.5131652        0     0 30.0000            1st</span></span>
+<span><span class="co">#&gt; 5 0.1863969    0.9374937    0.9375085        0     1 25.0000            1st</span></span>
+<span><span class="co">#&gt; 6 0.8406470    0.2730542    0.2731252        1     0 48.0000            1st</span></span></code></pre></div>
 <p>We can use this dataset to plot our results. For example, to plot the posterior density of the marginal effect of <code>age</code> when the <code>woman</code> variable is equal to 0 or 1:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
@@ -336,9 +341,12 @@
 <span><span class="co">#&gt;   rowid     type            term     contrast      dydx  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1     1 response  party_autonomy TRUE - FALSE 0.2517104 0.1663314 0.3355927</span></span>
 <span><span class="co">#&gt; 2     1 response civil_liberties        dY/dX 0.8160498 0.6213970 1.0066362</span></span>
-<span><span class="co">#&gt;   media_index party_autonomy civil_liberties                       region</span></span>
-<span><span class="co">#&gt; 1   0.6723184           TRUE             0.5 Middle East and North Africa</span></span>
-<span><span class="co">#&gt; 2   0.6723184           TRUE             0.5 Middle East and North Africa</span></span></code></pre></div>
+<span><span class="co">#&gt;   predicted_lo predicted_hi media_index party_autonomy civil_liberties</span></span>
+<span><span class="co">#&gt; 1    0.3684876    0.6213442   0.6723184           TRUE             0.5</span></span>
+<span><span class="co">#&gt; 2    0.6213442    0.6214182   0.6723184           TRUE             0.5</span></span>
+<span><span class="co">#&gt;                         region</span></span>
+<span><span class="co">#&gt; 1 Middle East and North Africa</span></span>
+<span><span class="co">#&gt; 2 Middle East and North Africa</span></span></code></pre></div>
 <p>Use the <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> to extract draws from the posterio distribution of marginal effects, and plot them:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -379,14 +387,18 @@
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span>,</span>
 <span>                       variables <span class="op">=</span> <span class="st">"civil_liberties"</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
-<span><span class="co">#&gt;   rowid     type            term      dydx  conf.low conf.high media_index</span></span>
-<span><span class="co">#&gt; 1     1 response civil_liberties 0.4900170 0.3609330 0.6388463   0.6723184</span></span>
-<span><span class="co">#&gt; 2     2 response civil_liberties 0.8071389 0.6121827 0.9926679   0.6723184</span></span>
-<span><span class="co">#&gt; 3     3 response civil_liberties 0.8069026 0.6744996 0.9336997   0.6723184</span></span>
-<span><span class="co">#&gt;   civil_liberties party_autonomy                       region</span></span>
-<span><span class="co">#&gt; 1             0.2          FALSE Middle East and North Africa</span></span>
-<span><span class="co">#&gt; 2             0.5          FALSE Middle East and North Africa</span></span>
-<span><span class="co">#&gt; 3             0.8          FALSE Middle East and North Africa</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type            term      dydx  conf.low conf.high predicted_lo</span></span>
+<span><span class="co">#&gt; 1     1 response civil_liberties 0.4900170 0.3609330 0.6388463    0.1700110</span></span>
+<span><span class="co">#&gt; 2     2 response civil_liberties 0.8071389 0.6121827 0.9926679    0.3684876</span></span>
+<span><span class="co">#&gt; 3     3 response civil_liberties 0.8069026 0.6744996 0.9336997    0.6244447</span></span>
+<span><span class="co">#&gt;   predicted_hi media_index civil_liberties party_autonomy</span></span>
+<span><span class="co">#&gt; 1    0.1700591   0.6723184             0.2          FALSE</span></span>
+<span><span class="co">#&gt; 2    0.3685630   0.6723184             0.5          FALSE</span></span>
+<span><span class="co">#&gt; 3    0.6245229   0.6723184             0.8          FALSE</span></span>
+<span><span class="co">#&gt;                         region</span></span>
+<span><span class="co">#&gt; 1 Middle East and North Africa</span></span>
+<span><span class="co">#&gt; 2 Middle East and North Africa</span></span>
+<span><span class="co">#&gt; 3 Middle East and North Africa</span></span></code></pre></div>
 <p>And plotted:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
