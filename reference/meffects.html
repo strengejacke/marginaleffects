@@ -102,6 +102,8 @@ down this page for a full list of vignettes:</p><ul><li><p><a href="https://vinc
 <li><p>string:</p><ul><li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
 <li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its median or mode.</p></li>
 <li><p>"marginalmeans": Marginal Effects at Marginal Means. See Details section below.</p></li>
+<li><p>"tukey": Marginal Effects at Tukey's 5 numbers.</p></li>
+<li><p>"grid": Marginal Effects on a grid of representative numbers (Tukey's 5 numbers and unique values of categorical predictors).</p></li>
 </ul></li>
 <li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
 <li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
@@ -118,11 +120,11 @@ down this page for a full list of vignettes:</p><ul><li><p><a href="https://vinc
 <dt>vcov</dt>
 <dd><p>Type of uncertainty estimates to report (e.g., for robust standard errors). Acceptable values:</p><ul><li><p>FALSE: Do not compute standard errors. This can speed up computation considerably.</p></li>
 <li><p>TRUE: Unit-level standard errors using the default <code>vcov(model)</code> variance-covariance matrix.</p></li>
-<li><p>String which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: <code>"HC"</code>, <code>"HC0"</code>, <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC3"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. See <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html" class="external-link">?sandwich::vcovHC</a></code></p></li>
+<li><p>String which indicates the kind of uncertainty estimates to return.</p><ul><li><p>Heteroskedasticity-consistent: <code>"HC"</code>, <code>"HC0"</code>, <code>"HC1"</code>, <code>"HC2"</code>, <code>"HC3"</code>, <code>"HC4"</code>, <code>"HC4m"</code>, <code>"HC5"</code>. See <code><a href="https://rdrr.io/pkg/sandwich/man/vcovHC.html" class="external-link">?sandwich::vcovHC</a></code></p></li>
 <li><p>Heteroskedasticity and autocorrelation consistent: <code>"HAC"</code></p></li>
 <li><p>Other: <code>"NeweyWest"</code>, <code>"KernHAC"</code>, <code>"OPG"</code>. See the <code>sandwich</code> package documentation.</p></li>
 </ul></li>
-<li><p>One-sided formula which indicates the name of cluster variables (e.g., <code>~unit_id</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
+<li><p>One-sided formula which indicates the name of cluster variables (e.g., <code>~unit_id</code>). This formula is passed to the <code>cluster</code> argument of the <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">sandwich::vcovCL</a></code> function.</p></li>
 <li><p>Square covariance matrix</p></li>
 <li><p>Function which returns a covariance matrix (e.g., <code>stats::vcov(model)</code>)</p></li>
 </ul></dd>
@@ -141,7 +143,7 @@ acceptable values is returned in an error message.</p></dd>
 
 
 <dt>slope</dt>
-<dd><p>string indicates the type of slope to compute:</p><ul><li><p>"dydx": dY/dX</p></li>
+<dd><p>string indicates the type of slope or (semi-)elasticity to compute:</p><ul><li><p>"dydx": dY/dX</p></li>
 <li><p>"eyex": dY/dX * Y / X</p></li>
 <li><p>"eydx": dY/dX * Y</p></li>
 <li><p>"dyex": dY/dX / X</p></li>
@@ -268,13 +270,13 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0019348755 0.0024508961 0.7894564 0.4298453</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0029928602 0.0033775105 0.8861142 0.3755560</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001476461 0.0003452784 0.4276146 0.6689317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high predicted_lo predicted_hi am  hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0045401417 0.0185065919  0.898311019   0.89850864  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0098359916 0.0426442370  0.467644655   0.46810889  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0045227004 0.0101796038  0.967103810   0.96718386  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0028687925 0.0067385435  0.038895584   0.03895034  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0036269388 0.0096126591  0.076483825   0.07656852  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0005290872 0.0008243794  0.003566962   0.00357114  0 105 3.460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high predicted_lo predicted_hi am  hp    wt    eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0045401417 0.0185065919  0.898311019   0.89850864  1 110 2.620 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0098359916 0.0426442370  0.467644655   0.46810889  1 110 2.875 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0045227004 0.0101796038  0.967103810   0.96718386  1  93 2.320 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0028687925 0.0067385435  0.038895584   0.03895034  0 110 3.215 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0036269388 0.0096126591  0.076483825   0.07656852  0 175 3.440 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0005290872 0.0008243794  0.003566962   0.00357114  0 105 3.460 0.0283</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Average Marginal Effect (AME)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span></span>
@@ -301,9 +303,9 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error statistic   p.value     conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.008526944 0.007849817  1.086260 0.2773639 -0.006858415</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response   wt -1.744526869 1.586306474 -1.099741 0.2714448 -4.853630428</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high predicted_lo predicted_hi      am       hp      wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0239123     0.208598    0.2088393 0.40625 146.6875 3.21725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3645767     0.208598    0.2079157 0.40625 146.6875 3.21725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high predicted_lo predicted_hi       hp      wt       eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0239123     0.208598    0.2088393 146.6875 3.21725 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3645767     0.208598    0.2079157 146.6875 3.21725 0.0003911</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Marginal Effect at User-Specified Values</span></span></span>
 <span class="r-in"><span><span class="co"># Variables not explicitly included in `datagrid()` are held at their means</span></span></span>
@@ -314,11 +316,11 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp  0.001895403 0.002416124  0.7844807 0.4327581</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3     1 response   wt -0.194677637 0.307227707 -0.6336591 0.5263033</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     2 response   wt -0.331535828 0.436074375 -0.7602736 0.4470911</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       conf.low   conf.high predicted_lo predicted_hi      am      wt  hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.002271359 0.004604705   0.02311544   0.02314846 0.40625 3.21725 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.002840114 0.006630920   0.03814134   0.03819498 0.40625 3.21725 110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.796832879 0.407477604   0.02311544   0.02303930 0.40625 3.21725 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -1.186225897 0.523154240   0.03814134   0.03801168 0.40625 3.21725 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       conf.low   conf.high predicted_lo predicted_hi      wt  hp       eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.002271359 0.004604705   0.02311544   0.02314846 3.21725 100 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.002840114 0.006630920   0.03814134   0.03819498 3.21725 110 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.796832879 0.407477604   0.02311544   0.02303930 3.21725 100 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -1.186225897 0.523154240   0.03814134   0.03801168 3.21725 110 0.0003911</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Group-Average Marginal Effects (G-AME)</span></span></span>
 <span class="r-in"><span><span class="co"># Calculate marginal effects for each observation, and then take the average</span></span></span>
@@ -351,23 +353,23 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0011906427 0.0017804554 0.6687293 0.5036682</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0001454839 0.0003410785 0.4265408 0.6697138</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001201299 0.0002911014 0.4126737 0.6798457</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high rowid_counterfactual predicted_lo predicted_hi am</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0075399227 0.0316090083                    1  0.804313722  0.804654300  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0070235336 0.0353445586                    2  0.312493620  0.312894363  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0027525902 0.0058809511                    3  0.982084695  0.982128961  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0022989857 0.0046802710                    4  0.023558258  0.023591954  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0005230176 0.0008139854                    5  0.003445112  0.003449229  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0004504183 0.0006906781                    6  0.002900259  0.002903658  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      wt  hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.620 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2.875 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2.320 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 3.215 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 3.440 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 3.460 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high rowidcf predicted_lo predicted_hi am    wt  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0075399227 0.0316090083       1  0.804313722  0.804654300  1 2.620 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0070235336 0.0353445586       2  0.312493620  0.312894363  1 2.875 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0027525902 0.0058809511       3  0.982084695  0.982128961  1 2.320 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0022989857 0.0046802710       4  0.023558258  0.023591954  0 3.215 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0005230176 0.0008139854       5  0.003445112  0.003449229  0 3.440 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0004504183 0.0006906781       6  0.002900259  0.002903658  0 3.460 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.0283</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Heteroskedasticity robust standard errors</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="fu">sandwich</span><span class="fu">::</span><span class="fu"><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html" class="external-link">vcovHC</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="fu">sandwich</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sandwich/man/vcovHC.html" class="external-link">vcovHC</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    rowid     type term          dydx    std.error   statistic     p.value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 response   hp  6.983225e-03 9.187144e-03  0.76010842 0.447189783</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 response   hp  1.640412e-02 1.340247e-02  1.22396222 0.220966481</span>
@@ -433,71 +435,71 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 62    30 response   wt -5.339272e-02 2.402385e-01 -0.22224887 0.824120154</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 63    31 response   wt -2.107162e+00 4.582922e+00 -0.45978567 0.645670073</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 64    32 response   wt -2.024827e+00 7.486883e-01 -2.70449963 0.006840735</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         conf.low     conf.high predicted_lo predicted_hi am  hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -1.102325e-02  2.498970e-02 8.983110e-01 8.985086e-01  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -9.864245e-03  4.267249e-02 4.676447e-01 4.681089e-01  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -6.800752e-03  1.245766e-02 9.671038e-01 9.671839e-01  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -1.678321e-03  5.548072e-03 3.889558e-02 3.895034e-02  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  -2.461058e-03  8.446778e-03 7.648382e-02 7.656852e-02  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  -3.512456e-04  6.465378e-04 3.566962e-03 3.571140e-03  0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  -1.031604e-02  2.179737e-02 1.923979e-01 1.925604e-01  0 245 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  -5.506142e-04  9.729546e-04 4.015235e-03 4.021211e-03  0  62 3.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  -1.739703e-03  5.033655e-03 3.120992e-02 3.125653e-02  0  95 3.150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 -6.284766e-04  1.390460e-03 9.073330e-03 9.084112e-03  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 -6.284766e-04  1.390460e-03 9.073330e-03 9.084112e-03  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 -1.200989e-05  1.376198e-05 5.439236e-05 5.441715e-05  0 180 4.070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 -5.353448e-04  7.268609e-04 3.172383e-03 3.175093e-03  0 180 3.730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 -3.240040e-04  4.223112e-04 1.746319e-03 1.747710e-03  0 180 3.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 -1.742390e-11  1.626645e-11 1.751508e-11 1.749870e-11  0 205 5.250</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 -1.761224e-12  1.663181e-12 1.216933e-12 1.215546e-12  0 215 5.424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 -2.766080e-12  2.616815e-12 2.017342e-12 2.015230e-12  0 230 5.345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 -1.677116e-02  3.892346e-02 8.634101e-01 8.637236e-01  1  66 2.200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 -6.463187e-03  9.269200e-03 9.879847e-01 9.880244e-01  1  52 1.615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 -4.399027e-03  7.091091e-03 9.875007e-01 9.875388e-01  1  65 1.835</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 -9.506117e-03  2.109778e-02 9.243530e-01 9.245170e-01  0  97 2.465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 -9.061949e-04  1.834998e-03 1.204113e-02 1.205428e-02  0 150 3.520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 -1.189113e-03  3.620838e-03 2.941871e-02 2.945312e-02  0 150 3.435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 -1.244158e-03  1.474856e-03 4.509574e-03 4.512838e-03  0 245 3.840</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 -1.398592e-04  1.758700e-04 7.069764e-04 7.074860e-04  0 175 3.845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 -6.580190e-03  1.125942e-02 9.771760e-01 9.772422e-01  1  66 1.935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27 -3.001712e-03  4.740851e-03 9.908948e-01 9.909194e-01  1  91 2.140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28 -4.925440e-06  5.778904e-06 9.999965e-01 9.999965e-01  1 113 1.513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29 -1.989368e-03  2.443712e-03 9.957403e-01 9.957467e-01  1 264 3.170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30 -2.381458e-03  3.017407e-03 9.954493e-01 9.954583e-01  1 175 2.770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31 -1.079714e-02  1.921907e-02 8.687038e-01 8.688229e-01  1 335 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32  8.256332e-04  3.053978e-02 6.593657e-01 6.598095e-01  1 109 2.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33 -3.335857e+00  1.679796e+00 8.983110e-01 8.979872e-01  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34 -4.923497e+00  4.170878e-01 4.676447e-01 4.667634e-01  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35 -1.296380e+00  7.646879e-01 9.671038e-01 9.669998e-01  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36 -1.024074e+00  3.484190e-01 3.889558e-02 3.876346e-02  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37 -2.164139e+00  5.060942e-01 7.648382e-02 7.615959e-02  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38 -1.394192e-01  7.666354e-02 3.566962e-03 3.554690e-03  0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39 -7.119463e+00  2.566761e+00 1.923979e-01 1.915076e-01  0 245 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40 -1.398179e-01  8.349126e-02 4.015235e-03 4.004220e-03  0  62 3.190</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41 -8.144358e-01  3.056364e-01 3.120992e-02 3.111043e-02  0  95 3.150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42 -3.129639e-01  1.407734e-01 9.073330e-03 9.039658e-03  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43 -3.129639e-01  1.407734e-01 9.073330e-03 9.039658e-03  0 123 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44 -7.138419e-03  5.839590e-03 5.439236e-05 5.413837e-05  0 180 4.070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45 -2.175456e-01  1.420277e-01 3.172383e-03 3.157615e-03  0 180 3.730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46 -1.357187e-01  9.408877e-02 1.746319e-03 1.738178e-03  0 180 3.780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47 -7.792685e-09  7.338115e-09 1.751508e-11 1.742619e-11  0 205 5.250</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48 -6.469318e-10  6.143399e-10 1.216933e-12 1.210560e-12  0 215 5.424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49 -1.164203e-09  1.107667e-09 2.017342e-12 2.006286e-12  0 230 5.345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50 -2.465156e+00  7.607684e-01 8.634101e-01 8.630768e-01  1  66 2.200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51 -4.399811e-01  2.822443e-01 9.879847e-01 9.879538e-01  1  52 1.615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52 -4.354487e-01  2.580335e-01 9.875007e-01 9.874660e-01  1  65 1.835</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53 -2.434317e+00  1.242495e+00 9.243530e-01 9.241200e-01  0  97 2.465</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54 -4.364678e-01  1.819778e-01 1.204113e-02 1.199137e-02  0 150 3.520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55 -8.567864e-01  2.459126e-01 2.941871e-02 2.929926e-02  0 150 3.435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56 -6.206226e-01  4.892282e-01 4.509574e-03 4.483880e-03  0 245 3.840</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57 -6.149997e-02  4.492210e-02 7.069764e-04 7.037346e-04  0 175 3.845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58 -7.180927e-01  3.956618e-01 9.771760e-01 9.771130e-01  1  66 1.935</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59 -4.440228e-01  2.947344e-01 9.908948e-01 9.908656e-01  1  91 2.140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60 -4.553905e-04  3.912981e-04 9.999965e-01 9.999965e-01  1 113 1.513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61 -7.167493e-01  5.851405e-01 9.957403e-01 9.957145e-01  1 264 3.170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62 -5.242514e-01  4.174660e-01 9.954493e-01 9.954285e-01  1 175 2.770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63 -1.108952e+01  6.875201e+00 8.687038e-01 8.678796e-01  1 335 3.570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64 -3.492230e+00 -5.574252e-01 6.593657e-01 6.585738e-01  1 109 2.780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         conf.low     conf.high predicted_lo predicted_hi am  hp    wt       eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -1.102325e-02  2.498970e-02 8.983110e-01 8.985086e-01  1 110 2.620 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -9.864245e-03  4.267249e-02 4.676447e-01 4.681089e-01  1 110 2.875 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -6.800752e-03  1.245766e-02 9.671038e-01 9.671839e-01  1  93 2.320 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -1.678321e-03  5.548072e-03 3.889558e-02 3.895034e-02  0 110 3.215 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  -2.461058e-03  8.446778e-03 7.648382e-02 7.656852e-02  0 175 3.440 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  -3.512456e-04  6.465378e-04 3.566962e-03 3.571140e-03  0 105 3.460 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  -1.031604e-02  2.179737e-02 1.923979e-01 1.925604e-01  0 245 3.570 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  -5.506142e-04  9.729546e-04 4.015235e-03 4.021211e-03  0  62 3.190 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  -1.739703e-03  5.033655e-03 3.120992e-02 3.125653e-02  0  95 3.150 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 -6.284766e-04  1.390460e-03 9.073330e-03 9.084112e-03  0 123 3.440 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 -6.284766e-04  1.390460e-03 9.073330e-03 9.084112e-03  0 123 3.440 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 -1.200989e-05  1.376198e-05 5.439236e-05 5.441715e-05  0 180 4.070 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 -5.353448e-04  7.268609e-04 3.172383e-03 3.175093e-03  0 180 3.730 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 -3.240040e-04  4.223112e-04 1.746319e-03 1.747710e-03  0 180 3.780 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 -1.742390e-11  1.626645e-11 1.751508e-11 1.749870e-11  0 205 5.250 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 -1.761224e-12  1.663181e-12 1.216933e-12 1.215546e-12  0 215 5.424 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 -2.766080e-12  2.616815e-12 2.017342e-12 2.015230e-12  0 230 5.345 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 -1.677116e-02  3.892346e-02 8.634101e-01 8.637236e-01  1  66 2.200 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 -6.463187e-03  9.269200e-03 9.879847e-01 9.880244e-01  1  52 1.615 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 -4.399027e-03  7.091091e-03 9.875007e-01 9.875388e-01  1  65 1.835 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 -9.506117e-03  2.109778e-02 9.243530e-01 9.245170e-01  0  97 2.465 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 -9.061949e-04  1.834998e-03 1.204113e-02 1.205428e-02  0 150 3.520 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 -1.189113e-03  3.620838e-03 2.941871e-02 2.945312e-02  0 150 3.435 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 -1.244158e-03  1.474856e-03 4.509574e-03 4.512838e-03  0 245 3.840 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 -1.398592e-04  1.758700e-04 7.069764e-04 7.074860e-04  0 175 3.845 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 -6.580190e-03  1.125942e-02 9.771760e-01 9.772422e-01  1  66 1.935 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27 -3.001712e-03  4.740851e-03 9.908948e-01 9.909194e-01  1  91 2.140 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 -4.925440e-06  5.778904e-06 9.999965e-01 9.999965e-01  1 113 1.513 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 -1.989368e-03  2.443712e-03 9.957403e-01 9.957467e-01  1 264 3.170 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 -2.381458e-03  3.017407e-03 9.954493e-01 9.954583e-01  1 175 2.770 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 -1.079714e-02  1.921907e-02 8.687038e-01 8.688229e-01  1 335 3.570 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  8.256332e-04  3.053978e-02 6.593657e-01 6.598095e-01  1 109 2.780 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33 -3.335857e+00  1.679796e+00 8.983110e-01 8.979872e-01  1 110 2.620 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34 -4.923497e+00  4.170878e-01 4.676447e-01 4.667634e-01  1 110 2.875 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35 -1.296380e+00  7.646879e-01 9.671038e-01 9.669998e-01  1  93 2.320 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36 -1.024074e+00  3.484190e-01 3.889558e-02 3.876346e-02  0 110 3.215 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37 -2.164139e+00  5.060942e-01 7.648382e-02 7.615959e-02  0 175 3.440 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38 -1.394192e-01  7.666354e-02 3.566962e-03 3.554690e-03  0 105 3.460 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39 -7.119463e+00  2.566761e+00 1.923979e-01 1.915076e-01  0 245 3.570 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40 -1.398179e-01  8.349126e-02 4.015235e-03 4.004220e-03  0  62 3.190 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 -8.144358e-01  3.056364e-01 3.120992e-02 3.111043e-02  0  95 3.150 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 -3.129639e-01  1.407734e-01 9.073330e-03 9.039658e-03  0 123 3.440 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43 -3.129639e-01  1.407734e-01 9.073330e-03 9.039658e-03  0 123 3.440 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44 -7.138419e-03  5.839590e-03 5.439236e-05 5.413837e-05  0 180 4.070 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45 -2.175456e-01  1.420277e-01 3.172383e-03 3.157615e-03  0 180 3.730 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46 -1.357187e-01  9.408877e-02 1.746319e-03 1.738178e-03  0 180 3.780 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47 -7.792685e-09  7.338115e-09 1.751508e-11 1.742619e-11  0 205 5.250 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48 -6.469318e-10  6.143399e-10 1.216933e-12 1.210560e-12  0 215 5.424 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49 -1.164203e-09  1.107667e-09 2.017342e-12 2.006286e-12  0 230 5.345 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50 -2.465156e+00  7.607684e-01 8.634101e-01 8.630768e-01  1  66 2.200 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51 -4.399811e-01  2.822443e-01 9.879847e-01 9.879538e-01  1  52 1.615 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52 -4.354487e-01  2.580335e-01 9.875007e-01 9.874660e-01  1  65 1.835 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53 -2.434317e+00  1.242495e+00 9.243530e-01 9.241200e-01  0  97 2.465 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54 -4.364678e-01  1.819778e-01 1.204113e-02 1.199137e-02  0 150 3.520 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55 -8.567864e-01  2.459126e-01 2.941871e-02 2.929926e-02  0 150 3.435 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56 -6.206226e-01  4.892282e-01 4.509574e-03 4.483880e-03  0 245 3.840 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57 -6.149997e-02  4.492210e-02 7.069764e-04 7.037346e-04  0 175 3.845 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58 -7.180927e-01  3.956618e-01 9.771760e-01 9.771130e-01  1  66 1.935 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59 -4.440228e-01  2.947344e-01 9.908948e-01 9.908656e-01  1  91 2.140 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60 -4.553905e-04  3.912981e-04 9.999965e-01 9.999965e-01  1 113 1.513 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61 -7.167493e-01  5.851405e-01 9.957403e-01 9.957145e-01  1 264 3.170 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62 -5.242514e-01  4.174660e-01 9.954493e-01 9.954285e-01  1 175 2.770 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63 -1.108952e+01  6.875201e+00 8.687038e-01 8.678796e-01  1 335 3.570 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64 -3.492230e+00 -5.574252e-01 6.593657e-01 6.585738e-01  1 109 2.780 0.0003911</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># hypothesis test: is the `hp` marginal effect at the mean equal to the `drat` marginal effect</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
@@ -541,9 +543,9 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type   term      dydx std.error  statistic      p.value  conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response custom -6.225381  1.051769 -5.9189632 3.239775e-09  -8.28681</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response custom -5.238308  5.623757 -0.9314607 3.516153e-01 -16.26067</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high      mpg      wt     drat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -4.163952 20.09062 3.21725 3.596563</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  5.784052 20.09062 3.21725 3.596563</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high      wt     drat       eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -4.163952 3.21725 3.596563 0.0003911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  5.784052 3.21725 3.596563 0.0002170</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

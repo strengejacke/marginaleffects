@@ -362,18 +362,18 @@
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid type predicted  conf.low  conf.high gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1     1 link -0.817487 -1.033982 -0.6043308     6797.2      40</span></span>
-<span><span class="co">#&gt; 2     2 link -2.805488 -3.062906 -2.5550801     6797.2      60</span></span>
-<span><span class="co">#&gt; 3     3 link -4.790200 -5.337808 -4.2745563     6797.2      80</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid type predicted  conf.low  conf.high lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 link -0.817487 -1.033982 -0.6043308      40</span></span>
+<span><span class="co">#&gt; 2     2 link -2.805488 -3.062906 -2.5550801      60</span></span>
+<span><span class="co">#&gt; 3     3 link -4.790200 -5.337808 -4.2745563      80</span></span></code></pre></div>
 <p>…or on the response (percentage point) scale:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type   predicted    conf.low  conf.high gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1     1 response 0.306297360 0.262312829 0.35335351     6797.2      40</span></span>
-<span><span class="co">#&gt; 2     2 response 0.057028334 0.044663565 0.07208594     6797.2      60</span></span>
-<span><span class="co">#&gt; 3     3 response 0.008242295 0.004783404 0.01372716     6797.2      80</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type   predicted    conf.low  conf.high lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 response 0.306297360 0.262312829 0.35335351      40</span></span>
+<span><span class="co">#&gt; 2     2 response 0.057028334 0.044663565 0.07208594      60</span></span>
+<span><span class="co">#&gt; 3     3 response 0.008242295 0.004783404 0.01372716      80</span></span></code></pre></div>
 <p>We can also get slopes for the <code>hu</code> part of the model on the link (logit) or response (percentage point) scales:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
@@ -382,10 +382,10 @@
 <span><span class="co">#&gt; 1     1 link lifeExp -0.09930925 -0.1157859 -0.08366088    -0.817487</span></span>
 <span><span class="co">#&gt; 2     2 link lifeExp -0.09930925 -0.1157859 -0.08366088    -2.805488</span></span>
 <span><span class="co">#&gt; 3     3 link lifeExp -0.09930925 -0.1157859 -0.08366088    -4.790200</span></span>
-<span><span class="co">#&gt;   predicted_hi gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1   -0.8180725     6797.2      40</span></span>
-<span><span class="co">#&gt; 2   -2.8060666     6797.2      60</span></span>
-<span><span class="co">#&gt; 3   -4.7908031     6797.2      80</span></span>
+<span><span class="co">#&gt;   predicted_hi lifeExp       eps</span></span>
+<span><span class="co">#&gt; 1   -0.8180725      40 0.0059004</span></span>
+<span><span class="co">#&gt; 2   -2.8060666      60 0.0059004</span></span>
+<span><span class="co">#&gt; 3   -4.7908031      80 0.0059004</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -393,33 +393,33 @@
 <span><span class="co">#&gt; 1     1 response lifeExp -0.0210776902 -0.025913450 -0.0165879119  0.306297360</span></span>
 <span><span class="co">#&gt; 2     2 response lifeExp -0.0053208087 -0.006148655 -0.0045608559  0.057028334</span></span>
 <span><span class="co">#&gt; 3     3 response lifeExp -0.0008118892 -0.001154388 -0.0005429417  0.008242295</span></span>
-<span><span class="co">#&gt;   predicted_hi gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1  0.306172973     6797.2      40</span></span>
-<span><span class="co">#&gt; 2  0.056997229     6797.2      60</span></span>
-<span><span class="co">#&gt; 3  0.008237367     6797.2      80</span></span></code></pre></div>
+<span><span class="co">#&gt;   predicted_hi lifeExp       eps</span></span>
+<span><span class="co">#&gt; 1  0.306172973      40 0.0059004</span></span>
+<span><span class="co">#&gt; 2  0.056997229      60 0.0059004</span></span>
+<span><span class="co">#&gt; 3  0.008237367      80 0.0059004</span></span></code></pre></div>
 <p>Working with the <code>mu</code> part of the model is trickier. Switching between <code>type = "link"</code> and <code>type = "response"</code> doesn’t change anything, since the outcome is pre-logged:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid type predicted conf.low conf.high gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1     1 link  6.612435 6.542113  6.685787     6797.2      40</span></span>
-<span><span class="co">#&gt; 2     2 link  8.183520 8.145944  8.220893     6797.2      60</span></span>
-<span><span class="co">#&gt; 3     3 link  9.753512 9.687209  9.820665     6797.2      80</span></span>
+<span><span class="co">#&gt;   rowid type predicted conf.low conf.high lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 link  6.612435 6.542113  6.685787      40</span></span>
+<span><span class="co">#&gt; 2     2 link  8.183520 8.145944  8.220893      60</span></span>
+<span><span class="co">#&gt; 3     3 link  9.753512 9.687209  9.820665      80</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted conf.low conf.high gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1     1 response  6.612435 6.542113  6.685787     6797.2      40</span></span>
-<span><span class="co">#&gt; 2     2 response  8.183520 8.145944  8.220893     6797.2      60</span></span>
-<span><span class="co">#&gt; 3     3 response  9.753512 9.687209  9.820665     6797.2      80</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted conf.low conf.high lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 response  6.612435 6.542113  6.685787      40</span></span>
+<span><span class="co">#&gt; 2     2 response  8.183520 8.145944  8.220893      60</span></span>
+<span><span class="co">#&gt; 3     3 response  9.753512 9.687209  9.820665      80</span></span></code></pre></div>
 <p>For <strong>predictions</strong>, we need to exponentiate the results to scale them back up to dollar amounts. We can do this by post-processing the results (e.g. with <code>dplyr::mutate(predicted = exp(predicted))</code>), or we can use the <code>transform_post</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> to pass the results to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> after getting calculated:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, </span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>            transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type  predicted   conf.low  conf.high gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1     1 response   744.2932   693.7513   800.9406     6797.2      40</span></span>
-<span><span class="co">#&gt; 2     2 response  3581.4392  3449.3601  3717.8204     6797.2      60</span></span>
-<span><span class="co">#&gt; 3     3 response 17214.5804 16110.2130 18410.2831     6797.2      80</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type  predicted   conf.low  conf.high lifeExp</span></span>
+<span><span class="co">#&gt; 1     1 response   744.2932   693.7513   800.9406      40</span></span>
+<span><span class="co">#&gt; 2     2 response  3581.4392  3449.3601  3717.8204      60</span></span>
+<span><span class="co">#&gt; 3     3 response 17214.5804 16110.2130 18410.2831      80</span></span></code></pre></div>
 <p>We can pass <code>transform_post = exp</code> to <code><a href="../reference/plot_cap.html">plot_cap()</a></code> too:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
@@ -470,10 +470,10 @@
 <span><span class="co">#&gt; 1     1 response lifeExp   custom   58.39448   55.84743   61.02206     6.612396</span></span>
 <span><span class="co">#&gt; 2     2 response lifeExp   custom  280.89410  266.57621  295.50894     8.183481</span></span>
 <span><span class="co">#&gt; 3     3 response lifeExp   custom 1349.40503 1222.58608 1490.38119     9.753473</span></span>
-<span><span class="co">#&gt;   predicted_hi gdpPercap0 lifeExp</span></span>
-<span><span class="co">#&gt; 1     6.612474     6797.2      40</span></span>
-<span><span class="co">#&gt; 2     8.183559     6797.2      60</span></span>
-<span><span class="co">#&gt; 3     9.753551     6797.2      80</span></span></code></pre></div>
+<span><span class="co">#&gt;   predicted_hi lifeExp       eps</span></span>
+<span><span class="co">#&gt; 1     6.612474      40 0.0059004</span></span>
+<span><span class="co">#&gt; 2     8.183559      60 0.0059004</span></span>
+<span><span class="co">#&gt; 3     9.753551      80 0.0059004</span></span></code></pre></div>
 <p>We can visually confirm that these are the instantaneous slopes at each of these levels of life expectancy:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">predictions_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>

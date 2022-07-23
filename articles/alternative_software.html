@@ -156,14 +156,14 @@
 <span><span class="co">#&gt; 1     1 response   hp (x + 1) - x -1.557824e-10 6.803615e-07 -0.00022897</span></span>
 <span><span class="co">#&gt; 2     1 response  cyl       6 - 4 -2.221851e-01 3.916435e-01 -0.56731461</span></span>
 <span><span class="co">#&gt; 3     1 response  cyl       8 - 4 -5.946855e-01 5.097420e-01 -1.16664014</span></span>
-<span><span class="co">#&gt;     p.value      conf.low    conf.high predicted_lo predicted_hi     vs</span></span>
-<span><span class="co">#&gt; 1 0.9998173 -1.333640e-06 1.333328e-06 4.860620e-09 4.704837e-09 0.4375</span></span>
-<span><span class="co">#&gt; 2 0.5705005 -9.897921e-01 5.454220e-01 5.946855e-01 3.725004e-01 0.4375</span></span>
-<span><span class="co">#&gt; 3 0.2433557 -1.593761e+00 4.043905e-01 5.946855e-01 4.782094e-09 0.4375</span></span>
-<span><span class="co">#&gt;         hp cyl</span></span>
-<span><span class="co">#&gt; 1 146.6875   8</span></span>
-<span><span class="co">#&gt; 2 146.6875   8</span></span>
-<span><span class="co">#&gt; 3 146.6875   8</span></span></code></pre></div>
+<span><span class="co">#&gt;     p.value      conf.low    conf.high predicted_lo predicted_hi       hp cyl</span></span>
+<span><span class="co">#&gt; 1 0.9998173 -1.333640e-06 1.333328e-06 4.860620e-09 4.704837e-09 146.6875   8</span></span>
+<span><span class="co">#&gt; 2 0.5705005 -9.897921e-01 5.454220e-01 5.946855e-01 3.725004e-01 146.6875   8</span></span>
+<span><span class="co">#&gt; 3 0.2433557 -1.593761e+00 4.043905e-01 5.946855e-01 4.782094e-09 146.6875   8</span></span>
+<span><span class="co">#&gt;      eps</span></span>
+<span><span class="co">#&gt; 1 0.0283</span></span>
+<span><span class="co">#&gt; 2     NA</span></span>
+<span><span class="co">#&gt; 3     NA</span></span></code></pre></div>
 <p>Link scale, pairwise contrasts:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
@@ -184,10 +184,10 @@
 <span><span class="co">#&gt; 1     1 link  cyl    6 - 4  -0.9048741    1.630231 -0.555058785 0.5788545</span></span>
 <span><span class="co">#&gt; 2     1 link  cyl    8 - 4 -19.5417566 4367.165924 -0.004474700 0.9964297</span></span>
 <span><span class="co">#&gt; 3     1 link  cyl    8 - 6 -18.6368825 4367.165407 -0.004267501 0.9965950</span></span>
-<span><span class="co">#&gt;       conf.low  conf.high predicted_lo predicted_hi     vs       hp cyl</span></span>
-<span><span class="co">#&gt; 1    -4.100068    2.29032    0.3833693   -0.5215048 0.4375 146.6875   8</span></span>
-<span><span class="co">#&gt; 2 -8579.029682 8539.94617    0.3833693  -19.1583873 0.4375 146.6875   8</span></span>
-<span><span class="co">#&gt; 3 -8578.123795 8540.85003   -0.5215048  -19.1583873 0.4375 146.6875   8</span></span></code></pre></div>
+<span><span class="co">#&gt;       conf.low  conf.high predicted_lo predicted_hi       hp cyl</span></span>
+<span><span class="co">#&gt; 1    -4.100068    2.29032    0.3833693   -0.5215048 146.6875   8</span></span>
+<span><span class="co">#&gt; 2 -8579.029682 8539.94617    0.3833693  -19.1583873 146.6875   8</span></span>
+<span><span class="co">#&gt; 3 -8578.123795 8540.85003   -0.5215048  -19.1583873 146.6875   8</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="contrasts-by-group">Contrasts by group<a class="anchor" aria-label="anchor" href="#contrasts-by-group"></a>
@@ -296,10 +296,10 @@
 <span><span class="co">#&gt; 1     1 response   hp    dY/dX -0.007852329 0.01110851 -0.7068751 0.4796441</span></span>
 <span><span class="co">#&gt; 2     1 response  cyl    6 - 4 -0.222185055 0.39164346 -0.5673146 0.5705005</span></span>
 <span><span class="co">#&gt; 3     1 response  cyl    8 - 4 -0.594685481 0.50974200 -1.1666401 0.2433557</span></span>
-<span><span class="co">#&gt;      conf.low  conf.high predicted_lo predicted_hi     vs       hp cyl</span></span>
-<span><span class="co">#&gt; 1 -0.02962461 0.01391995    0.5946855 5.944633e-01 0.4375 146.6875   4</span></span>
-<span><span class="co">#&gt; 2 -0.98979213 0.54542202    0.5946855 3.725004e-01 0.4375 146.6875   4</span></span>
-<span><span class="co">#&gt; 3 -1.59376144 0.40439048    0.5946855 4.782094e-09 0.4375 146.6875   4</span></span></code></pre></div>
+<span><span class="co">#&gt;      conf.low  conf.high predicted_lo predicted_hi       hp cyl    eps</span></span>
+<span><span class="co">#&gt; 1 -0.02962461 0.01391995    0.5946855 5.944633e-01 146.6875   4 0.0283</span></span>
+<span><span class="co">#&gt; 2 -0.98979213 0.54542202    0.5946855 3.725004e-01 146.6875   4     NA</span></span>
+<span><span class="co">#&gt; 3 -1.59376144 0.40439048    0.5946855 4.782094e-09 146.6875   4     NA</span></span></code></pre></div>
 <p>Link scale, user-specified values:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emtrends</a></span><span class="op">(</span><span class="va">mod</span>, <span class="op">~</span><span class="va">hp</span>, <span class="st">"hp"</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
@@ -313,10 +313,10 @@
 <span><span class="co">#&gt; 1     1 link   hp    dY/dX  -0.03257475 3.388105e-02 -0.9614446 0.3363287</span></span>
 <span><span class="co">#&gt; 2     1 link  cyl    6 - 4  -0.90487411 1.630231e+00 -0.5550588 0.5788545</span></span>
 <span><span class="co">#&gt; 3     1 link  cyl    8 - 4 -19.54175662 4.367166e+03 -0.0044747 0.9964297</span></span>
-<span><span class="co">#&gt;        conf.low    conf.high predicted_lo predicted_hi     vs       hp cyl</span></span>
-<span><span class="co">#&gt; 1 -9.898038e-02 3.383088e-02    0.3833693    0.3824475 0.4375 146.6875   4</span></span>
-<span><span class="co">#&gt; 2 -4.100068e+00 2.290320e+00    0.3833693   -0.5215048 0.4375 146.6875   4</span></span>
-<span><span class="co">#&gt; 3 -8.579030e+03 8.539946e+03    0.3833693  -19.1583873 0.4375 146.6875   4</span></span></code></pre></div>
+<span><span class="co">#&gt;        conf.low    conf.high predicted_lo predicted_hi       hp cyl    eps</span></span>
+<span><span class="co">#&gt; 1 -9.898038e-02 3.383088e-02    0.3833693    0.3824475 146.6875   4 0.0283</span></span>
+<span><span class="co">#&gt; 2 -4.100068e+00 2.290320e+00    0.3833693   -0.5215048 146.6875   4     NA</span></span>
+<span><span class="co">#&gt; 3 -8.579030e+03 8.539946e+03    0.3833693  -19.1583873 146.6875   4     NA</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -396,13 +396,13 @@
 <span><span class="co">#&gt; 4     4 response  cyl -0.9416168 0.5509163 -1.709183 0.08741706 -2.021393</span></span>
 <span><span class="co">#&gt; 5     5 response  cyl -0.9416168 0.5509164 -1.709183 0.08741710 -2.021393</span></span>
 <span><span class="co">#&gt; 6     6 response  cyl -0.9416168 0.5509163 -1.709183 0.08741706 -2.021393</span></span>
-<span><span class="co">#&gt;   conf.high predicted_lo predicted_hi  mpg cyl  hp    wt</span></span>
-<span><span class="co">#&gt; 1 0.1381594     22.82043     22.82005 21.0   6 110 2.620</span></span>
-<span><span class="co">#&gt; 2 0.1381594     22.01285     22.01247 21.0   6 110 2.875</span></span>
-<span><span class="co">#&gt; 3 0.1381595     25.96040     25.96002 22.8   4  93 2.320</span></span>
-<span><span class="co">#&gt; 4 0.1381594     20.93608     20.93570 21.4   6 110 3.215</span></span>
-<span><span class="co">#&gt; 5 0.1381595     17.16780     17.16742 18.7   8 175 3.440</span></span>
-<span><span class="co">#&gt; 6 0.1381594     20.25036     20.24998 18.1   6 105 3.460</span></span>
+<span><span class="co">#&gt;   conf.high predicted_lo predicted_hi  mpg cyl  hp    wt   eps</span></span>
+<span><span class="co">#&gt; 1 0.1381594     22.82043     22.82005 21.0   6 110 2.620 4e-04</span></span>
+<span><span class="co">#&gt; 2 0.1381594     22.01285     22.01247 21.0   6 110 2.875 4e-04</span></span>
+<span><span class="co">#&gt; 3 0.1381595     25.96040     25.96002 22.8   4  93 2.320 4e-04</span></span>
+<span><span class="co">#&gt; 4 0.1381594     20.93608     20.93570 21.4   6 110 3.215 4e-04</span></span>
+<span><span class="co">#&gt; 5 0.1381595     17.16780     17.16742 18.7   8 175 3.440 4e-04</span></span>
+<span><span class="co">#&gt; 6 0.1381594     20.25036     20.24998 18.1   6 105 3.460 4e-04</span></span>
 <span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span>, hp <span class="op">=</span> <span class="fl">110</span>, wt <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -425,10 +425,10 @@
 <span><span class="co">#&gt; 1     1 response  cyl -0.9416168 0.55091633 -1.709183 8.741706e-02 -2.02139298</span></span>
 <span><span class="co">#&gt; 2     1 response   hp -0.0180381 0.01187625 -1.518838 1.288032e-01 -0.04131512</span></span>
 <span><span class="co">#&gt; 3     1 response   wt -3.1669731 0.74057579 -4.276366 1.899688e-05 -4.61847499</span></span>
-<span><span class="co">#&gt;     conf.high predicted_lo predicted_hi      mpg    cyl       hp      wt</span></span>
-<span><span class="co">#&gt; 1  0.13815935     20.09062     20.09025 20.09062 6.1875 146.6875 3.21725</span></span>
-<span><span class="co">#&gt; 2  0.00523892     20.09062     20.09011 20.09062 6.1875 146.6875 3.21725</span></span>
-<span><span class="co">#&gt; 3 -1.71547124     20.09062     20.08939 20.09062 6.1875 146.6875 3.21725</span></span></code></pre></div>
+<span><span class="co">#&gt;     conf.high predicted_lo predicted_hi    cyl       hp      wt       eps</span></span>
+<span><span class="co">#&gt; 1  0.13815935     20.09062     20.09025 6.1875 146.6875 3.21725 0.0004000</span></span>
+<span><span class="co">#&gt; 2  0.00523892     20.09062     20.09011 6.1875 146.6875 3.21725 0.0283000</span></span>
+<span><span class="co">#&gt; 3 -1.71547124     20.09062     20.08939 6.1875 146.6875 3.21725 0.0003911</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="counterfactual-average-marginal-effects">Counterfactual Average Marginal Effects<a class="anchor" aria-label="anchor" href="#counterfactual-average-marginal-effects"></a>

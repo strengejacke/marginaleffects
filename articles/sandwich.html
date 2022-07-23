@@ -156,12 +156,12 @@
 <span><span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic</span></span>
 <span><span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01146238 -4.522784</span></span>
 <span><span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.13425639  4.113833</span></span>
-<span><span class="co">#&gt;        p.value    conf.low   conf.high predicted_lo predicted_hi      mpg</span></span>
-<span><span class="co">#&gt; 1 6.103158e-06 -0.07430773 -0.02937602      17.7327     17.73123 20.09062</span></span>
-<span><span class="co">#&gt; 2 3.891429e-05  2.44303975  6.88924310      17.7327     22.39884 20.09062</span></span>
-<span><span class="co">#&gt;         hp    am cyl</span></span>
-<span><span class="co">#&gt; 1 146.6875 FALSE   8</span></span>
-<span><span class="co">#&gt; 2 146.6875 FALSE   8</span></span></code></pre></div>
+<span><span class="co">#&gt;        p.value    conf.low   conf.high predicted_lo predicted_hi       hp    am</span></span>
+<span><span class="co">#&gt; 1 6.103158e-06 -0.07430773 -0.02937602      17.7327     17.73123 146.6875 FALSE</span></span>
+<span><span class="co">#&gt; 2 3.891429e-05  2.44303975  6.88924310      17.7327     22.39884 146.6875 FALSE</span></span>
+<span><span class="co">#&gt;   cyl    eps</span></span>
+<span><span class="co">#&gt; 1   8 0.0283</span></span>
+<span><span class="co">#&gt; 2   8     NA</span></span></code></pre></div>
 <p>Marginal effects at the mean with Kenward-Roger adjusted variance-covariance and degrees of freedom:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
@@ -170,12 +170,12 @@
 <span><span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic    p.value</span></span>
 <span><span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01518879 -3.413167 0.09642979</span></span>
 <span><span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.28244270  3.638479 0.08741990</span></span>
-<span><span class="co">#&gt;     conf.low   conf.high       df predicted_lo predicted_hi      mpg       hp</span></span>
-<span><span class="co">#&gt; 1 -0.1305545  0.02687074 1.682575      17.7327     17.73123 20.09062 146.6875</span></span>
-<span><span class="co">#&gt; 2 -1.9798401 11.31212296 1.682575      17.7327     22.39884 20.09062 146.6875</span></span>
-<span><span class="co">#&gt;      am cyl</span></span>
-<span><span class="co">#&gt; 1 FALSE   8</span></span>
-<span><span class="co">#&gt; 2 FALSE   8</span></span></code></pre></div>
+<span><span class="co">#&gt;     conf.low   conf.high       df predicted_lo predicted_hi       hp    am cyl</span></span>
+<span><span class="co">#&gt; 1 -0.1305545  0.02687074 1.682575      17.7327     17.73123 146.6875 FALSE   8</span></span>
+<span><span class="co">#&gt; 2 -1.9798401 11.31212296 1.682575      17.7327     22.39884 146.6875 FALSE   8</span></span>
+<span><span class="co">#&gt;        mpg    eps</span></span>
+<span><span class="co">#&gt; 1 20.09062 0.0283</span></span>
+<span><span class="co">#&gt; 2 20.09062     NA</span></span></code></pre></div>
 <p>We can use the same option in any of the package’s core functions, including:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span>, vcov <span class="op">=</span> <span class="st">"satterthwaite"</span><span class="op">)</span></span></code></pre></div>
@@ -205,14 +205,14 @@
 </li>
 </ol>
 <p>The main function used to compute standard errors in <code>marginaleffects</code> is here: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/main/R/get_se_delta.R" class="external-link uri">https://github.com/vincentarelbundock/marginaleffects/blob/main/R/get_se_delta.R</a></p>
-<p>The <code><a href="../reference/predictions.html">predictions()</a></code> function behaves slightly differently. For GLM and mixed effects models, <code><a href="../reference/predictions.html">predictions()</a></code> function delegates the computation of standard errors and confidence intervals to the <code>get_predicted()</code> function of the <code>insight</code> package. The benefit is that <code>insight</code> tries to compute predictions and confidence intervals on the link scale, and then transforms them to the response scale. This ensures that, for example, confidence intervals around predicted probabilities do not stretch outside the <span class="math inline">\([0,1]\)</span> interval.</p>
+<p>The <code><a href="../reference/predictions.html">predictions()</a></code> function behaves slightly differently. For GLM and mixed effects models, <code><a href="../reference/predictions.html">predictions()</a></code> function delegates the computation of standard errors and confidence intervals to the <code><a href="https://easystats.github.io/insight/reference/get_predicted.html" class="external-link">get_predicted()</a></code> function of the <code>insight</code> package. The benefit is that <code>insight</code> tries to compute predictions and confidence intervals on the link scale, and then transforms them to the response scale. This ensures that, for example, confidence intervals around predicted probabilities do not stretch outside the <span class="math inline">\([0,1]\)</span> interval.</p>
 <p>This type of transformation is not done automatically in the case of <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>, <code><a href="../reference/comparisons.html">comparisons()</a></code> or <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function. Similar results can be achieved in <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> by using the <code>type="link"</code> argument and by supplying an appropriate transformation function to the <code>transform_post</code> argument (available in version 0.5.1 of the package). The <code><a href="https://easystats.github.io/insight/reference/link_inverse.html" class="external-link">insight::link_inverse()</a></code> function could be helpful here.</p>
 </div>
 <div class="section level2">
 <h2 id="standard-errors-and-confidence-intervals-for-adjusted-predictions">Standard errors and confidence intervals for adjusted predictions<a class="anchor" aria-label="anchor" href="#standard-errors-and-confidence-intervals-for-adjusted-predictions"></a>
 </h2>
 <p>The <code>marginaleffects</code> package handles the calculation of standard errors and confidence intervals entirely on its own for these quantities: marginal effects, marginal means, and contrasts. Uncertainty estimates around adjusted predictions are handled in a two-step process.</p>
-<p>First step: Try to outsource the computation of adjusted predictions to the <code>get_predicted()</code> function of the <code>insight</code> package. The benefit of using package is that it can make predictions on the link scale and then apply back transformations to make sure that confidence intervals make sense (e.g., stay inside 0 and 1 in logit models). The downside of relying on <code>insight</code> is that <code>insight</code> can only compute confidence intervals and standard errors for a limited range of models.</p>
+<p>First step: Try to outsource the computation of adjusted predictions to the <code><a href="https://easystats.github.io/insight/reference/get_predicted.html" class="external-link">get_predicted()</a></code> function of the <code>insight</code> package. The benefit of using package is that it can make predictions on the link scale and then apply back transformations to make sure that confidence intervals make sense (e.g., stay inside 0 and 1 in logit models). The downside of relying on <code>insight</code> is that <code>insight</code> can only compute confidence intervals and standard errors for a limited range of models.</p>
 <p>Second step: If <code>insight</code> does not return confidence intervals or standard errors for adjusted predictions, <code>marginaleffects</code> uses the delta method to compute standard errors on the scale defined by the <code>type</code> argument. The standard errors thus estimated <a href="https://en.wikipedia.org/wiki/Delta_method" class="external-link">have desirable properties under normal assumptions.</a>, but since there is no back-transformation, it is not always advisable to use them to construct symmetric confidence intervals around adjusted predictions.</p>
 </div>
 <div class="section level2">
@@ -233,6 +233,18 @@
 <li>Dowd, Bryan E, William H Greene, and Edward C Norton. “Computation of Standard Errors.” Health Services Research 49, no. 2 (April 2014): 731–50. <a href="https://doi.org/10.1111/1475-6773.12122" class="external-link uri">https://doi.org/10.1111/1475-6773.12122</a>.</li>
 <li><a href="https://stats.stackexchange.com/questions/283831/delta-method-for-marginal-effects-of-generalized-linear-model?rq=1" class="external-link uri">https://stats.stackexchange.com/questions/283831/delta-method-for-marginal-effects-of-generalized-linear-model?rq=1</a></li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="uncertainty-about-predictions">Uncertainty about predictions<a class="anchor" aria-label="anchor" href="#uncertainty-about-predictions"></a>
+</h2>
+<p>The <code>marginaleffects</code> package handles all calculations to compute standard errors, t statistics, p values, and confidence intervals for contrasts (<code><a href="../reference/comparisons.html">comparisons()</a></code>), marginal effects (<code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>), and marginal means (<code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>).</p>
+<p>When possible, however, the calculation of standard errors and confidence intervals for the output of <code><a href="../reference/predictions.html">predictions()</a></code> is outsourced to the <a href="https://easystats.github.io/insight/" class="external-link"><code>insight</code> package.</a> The benefit of this is that, for many popular models, <code>insight</code> can compute confidence intervals via back-transformation, which gives them certain nice properties. For example, this ensures that confidence intervals around the predictions of a logistic regression model will remain in between 0 and 1.</p>
+<p>When <code>insight</code> does not support a model, <code>marginaleffects</code> computes standard errors using the delta method, as described above. In those cases, confidence intervals are not created automatically, but users can easily compute them manually, as usual, by multiplying the standard error by a critical value.</p>
+</div>
+<div class="section level2">
+<h2 id="bayesian-estimates-and-credible-intervals">Bayesian estimates and credible intervals<a class="anchor" aria-label="anchor" href="#bayesian-estimates-and-credible-intervals"></a>
+</h2>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/reference/comparisons.html" class="external-link">See the <code>brms</code> vignette</a> for a discussion of bayesian estimates and credible intervals.</p>
 </div>
   </div>
 

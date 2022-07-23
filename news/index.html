@@ -58,14 +58,16 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.0.9000" id="marginaleffects-0609000">marginaleffects 0.6.0.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0609000"></a></h2>
-<p>New supported packages and models:</p>
+<p>Breaking change</p>
+<ul><li>Character vectors are no longer supported in the <code>variables</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function. Use <code>newdata="fivenum"</code> or “grid”, “mean”, or “median” instead.</li></ul><p>New supported packages and models:</p>
 <ul><li><code><a href="https://rdrr.io/pkg/survival/man/clogit.html" class="external-link">survival::clogit</a></code></li>
 <li>
 <code>biglm</code>: The main quantities can be computed, but not the delta method standard errors. See <a href="https://github.com/vincentarelbundock/marginaleffects/issues/387" class="external-link uri">https://github.com/vincentarelbundock/marginaleffects/issues/387</a>
 </li>
 </ul><p>New vignette:</p>
 <ul><li>Frequently Asked Questions</li></ul><p>Misc:</p>
-<ul><li>
+<ul><li>New <code>newdata</code> shortcuts: “tukey”, “grid”</li>
+<li>
 <code>vcov</code> argument string shortcuts are now case-insensitive</li>
 <li>documentation improvements</li>
 </ul></div>
