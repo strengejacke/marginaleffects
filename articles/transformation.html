@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9002</span>
       </span>
     </div>
 
@@ -160,7 +160,6 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
 <span><span class="co">#&gt; 1  mpg (x + 1) - x 0.0554   0.008327   6.653 2.8699e-11 0.03908 0.07172</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -173,7 +172,6 @@
 <p>Instead of taking simple differences between adjusted predictions, it can sometimes be useful to compute other forms of contrasts. For example, <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X1301300304" class="external-link">the <code>adjrr</code> function the <code>Stata</code> software package</a> can compute “adjusted risk ratios”, which are ratios of adjusted predictions. To do this in <code>R</code>, we use the <code>transform_pre</code> argument:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -183,7 +181,6 @@
 <p>The <code>transform_pre</code> accepts different values for common types of contrasts: ‘difference’, ‘ratio’, ‘lnratio’, ‘ratioavg’, ‘lnratioavg’, ‘lnoravg’, ‘differenceavg’. These strings are shortcuts for functions that accept two vectors of adjusted predictions and returns a single vector of contrasts. For example, these two commands yield identical results:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -191,21 +188,21 @@
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1  mpg   custom  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Pre-transformation:  function(hi, lo) hi/lo</span></span></code></pre></div>
 <p>This mechanism is powerful, because it lets users create fully customized contrasts. Here is a non-sensical example:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">lo</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1  mpg   custom 0.2641    0.02614    10.1 &lt; 2.22e-16 0.2128 0.3153</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Pre-transformation:  function(hi, lo) sqrt(hi)/log(lo + 10)</span></span></code></pre></div>
 <p>The same arguments work in the plotting function <code><a href="../reference/plot_cco.html">plot_cco()</a></code> as well, which allows us to plot various custom contrasts. Here is a comparison of Adjusted Risk Ratio and Adjusted Risk Difference in a model of the probability of survival aboard the Titanic:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -219,7 +216,6 @@
 <span></span>
 <span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod_titanic</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;     Term      Contrast    Effect Std. Error z value   Pr(&gt;|z|)     2.5 %</span></span>
 <span><span class="co">#&gt; 1    Sex male - female -0.484676   0.030607 -15.835 &lt; 2.22e-16 -0.544665</span></span>
 <span><span class="co">#&gt; 2 PClass     2nd - 1st -0.205782   0.039374  -5.226 1.7296e-07 -0.282954</span></span>
@@ -265,12 +261,13 @@
 <span>    transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1  mpg   custom  1.135       0.02   56.75 &lt; 2.22e-16 1.096  1.174</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Pre-transformation:  function(hi, lo) log(mean(hi)/mean(lo)) </span></span>
+<span><span class="co">#&gt; Post-transformation:  exp</span></span></code></pre></div>
 <p>Note that we can use the <code>lnratioavg</code> shortcut instead of defining the function ourselves.</p>
 <p>The order of operations in previous command was:</p>
 <ol style="list-style-type: decimal">
@@ -284,7 +281,6 @@
 <span>    <span class="va">mod</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>transform_avg <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average contrasts </span></span>
 <span><span class="co">#&gt;   Term                  Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1  mpg ln(mean(x + 1) / mean(x))  1.135 2.3808e-10 1.091   1.18</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -523,7 +519,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

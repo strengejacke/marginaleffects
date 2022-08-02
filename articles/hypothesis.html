@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9002</span>
       </span>
     </div>
 
@@ -188,9 +188,9 @@
 <span><span class="co">#&gt;   rowid     type term     dydx std.error statistic      p.value conf.low</span></span>
 <span><span class="co">#&gt; 1     1 response   am 6.066667  1.274842  4.758758 1.947875e-06 3.568022</span></span>
 <span><span class="co">#&gt; 2     1 response   vs 6.929365  1.262132  5.490207 4.014620e-08 4.455632</span></span>
-<span><span class="co">#&gt;   conf.high predicted_lo predicted_hi      am     vs   eps</span></span>
-<span><span class="co">#&gt; 1  8.565312     20.09062     20.09123 0.40625 0.4375 1e-04</span></span>
-<span><span class="co">#&gt; 2  9.403098     20.09062     20.09132 0.40625 0.4375 1e-04</span></span></code></pre></div>
+<span><span class="co">#&gt;   conf.high      am     vs   eps</span></span>
+<span><span class="co">#&gt; 1  8.565312 0.40625 0.4375 1e-04</span></span>
+<span><span class="co">#&gt; 2  9.403098 0.40625 0.4375 1e-04</span></span></code></pre></div>
 <p>Is the marginal effect of <code>am</code> different from the marginal effect of <code>vs</code>? To answer this question we can run a linear hypothesis test:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
@@ -283,9 +283,9 @@
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term    contrast estimate std.error statistic      p.value conf.low</span></span>
-<span><span class="co">#&gt; 1 response   am (x + 1) - x 6.066667  1.274842  4.758759 1.947871e-06 3.568022</span></span>
-<span><span class="co">#&gt; 2 response   vs (x + 1) - x 6.929365  1.262132  5.490208 4.014610e-08 4.455633</span></span>
+<span><span class="co">#&gt;       type term contrast estimate std.error statistic      p.value conf.low</span></span>
+<span><span class="co">#&gt; 1 response   am    1 - 0 6.066667  1.274842  4.758759 1.947871e-06 3.568022</span></span>
+<span><span class="co">#&gt; 2 response   vs    1 - 0 6.929365  1.262132  5.490208 4.014610e-08 4.455633</span></span>
 <span><span class="co">#&gt;   conf.high</span></span>
 <span><span class="co">#&gt; 1  8.565312</span></span>
 <span><span class="co">#&gt; 2  9.403098</span></span>
@@ -293,12 +293,12 @@
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term              contrast comparison std.error statistic</span></span>
-<span><span class="co">#&gt; 1 response   am mean(x + 1) - mean(x)   6.066667  1.274842  4.758759</span></span>
-<span><span class="co">#&gt; 2 response   vs mean(x + 1) - mean(x)   6.929365  1.262132  5.490208</span></span>
-<span><span class="co">#&gt;        p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 1.947871e-06 3.568022  8.565312</span></span>
-<span><span class="co">#&gt; 2 4.014610e-08 4.455633  9.403098</span></span></code></pre></div>
+<span><span class="co">#&gt;       type term          contrast comparison std.error statistic      p.value</span></span>
+<span><span class="co">#&gt; 1 response   am mean(1) - mean(0)   6.066667  1.274842  4.758759 1.947871e-06</span></span>
+<span><span class="co">#&gt; 2 response   vs mean(1) - mean(0)   6.929365  1.262132  5.490208 4.014610e-08</span></span>
+<span><span class="co">#&gt;   conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 3.568022  8.565312</span></span>
+<span><span class="co">#&gt; 2 4.455633  9.403098</span></span></code></pre></div>
 <p>Notice that in the last one we did not need to use <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, and yet we still obtained average contrasts. <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">See the transformations section of the Contrasts vignette for more details.</a></p>
 <p>With these results in hand, we can finally conduct a linear hypothesis test between average marginal effects:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
@@ -520,12 +520,12 @@
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   0  pre  1.3893057</span></span>
-<span><span class="co">#&gt; 2:  2   0  pre -1.2694628</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre -1.9386391</span></span>
-<span><span class="co">#&gt; 4:  4   1  pre -0.3416737</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre  0.3504446</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre -1.2657964</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:  1   1  pre -0.4540881</span></span>
+<span><span class="co">#&gt; 2:  2   1  pre  2.0544203</span></span>
+<span><span class="co">#&gt; 3:  3   0  pre -0.5911889</span></span>
+<span><span class="co">#&gt; 4:  4   0  pre  1.0393958</span></span>
+<span><span class="co">#&gt; 5:  5   0  pre -0.2834564</span></span>
+<span><span class="co">#&gt; 6:  6   0  pre -1.1501299</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We alco compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -535,11 +535,11 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type        term contrast_time  comparison  std.error  statistic</span></span>
-<span><span class="co">#&gt; 1     1 response interaction    post - pre -0.01309774 0.07388900 -0.1772624</span></span>
-<span><span class="co">#&gt; 2     2 response interaction    post - pre  0.33201502 0.07830639  4.2399482</span></span>
-<span><span class="co">#&gt;        p.value   conf.low conf.high time trt predicted_lo predicted_hi</span></span>
-<span><span class="co">#&gt; 1 8.593023e-01 -0.1579175 0.1317220  pre   0   0.04105309   0.02795535</span></span>
-<span><span class="co">#&gt; 2 2.235714e-05  0.1785373 0.4854927  pre   1  -0.11770391   0.21431112</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response interaction    post - pre -0.01670928 0.07791479 -0.2144558</span></span>
+<span><span class="co">#&gt; 2     2 response interaction    post - pre  0.31606083 0.07530923  4.1968407</span></span>
+<span><span class="co">#&gt;        p.value   conf.low conf.high predicted_lo predicted_hi time trt</span></span>
+<span><span class="co">#&gt; 1 8.301916e-01 -0.1694195 0.1360009   0.03281791   0.01610862  pre   0</span></span>
+<span><span class="co">#&gt; 2 2.706642e-05  0.1684575 0.4636642   0.05955032   0.37561115  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -548,9 +548,9 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type          term comparison std.error statistic     p.value  conf.low</span></span>
-<span><span class="co">#&gt; 1 response Row 2 - Row 1  0.3451128 0.1076637   3.20547 0.001348423 0.1340958</span></span>
+<span><span class="co">#&gt; 1 response Row 2 - Row 1  0.3327701 0.1083614  3.070928 0.002133943 0.1203857</span></span>
 <span><span class="co">#&gt;   conf.high</span></span>
-<span><span class="co">#&gt; 1 0.5561298</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.5451546</span></span></code></pre></div>
 </div>
   </div>
 
@@ -571,7 +571,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

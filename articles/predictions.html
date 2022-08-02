@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9002</span>
       </span>
     </div>
 
@@ -320,7 +320,6 @@ hp
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average Adjusted Predictions </span></span>
 <span><span class="co">#&gt;   Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span></span>
 <span><span class="co">#&gt; 1    0.4375    0.04288    10.2 &lt; 2.22e-16 0.3535  0.5215</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -333,19 +332,18 @@ hp
 <span><span class="co">#&gt; 1 0.4375</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average Adjusted Predictions </span></span>
 <span><span class="co">#&gt;   Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span></span>
 <span><span class="co">#&gt; 1    0.4375    0.04288    10.2 &lt; 2.22e-16 0.3535  0.5215</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>We can also compute the AAP for multiple values of the regressors. For example, here use create a “counterfactual” data grid where each observation of the dataset are repeated twice, with different values of the <code>am</code> variable, and all other variables held at the observed values. Then, we use the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function’s <code>by</code> argument or some <code>dplyr</code> magic:</p>
+<p>We can also compute the AAP for multiple values of the regressors. For example, here use create a “counterfactual” data grid where each observation of the dataset are repeated twice, with different values of the <code>am</code> variable, and all other variables held at the observed values. Then, we use the <code>by</code> argument or some <code>dplyr</code> magic:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
+<span>    by <span class="op">=</span> <span class="st">"am"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Average Adjusted Predictions </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   am Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span></span>
 <span><span class="co">#&gt; 1  0    0.5261    0.03303   15.93 &lt; 2.22e-16 0.4614  0.5909</span></span>
 <span><span class="co">#&gt; 2  1    0.3302    0.06462    5.11 3.2272e-07 0.2035  0.4568</span></span>
@@ -497,7 +495,7 @@ hp
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

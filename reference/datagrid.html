@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9002</span>
       </span>
     </div>
 
@@ -78,9 +78,10 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>...</dt>
-<dd><p>named arguments with vectors of values for user-specified
-variables. The output will include all combinations of these variables (see
-Examples below.)</p></dd>
+<dd><p>named arguments with vectors of values or functions for user-specified variables.</p><ul><li><p>Functions are applied to the variable in the <code>model</code> dataset or <code>newdata</code>, and must return a vector of the appropriate type.</p></li>
+<li><p>Character vectors are automatically transformed to factors if necessary.
++The output will include all combinations of these variables (see Examples below.)</p></li>
+</ul></dd>
 
 
 <dt>model</dt>
@@ -168,6 +169,36 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.04839481     23.27603     23.27410 100 0.0283</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.04839481     22.59375     22.59182 110 0.0283</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># datagrid accepts functions</span></span></span>
+<span class="r-in"><span><span class="fu">datagrid</span><span class="op">(</span>hp <span class="op">=</span> <span class="va">range</span>, cyl <span class="op">=</span> <span class="va">unique</span>, newdata <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         mpg     disp     drat      wt     qsec     vs      am   gear   carb  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 20.09062 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125  52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2: 20.09062 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125  52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3: 20.09062 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125  52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4: 20.09062 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125 335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5: 20.09062 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125 335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6: 20.09062 230.7219 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125 335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2:   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3:   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4:   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5:   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6:   8</span>
+<span class="r-in"><span><span class="fu"><a href="comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu">datagrid</span><span class="op">(</span>hp <span class="op">=</span> <span class="va">fivenum</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term    contrast  comparison std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high predicted_lo predicted_hi  hp    eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481    26.585104    26.516876  52 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.08806175 -0.04839481    23.583060    23.514832  96 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.08806175 -0.04839481    21.740896    21.672668 123 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.08806175 -0.04839481    17.851885    17.783656 180 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.08806175 -0.04839481     7.276502     7.208273 335 0.0283</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The full dataset is duplicated with each observation given counterfactual</span></span></span>
 <span class="r-in"><span><span class="co"># values of 100 and 110 for the `hp` variable. The original `mtcars` includes</span></span></span>
 <span class="r-in"><span><span class="co"># 32 rows, so the resulting dataset includes 64 rows.</span></span></span>
@@ -194,7 +225,7 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

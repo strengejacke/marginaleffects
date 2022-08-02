@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9002</span>
       </span>
     </div>
 
@@ -147,8 +147,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Average contrasts </span></span>
-<span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<pre><code><span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Model type:  glm </span></span>
@@ -226,8 +225,7 @@
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">std</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Average contrasts </span></span>
-<span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<pre><code><span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Model type:  glm </span></span>
@@ -287,12 +285,11 @@
 <span>    check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">bootstrap</span></span></code></pre></div>
 <pre><code><span><span class="co">##                            estimate std.error conf.low conf.high</span></span>
-<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4842996 2.568164  4.466584</span></span></code></pre>
+<span><span class="co">## 1 Treatment - No Treatment 3.517374  0.466365 2.603316  4.431433</span></span></code></pre>
 <p>The results are close to those that we obtained with <code><a href="../reference/comparisons.html">comparisons()</a></code>, but the confidence interval differs slightly because of the difference between bootstraping and the delta method.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Average contrasts </span></span>
-<span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<pre><code><span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Model type:  glm </span></span>
@@ -318,7 +315,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
