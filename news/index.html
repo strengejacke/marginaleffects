@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
       </span>
     </div>
 
@@ -57,7 +57,7 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.6.0.9000" id="marginaleffects-0609000">marginaleffects 0.6.0.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0609000"></a></h2>
+<h2 class="page-header" data-toc-text="0.7.0" id="marginaleffects-070">marginaleffects 0.7.0<small>2022-08-06</small><a class="anchor" aria-label="anchor" href="#marginaleffects-070"></a></h2>
 <p>Breaking changes:</p>
 <ul><li>
 <code>by</code> is deprecated in <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>. Use the same <code>by</code> argument in the main functions instead: <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, <code><a href="../reference/predictions.html">predictions()</a></code>
@@ -70,7 +70,9 @@
 <code>biglm</code>: The main quantities can be computed, but not the delta method standard errors. See <a href="https://github.com/vincentarelbundock/marginaleffects/issues/387" class="external-link uri">https://github.com/vincentarelbundock/marginaleffects/issues/387</a>
 </li>
 </ul><p>New vignette:</p>
-<ul><li>Frequently Asked Questions</li></ul><p>New features:</p>
+<ul><li>Elasticity</li>
+<li>Frequently Asked Questions</li>
+</ul><p>New features:</p>
 <ul><li>Elasticity and semi-elasticity using the new <code>slope</code> argument in <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>: eyex, dyex, eydx</li>
 <li>
 <code><a href="../reference/datagrid.html">datagrid()</a></code> accepts functions: <code>datagrid(newdata = mtcars, hp = range, mpg = fivenum, wt = sd)</code>
@@ -82,6 +84,8 @@
 <li>New <code>newdata</code> shortcuts: “tukey”, “grid”</li>
 <li>New string shortcuts for <code>transform_pre</code> in <code><a href="../reference/comparisons.html">comparisons()</a></code>
 </li>
+<li>
+<code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> now back transforms confidence intervals when possible.</li>
 <li>
 <code>vcov</code> argument string shortcuts are now case-insensitive</li>
 <li>The default contrast in <code><a href="../reference/comparisons.html">comparisons()</a></code> for binary predictors is now a difference between 1 and 0, rather than +1 relative to baseline.</li>
