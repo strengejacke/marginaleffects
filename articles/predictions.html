@@ -168,10 +168,10 @@
 <p>A second strategy to construct grids of predictors for adjusted predictions is to combine the <code>newdata</code> argument and the <code>datagrid</code> function. Recall that this function creates a “typical” dataset with all variables at their means or modes, except those we explicitly define:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span>, model <span class="op">=</span> <span class="va">mod</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          hp cyl</span></span>
-<span><span class="co">#&gt; 1: 146.6875   4</span></span>
-<span><span class="co">#&gt; 2: 146.6875   6</span></span>
-<span><span class="co">#&gt; 3: 146.6875   8</span></span></code></pre></div>
+<span><span class="co">#&gt;         hp cyl</span></span>
+<span><span class="co">#&gt; 1 146.6875   4</span></span>
+<span><span class="co">#&gt; 2 146.6875   6</span></span>
+<span><span class="co">#&gt; 3 146.6875   8</span></span></code></pre></div>
 <p>We can also use this <code>datagrid</code> function in a <code>predictions</code> call (omitting the <code>model</code> argument):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>

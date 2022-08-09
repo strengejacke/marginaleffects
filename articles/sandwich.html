@@ -259,7 +259,7 @@
 <span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/boot/man/boot.html" class="external-link">boot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, statistic <span class="op">=</span> <span class="va">bootfun</span>, R <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/boot/man/boot.html" class="external-link">boot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, statistic <span class="op">=</span> <span class="va">bootfun</span>, R <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">b</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -267,25 +267,23 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:</span></span>
-<span><span class="co">#&gt; boot(data = mtcars, statistic = bootfun, R = 10)</span></span>
+<span><span class="co">#&gt; boot(data = mtcars, statistic = bootfun, R = 1000)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Bootstrap Statistics :</span></span>
-<span><span class="co">#&gt;     original    bias    std. error</span></span>
-<span><span class="co">#&gt; t1* 4.157856 0.2932568    1.395755</span></span>
+<span><span class="co">#&gt;     original     bias    std. error</span></span>
+<span><span class="co">#&gt; t1* 4.157856 0.01543426    1.003461</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/boot/man/boot.ci.html" class="external-link">boot.ci</a></span><span class="op">(</span><span class="va">b</span>, type <span class="op">=</span> <span class="st">"perc"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS</span></span>
-<span><span class="co">#&gt; Based on 10 bootstrap replicates</span></span>
+<span><span class="co">#&gt; Based on 1000 bootstrap replicates</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; CALL : </span></span>
 <span><span class="co">#&gt; boot.ci(boot.out = b, type = "perc")</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Intervals : </span></span>
 <span><span class="co">#&gt; Level     Percentile     </span></span>
-<span><span class="co">#&gt; 95%   ( 3.117,  6.975 )  </span></span>
-<span><span class="co">#&gt; Calculations and Intervals on Original Scale</span></span>
-<span><span class="co">#&gt; Warning : Percentile Intervals used Extreme Quantiles</span></span>
-<span><span class="co">#&gt; Some percentile intervals may be unstable</span></span></code></pre></div>
+<span><span class="co">#&gt; 95%   ( 2.240,  6.277 )  </span></span>
+<span><span class="co">#&gt; Calculations and Intervals on Original Scale</span></span></code></pre></div>
 <p>Note that, in the code above, we set <code>vcov=FALSE</code> to avoid computation of delta method standard errors and speed things up.</p>
 <p>Compare to the delta method standard errors:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">

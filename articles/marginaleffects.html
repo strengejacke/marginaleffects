@@ -240,9 +240,9 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>flipper_length_mm <span class="op">=</span> <span class="fl">180</span>,</span>
 <span>         species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span><span class="op">)</span>,</span>
 <span>         model <span class="op">=</span> <span class="va">mod</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    bill_length_mm flipper_length_mm species</span></span>
-<span><span class="co">#&gt; 1:       43.92193               180  Adelie</span></span>
-<span><span class="co">#&gt; 2:       43.92193               180  Gentoo</span></span></code></pre></div>
+<span><span class="co">#&gt;   bill_length_mm flipper_length_mm species</span></span>
+<span><span class="co">#&gt; 1       43.92193               180  Adelie</span></span>
+<span><span class="co">#&gt; 2       43.92193               180  Gentoo</span></span></code></pre></div>
 <p>The same command can be used (omitting the <code>model</code> argument) to <code>marginaleffects</code>’s <code>newdata</code> argument to compute marginal effects for those (fictional) individuals:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
@@ -369,11 +369,11 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        dydx truth</span></span>
-<span><span class="co">#&gt; 1 -6.992802    -7</span></span>
-<span><span class="co">#&gt; 2 -2.995617    -3</span></span>
-<span><span class="co">#&gt; 3  1.001568     1</span></span>
-<span><span class="co">#&gt; 4  4.998753     5</span></span>
-<span><span class="co">#&gt; 5  8.995939     9</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -6.997679    -7</span></span>
+<span><span class="co">#&gt; 2 -2.997498    -3</span></span>
+<span><span class="co">#&gt; 3  1.002682     1</span></span>
+<span><span class="co">#&gt; 4  5.002863     5</span></span>
+<span><span class="co">#&gt; 5  9.003044     9</span></span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
