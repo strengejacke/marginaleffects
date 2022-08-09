@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9000</span>
       </span>
     </div>
 
@@ -160,7 +160,7 @@
 <p>Note that the <code>marginaleffects</code> function will always return estimates of zero for regressors before the vertical bar in the formula. This is because the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> function supplied by the <code>mlogit</code> package does not produce different predictions for different values of these variables.</p>
 <p>To compute different kinds of marginal effects, we can construct customized data frames and feed them to the <code>newdata</code> argument of the <code>marginaleffects</code> function.</p>
 <p><strong>Important:</strong> The <code>newdata</code> argument for <code>mlogit</code> models must be a “balanced” data frame, that is, it must have a number of rows that is a multiple of the number of choices.</p>
-<p>If we want to compute the slope of the response function (marginal effecs) when each of the predictors is fixed to its global mean, we can do:</p>
+<p>If we want to compute the slope of the response function (marginal effects) when each of the predictors is fixed to its global mean, we can do:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="va">TravelMode</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wait"</span>, <span class="st">"gcost"</span>, <span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span>,</span>

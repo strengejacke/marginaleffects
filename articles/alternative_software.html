@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9000</span>
       </span>
     </div>
 
@@ -268,16 +268,16 @@
 <span>    newdata <span class="op">=</span> <span class="va">nd</span>,</span>
 <span>    type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      resp                     btype   Effect Std. Error z value  Pr(&gt;|z|)</span></span>
-<span><span class="co">#&gt; 1      no mean(scold) - mean(curse) -0.01520    0.10965 -0.1386 0.8897581</span></span>
-<span><span class="co">#&gt; 2 perhaps mean(scold) - mean(curse) -0.23928    0.11779 -2.0314 0.0422130</span></span>
-<span><span class="co">#&gt; 3     yes mean(scold) - mean(curse)  0.03907    0.12922  0.3023 0.7623876</span></span>
-<span><span class="co">#&gt; 4      no mean(shout) - mean(curse) -0.25330    0.10219 -2.4786 0.0131889</span></span>
-<span><span class="co">#&gt; 5 perhaps mean(shout) - mean(curse) -0.08336    0.13303 -0.6266 0.5309040</span></span>
-<span><span class="co">#&gt; 6     yes mean(shout) - mean(curse)  0.58018    0.17842  3.2518 0.0011468</span></span>
-<span><span class="co">#&gt; 7      no mean(shout) - mean(scold) -0.23810    0.08864 -2.6860 0.0072316</span></span>
-<span><span class="co">#&gt; 8 perhaps mean(shout) - mean(scold)  0.15592    0.13583  1.1479 0.2510250</span></span>
-<span><span class="co">#&gt; 9     yes mean(shout) - mean(scold)  0.54111    0.18881  2.8660 0.0041574</span></span>
+<span><span class="co">#&gt;    Term                  Contrast    resp   Effect Std. Error z value  Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt; 1 btype mean(scold) - mean(curse)      no -0.01520    0.10965 -0.1386 0.8897581</span></span>
+<span><span class="co">#&gt; 2 btype mean(scold) - mean(curse) perhaps -0.23928    0.11779 -2.0314 0.0422130</span></span>
+<span><span class="co">#&gt; 3 btype mean(scold) - mean(curse)     yes  0.03907    0.12922  0.3023 0.7623876</span></span>
+<span><span class="co">#&gt; 4 btype mean(shout) - mean(curse)      no -0.25330    0.10219 -2.4786 0.0131889</span></span>
+<span><span class="co">#&gt; 5 btype mean(shout) - mean(curse) perhaps -0.08336    0.13303 -0.6266 0.5309040</span></span>
+<span><span class="co">#&gt; 6 btype mean(shout) - mean(curse)     yes  0.58018    0.17842  3.2518 0.0011468</span></span>
+<span><span class="co">#&gt; 7 btype mean(shout) - mean(scold)      no -0.23810    0.08864 -2.6860 0.0072316</span></span>
+<span><span class="co">#&gt; 8 btype mean(shout) - mean(scold) perhaps  0.15592    0.13583  1.1479 0.2510250</span></span>
+<span><span class="co">#&gt; 9 btype mean(shout) - mean(scold)     yes  0.54111    0.18881  2.8660 0.0041574</span></span>
 <span><span class="co">#&gt;     2.5 %    97.5 %</span></span>
 <span><span class="co">#&gt; 1 -0.2301  0.199715</span></span>
 <span><span class="co">#&gt; 2 -0.4701 -0.008416</span></span>

@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9000</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ TRUE
 FALSE
 </th>
 <th style="text-align:left;">
-Marginal mean of cyl
+Marginal means by cyl
 </th>
 </tr>
 </thead>
@@ -179,7 +179,7 @@ Marginal mean of cyl
 </tr>
 <tr>
 <td style="text-align:left;">
-Marginal means of am
+Marginal means by am
 </td>
 <td style="text-align:left;">
 22.5
@@ -192,7 +192,7 @@ Marginal means of am
 </tr>
 </tbody>
 </table>
-<p>The marginal means of <code>am</code> and <code>cyl</code> are obtained by taking the mean of the adjusted predictions across cells. The <code>marginalmeans</code> function gives us the same results easily:</p>
+<p>The marginal means by <code>am</code> and <code>cyl</code> are obtained by taking the mean of the adjusted predictions across cells. The <code>marginalmeans</code> function gives us the same results easily:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term value marginalmean std.error conf.low conf.high       p.value statistic</span></span>
