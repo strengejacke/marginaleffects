@@ -12,6 +12,7 @@ articles:
   gformula: gformula.html
   hypothesis: hypothesis.html
   lme4: lme4.html
+  logistic_contrasts: logistic_contrasts.html
   marginaleffects: marginaleffects.html
   marginalmeans: marginalmeans.html
   mlogit: mlogit.html
@@ -24,5 +25,5 @@ articles:
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-08-14T14:50Z
+last_built: 2022-08-14T19:16Z
 
