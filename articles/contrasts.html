@@ -319,10 +319,10 @@
 <p>This can be achieved by setting <code>newdata="mean"</code> or to <code>newdata=datagrid()</code>, both of which fix variables to their means or modes:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"mpg"</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term    contrast comparison  std.error statistic     p.value</span></span>
-<span><span class="co">#&gt; 1     1 response  mpg (x + 1) - x  0.1664787 0.06245542   2.66556 0.007686022</span></span>
-<span><span class="co">#&gt;     conf.low conf.high gear      mpg     eps</span></span>
-<span><span class="co">#&gt; 1 0.04406829  0.288889    3 20.09062 0.00235</span></span></code></pre></div>
+<span><span class="co">#&gt;       type term    contrast comparison  std.error statistic     p.value</span></span>
+<span><span class="co">#&gt; 1 response  mpg (x + 1) - x  0.1664787 0.06245542   2.66556 0.007686022</span></span>
+<span><span class="co">#&gt;     conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 0.04406829  0.288889</span></span></code></pre></div>
 <p>Contrasts at the mean can differ substantially from average contrasts.</p>
 <p>The advantage of this approach is that it is very cheap and fast computationally. The disadvantage is that the interpretation is somewhat ambiguous. Often times, there simply does not exist an individual who is perfectly average across all dimensions of the dataset. It is also not clear why the analyst should be particularly interested in the contrast for this one, synthetic, perfectly average individual.</p>
 </div>

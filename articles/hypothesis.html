@@ -185,12 +185,9 @@
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term     dydx std.error statistic      p.value conf.low</span></span>
-<span><span class="co">#&gt; 1     1 response   am 6.066667  1.274842  4.758758 1.947875e-06 3.568022</span></span>
-<span><span class="co">#&gt; 2     1 response   vs 6.929365  1.262132  5.490207 4.014620e-08 4.455632</span></span>
-<span><span class="co">#&gt;   conf.high      am     vs   eps</span></span>
-<span><span class="co">#&gt; 1  8.565312 0.40625 0.4375 1e-04</span></span>
-<span><span class="co">#&gt; 2  9.403098 0.40625 0.4375 1e-04</span></span></code></pre></div>
+<span><span class="co">#&gt;       type term     dydx std.error statistic      p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response   am 6.066667  1.274842  4.758758 1.947875e-06 3.568022  8.565312</span></span>
+<span><span class="co">#&gt; 2 response   vs 6.929365  1.262132  5.490207 4.014620e-08 4.455632  9.403098</span></span></code></pre></div>
 <p>Is the marginal effect of <code>am</code> different from the marginal effect of <code>vs</code>? To answer this question we can run a linear hypothesis test:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
@@ -521,12 +518,12 @@
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   1  pre -0.4352903</span></span>
-<span><span class="co">#&gt; 2:  2   1  pre -2.2578555</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre  0.4377119</span></span>
-<span><span class="co">#&gt; 4:  4   0  pre  0.3965622</span></span>
-<span><span class="co">#&gt; 5:  5   1  pre  0.7341644</span></span>
-<span><span class="co">#&gt; 6:  6   0  pre -2.4223190</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:  1   1  pre  0.4601492</span></span>
+<span><span class="co">#&gt; 2:  2   1  pre  1.6594578</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre  1.0822615</span></span>
+<span><span class="co">#&gt; 4:  4   1  pre -0.2996456</span></span>
+<span><span class="co">#&gt; 5:  5   1  pre  0.5943736</span></span>
+<span><span class="co">#&gt; 6:  6   0  pre -0.7104754</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We alco compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -535,12 +532,12 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast  comparison  std.error  statistic     p.value</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.02994603 0.07412300 -0.4040046 0.686209350</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.23574284 0.07577204  3.1112114 0.001863215</span></span>
-<span><span class="co">#&gt;      conf.low conf.high   predicted predicted_hi predicted_lo time trt</span></span>
-<span><span class="co">#&gt; 1 -0.17522443 0.1153324 -0.03317533  -0.06312136  -0.03317533  pre   0</span></span>
-<span><span class="co">#&gt; 2  0.08723237 0.3842533  0.09373150   0.32947434   0.09373150  pre   1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term   contrast  comparison  std.error  statistic      p.value</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre -0.07351409 0.07814063 -0.9407921 3.468114e-01</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre  0.32646615 0.07447573  4.3835240 1.167748e-05</span></span>
+<span><span class="co">#&gt;     conf.low  conf.high    predicted predicted_hi predicted_lo time trt</span></span>
+<span><span class="co">#&gt; 1 -0.2266669 0.07963874  0.005641784   -0.0678723  0.005641784  pre   0</span></span>
+<span><span class="co">#&gt; 2  0.1804964 0.47243589 -0.048097794    0.2783684 -0.048097794  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -548,10 +545,10 @@
 <span>    variables <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type          term comparison std.error statistic    p.value  conf.low</span></span>
-<span><span class="co">#&gt; 1 response Row 2 - Row 1  0.2656889 0.1059982  2.506541 0.01219189 0.0579362</span></span>
+<span><span class="co">#&gt;       type          term comparison std.error statistic      p.value  conf.low</span></span>
+<span><span class="co">#&gt; 1 response Row 2 - Row 1  0.3999802 0.1079472  3.705333 0.0002111132 0.1884077</span></span>
 <span><span class="co">#&gt;   conf.high</span></span>
-<span><span class="co">#&gt; 1 0.4734415</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.6115528</span></span></code></pre></div>
 </div>
   </div>
 
