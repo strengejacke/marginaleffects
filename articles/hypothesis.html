@@ -396,25 +396,26 @@
 <div class="section level3">
 <h3 id="multiple-contrasts">Multiple contrasts<a class="anchor" aria-label="anchor" href="#multiple-contrasts"></a>
 </h3>
-<p>Users can also compute multiple linear combinations simultaneously by supplying a numeric matrix to <code>hypothesis</code>. This matrix must have the same number of rows as the output of <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, and each column represents a distinct set of weights for different linear combinations. For example:</p>
+<p>Users can also compute multiple linear combinations simultaneously by supplying a numeric matrix to <code>hypothesis</code>. This matrix must have the same number of rows as the output of <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, and each column represents a distinct set of weights for different linear combinations. The column names of the matrix become labels in the output. For example:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    <span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>,</span>
 <span>    <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span></span>
 <span>    <span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">lc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Contrast A"</span>, <span class="st">"Contrast B"</span><span class="op">)</span></span>
 <span><span class="va">lc</span></span>
-<span><span class="co">#&gt;      [,1] [,2]</span></span>
-<span><span class="co">#&gt; [1,]   -2    1</span></span>
-<span><span class="co">#&gt; [2,]    1   -1</span></span>
-<span><span class="co">#&gt; [3,]    1    0</span></span>
-<span><span class="co">#&gt; [4,]    0    0</span></span>
-<span><span class="co">#&gt; [5,]   -1    0</span></span>
-<span><span class="co">#&gt; [6,]    1    0</span></span>
+<span><span class="co">#&gt;      Contrast A Contrast B</span></span>
+<span><span class="co">#&gt; [1,]         -2          1</span></span>
+<span><span class="co">#&gt; [2,]          1         -1</span></span>
+<span><span class="co">#&gt; [3,]          1          0</span></span>
+<span><span class="co">#&gt; [4,]          0          0</span></span>
+<span><span class="co">#&gt; [5,]         -1          0</span></span>
+<span><span class="co">#&gt; [6,]          1          0</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     term marginalmean std.error   conf.low conf.high   p.value   statistic</span></span>
-<span><span class="co">#&gt; 1 custom   -0.2108696  6.928859 -13.791184 13.369445 0.9757213 -0.03043352</span></span>
-<span><span class="co">#&gt; 2 custom    0.3217391  1.773733  -3.154713  3.798191 0.8560607  0.18139099</span></span></code></pre></div>
+<span><span class="co">#&gt;         term marginalmean std.error   conf.low conf.high   p.value   statistic</span></span>
+<span><span class="co">#&gt; 1 Contrast A   -0.2108696  6.928859 -13.791184 13.369445 0.9757213 -0.03043352</span></span>
+<span><span class="co">#&gt; 2 Contrast B    0.3217391  1.773733  -3.154713  3.798191 0.8560607  0.18139099</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="contrasts-across-response-levels">Contrasts across response levels<a class="anchor" aria-label="anchor" href="#contrasts-across-response-levels"></a>
@@ -519,13 +520,13 @@
 <span>    variable.name <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    id trt time            y</span></span>
-<span><span class="co">#&gt; 1:  1   0  pre -0.007811079</span></span>
-<span><span class="co">#&gt; 2:  2   0  pre  0.832926226</span></span>
-<span><span class="co">#&gt; 3:  3   1  pre  0.100934794</span></span>
-<span><span class="co">#&gt; 4:  4   1  pre  0.018907101</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre  0.944909773</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre  0.091700954</span></span></code></pre></div>
+<span><span class="co">#&gt;    id trt time          y</span></span>
+<span><span class="co">#&gt; 1:  1   1  pre  0.5941759</span></span>
+<span><span class="co">#&gt; 2:  2   1  pre  0.4250376</span></span>
+<span><span class="co">#&gt; 3:  3   0  pre  1.5833849</span></span>
+<span><span class="co">#&gt; 4:  4   1  pre  0.8573142</span></span>
+<span><span class="co">#&gt; 5:  5   1  pre -0.4107030</span></span>
+<span><span class="co">#&gt; 6:  6   1  pre -1.5716398</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We alco compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -534,12 +535,15 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast  comparison  std.error  statistic      p.value</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.05134979 0.07807555 -0.6576936 5.107350e-01</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.33720240 0.07501256  4.4952793 6.947867e-06</span></span>
-<span><span class="co">#&gt;     conf.low conf.high predicted_lo predicted_hi time trt</span></span>
-<span><span class="co">#&gt; 1 -0.2043750 0.1016755  0.023450731  -0.02789906  pre   0</span></span>
-<span><span class="co">#&gt; 2  0.1901805 0.4842243 -0.007487219   0.32971518  pre   1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term   contrast   comparison  std.error   statistic</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre -0.004672243 0.07875075 -0.05932951</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre  0.321646925 0.07906638  4.06806184</span></span>
+<span><span class="co">#&gt;        p.value   conf.low conf.high    predicted predicted_hi predicted_lo time</span></span>
+<span><span class="co">#&gt; 1 0.9526896533 -0.1590209 0.1496764  0.001185225 -0.003487019  0.001185225  pre</span></span>
+<span><span class="co">#&gt; 2 0.0000474058  0.1666797 0.4766142 -0.071434043  0.250212883 -0.071434043  pre</span></span>
+<span><span class="co">#&gt;   trt</span></span>
+<span><span class="co">#&gt; 1   0</span></span>
+<span><span class="co">#&gt; 2   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -547,10 +551,10 @@
 <span>    variables <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type          term comparison std.error statistic      p.value  conf.low</span></span>
-<span><span class="co">#&gt; 1 response Row 2 - Row 1  0.3885522 0.1082713  3.588691 0.0003323431 0.1763443</span></span>
+<span><span class="co">#&gt;       type          term comparison std.error statistic     p.value  conf.low</span></span>
+<span><span class="co">#&gt; 1 response Row 2 - Row 1  0.3263192 0.1115938   2.92417 0.003453763 0.1075994</span></span>
 <span><span class="co">#&gt;   conf.high</span></span>
-<span><span class="co">#&gt; 1   0.60076</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  0.545039</span></span></code></pre></div>
 </div>
   </div>
 

@@ -224,7 +224,7 @@
 <code class="sourceCode R"><span><span class="va">draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 16736000       16</span></span>
+<span><span class="co">#&gt; [1] 16736000       17</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   drawid      draw rowid     type  term contrast       dydx   conf.low</span></span>
@@ -234,20 +234,20 @@
 <span><span class="co">#&gt; 4      1 0.7088821     4 response woman    dY/dX 0.65453708 0.56699300</span></span>
 <span><span class="co">#&gt; 5      1 0.1473759     5 response woman    dY/dX 0.13828737 0.09722433</span></span>
 <span><span class="co">#&gt; 6      1 0.6635099     6 response woman    dY/dX 0.70740470 0.58935737</span></span>
-<span><span class="co">#&gt;   conf.high predicted_lo predicted_hi survived woman     age passengerClass</span></span>
-<span><span class="co">#&gt; 1 0.2051898    0.9366604    0.9366751        1     1 29.0000            1st</span></span>
-<span><span class="co">#&gt; 2 0.2970409    0.8493050    0.8493174        1     0  0.9167            1st</span></span>
-<span><span class="co">#&gt; 3 0.1009453    0.9433293    0.9433358        0     1  2.0000            1st</span></span>
-<span><span class="co">#&gt; 4 0.7442501    0.5131011    0.5131652        0     0 30.0000            1st</span></span>
-<span><span class="co">#&gt; 5 0.1863969    0.9374937    0.9375085        0     1 25.0000            1st</span></span>
-<span><span class="co">#&gt; 6 0.8406470    0.2730542    0.2731252        1     0 48.0000            1st</span></span>
-<span><span class="co">#&gt;     eps</span></span>
-<span><span class="co">#&gt; 1 1e-04</span></span>
-<span><span class="co">#&gt; 2 1e-04</span></span>
-<span><span class="co">#&gt; 3 1e-04</span></span>
-<span><span class="co">#&gt; 4 1e-04</span></span>
-<span><span class="co">#&gt; 5 1e-04</span></span>
-<span><span class="co">#&gt; 6 1e-04</span></span></code></pre></div>
+<span><span class="co">#&gt;   conf.high predicted predicted_hi predicted_lo survived woman     age</span></span>
+<span><span class="co">#&gt; 1 0.2051898 0.9366604    0.9366751    0.9366604        1     1 29.0000</span></span>
+<span><span class="co">#&gt; 2 0.2970409 0.8493050    0.8493174    0.8493050        1     0  0.9167</span></span>
+<span><span class="co">#&gt; 3 0.1009453 0.9433293    0.9433358    0.9433293        0     1  2.0000</span></span>
+<span><span class="co">#&gt; 4 0.7442501 0.5131011    0.5131652    0.5131011        0     0 30.0000</span></span>
+<span><span class="co">#&gt; 5 0.1863969 0.9374937    0.9375085    0.9374937        0     1 25.0000</span></span>
+<span><span class="co">#&gt; 6 0.8406470 0.2730542    0.2731252    0.2730542        1     0 48.0000</span></span>
+<span><span class="co">#&gt;   passengerClass   eps</span></span>
+<span><span class="co">#&gt; 1            1st 1e-04</span></span>
+<span><span class="co">#&gt; 2            1st 1e-04</span></span>
+<span><span class="co">#&gt; 3            1st 1e-04</span></span>
+<span><span class="co">#&gt; 4            1st 1e-04</span></span>
+<span><span class="co">#&gt; 5            1st 1e-04</span></span>
+<span><span class="co">#&gt; 6            1st 1e-04</span></span></code></pre></div>
 <p>We can use this dataset to plot our results. For example, to plot the posterior density of the marginal effect of <code>age</code> when the <code>woman</code> variable is equal to 0 or 1:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
@@ -312,7 +312,7 @@
 <span>    <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"prediction"</span>, newdata <span class="op">=</span> <span class="va">nd</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div>
 <p>Extract posterior draws and plot them:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pred</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">draw</span>, fill <span class="op">=</span> <span class="va">party_autonomy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -378,18 +378,18 @@
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span>,</span>
 <span>                       variables <span class="op">=</span> <span class="st">"civil_liberties"</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
-<span><span class="co">#&gt;   rowid     type            term      dydx  conf.low conf.high predicted_lo</span></span>
-<span><span class="co">#&gt; 1     1 response civil_liberties 0.4900170 0.3609330 0.6388463    0.1700110</span></span>
-<span><span class="co">#&gt; 2     2 response civil_liberties 0.8071389 0.6121827 0.9926679    0.3684876</span></span>
-<span><span class="co">#&gt; 3     3 response civil_liberties 0.8069026 0.6744996 0.9336997    0.6244447</span></span>
-<span><span class="co">#&gt;   predicted_hi civil_liberties party_autonomy                       region</span></span>
-<span><span class="co">#&gt; 1    0.1700591             0.2          FALSE Middle East and North Africa</span></span>
-<span><span class="co">#&gt; 2    0.3685630             0.5          FALSE Middle East and North Africa</span></span>
-<span><span class="co">#&gt; 3    0.6245229             0.8          FALSE Middle East and North Africa</span></span>
-<span><span class="co">#&gt;        eps</span></span>
-<span><span class="co">#&gt; 1 9.56e-05</span></span>
-<span><span class="co">#&gt; 2 9.56e-05</span></span>
-<span><span class="co">#&gt; 3 9.56e-05</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type            term      dydx  conf.low conf.high predicted</span></span>
+<span><span class="co">#&gt; 1     1 response civil_liberties 0.4900170 0.3609330 0.6388463 0.1700110</span></span>
+<span><span class="co">#&gt; 2     2 response civil_liberties 0.8071389 0.6121827 0.9926679 0.3684876</span></span>
+<span><span class="co">#&gt; 3     3 response civil_liberties 0.8069026 0.6744996 0.9336997 0.6244447</span></span>
+<span><span class="co">#&gt;   predicted_hi predicted_lo civil_liberties party_autonomy</span></span>
+<span><span class="co">#&gt; 1    0.1700591    0.1700110             0.2          FALSE</span></span>
+<span><span class="co">#&gt; 2    0.3685630    0.3684876             0.5          FALSE</span></span>
+<span><span class="co">#&gt; 3    0.6245229    0.6244447             0.8          FALSE</span></span>
+<span><span class="co">#&gt;                         region      eps</span></span>
+<span><span class="co">#&gt; 1 Middle East and North Africa 9.56e-05</span></span>
+<span><span class="co">#&gt; 2 Middle East and North Africa 9.56e-05</span></span>
+<span><span class="co">#&gt; 3 Middle East and North Africa 9.56e-05</span></span></code></pre></div>
 <p>And plotted:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
