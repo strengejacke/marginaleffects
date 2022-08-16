@@ -271,12 +271,20 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type predicted std.error statistic       p.value conf.low conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response  26.24623 0.9856325  26.62883 3.148430e-156 24.22726  28.26521</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response  25.76546 1.1096486  23.21947 2.895018e-119 23.49245  28.03847</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp cyl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 100   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 120   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp cyl mpg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 100   4  21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 120   4  21</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Average Adjusted Predictions (AAP)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘dplyr’</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     filter, lag</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:base’:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
@@ -365,9 +373,9 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type   term predicted std.error statistic       p.value  conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response custom   4.78289 0.7970353  6.000851  1.962855e-09   3.22073</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response custom 115.21432 3.6474827 31.587352 5.507900e-219 108.06539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.high     drat wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6.345051 3.596563  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 122.363255 3.596563  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.high     drat wt mpg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6.345051 3.596563  2  21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 122.363255 3.596563  3  21</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># `by` argument</span></span></span>

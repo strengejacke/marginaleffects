@@ -177,18 +177,18 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1     1 response  16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248</span></span>
-<span><span class="co">#&gt;         hp cyl</span></span>
-<span><span class="co">#&gt; 1 146.6875   8</span></span>
+<span><span class="co">#&gt;         hp cyl mpg</span></span>
+<span><span class="co">#&gt; 1 146.6875   8  21</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1     1 response  25.12392  1.368888  18.35353 3.093502e-75 22.31988  27.92796</span></span>
 <span><span class="co">#&gt; 2     2 response  19.15627  1.247190  15.35955 3.057119e-53 16.60151  21.71102</span></span>
 <span><span class="co">#&gt; 3     3 response  16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248</span></span>
-<span><span class="co">#&gt;         hp cyl</span></span>
-<span><span class="co">#&gt; 1 146.6875   4</span></span>
-<span><span class="co">#&gt; 2 146.6875   6</span></span>
-<span><span class="co">#&gt; 3 146.6875   8</span></span></code></pre></div>
+<span><span class="co">#&gt;         hp cyl mpg</span></span>
+<span><span class="co">#&gt; 1 146.6875   4  21</span></span>
+<span><span class="co">#&gt; 2 146.6875   6  21</span></span>
+<span><span class="co">#&gt; 3 146.6875   8  21</span></span></code></pre></div>
 <p>Users can change the summary function used to summarize each type of variables using the <code>FUN.numeric</code>, <code>FUN.factor</code>, and related arguments, for example substituting the mean for the median.</p>
 <p>The <code>data.frame</code> produced by <code>predictions</code> is “tidy”, which makes it easy to manipulate with other <code>R</code> packages and functions:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -301,12 +301,16 @@ hp
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type  predicted  std.error    conf.low conf.high       hp      am</span></span>
-<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.003794253  0.543491 146.6875 0.40625</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.003794253  0.543491 146.6875 0.40625</span></span>
+<span><span class="co">#&gt;   vs</span></span>
+<span><span class="co">#&gt; 1  0</span></span></code></pre></div>
 <p>This is equivalent to calling:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type  predicted  std.error    conf.low conf.high       hp      am</span></span>
-<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.003794253  0.543491 146.6875 0.40625</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.003794253  0.543491 146.6875 0.40625</span></span>
+<span><span class="co">#&gt;   vs</span></span>
+<span><span class="co">#&gt; 1  0</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="average-adjusted-predictions-aap">Average Adjusted Predictions (AAP)<a class="anchor" aria-label="anchor" href="#average-adjusted-predictions-aap"></a>
@@ -468,13 +472,13 @@ hp
 <span>    draw <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid  type group predicted  std.error condition1</span></span>
-<span><span class="co">#&gt; 1     1 probs     3 0.9714990 0.03871641   10.40000</span></span>
-<span><span class="co">#&gt; 2     2 probs     3 0.9583559 0.04985914   11.37917</span></span>
-<span><span class="co">#&gt; 3     3 probs     3 0.9393514 0.06291986   12.35833</span></span>
-<span><span class="co">#&gt; 4     4 probs     3 0.9122105 0.07727155   13.33750</span></span>
-<span><span class="co">#&gt; 5     5 probs     3 0.8741884 0.09157738   14.31667</span></span>
-<span><span class="co">#&gt; 6     6 probs     3 0.8224163 0.10383644   15.29583</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid  type group predicted  std.error condition1 gear</span></span>
+<span><span class="co">#&gt; 1     1 probs     3 0.9714990 0.03871641   10.40000    4</span></span>
+<span><span class="co">#&gt; 2     2 probs     3 0.9583559 0.04985914   11.37917    4</span></span>
+<span><span class="co">#&gt; 3     3 probs     3 0.9393514 0.06291986   12.35833    4</span></span>
+<span><span class="co">#&gt; 4     4 probs     3 0.9122105 0.07727155   13.33750    4</span></span>
+<span><span class="co">#&gt; 5     5 probs     3 0.8741884 0.09157738   14.31667    4</span></span>
+<span><span class="co">#&gt; 6     6 probs     3 0.8224163 0.10383644   15.29583    4</span></span></code></pre></div>
 <p>Now we use the <code>group</code> column:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>

@@ -266,15 +266,15 @@
 <span><span class="co">#&gt; 6 -2.045490 4.080661e-02 -0.413275648 -0.00882439 0.3716454   0.00147423</span></span>
 <span><span class="co">#&gt; 7  0.524333 6.000470e-01 -0.435675798  0.75391802 0.2125242   0.37164536</span></span>
 <span><span class="co">#&gt; 8  0.524333 6.000470e-01 -0.435675798  0.75391802 0.3716454   0.37164536</span></span>
-<span><span class="co">#&gt;   predicted_lo bill_length_mm flipper_length_mm species     eps</span></span>
-<span><span class="co">#&gt; 1    0.2125242       43.92193               180  Adelie 0.00275</span></span>
-<span><span class="co">#&gt; 2    0.3716454       43.92193               180  Gentoo 0.00275</span></span>
-<span><span class="co">#&gt; 3    0.2125242       43.92193               180  Adelie 0.00590</span></span>
-<span><span class="co">#&gt; 4    0.3716454       43.92193               180  Gentoo 0.00590</span></span>
-<span><span class="co">#&gt; 5    0.2125242       43.92193               180  Adelie      NA</span></span>
-<span><span class="co">#&gt; 6    0.2125242       43.92193               180  Gentoo      NA</span></span>
-<span><span class="co">#&gt; 7    0.2125242       43.92193               180  Adelie      NA</span></span>
-<span><span class="co">#&gt; 8    0.2125242       43.92193               180  Gentoo      NA</span></span></code></pre></div>
+<span><span class="co">#&gt;   predicted_lo bill_length_mm flipper_length_mm species large_penguin     eps</span></span>
+<span><span class="co">#&gt; 1    0.2125242       43.92193               180  Adelie             0 0.00275</span></span>
+<span><span class="co">#&gt; 2    0.3716454       43.92193               180  Gentoo             0 0.00275</span></span>
+<span><span class="co">#&gt; 3    0.2125242       43.92193               180  Adelie             0 0.00590</span></span>
+<span><span class="co">#&gt; 4    0.3716454       43.92193               180  Gentoo             0 0.00590</span></span>
+<span><span class="co">#&gt; 5    0.2125242       43.92193               180  Adelie             0      NA</span></span>
+<span><span class="co">#&gt; 6    0.2125242       43.92193               180  Gentoo             0      NA</span></span>
+<span><span class="co">#&gt; 7    0.2125242       43.92193               180  Adelie             0      NA</span></span>
+<span><span class="co">#&gt; 8    0.2125242       43.92193               180  Gentoo             0      NA</span></span></code></pre></div>
 <p>When variables are omitted from the <code>datagrid</code> call, they will automatically be set at their median or mode (depending on variable type).</p>
 </div>
 <div class="section level2">
@@ -364,11 +364,11 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        dydx truth</span></span>
-<span><span class="co">#&gt; 1 -6.996168    -7</span></span>
-<span><span class="co">#&gt; 2 -2.995941    -3</span></span>
-<span><span class="co">#&gt; 3  1.004286     1</span></span>
-<span><span class="co">#&gt; 4  5.004513     5</span></span>
-<span><span class="co">#&gt; 5  9.004740     9</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -6.988723    -7</span></span>
+<span><span class="co">#&gt; 2 -2.991638    -3</span></span>
+<span><span class="co">#&gt; 3  1.005447     1</span></span>
+<span><span class="co">#&gt; 4  5.002531     5</span></span>
+<span><span class="co">#&gt; 5  8.999616     9</span></span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>

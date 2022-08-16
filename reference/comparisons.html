@@ -292,103 +292,13 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 contrast. <code>lo</code> is a vector of adjusted predictions for the "low" side of the
 contrast. <code>y</code> is a vector of adjusted predictions for the original data. <code>x</code>
 is the predictor in the original data. <code>eps</code> is the step size to use to
-compute derivatives and elasticities.&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Shortcut &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Function &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; difference &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) hi - lo &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; differenceavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) mean(hi) - mean(lo) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dydx &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps) (hi - lo)/eps &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; eyex &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps, y, x) (hi - lo)/eps * (x/y) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; eydx &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps, y, x) ((hi - lo)/eps)/y &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dyex &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps, x) ((hi - lo)/eps) * x &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dydxavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps) mean((hi - lo)/eps) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; eyexavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps, y, x) mean((hi - lo)/eps * (x/y)) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; eydxavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps, y, x) mean(((hi - lo)/eps)/y) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; dyexavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps, x) mean(((hi - lo)/eps) * x) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ratio &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) hi/lo &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ratioavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) mean(hi)/mean(lo) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; lnratio &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) log(hi/lo) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; lnratioavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) log(mean(hi)/mean(lo)) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; lnor &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) log((hi/(1 - hi))/(lo/(1 - lo))) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; lnoravg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo) log((mean(hi)/(1 - mean(hi)))/(mean(lo)/(1 - mean(lo)))) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; expdydx &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps) ((exp(hi) - exp(lo))/exp(eps))/eps &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; expdydxavg &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; \(hi, lo, eps) mean(((exp(hi) - exp(lo))/exp(eps))/eps) &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</p>
-    </div>
+compute derivatives and elasticities.</p><table class="table table"><tr><td>Shortcut</td><td>Function</td></tr><tr><td>difference</td><td>\(hi, lo) hi - lo</td></tr><tr><td>differenceavg</td><td>\(hi, lo) mean(hi) - mean(lo)</td></tr><tr><td>dydx</td><td>\(hi, lo, eps) (hi - lo)/eps</td></tr><tr><td>eyex</td><td>\(hi, lo, eps, y, x) (hi - lo)/eps * (x/y)</td></tr><tr><td>eydx</td><td>\(hi, lo, eps, y, x) ((hi - lo)/eps)/y</td></tr><tr><td>dyex</td><td>\(hi, lo, eps, x) ((hi - lo)/eps) * x</td></tr><tr><td>dydxavg</td><td>\(hi, lo, eps) mean((hi - lo)/eps)</td></tr><tr><td>eyexavg</td><td>\(hi, lo, eps, y, x) mean((hi - lo)/eps * (x/y))</td></tr><tr><td>eydxavg</td><td>\(hi, lo, eps, y, x) mean(((hi - lo)/eps)/y)</td></tr><tr><td>dyexavg</td><td>\(hi, lo, eps, x) mean(((hi - lo)/eps) * x)</td></tr><tr><td>ratio</td><td>\(hi, lo) hi/lo</td></tr><tr><td>ratioavg</td><td>\(hi, lo) mean(hi)/mean(lo)</td></tr><tr><td>lnratio</td><td>\(hi, lo) log(hi/lo)</td></tr><tr><td>lnratioavg</td><td>\(hi, lo) log(mean(hi)/mean(lo))</td></tr><tr><td>lnor</td><td>\(hi, lo) log((hi/(1 - hi))/(lo/(1 - lo)))</td></tr><tr><td>lnoravg</td><td>\(hi, lo) log((mean(hi)/(1 - mean(hi)))/(mean(lo)/(1 - mean(lo))))</td></tr><tr><td>expdydx</td><td>\(hi, lo, eps) ((exp(hi) - exp(lo))/exp(eps))/eps</td></tr><tr><td>expdydxavg</td><td>\(hi, lo, eps) mean(((exp(hi) - exp(lo))/exp(eps))/eps)</td></tr></table></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘magrittr’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from ‘package:purrr’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     set_names</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from ‘package:tidyr’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     extract</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Linear model</span></span></span>
 <span class="r-in"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>

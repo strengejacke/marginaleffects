@@ -158,7 +158,14 @@
 <span><span class="co">#&gt; 3     3 response 0.08750369 0.06555724 0.1141134 29.88113     0            3rd</span></span>
 <span><span class="co">#&gt; 4     4 response 0.93641346 0.90660921 0.9587589 29.88113     1            1st</span></span>
 <span><span class="co">#&gt; 5     5 response 0.77829290 0.70896643 0.8346419 29.88113     1            2nd</span></span>
-<span><span class="co">#&gt; 6     6 response 0.57010265 0.49377997 0.6441967 29.88113     1            3rd</span></span></code></pre></div>
+<span><span class="co">#&gt; 6     6 response 0.57010265 0.49377997 0.6441967 29.88113     1            3rd</span></span>
+<span><span class="co">#&gt;   survived</span></span>
+<span><span class="co">#&gt; 1        1</span></span>
+<span><span class="co">#&gt; 2        1</span></span>
+<span><span class="co">#&gt; 3        1</span></span>
+<span><span class="co">#&gt; 4        1</span></span>
+<span><span class="co">#&gt; 5        1</span></span>
+<span><span class="co">#&gt; 6        1</span></span></code></pre></div>
 <p>The <code>posteriordraws</code> function samples from the posterior distribution of the model, and produces a data frame with <code>drawid</code> and <code>draw</code> columns.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
@@ -170,13 +177,13 @@
 <span><span class="co">#&gt; 4      1 0.93735755     4 response 0.93641346 0.90660921 0.9587589 29.88113</span></span>
 <span><span class="co">#&gt; 5      1 0.77437334     5 response 0.77829290 0.70896643 0.8346419 29.88113</span></span>
 <span><span class="co">#&gt; 6      1 0.62216334     6 response 0.57010265 0.49377997 0.6441967 29.88113</span></span>
-<span><span class="co">#&gt;   woman passengerClass</span></span>
-<span><span class="co">#&gt; 1     0            1st</span></span>
-<span><span class="co">#&gt; 2     0            2nd</span></span>
-<span><span class="co">#&gt; 3     0            3rd</span></span>
-<span><span class="co">#&gt; 4     1            1st</span></span>
-<span><span class="co">#&gt; 5     1            2nd</span></span>
-<span><span class="co">#&gt; 6     1            3rd</span></span></code></pre></div>
+<span><span class="co">#&gt;   woman passengerClass survived</span></span>
+<span><span class="co">#&gt; 1     0            1st        1</span></span>
+<span><span class="co">#&gt; 2     0            2nd        1</span></span>
+<span><span class="co">#&gt; 3     0            3rd        1</span></span>
+<span><span class="co">#&gt; 4     1            1st        1</span></span>
+<span><span class="co">#&gt; 5     1            2nd        1</span></span>
+<span><span class="co">#&gt; 6     1            3rd        1</span></span></code></pre></div>
 <p>This “long” format makes it easy to plots results:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pred</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">draw</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">woman</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -378,10 +385,10 @@
 <span><span class="co">#&gt; 1    0.1700591    0.1700110             0.2          FALSE</span></span>
 <span><span class="co">#&gt; 2    0.3685630    0.3684876             0.5          FALSE</span></span>
 <span><span class="co">#&gt; 3    0.6245229    0.6244447             0.8          FALSE</span></span>
-<span><span class="co">#&gt;                         region      eps</span></span>
-<span><span class="co">#&gt; 1 Middle East and North Africa 9.56e-05</span></span>
-<span><span class="co">#&gt; 2 Middle East and North Africa 9.56e-05</span></span>
-<span><span class="co">#&gt; 3 Middle East and North Africa 9.56e-05</span></span></code></pre></div>
+<span><span class="co">#&gt;                         region media_index      eps</span></span>
+<span><span class="co">#&gt; 1 Middle East and North Africa       0.837 9.56e-05</span></span>
+<span><span class="co">#&gt; 2 Middle East and North Africa       0.837 9.56e-05</span></span>
+<span><span class="co">#&gt; 3 Middle East and North Africa       0.837 9.56e-05</span></span></code></pre></div>
 <p>And plotted:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
