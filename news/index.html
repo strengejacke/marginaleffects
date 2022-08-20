@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9001</span>
       </span>
     </div>
 
@@ -58,16 +58,21 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.0.9000" id="marginaleffects-0709000">marginaleffects 0.7.0.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0709000"></a></h2>
-<ul><li>
+<ul><li>New supported model class: <code>gamlss</code>. Thanks to Marcio Augusto Diniz.</li>
+<li>
+<code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> accepts a <code>wts</code> argument with values: “equal”, “proportional”, “cells”.</li>
+<li>
 <code>by</code> argument accepts data frames for complex groupings.</li>
 <li>
 <code>by</code> argument accepts “group” to group by response level.</li>
 <li>
 <code>by</code> argument works with bayesian models.</li>
 <li>
-<code>hypothesis</code>: The matrix colnames are used as labels for hypothesis tests.</li>
+<code>hypothesis</code>: The matrix column names are used as labels for hypothesis tests.</li>
 <li>
 <code>hypothesis</code>: Better labels with “sequential”, “reference”, “pairwise”.</li>
+<li>
+<code>wts</code> argument is respected in <code>by</code> argument and with <code>*avg</code> shortcuts in the <code>transform_pre</code> argument.</li>
 <li>New vignette: Unit-level contrasts in logistic regressions. Thanks to <a href="https://github.com/arthur-albuquerque" class="external-link">@arthur-albuquerque</a>.</li>
 <li>New vignette: Bootstrap example in standard errors vignette.</li>
 </ul></div>

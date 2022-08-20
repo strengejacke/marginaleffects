@@ -20,7 +20,7 @@ interactions, where the values of contrasts depend on the values of
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">marginaleffects</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0.9001</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@ acceptable values is returned in an error message.</p></dd>
 
 
 <dt>transform_pre</dt>
-<dd><p>string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>Supported shortcuts strings: difference, differenceavg, dydx, eyex, eydx, dyex, dydxavg, eyexavg, eydxavg, dyexavg, ratio, ratioavg, lnratio, lnratioavg, lnor, lnoravg, expdydx, expdydxavg</p></li>
+<dd><p>string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>Supported shortcuts strings: difference, differenceavg, differenceavgwts, dydx, eyex, eydx, dyex, dydxavg, eyexavg, eydxavg, dyexavg, dydxavgwts, eyexavgwts, eydxavgwts, dyexavgwts, ratio, ratioavg, ratioavg, lnratio, lnratioavg, lnratioavg, lnor, lnoravg, lnoravgwts, expdydx, expdydxavg, expdydxavgwts</p></li>
 <li><p>See the Transformations section below for definitions of each transformation.</p></li>
 </ul></li>
 <li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p><ul><li><p>See the Transformations section below for examples of valid functions.</p></li>
