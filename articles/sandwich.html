@@ -318,23 +318,29 @@
 <p>Marginal effects at the mean with classical standard errors and z-statistic:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term     contrast        dydx  std.error statistic      p.value</span></span>
-<span><span class="co">#&gt; 1 response   hp        dY/dX -0.05184187 0.01146238 -4.522784 6.103158e-06</span></span>
-<span><span class="co">#&gt; 2 response   am TRUE - FALSE  4.66614142 1.13425639  4.113833 3.891429e-05</span></span>
-<span><span class="co">#&gt;      conf.low   conf.high</span></span>
-<span><span class="co">#&gt; 1 -0.07430773 -0.02937602</span></span>
-<span><span class="co">#&gt; 2  2.44303975  6.88924310</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic</span></span>
+<span><span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01146238 -4.522784</span></span>
+<span><span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.13425639  4.113833</span></span>
+<span><span class="co">#&gt;        p.value    conf.low   conf.high predicted predicted_hi predicted_lo</span></span>
+<span><span class="co">#&gt; 1 6.103158e-06 -0.07430773 -0.02937602   17.7327     17.73123      17.7327</span></span>
+<span><span class="co">#&gt; 2 3.891429e-05  2.44303975  6.88924310   17.7327     22.39884      17.7327</span></span>
+<span><span class="co">#&gt;         hp    am cyl mpg    eps</span></span>
+<span><span class="co">#&gt; 1 146.6875 FALSE   8  21 0.0283</span></span>
+<span><span class="co">#&gt; 2 146.6875 FALSE   8  21     NA</span></span></code></pre></div>
 <p>Marginal effects at the mean with Kenward-Roger adjusted variance-covariance and degrees of freedom:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>                vcov <span class="op">=</span> <span class="st">"kenward-roger"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term     contrast        dydx  std.error statistic    p.value</span></span>
-<span><span class="co">#&gt; 1 response   hp        dY/dX -0.05184187 0.01518879 -3.413167 0.09642979</span></span>
-<span><span class="co">#&gt; 2 response   am TRUE - FALSE  4.66614142 1.28244270  3.638479 0.08741990</span></span>
-<span><span class="co">#&gt;     conf.low   conf.high       df</span></span>
-<span><span class="co">#&gt; 1 -0.1305545  0.02687074 1.682575</span></span>
-<span><span class="co">#&gt; 2 -1.9798401 11.31212296 1.682575</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic    p.value</span></span>
+<span><span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01518879 -3.413167 0.09642979</span></span>
+<span><span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.28244270  3.638479 0.08741990</span></span>
+<span><span class="co">#&gt;     conf.low   conf.high       df predicted predicted_hi predicted_lo       hp</span></span>
+<span><span class="co">#&gt; 1 -0.1305545  0.02687074 1.682575   17.7327     17.73123      17.7327 146.6875</span></span>
+<span><span class="co">#&gt; 2 -1.9798401 11.31212296 1.682575   17.7327     22.39884      17.7327 146.6875</span></span>
+<span><span class="co">#&gt;      am cyl mpg    eps</span></span>
+<span><span class="co">#&gt; 1 FALSE   8  21 0.0283</span></span>
+<span><span class="co">#&gt; 2 FALSE   8  21     NA</span></span></code></pre></div>
 <p>We can use the same option in any of the package’s core functions, including:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span>, vcov <span class="op">=</span> <span class="st">"satterthwaite"</span><span class="op">)</span></span></code></pre></div>

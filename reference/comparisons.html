@@ -137,7 +137,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 </ul></li>
 <li><p>Logical variables:</p><ul><li><p>NULL: contrast between TRUE and FALSE</p></li>
 </ul></li>
-<li><p>Numeric variables:</p><ul><li><p>Numeric of length 1: Contrast for a gap of <code>x</code>, computed at the observed value plus and minus <code>x / 2</code></p></li>
+<li><p>Numeric variables:</p><ul><li><p>Numeric of length 1: Contrast for a gap of <code>x</code>, computed at the observed value plus and minus <code>x / 2</code>. For example, estimating a <code>+1</code> contrast compares adjusted predictions when the regressor is equal to its observed value minus 0.5 and its observed value plus 0.5.</p></li>
 <li><p>Numeric vector of length 2: Contrast between the 2nd element and the 1st element of the <code>x</code> vector.</p></li>
 <li><p>"iqr": Contrast across the interquartile range of the regressor.</p></li>
 <li><p>"sd": Contrast across one standard deviation around the regressor mean.</p></li>
@@ -317,11 +317,6 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">tmp</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"reference"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> The `cyl` variable is treated as a categorical (factor) variable, but the</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> original data is of class numeric. It is safer and faster to convert such variables</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> to factor before fitting the model and calling `marginaleffects` functions.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>  This warning appears once per session.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast   estimate std.error statistic      p.value   conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  cyl    6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.166079</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl    8 - 4 -10.067560  1.452082 -6.933187 4.114626e-12 -12.913589</span>
@@ -364,21 +359,21 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrasts at the mean</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast comparison std.error statistic      p.value  conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term contrast comparison std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high     predicted predicted_hi  predicted_lo gear am</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528 -2.355139e-16    0.6666667 -2.355139e-16    3  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148 -2.355139e-16    1.0000000 -2.355139e-16    3  1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrasts between marginal means</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"marginalmeans"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast comparison std.error statistic      p.value  conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 response gear    4 - 3  0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 response gear    5 - 3  1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high predicted predicted_hi  predicted_lo eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528 0.5555556    0.6666667 -2.355139e-16  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148 0.5555556    1.0000000 -2.355139e-16  NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high predicted predicted_hi  predicted_lo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528 0.5555556    0.6666667 -2.355139e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148 0.5555556    1.0000000 -2.355139e-16</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrasts at user-specified values</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span>, gear <span class="op">=</span> <span class="va">tmp</span><span class="op">$</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -411,13 +406,13 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span><span class="co"># Numeric contrasts</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term    contrast    estimate std.error statistic      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp (x + 1) - x -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast    estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term    contrast   estimate  std.error statistic      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp (x + 5) - x -0.3411414 0.05059652 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast   estimate  std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp       +5 -0.3411414 0.05059652 -6.742389 1.558038e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     conf.low conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.4403087 -0.241974</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -445,8 +440,8 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span>, transform_avg <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term                  Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg ln(mean(x + 1) / mean(x))  1.135 2.3808e-10 1.091   1.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg mean(+1)  1.135 2.3808e-10 1.091   1.18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -456,7 +451,7 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span>, transform_avg <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg   custom  1.135 2.3808e-10 1.091   1.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg       +1  1.135 2.3808e-10 1.091   1.18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -486,9 +481,9 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gear           hp Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 3 (x + 10) - x  2.835      2.625  1.0801  0.28010 -2.310  7.980</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5 - 4 (x + 10) - x  2.054      2.611  0.7866  0.43151 -3.063  7.171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gear  hp Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 3 +10  2.835      2.625  1.0801  0.28010 -2.310  7.980</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5 - 4 +10  2.054      2.611  0.7866  0.43151 -3.063  7.171</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -546,16 +541,11 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"vs"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term              Contrast vs am   Effect Std. Error z value  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(x + 1) - mean(x)  0  1 -0.03685    0.01240  -2.971 0.0029676</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp mean(x + 1) - mean(x)  1  1 -0.11115    0.04634  -2.399 0.0164473</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp mean(x + 1) - mean(x)  1  0 -0.09941    0.05345  -1.860 0.0628876</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   hp mean(x + 1) - mean(x)  0  0 -0.04215    0.02477  -1.702 0.0887904</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2.5 %    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.06116 -0.012540</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.20197 -0.020336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.20417  0.005344</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.09070  0.006394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast vs am   Effect Std. Error z value  Pr(&gt;|z|)    2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(+1)  0  1 -0.03685    0.01240  -2.971 0.0029676 -0.06116 -0.012540</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp mean(+1)  1  1 -0.11115    0.04634  -2.399 0.0164473 -0.20197 -0.020336</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp mean(+1)  1  0 -0.09941    0.05345  -1.860 0.0628876 -0.20417  0.005344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   hp mean(+1)  0  0 -0.04215    0.02477  -1.702 0.0887904 -0.09070  0.006394</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -566,9 +556,12 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3,4"</span>, <span class="st">"3,4"</span>, <span class="st">"5"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    type  comparison  std.error statistic   p.value    conf.low  conf.high  by</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs -0.04007566 0.03870204 -1.035492 0.3004392 -0.11593027 0.03577895 3,4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs  0.08015132 0.07740409  1.035492 0.3004392 -0.07155791 0.23186055   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    type group term contrast  comparison  std.error statistic   p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs     3  mpg mean(+1) -0.04007566 0.03870204 -1.035492 0.3004392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs     5  mpg mean(+1)  0.08015132 0.07740409  1.035492 0.3004392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low  conf.high    predicted predicted_hi predicted_lo  by</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.11593027 0.03577895 3.623918e-05 3.395031e-05 3.868195e-05 3,4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.07155791 0.23186055 6.629510e-01 6.614355e-01 6.644631e-01   5</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

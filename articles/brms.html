@@ -203,10 +203,10 @@
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             Term  Contrast    Effect     2.5 %    97.5 %</span></span>
-<span><span class="co">#&gt; 1          woman     dY/dX  0.366252  0.336326  0.392362</span></span>
-<span><span class="co">#&gt; 2            age     dY/dX -0.005265 -0.007104 -0.003462</span></span>
-<span><span class="co">#&gt; 3 passengerClass 2nd - 1st -0.237269 -0.309664 -0.164460</span></span>
-<span><span class="co">#&gt; 4 passengerClass 3rd - 1st -0.389119 -0.454761 -0.322277</span></span>
+<span><span class="co">#&gt; 1            age     dY/dX -0.005265 -0.007104 -0.003462</span></span>
+<span><span class="co">#&gt; 2 passengerClass 2nd - 1st -0.237269 -0.309664 -0.164460</span></span>
+<span><span class="co">#&gt; 3 passengerClass 3rd - 1st -0.389119 -0.454761 -0.322277</span></span>
+<span><span class="co">#&gt; 4          woman     dY/dX  0.366252  0.336326  0.392362</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -215,11 +215,21 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>woman <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                                   passengerClass <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type           term  contrast          dydx     conf.low     conf.high</span></span>
-<span><span class="co">#&gt; 1 response          woman     dY/dX  0.1562784430  0.111359140  0.2087557243</span></span>
-<span><span class="co">#&gt; 2 response            age     dY/dX -0.0002383118 -0.001355295  0.0008710313</span></span>
-<span><span class="co">#&gt; 3 response passengerClass 2nd - 1st -0.1574415687 -0.223274987 -0.1028896556</span></span>
-<span><span class="co">#&gt; 4 response passengerClass 3rd - 1st -0.3653763624 -0.438319255 -0.2947694986</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type           term  contrast          dydx     conf.low</span></span>
+<span><span class="co">#&gt; 1     1 response          woman     dY/dX  0.1562784430  0.111359140</span></span>
+<span><span class="co">#&gt; 2     1 response            age     dY/dX -0.0002383118 -0.001355295</span></span>
+<span><span class="co">#&gt; 3     1 response passengerClass 2nd - 1st -0.1574415687 -0.223274987</span></span>
+<span><span class="co">#&gt; 4     1 response passengerClass 3rd - 1st -0.3653763624 -0.438319255</span></span>
+<span><span class="co">#&gt;       conf.high predicted predicted_hi predicted_lo      age woman</span></span>
+<span><span class="co">#&gt; 1  0.2087557243 0.9364135    0.9364295    0.9364135 29.88113     1</span></span>
+<span><span class="co">#&gt; 2  0.0008710313 0.9364135    0.9364102    0.9364135 29.88113     1</span></span>
+<span><span class="co">#&gt; 3 -0.1028896556 0.9364135    0.7782929    0.9364135 29.88113     1</span></span>
+<span><span class="co">#&gt; 4 -0.2947694986 0.9364135    0.5701027    0.9364135 29.88113     1</span></span>
+<span><span class="co">#&gt;   passengerClass survived        eps</span></span>
+<span><span class="co">#&gt; 1            1st        1 0.00010000</span></span>
+<span><span class="co">#&gt; 2            1st        1 0.00798333</span></span>
+<span><span class="co">#&gt; 3            1st        1         NA</span></span>
+<span><span class="co">#&gt; 4            1st        1         NA</span></span></code></pre></div>
 <p>Compute and plot conditional marginal effects:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"woman"</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
@@ -337,9 +347,15 @@
 <span>                       newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>civil_liberties <span class="op">=</span> <span class="fl">.5</span>,</span>
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
-<span><span class="co">#&gt;       type            term     contrast      dydx  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response  party_autonomy TRUE - FALSE 0.2517104 0.1663314 0.3355927</span></span>
-<span><span class="co">#&gt; 2 response civil_liberties        dY/dX 0.8160498 0.6213970 1.0066362</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type            term     contrast      dydx  conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1     1 response  party_autonomy TRUE - FALSE 0.2517104 0.1663314 0.3355927</span></span>
+<span><span class="co">#&gt; 2     1 response civil_liberties        dY/dX 0.8160498 0.6213970 1.0066362</span></span>
+<span><span class="co">#&gt;   predicted predicted_hi predicted_lo party_autonomy civil_liberties</span></span>
+<span><span class="co">#&gt; 1 0.6213442    0.6213442    0.3684876           TRUE             0.5</span></span>
+<span><span class="co">#&gt; 2 0.6213442    0.6214182    0.6213442           TRUE             0.5</span></span>
+<span><span class="co">#&gt;                         region media_index      eps</span></span>
+<span><span class="co">#&gt; 1 Middle East and North Africa       0.837       NA</span></span>
+<span><span class="co">#&gt; 2 Middle East and North Africa       0.837 9.56e-05</span></span></code></pre></div>
 <p>Use the <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> to extract draws from the posterio distribution of marginal effects, and plot them:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -725,9 +741,9 @@
 <p>What happens to <code>gdpPercap</code> when <code>lifeExp</code> increases by one?</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      Term    Contrast Effect  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1 lifeExp (x + 1) - x 718.87 515.58 811.96</span></span>
-<span><span class="co">#&gt; 2    year (x + 1) - x -63.82 -84.44 -41.05</span></span>
+<span><span class="co">#&gt;      Term Contrast Effect  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1 lifeExp       +1 718.87 515.58 811.96</span></span>
+<span><span class="co">#&gt; 2    year       +1 -63.82 -84.44 -41.05</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -838,18 +854,18 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>marginaleffects_credible_interval <span class="op">=</span> <span class="st">"hdi"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect  2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1   wt (x + 1) - x -3.195 -4.704 -1.5704</span></span>
-<span><span class="co">#&gt; 2  cyl (x + 1) - x -1.494 -2.385 -0.6771</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect  2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1  cyl       +1 -1.494 -2.385 -0.6771</span></span>
+<span><span class="co">#&gt; 2   wt       +1 -3.195 -4.704 -1.5704</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>marginaleffects_credible_interval <span class="op">=</span> <span class="st">"eti"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect  2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1   wt (x + 1) - x -3.195 -4.792 -1.6450</span></span>
-<span><span class="co">#&gt; 2  cyl (x + 1) - x -1.494 -2.361 -0.6361</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect  2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1  cyl       +1 -1.494 -2.361 -0.6361</span></span>
+<span><span class="co">#&gt; 2   wt       +1 -3.195 -4.792 -1.6450</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>

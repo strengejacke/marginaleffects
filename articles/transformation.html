@@ -163,8 +163,8 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1  mpg (x + 1) - x 0.0554   0.008327   6.653 2.8699e-11 0.03908 0.07172</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg       +1 0.0554   0.008327   6.653 2.8699e-11 0.03908 0.07172</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -175,8 +175,8 @@
 <p>Instead of taking simple differences between adjusted predictions, it can sometimes be useful to compute other forms of contrasts. For example, <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X1301300304" class="external-link">the <code>adjrr</code> function the <code>Stata</code> software package</a> can compute “adjusted risk ratios”, which are ratios of adjusted predictions. To do this in <code>R</code>, we use the <code>transform_pre</code> argument:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg       +1  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -184,15 +184,15 @@
 <p>The <code>transform_pre</code> accepts different values for common types of contrasts: ‘difference’, ‘ratio’, ‘lnratio’, ‘ratioavg’, ‘lnratioavg’, ‘lnoravg’, ‘differenceavg’. These strings are shortcuts for functions that accept two vectors of adjusted predictions and returns a single vector of contrasts. For example, these two commands yield identical results:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1  mpg (x + 1) / x  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg       +1  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="va">hi</span> <span class="op">/</span> <span class="va">lo</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1  mpg   custom  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
+<span><span class="co">#&gt; 1  mpg       +1  1.287     0.1328   9.697 &lt; 2.22e-16 1.027  1.548</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
@@ -201,7 +201,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">lo</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term Contrast Effect Std. Error z value   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1  mpg   custom 0.2641    0.02614    10.1 &lt; 2.22e-16 0.2128 0.3153</span></span>
+<span><span class="co">#&gt; 1  mpg       +1 0.2641    0.02614    10.1 &lt; 2.22e-16 0.2128 0.3153</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
@@ -223,7 +223,7 @@
 <span><span class="co">#&gt; 1    Sex male - female -0.484676   0.030607 -15.835 &lt; 2.22e-16 -0.544665</span></span>
 <span><span class="co">#&gt; 2 PClass     2nd - 1st -0.205782   0.039374  -5.226 1.7296e-07 -0.282954</span></span>
 <span><span class="co">#&gt; 3 PClass     3rd - 1st -0.404283   0.039839 -10.148 &lt; 2.22e-16 -0.482367</span></span>
-<span><span class="co">#&gt; 4    Age   (x + 1) - x -0.006504   0.001072  -6.069 1.2904e-09 -0.008605</span></span>
+<span><span class="co">#&gt; 4    Age            +1 -0.006504   0.001072  -6.069 1.2904e-09 -0.008605</span></span>
 <span><span class="co">#&gt;      97.5 %</span></span>
 <span><span class="co">#&gt; 1 -0.424687</span></span>
 <span><span class="co">#&gt; 2 -0.128609</span></span>
@@ -265,7 +265,7 @@
 <span>    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1  mpg   custom  1.135 2.3808e-10 1.091   1.18</span></span>
+<span><span class="co">#&gt; 1  mpg       +1  1.135 2.3808e-10 1.091   1.18</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
@@ -284,8 +284,8 @@
 <span>    <span class="va">mod</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>transform_avg <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term                  Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1  mpg ln(mean(x + 1) / mean(x))  1.135 2.3808e-10 1.091   1.18</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  mpg mean(+1)  1.135 2.3808e-10 1.091   1.18</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
@@ -466,9 +466,9 @@
 <span>  transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">eps</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="va">eps</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type    term contrast comparison   conf.low  conf.high predicted</span></span>
-<span><span class="co">#&gt; 1     1 response lifeExp   custom   58.39448   55.84743   61.02206  6.612435</span></span>
-<span><span class="co">#&gt; 2     2 response lifeExp   custom  280.89410  266.57621  295.50894  8.183520</span></span>
-<span><span class="co">#&gt; 3     3 response lifeExp   custom 1349.40503 1222.58608 1490.38119  9.753512</span></span>
+<span><span class="co">#&gt; 1     1 response lifeExp   +0.001   58.39448   55.84743   61.02206  6.612435</span></span>
+<span><span class="co">#&gt; 2     2 response lifeExp   +0.001  280.89410  266.57621  295.50894  8.183520</span></span>
+<span><span class="co">#&gt; 3     3 response lifeExp   +0.001 1349.40503 1222.58608 1490.38119  9.753512</span></span>
 <span><span class="co">#&gt;   predicted_hi predicted_lo lifeExp gdpPercap0       eps</span></span>
 <span><span class="co">#&gt; 1     6.612474     6.612396      40   779.4453 0.0059004</span></span>
 <span><span class="co">#&gt; 2     8.183559     8.183481      60   779.4453 0.0059004</span></span>

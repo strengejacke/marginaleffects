@@ -325,12 +325,12 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Marginal Effect at the Mean (MEM)</span></span></span>
 <span class="r-in"><span><span class="fu">marginaleffects</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term         dydx   std.error statistic   p.value     conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp  0.008526944 0.007849817  1.086260 0.2773639 -0.006858415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response   wt -1.744526869 1.586306474 -1.099741 0.2714448 -4.853630428</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0239123</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3645767</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term         dydx   std.error statistic   p.value     conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp  0.008526944 0.007849817  1.086260 0.2773639 -0.006858415</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response   wt -1.744526869 1.586306474 -1.099741 0.2714448 -4.853630428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high predicted predicted_hi predicted_lo       hp      wt am       eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0239123  0.208598    0.2088393     0.208598 146.6875 3.21725  1 0.0283000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3645767  0.208598    0.2079157     0.208598 146.6875 3.21725  1 0.0003911</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Marginal Effect at User-Specified Values</span></span></span>
 <span class="r-in"><span><span class="co"># Variables not explicitly included in `datagrid()` are held at their means</span></span></span>
