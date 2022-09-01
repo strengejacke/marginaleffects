@@ -20,10 +20,11 @@ articles:
   multiple_imputation: multiple_imputation.html
   performance: performance.html
   predictions: predictions.html
+  python: python.html
   sandwich: sandwich.html
   supported_models: supported_models.html
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-08-30T16:26Z
+last_built: 2022-09-01T12:59Z
 

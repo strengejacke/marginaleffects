@@ -362,7 +362,9 @@
 compute marginal effects or contrasts. This can differ based on the model
 type, but will typically be a string such as: "response", "link", "probs",
 or "zero". When an unsupported string is entered, the model-specific list of
-acceptable values is returned in an error message.</p></dd>
+acceptable values is returned in an error message. When <code>type</code> is <code>NULL</code>, the
+default value is used. This default is the first model-related row in
+the <code>marginaleffects:::type_dictionary</code> dataframe.</p></dd>
 
 
 <dt>...</dt>

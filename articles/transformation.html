@@ -325,7 +325,7 @@
 <span></span>
 <span><span class="co"># Build some 0s into the GDP column</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
-<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="co"># Make a bunch of GDP values 0</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,</span>
@@ -417,7 +417,7 @@
 <span>            transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type  predicted   conf.low  conf.high lifeExp gdpPercap0</span></span>
 <span><span class="co">#&gt; 1     1 response   744.2932   693.7513   800.9406      40   779.4453</span></span>
-<span><span class="co">#&gt; 2     2 response  3581.4392  3449.3601  3717.8204      60   779.4453</span></span>
+<span><span class="co">#&gt; 2     2 response  3581.4392  3449.3600  3717.8204      60   779.4453</span></span>
 <span><span class="co">#&gt; 3     3 response 17214.5804 16110.2130 18410.2831      80   779.4453</span></span></code></pre></div>
 <p>We can pass <code>transform_post = exp</code> to <code><a href="../reference/plot_cap.html">plot_cap()</a></code> too:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
