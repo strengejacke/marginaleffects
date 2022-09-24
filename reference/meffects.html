@@ -26,7 +26,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -181,6 +181,8 @@ contrasts or marginaleffects. These weights only affect the averaging in
 <dt>hypothesis</dt>
 <dd><p>specify a hypothesis test or custom contrast using a vector, matrix, string, or string formula.</p><ul><li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
 <li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
+<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
+<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
 </ul></li>
 <li><p>String formula to specify linear or non-linear hypothesis tests. If the <code>term</code> column uniquely identifies rows, terms can be used in the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to identify the position of each parameter. Examples:</p><ul><li><p><code>hp = drat</code></p></li>
 <li><p><code>hp + drat = 12</code></p></li>
@@ -195,9 +197,10 @@ contrasts or marginaleffects. These weights only affect the averaging in
 <dt>eps</dt>
 <dd><p>NULL or numeric value which determines the step size to use when
 calculating numerical derivatives: (f(x+eps)-f(x))/eps. When <code>eps</code> is
-<code>NULL</code>, the step size is step to 0.0001 multiplied by the range of the
-variable with respect to which we are taking the derivative. Changing this
-value may be necessary to avoid numerical problems in certain models.</p></dd>
+<code>NULL</code>, the step size is 0.0001 multiplied by the difference between
+the maximum and minimum values of the variable with respect to which we
+are taking the derivative. Changing <code>eps</code> may be necessary to avoid
+numerical problems in certain models.</p></dd>
 
 
 <dt>...</dt>

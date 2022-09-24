@@ -26,7 +26,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -218,6 +218,8 @@ contrasts or marginaleffects. These weights only affect the averaging in
 <dt>hypothesis</dt>
 <dd><p>specify a hypothesis test or custom contrast using a vector, matrix, string, or string formula.</p><ul><li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
 <li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
+<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
+<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
 </ul></li>
 <li><p>String formula to specify linear or non-linear hypothesis tests. If the <code>term</code> column uniquely identifies rows, terms can be used in the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to identify the position of each parameter. Examples:</p><ul><li><p><code>hp = drat</code></p></li>
 <li><p><code>hp + drat = 12</code></p></li>
@@ -232,9 +234,10 @@ contrasts or marginaleffects. These weights only affect the averaging in
 <dt>eps</dt>
 <dd><p>NULL or numeric value which determines the step size to use when
 calculating numerical derivatives: (f(x+eps)-f(x))/eps. When <code>eps</code> is
-<code>NULL</code>, the step size is step to 0.0001 multiplied by the range of the
-variable with respect to which we are taking the derivative. Changing this
-value may be necessary to avoid numerical problems in certain models.</p></dd>
+<code>NULL</code>, the step size is 0.0001 multiplied by the difference between
+the maximum and minimum values of the variable with respect to which we
+are taking the derivative. Changing <code>eps</code> may be necessary to avoid
+numerical problems in certain models.</p></dd>
 
 
 <dt>...</dt>
@@ -564,12 +567,20 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-in"><span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3,4"</span>, <span class="st">"3,4"</span>, <span class="st">"5"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    type group term contrast  comparison  std.error statistic   p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs     3  mpg mean(+1) -0.04007566 0.03870204 -1.035492 0.3004392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs     5  mpg mean(+1)  0.08015132 0.07740409  1.035492 0.3004392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low  conf.high    predicted predicted_hi predicted_lo  by</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.11593027 0.03577895 3.623918e-05 3.395031e-05 3.868195e-05 3,4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.07155791 0.23186055 6.629510e-01 6.614355e-01 6.644631e-01   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    type term    comparison   std.error   statistic     p.value    conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs  mpg  0.0004634916 0.005796055  0.07996674 0.936263711 -0.01089657</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs   am -0.2227925482 0.079557885 -2.80038299 0.005104201 -0.37872314</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 probs   vs  0.1021020743 0.073235805  1.39415514 0.163270760 -0.04143747</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 probs  mpg -0.0009269832 0.011592109 -0.07996674 0.936263711 -0.02364710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 probs   am  0.4455850963 0.159115770  2.80038299 0.005104201  0.13372392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 probs   vs -0.2042041486 0.146471610 -1.39415514 0.163270760 -0.49128323</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.high  by</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.01182355 3,4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.06686196 3,4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.24564161 3,4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.02179313   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.75744628   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.08287493   5</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -28,7 +28,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,6 +98,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  byfun <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  wts <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  hypothesis <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -112,15 +113,16 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 
 
 <dt>newdata</dt>
-<dd><p>A data frame over which to compute quantities of interest.</p><ul><li><p><code>NULL</code>: adjusted predictions for each observed value in the original dataset.</p></li>
-</ul><ul><li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
-<li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its median or mode.</p></li>
-<li><p>"marginalmeans": Marginal Effects at Marginal Means. See Details section below.</p></li>
-<li><p>"tukey": Marginal Effects at Tukey's 5 numbers.</p></li>
-<li><p>"grid": Marginal Effects on a grid of representative numbers (Tukey's 5 numbers and unique values of categorical predictors).</p></li>
-</ul><ul><li><p>The <code><a href="datagrid.html">datagrid()</a></code> function can be used to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid()</code>: contrast at the mean</p></li>
-<li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
-<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation for more.</p></li>
+<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the grid of predictors on which we make predictions.</p><ul><li><p><code>NULL</code> (default): Predictions for each observed value in the original dataset.</p></li>
+<li><p>data frame: Predictions for each row of the <code>newdata</code> data frame.</p></li>
+<li><p>string:</p><ul><li><p>"mean": Predictions at the Mean. Predictions when each predictor is held at its mean or mode.</p></li>
+<li><p>"median": Predictions at the Median. Predictions when each predictor is held at its median or mode.</p></li>
+<li><p>"marginalmeans": Predictions at Marginal Means. See Details section below.</p></li>
+<li><p>"tukey": Predictions at Tukey's 5 numbers.</p></li>
+<li><p>"grid": Predictions on a grid of representative numbers (Tukey's 5 numbers and unique values of categorical predictors).</p></li>
+</ul></li>
+<li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
 </ul></li>
 </ul></dd>
 
@@ -165,6 +167,15 @@ the <code>marginaleffects:::type_dictionary</code> dataframe.</p></dd>
 <dd><p>Character vector of variable names over which to compute group-wise estimates.</p></dd>
 
 
+<dt>byfun</dt>
+<dd><p>A function such as <code><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean()</a></code> or <code><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum()</a></code> used to aggregate
+estimates within the subgroups defined by the <code>by</code> argument. <code>NULL</code> uses the
+<code><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean()</a></code> function. Must accept a numeric vector and return a single numeric
+value. This is sometimes used to take the sum or mean of predicted
+probabilities across outcome or predictor
+levels. See examples section.</p></dd>
+
+
 <dt>wts</dt>
 <dd><p>string or numeric: weights to use when computing average
 contrasts or marginaleffects. These weights only affect the averaging in
@@ -180,6 +191,8 @@ contrasts or marginaleffects. These weights only affect the averaging in
 <dt>hypothesis</dt>
 <dd><p>specify a hypothesis test or custom contrast using a vector, matrix, string, or string formula.</p><ul><li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
 <li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
+<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
+<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
 </ul></li>
 <li><p>String formula to specify linear or non-linear hypothesis tests. If the <code>term</code> column uniquely identifies rows, terms can be used in the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to identify the position of each parameter. Examples:</p><ul><li><p><code>hp = drat</code></p></li>
 <li><p><code>hp + drat = 12</code></p></li>
@@ -224,7 +237,9 @@ intervals to the <code><a href="https://easystats.github.io/insight/reference/ge
 transformation to produce adequate confidence intervals on the scale
 specified by the <code>type</code> argument. When this is not possible, <code>predictions()</code>
 uses the Delta Method to compute standard errors around adjusted
-predictions.</p>
+predictions, and builds symmetric confidence intervals. These naive symmetric
+intervals may not always be appropriate. For instance, they may stretch beyond
+the bounds of a binary response variables.</p>
     </div>
     <div class="section level2">
     <h2 id="vignettes-and-documentation">Vignettes and documentation<a class="anchor" aria-label="anchor" href="#vignettes-and-documentation"></a></h2>
@@ -303,17 +318,18 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">predicted</span>, <span class="va">std.error</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     20.09     0.4844   41.47 &lt; 2.22e-16  19.14   21.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">predicted</span>, <span class="va">std.error</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      am predicted std.error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     0      18.1      1.54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>     1      22.8      1.41</span>
+<span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type am predicted std.error statistic       p.value conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  1  24.39231 0.7600565  32.09275 5.564392e-226 22.90262  25.88199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  0  17.14737 0.6286961  27.27449 8.515145e-164 15.91515  18.37959</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Conditional Adjusted Predictions</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span></span>
@@ -389,9 +405,9 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type   term predicted std.error statistic       p.value  conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response custom   4.78289 0.7970353  6.000851  1.962855e-09   3.22073</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response custom 115.21432 3.6474827 31.587352 5.507900e-219 108.06539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.high     drat wt mpg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6.345051 3.596563  2  21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 122.363255 3.596563  3  21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6.345051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 122.363255</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># `by` argument</span></span></span>
@@ -408,13 +424,20 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># first 5 raw predictions</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid  type group    predicted    std.error gear  mpg am vs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 probs     3 3.623918e-05 2.002490e-03    4 21.0  1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 probs     3 3.623918e-05 2.002490e-03    4 21.0  1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 probs     3 9.347603e-08 6.911938e-06    4 22.8  1  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 probs     3 4.044657e-01 1.965452e-01    3 21.4  0  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 probs     3 9.999714e-01 1.246217e-03    3 18.7  0  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 probs     3 5.183336e-01 2.898025e-01    3 18.1  0  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid  type group    predicted    std.error    statistic    p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 probs     3 9.347603e-08 6.911938e-06   0.01352385 0.98920986</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 probs     3 4.044657e-01 1.965452e-01   2.05787667 0.03960197</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562752 0.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high gear  mpg am vs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.888569e-03 3.961047e-03    4 21.0  1  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.888569e-03 3.961047e-03    4 21.0  1  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.345367e-05 1.364063e-05    4 22.8  1  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.924426e-02 7.896871e-01    3 21.4  0  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  9.975289e-01 1.002414e+00    3 18.7  0  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -4.966881e-02 1.086336e+00    3 18.1  0  1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># average predictions</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -431,9 +454,20 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-in"><span>    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3,4"</span>, <span class="st">"3,4"</span>, <span class="st">"5"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    type predicted  std.error  by</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs 0.4218766 0.02312133 3,4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs 0.1562469 0.04624265   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    type predicted  std.error statistic      p.value   conf.low conf.high  by</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs 0.4218766 0.02312133 18.246210 2.217708e-74 0.37655960 0.4671935 3,4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs 0.1562469 0.04624265  3.378848 7.279037e-04 0.06561294 0.2468808   5</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># sum of predicted probabilities for combined response levels</span></span></span>
+<span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4,6"</span>, <span class="st">"4,6"</span>, <span class="st">"8"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span>, byfun <span class="op">=</span> <span class="va">sum</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some of the variable names are missing from the model data: group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    type  predicted std.error statistic      p.value   conf.low conf.high  by</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs 0.91584335 0.1218077 7.5187647 5.529622e-14  0.6771047 1.1545820 4,6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs 0.08415665 0.1218077 0.6908977 4.896298e-01 -0.1545820 0.3228953   8</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

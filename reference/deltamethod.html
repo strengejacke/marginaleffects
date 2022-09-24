@@ -20,7 +20,7 @@ offers some convenience features like shortcuts for robust standard errors."><!-
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,6 +100,8 @@ offers some convenience features like shortcuts for robust standard errors.</p>
 <dt>hypothesis</dt>
 <dd><p>specify a hypothesis test or custom contrast using a vector, matrix, string, or string formula.</p><ul><li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
 <li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
+<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
+<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
 </ul></li>
 <li><p>String formula to specify linear or non-linear hypothesis tests. If the <code>term</code> column uniquely identifies rows, terms can be used in the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to identify the position of each parameter. Examples:</p><ul><li><p><code>hp = drat</code></p></li>
 <li><p><code>hp + drat = 12</code></p></li>
@@ -189,6 +191,11 @@ arguments.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 `factor(cyl)6` = `factor(cyl)8` -0.1731405  1.653923 -0.1046847 0.916626</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   conf.low conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.41477   3.06849</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">deltamethod</span><span class="op">(</span><span class="va">mod2</span>, <span class="st">"`hp:drat` = drat"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               term  estimate std.error statistic    p.value  conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 `hp:drat` = drat -6.079059  2.894846 -2.099959 0.03573245 -11.75285 -0.405264</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The `FUN` argument can be used to compute standard errors for fitted values</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>

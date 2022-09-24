@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@
     
     
 <p>Note: The code in this vignette requires version 0.7.1 of <code>marginaleffects</code> or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version from Github.</a></p>
-<p>The Python programming language offers several powerful libraries for (bayesian) statistical analysis, such as <a href=""><code>NumPyro</code></a> and <a href="https://www.pymc.io/welcome.html" class="external-link"><code>PyMC</code>.</a> This vignette shows how to use the the full power of <code>marginaleffects</code> to analyze and interpret the results of model estimated by Markov Chain Monte Carlo using the <code>NumPyro</code> Python library.</p>
+<p>The Python programming language offers several powerful libraries for (bayesian) statistical analysis, such as <a href=""><code>NumPyro</code></a> and <a href="https://www.pymc.io/welcome.html" class="external-link"><code>PyMC</code>.</a> This vignette shows how to use the the full power of <code>marginaleffects</code> to analyze and interpret the results of models estimated by Markov Chain Monte Carlo using the <code>NumPyro</code> Python library.</p>
 <div class="section level2">
 <h2 id="fitting-a-numpyro-model">Fitting a <code>NumPyro</code> model<a class="anchor" aria-label="anchor" href="#fitting-a-numpyro-model"></a>
 </h2>
@@ -220,12 +220,12 @@
 <code class="sourceCode R"><span><span class="co"># predictions on the original dataset</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">df</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type predicted conf.low conf.high                   Patient Weeks</span></span>
-<span><span class="co">#&gt; 1     1 response  2126.549 1761.205  2480.867 ID00007637202177411956430    -4</span></span>
-<span><span class="co">#&gt; 2     2 response  2122.763 1745.315  2490.562 ID00007637202177411956430     5</span></span>
-<span><span class="co">#&gt; 3     3 response  2122.215 1743.844  2497.817 ID00007637202177411956430     7</span></span>
-<span><span class="co">#&gt; 4     4 response  2124.810 1757.030  2509.202 ID00007637202177411956430     9</span></span>
-<span><span class="co">#&gt; 5     5 response  2116.459 1751.394  2494.830 ID00007637202177411956430    11</span></span>
-<span><span class="co">#&gt; 6     6 response  2115.590 1743.101  2484.244 ID00007637202177411956430    17</span></span>
+<span><span class="co">#&gt; 1     1 response  2120.532 1763.176  2490.323 ID00007637202177411956430    -4</span></span>
+<span><span class="co">#&gt; 2     2 response  2112.942 1740.647  2480.077 ID00007637202177411956430     5</span></span>
+<span><span class="co">#&gt; 3     3 response  2116.086 1731.962  2480.866 ID00007637202177411956430     7</span></span>
+<span><span class="co">#&gt; 4     4 response  2117.830 1740.041  2492.416 ID00007637202177411956430     9</span></span>
+<span><span class="co">#&gt; 5     5 response  2114.272 1738.427  2490.165 ID00007637202177411956430    11</span></span>
+<span><span class="co">#&gt; 6     6 response  2120.984 1741.109  2500.270 ID00007637202177411956430    17</span></span>
 <span><span class="co">#&gt;    FVC  Percent Age  Sex SmokingStatus</span></span>
 <span><span class="co">#&gt; 1 2315 58.25365  79 Male     Ex-smoker</span></span>
 <span><span class="co">#&gt; 2 2214 55.71213  79 Male     Ex-smoker</span></span>
@@ -237,15 +237,16 @@
 <span><span class="co"># predictions for user-defined predictor values</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>newdata <span class="op">=</span> <span class="va">df</span>, Age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type predicted conf.low conf.high                   Patient</span></span>
-<span><span class="co">#&gt; 1     1 response  1803.918 1324.110  2322.136 ID00099637202206203080121</span></span>
-<span><span class="co">#&gt; 2     2 response  1798.592 1340.386  2318.963 ID00099637202206203080121</span></span>
+<span><span class="co">#&gt; 1     1 response  1798.592 1340.386  2318.963 ID00099637202206203080121</span></span>
+<span><span class="co">#&gt; 2     2 response  1969.797 1583.616  2379.580 ID00099637202206203080121</span></span>
 <span><span class="co">#&gt;      Weeks      FVC  Percent  Sex SmokingStatus Age</span></span>
 <span><span class="co">#&gt; 1 31.86185 2690.479 77.67265 Male     Ex-smoker  60</span></span>
 <span><span class="co">#&gt; 2 31.86185 2690.479 77.67265 Male     Ex-smoker  70</span></span>
+<span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>newdata <span class="op">=</span> <span class="va">df</span>, Age <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type predicted conf.low conf.high                   Patient</span></span>
-<span><span class="co">#&gt; 1     1 response  1607.267 1020.081  2296.374 ID00099637202206203080121</span></span>
-<span><span class="co">#&gt; 2     2 response  1605.094 1029.323  2301.611 ID00099637202206203080121</span></span>
+<span><span class="co">#&gt; 1     1 response  1605.094 1029.323  2301.611 ID00099637202206203080121</span></span>
+<span><span class="co">#&gt; 2     2 response  2262.574 1860.123  2655.886 ID00099637202206203080121</span></span>
 <span><span class="co">#&gt;      Weeks      FVC  Percent  Sex SmokingStatus Age</span></span>
 <span><span class="co">#&gt; 1 31.86185 2690.479 77.67265 Male     Ex-smoker  49</span></span>
 <span><span class="co">#&gt; 2 31.86185 2690.479 77.67265 Male     Ex-smoker  88</span></span>
@@ -253,9 +254,8 @@
 <span><span class="co"># average predictions by group</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">df</span>, by <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type    Sex predicted conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response Female  2845.347 2667.471  2987.146</span></span>
-<span><span class="co">#&gt; 2 response   Male  2820.834 2674.569  2939.961</span></span>
-<span><span class="co">#&gt; 3 response   &lt;NA&gt;  2687.466 2672.096  2702.129</span></span>
+<span><span class="co">#&gt; 1 response Female  1883.243 1854.946  1910.619</span></span>
+<span><span class="co">#&gt; 2 response   Male  2904.648 2890.626  2918.217</span></span>
 <span></span>
 <span><span class="co"># contrasts (average)</span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"Age"</span>, newdata <span class="op">=</span> <span class="va">df</span><span class="op">)</span>  <span class="op">|&gt;</span></span>
