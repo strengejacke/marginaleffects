@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,7 +240,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">onesample</span><span class="op">$</span><span class="va">interv</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>, <span class="op">]</span><span class="op">$</span><span class="va">predicted_meanY</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 3.517374</span></span></code></pre>
 <p>Although manual computation is simple, it does not provide uncertainty estimates. In contrast, <code><a href="../reference/comparisons.html">comparisons()</a></code> has already computed the standard error and confidence interval using the delta method.</p>
-<p>Instead of the delta method, most analysts will rely on bootstraping. For example, the replication code from Hernán and Robins does this:</p>
+<p>Instead of the delta method, most analysts will rely on bootstrapping. For example, the replication code from Hernán and Robins does this:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># function to calculate difference in means</span></span>
 <span><span class="va">standardization</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">indices</span><span class="op">)</span> <span class="op">{</span></span>
@@ -288,8 +288,8 @@
 <span>    check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">bootstrap</span></span></code></pre></div>
 <pre><code><span><span class="co">##                            estimate std.error conf.low conf.high</span></span>
-<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4854877 2.565836  4.468913</span></span></code></pre>
-<p>The results are close to those that we obtained with <code><a href="../reference/comparisons.html">comparisons()</a></code>, but the confidence interval differs slightly because of the difference between bootstraping and the delta method.</p>
+<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4897152  2.55755  4.477198</span></span></code></pre>
+<p>The results are close to those that we obtained with <code><a href="../reference/comparisons.html">comparisons()</a></code>, but the confidence interval differs slightly because of the difference between bootstrapping and the delta method.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>

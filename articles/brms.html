@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,7 @@
 
     
     
-<p>The <code>marginaleffects</code> package offers convenience functions to compute and display predictions, contrasts, and marginal effects from bayesian models estimated by the <code>brms</code> package. To compute these quantities, <code>marginaleffects</code> relies on workshorse functions from the <code>brms</code> package to draw from the posterior distribution. The type of draws used is controlled by using the <code>type</code> argument of the <code>predictions</code> or <code>marginaleffects</code> functions:</p>
+<p>The <code>marginaleffects</code> package offers convenience functions to compute and display predictions, contrasts, and marginal effects from bayesian models estimated by the <code>brms</code> package. To compute these quantities, <code>marginaleffects</code> relies on workhorse functions from the <code>brms</code> package to draw from the posterior distribution. The type of draws used is controlled by using the <code>type</code> argument of the <code>predictions</code> or <code>marginaleffects</code> functions:</p>
 <ul>
 <li>
 <code>type = "response"</code>: Compute posterior draws of the expected value using the <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">brms::posterior_epred</a></code> function.</li>
@@ -281,7 +281,7 @@
 <div class="section level2">
 <h2 id="random-effects-model">Random effects model<a class="anchor" aria-label="anchor" href="#random-effects-model"></a>
 </h2>
-<p>This section replicates some of the analyses of a random effects model published in Andrew Heiss’ blog post: <a href="https://www.andrewheiss.com/blog/2021/11/10/ame-bayes-re-guide" class="external-link">“A guide to correctly calculating posterior predictions and average marginal effects with multilievel Bayesian models.”</a> The objective is mainly to illustrate the use of <code>marginaleffects</code>. Please refer to the original post for a detailed discussion of the quantities computed below.</p>
+<p>This section replicates some of the analyses of a random effects model published in Andrew Heiss’ blog post: <a href="https://www.andrewheiss.com/blog/2021/11/10/ame-bayes-re-guide" class="external-link">“A guide to correctly calculating posterior predictions and average marginal effects with multilevel Bayesian models.”</a> The objective is mainly to illustrate the use of <code>marginaleffects</code>. Please refer to the original post for a detailed discussion of the quantities computed below.</p>
 <p>Load libraries and download data:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
@@ -356,7 +356,7 @@
 <span><span class="co">#&gt;                         region media_index      eps</span></span>
 <span><span class="co">#&gt; 1 Middle East and North Africa       0.837       NA</span></span>
 <span><span class="co">#&gt; 2 Middle East and North Africa       0.837 9.56e-05</span></span></code></pre></div>
-<p>Use the <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> to extract draws from the posterio distribution of marginal effects, and plot them:</p>
+<p>Use the <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> to extract draws from the posterior distribution of marginal effects, and plot them:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span></span>

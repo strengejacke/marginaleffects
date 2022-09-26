@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -415,7 +415,7 @@ hp
 <span><span class="co">#&gt;    type predicted  std.error statistic      p.value   conf.low conf.high  by</span></span>
 <span><span class="co">#&gt; 1 probs 0.4218766 0.02312133 18.246210 2.217708e-74 0.37655960 0.4671935 3,4</span></span>
 <span><span class="co">#&gt; 2 probs 0.1562469 0.04624265  3.378848 7.279037e-04 0.06561294 0.2468808   5</span></span></code></pre></div>
-<p>This can be very useful in combination with the <code>hypothesis</code> argument. For example, here we compute the difference between average adjusted predictions for the 3 and 4 response levels, compared to the 5 reponse level:</p>
+<p>This can be very useful in combination with the <code>hypothesis</code> argument. For example, here we compute the difference between average adjusted predictions for the 3 and 4 response levels, compared to the 5 response level:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span>, hypothesis <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>

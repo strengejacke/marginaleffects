@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +91,7 @@
     
 <p>Note: This vignette requires version 0.8.0 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version from Github.</a></p>
 <p>This vignette replicates some of the analyses in this excellent blog post by Frank Harrell: <a href="https://www.fharrell.com/post/rdist/" class="external-link">Avoiding One-Number Summaries of Treatment Effects for RCTs with Binary Outcomes</a>. Here, we show how one-number summaries and the entire distribution unit-level contrasts can be easily computed with <code><a href="../reference/comparisons.html">comparisons()</a></code>.</p>
-<p>Dr. Harrell discusses summaries from logistic regression models in the blog post above. He focuses on a context in which one is interested in comparing two groups, such as in randomized controlled trials. He highlights potential pitfalls of presenting “one-number summmaries”, e.g., odds ratio and mean proportion difference. Finally, he recommends focusing on the entire distribution of proportion difference between groups.</p>
+<p>Dr. Harrell discusses summaries from logistic regression models in the blog post above. He focuses on a context in which one is interested in comparing two groups, such as in randomized controlled trials. He highlights potential pitfalls of presenting “one-number summaries”, e.g., odds ratio and mean proportion difference. Finally, he recommends focusing on the entire distribution of proportion difference between groups.</p>
 <p>For clarification, we use the following terms interchangeably in the context of logistic regression where the covariate of interest is categorical:</p>
 <ul>
 <li>Contrast</li>
@@ -238,7 +238,7 @@ RMSE
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function above computed the predicted probability of mortality (<code>day30==1</code>) for each observed row of the data in two couterfactual cases: when <code>tx</code> is “SK”, and when <code>tx</code> is “tPA”. Then, it computed the differences between these two sets of predictions. Finally, it computed the population-average of risk differences.</p>
+<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function above computed the predicted probability of mortality (<code>day30==1</code>) for each observed row of the data in two counterfactual cases: when <code>tx</code> is “SK”, and when <code>tx</code> is “tPA”. Then, it computed the differences between these two sets of predictions. Finally, it computed the population-average of risk differences.</p>
 <p>Instead of risk <em>differences</em>, we could compute population-averaged (marginal) adjusted risk <em>ratios</em>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
