@@ -75,6 +75,7 @@
 <span>  FUN_factor <span class="op">=</span> <span class="va">Mode</span>,</span>
 <span>  FUN_logical <span class="op">=</span> <span class="va">Mode</span>,</span>
 <span>  FUN_numeric <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  FUN_integer <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  FUN_other <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -116,6 +117,10 @@
 
 <dt>FUN_numeric</dt>
 <dd><p>the function to be applied to numeric variables.</p></dd>
+
+
+<dt>FUN_integer</dt>
+<dd><p>the function to be applied to integer variables.</p></dd>
 
 
 <dt>FUN_other</dt>
@@ -163,9 +168,9 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
 <span class="r-in"><span><span class="co"># We get the same result by feeding a model instead of a data.frame</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">datagrid</span><span class="op">(</span>model <span class="op">=</span> <span class="va">mod</span>, hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 110</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        mpg  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 20.09062 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 20.09062 110</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use in `marginaleffects` to compute "Typical Marginal Effects". When used</span></span></span>
 <span class="r-in"><span><span class="co"># in `marginaleffects()` or `predictions()` we do not need to specify the</span></span></span>
@@ -174,9 +179,9 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term        dydx std.error statistic      p.value    conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp -0.06822828 0.0101193 -6.742389 1.558038e-11 -0.08806175</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp -0.06822828 0.0101193 -6.742389 1.558038e-11 -0.08806175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.high predicted predicted_hi predicted_lo  hp mpg    eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.04839481  23.27603     23.27410     23.27603 100  21 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.04839481  22.59375     22.59182     22.59375 110  21 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.high predicted predicted_hi predicted_lo      mpg  hp    eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.04839481  23.27603     23.27410     23.27603 20.09062 100 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.04839481  22.59375     22.59182     22.59375 20.09062 110 0.0283</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># datagrid accepts functions</span></span></span>
 <span class="r-in"><span><span class="fu">datagrid</span><span class="op">(</span>hp <span class="op">=</span> <span class="va">range</span>, cyl <span class="op">=</span> <span class="va">unique</span>, newdata <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
@@ -201,12 +206,18 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high predicted predicted_hi predicted_lo  hp mpg    eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481 26.550990    26.516876    26.585104  52  21 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.08806175 -0.04839481 23.548946    23.514832    23.583060  96  21 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.08806175 -0.04839481 21.706782    21.672668    21.740896 123  21 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.08806175 -0.04839481 17.817770    17.783656    17.851885 180  21 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.08806175 -0.04839481  7.242387     7.208273     7.276502 335  21 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high predicted predicted_hi predicted_lo      mpg  hp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481 26.550990    26.516876    26.585104 20.09062  52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.08806175 -0.04839481 23.548946    23.514832    23.583060 20.09062  96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.08806175 -0.04839481 21.706782    21.672668    21.740896 20.09062 123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.08806175 -0.04839481 17.817770    17.783656    17.851885 20.09062 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.08806175 -0.04839481  7.242387     7.208273     7.276502 20.09062 335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.0283</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The full dataset is duplicated with each observation given counterfactual</span></span></span>
 <span class="r-in"><span><span class="co"># values of 100 and 110 for the `hp` variable. The original `mtcars` includes</span></span></span>

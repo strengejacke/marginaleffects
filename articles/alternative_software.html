@@ -159,14 +159,14 @@
 <span><span class="co">#&gt; 1     1 response   hp       +1 -1.557824e-10 6.803615e-07 -0.00022897 0.9998173</span></span>
 <span><span class="co">#&gt; 2     1 response  cyl    6 - 4 -2.221851e-01 3.916435e-01 -0.56731461 0.5705005</span></span>
 <span><span class="co">#&gt; 3     1 response  cyl    8 - 4 -5.946855e-01 5.097420e-01 -1.16664014 0.2433557</span></span>
-<span><span class="co">#&gt;        conf.low    conf.high    predicted predicted_hi predicted_lo       hp</span></span>
-<span><span class="co">#&gt; 1 -1.333640e-06 1.333328e-06 4.782094e-09 4.704837e-09 4.860620e-09 146.6875</span></span>
-<span><span class="co">#&gt; 2 -9.897921e-01 5.454220e-01 4.782094e-09 3.725004e-01 5.946855e-01 146.6875</span></span>
-<span><span class="co">#&gt; 3 -1.593761e+00 4.043905e-01 4.782094e-09 4.782094e-09 5.946855e-01 146.6875</span></span>
-<span><span class="co">#&gt;   cyl vs    eps</span></span>
-<span><span class="co">#&gt; 1   8  0 0.0283</span></span>
-<span><span class="co">#&gt; 2   8  0     NA</span></span>
-<span><span class="co">#&gt; 3   8  0     NA</span></span></code></pre></div>
+<span><span class="co">#&gt;        conf.low    conf.high    predicted predicted_hi predicted_lo     vs</span></span>
+<span><span class="co">#&gt; 1 -1.333640e-06 1.333328e-06 4.782094e-09 4.704837e-09 4.860620e-09 0.4375</span></span>
+<span><span class="co">#&gt; 2 -9.897921e-01 5.454220e-01 4.782094e-09 3.725004e-01 5.946855e-01 0.4375</span></span>
+<span><span class="co">#&gt; 3 -1.593761e+00 4.043905e-01 4.782094e-09 4.782094e-09 5.946855e-01 0.4375</span></span>
+<span><span class="co">#&gt;         hp cyl    eps</span></span>
+<span><span class="co">#&gt; 1 146.6875   8 0.0283</span></span>
+<span><span class="co">#&gt; 2 146.6875   8     NA</span></span>
+<span><span class="co">#&gt; 3 146.6875   8     NA</span></span></code></pre></div>
 <p>Link scale, pairwise contrasts:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
@@ -187,10 +187,14 @@
 <span><span class="co">#&gt; 1     1 link  cyl    6 - 4  -0.9048741    1.630231 -0.555058785 0.5788545</span></span>
 <span><span class="co">#&gt; 2     1 link  cyl    8 - 4 -19.5417566 4367.165924 -0.004474700 0.9964297</span></span>
 <span><span class="co">#&gt; 3     1 link  cyl    8 - 6 -18.6368825 4367.165407 -0.004267501 0.9965950</span></span>
-<span><span class="co">#&gt;       conf.low  conf.high predicted predicted_hi predicted_lo       hp cyl vs</span></span>
-<span><span class="co">#&gt; 1    -4.100068    2.29032 -19.15839   -0.5215048    0.3833693 146.6875   8  0</span></span>
-<span><span class="co">#&gt; 2 -8579.029682 8539.94617 -19.15839  -19.1583873    0.3833693 146.6875   8  0</span></span>
-<span><span class="co">#&gt; 3 -8578.123795 8540.85003 -19.15839  -19.1583873   -0.5215048 146.6875   8  0</span></span></code></pre></div>
+<span><span class="co">#&gt;       conf.low  conf.high predicted predicted_hi predicted_lo     vs       hp</span></span>
+<span><span class="co">#&gt; 1    -4.100068    2.29032 -19.15839   -0.5215048    0.3833693 0.4375 146.6875</span></span>
+<span><span class="co">#&gt; 2 -8579.029682 8539.94617 -19.15839  -19.1583873    0.3833693 0.4375 146.6875</span></span>
+<span><span class="co">#&gt; 3 -8578.123795 8540.85003 -19.15839  -19.1583873   -0.5215048 0.4375 146.6875</span></span>
+<span><span class="co">#&gt;   cyl</span></span>
+<span><span class="co">#&gt; 1   8</span></span>
+<span><span class="co">#&gt; 2   8</span></span>
+<span><span class="co">#&gt; 3   8</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="contrasts-by-group">Contrasts by group<a class="anchor" aria-label="anchor" href="#contrasts-by-group"></a>
@@ -319,14 +323,14 @@
 <span><span class="co">#&gt; 1     1 response   hp    dY/dX -0.007852329 0.01110851 -0.7068751 0.4796441</span></span>
 <span><span class="co">#&gt; 2     1 response  cyl    6 - 4 -0.222185055 0.39164346 -0.5673146 0.5705005</span></span>
 <span><span class="co">#&gt; 3     1 response  cyl    8 - 4 -0.594685481 0.50974200 -1.1666401 0.2433557</span></span>
-<span><span class="co">#&gt;      conf.low  conf.high predicted predicted_hi predicted_lo       hp cyl vs</span></span>
-<span><span class="co">#&gt; 1 -0.02962461 0.01391995 0.5946855 5.944633e-01    0.5946855 146.6875   4  0</span></span>
-<span><span class="co">#&gt; 2 -0.98979213 0.54542202 0.5946855 3.725004e-01    0.5946855 146.6875   4  0</span></span>
-<span><span class="co">#&gt; 3 -1.59376144 0.40439048 0.5946855 4.782094e-09    0.5946855 146.6875   4  0</span></span>
-<span><span class="co">#&gt;      eps</span></span>
-<span><span class="co">#&gt; 1 0.0283</span></span>
-<span><span class="co">#&gt; 2     NA</span></span>
-<span><span class="co">#&gt; 3     NA</span></span></code></pre></div>
+<span><span class="co">#&gt;      conf.low  conf.high predicted predicted_hi predicted_lo     vs       hp</span></span>
+<span><span class="co">#&gt; 1 -0.02962461 0.01391995 0.5946855 5.944633e-01    0.5946855 0.4375 146.6875</span></span>
+<span><span class="co">#&gt; 2 -0.98979213 0.54542202 0.5946855 3.725004e-01    0.5946855 0.4375 146.6875</span></span>
+<span><span class="co">#&gt; 3 -1.59376144 0.40439048 0.5946855 4.782094e-09    0.5946855 0.4375 146.6875</span></span>
+<span><span class="co">#&gt;   cyl    eps</span></span>
+<span><span class="co">#&gt; 1   4 0.0283</span></span>
+<span><span class="co">#&gt; 2   4     NA</span></span>
+<span><span class="co">#&gt; 3   4     NA</span></span></code></pre></div>
 <p>Link scale, user-specified values:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emtrends</a></span><span class="op">(</span><span class="va">mod</span>, <span class="op">~</span><span class="va">hp</span>, <span class="st">"hp"</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
@@ -340,14 +344,14 @@
 <span><span class="co">#&gt; 1     1 link   hp    dY/dX  -0.03257475 3.388105e-02 -0.9614446 0.3363287</span></span>
 <span><span class="co">#&gt; 2     1 link  cyl    6 - 4  -0.90487411 1.630231e+00 -0.5550588 0.5788545</span></span>
 <span><span class="co">#&gt; 3     1 link  cyl    8 - 4 -19.54175662 4.367166e+03 -0.0044747 0.9964297</span></span>
-<span><span class="co">#&gt;        conf.low    conf.high predicted predicted_hi predicted_lo       hp cyl</span></span>
-<span><span class="co">#&gt; 1 -9.898038e-02 3.383088e-02 0.3833693    0.3824475    0.3833693 146.6875   4</span></span>
-<span><span class="co">#&gt; 2 -4.100068e+00 2.290320e+00 0.3833693   -0.5215048    0.3833693 146.6875   4</span></span>
-<span><span class="co">#&gt; 3 -8.579030e+03 8.539946e+03 0.3833693  -19.1583873    0.3833693 146.6875   4</span></span>
-<span><span class="co">#&gt;   vs    eps</span></span>
-<span><span class="co">#&gt; 1  0 0.0283</span></span>
-<span><span class="co">#&gt; 2  0     NA</span></span>
-<span><span class="co">#&gt; 3  0     NA</span></span></code></pre></div>
+<span><span class="co">#&gt;        conf.low    conf.high predicted predicted_hi predicted_lo     vs</span></span>
+<span><span class="co">#&gt; 1 -9.898038e-02 3.383088e-02 0.3833693    0.3824475    0.3833693 0.4375</span></span>
+<span><span class="co">#&gt; 2 -4.100068e+00 2.290320e+00 0.3833693   -0.5215048    0.3833693 0.4375</span></span>
+<span><span class="co">#&gt; 3 -8.579030e+03 8.539946e+03 0.3833693  -19.1583873    0.3833693 0.4375</span></span>
+<span><span class="co">#&gt;         hp cyl    eps</span></span>
+<span><span class="co">#&gt; 1 146.6875   4 0.0283</span></span>
+<span><span class="co">#&gt; 2 146.6875   4     NA</span></span>
+<span><span class="co">#&gt; 3 146.6875   4     NA</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -455,14 +459,14 @@
 <span><span class="co">#&gt; 1     1 response  cyl -0.9416168 0.55091633 -1.709183 8.741706e-02 -2.02139298</span></span>
 <span><span class="co">#&gt; 2     1 response   hp -0.0180381 0.01187625 -1.518838 1.288032e-01 -0.04131512</span></span>
 <span><span class="co">#&gt; 3     1 response   wt -3.1669731 0.74057579 -4.276366 1.899688e-05 -4.61847499</span></span>
-<span><span class="co">#&gt;     conf.high predicted predicted_hi predicted_lo    cyl       hp      wt mpg</span></span>
-<span><span class="co">#&gt; 1  0.13815935  20.09062     20.09025     20.09062 6.1875 146.6875 3.21725  21</span></span>
-<span><span class="co">#&gt; 2  0.00523892  20.09062     20.09011     20.09062 6.1875 146.6875 3.21725  21</span></span>
-<span><span class="co">#&gt; 3 -1.71547124  20.09062     20.08939     20.09062 6.1875 146.6875 3.21725  21</span></span>
-<span><span class="co">#&gt;         eps</span></span>
-<span><span class="co">#&gt; 1 0.0004000</span></span>
-<span><span class="co">#&gt; 2 0.0283000</span></span>
-<span><span class="co">#&gt; 3 0.0003911</span></span></code></pre></div>
+<span><span class="co">#&gt;     conf.high predicted predicted_hi predicted_lo      mpg    cyl       hp</span></span>
+<span><span class="co">#&gt; 1  0.13815935  20.09062     20.09025     20.09062 20.09062 6.1875 146.6875</span></span>
+<span><span class="co">#&gt; 2  0.00523892  20.09062     20.09011     20.09062 20.09062 6.1875 146.6875</span></span>
+<span><span class="co">#&gt; 3 -1.71547124  20.09062     20.08939     20.09062 20.09062 6.1875 146.6875</span></span>
+<span><span class="co">#&gt;        wt       eps</span></span>
+<span><span class="co">#&gt; 1 3.21725 0.0004000</span></span>
+<span><span class="co">#&gt; 2 3.21725 0.0283000</span></span>
+<span><span class="co">#&gt; 3 3.21725 0.0003911</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="counterfactual-average-marginal-effects">Counterfactual Average Marginal Effects<a class="anchor" aria-label="anchor" href="#counterfactual-average-marginal-effects"></a>
@@ -754,13 +758,7 @@ Expression   : Linear prediction, predict()
 <blockquote>
 <p>This package has functions to calculate marginal effects from brms models ( <a href="http://paul-buerkner.github.io/brms/" class="external-link uri">http://paul-buerkner.github.io/brms/</a> ). A central motivator is to calculate average marginal effects (AMEs) for continuous and discrete predictors in fixed effects only and mixed effects regression models including location scale models.</p>
 </blockquote>
-<p>The two main advantages of <code>brmsmargins</code> over <code>marginaleffects</code> are:</p>
-<ol style="list-style-type: decimal">
-<li>Ability to compute “Marginal Coefficients” following the method described in <a href="https://doi.org/10.1111/biom.12707" class="external-link">Hedeker et al (2012).</a>
-</li>
-<li>Ability to <a href="https://joshuawiley.com/brmsmargins/articles/mixed-effects-marginaleffects.html" class="external-link">“integrate out random effects.”</a>
-</li>
-</ol>
+<p>The main advantage of <code>brmsmargins</code> over <code>marginaleffects</code> is its ability to compute “Marginal Coefficients” following the method described in <a href="https://doi.org/10.1111/biom.12707" class="external-link">Hedeker et al (2012).</a></p>
 <p>The main advantages of <code>marginaleffects</code> over <code>brmsmargins</code> are:</p>
 <ol style="list-style-type: decimal">
 <li>Support for 60+ model types, rather than just the <code>brms</code> package.</li>
@@ -805,7 +803,7 @@ Expression   : Linear prediction, predict()
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">bayes.logistic</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span> <span class="op">+</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME MPG"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME MPG"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  CIType <span class="op">=</span> <span class="st">"ETI"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span><span class="op">)</span></span>
@@ -881,7 +879,7 @@ Expression   : Linear prediction, predict()
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">mlogit</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"includeRE"</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">.95</span>,</span>
 <span>  CIType <span class="op">=</span> <span class="st">"ETI"</span><span class="op">)</span></span>
@@ -906,7 +904,7 @@ Expression   : Linear prediction, predict()
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">mlogit</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"fixedonly"</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">.95</span>,</span>
 <span>  CIType <span class="op">=</span> <span class="st">"ETI"</span><span class="op">)</span></span>
@@ -962,7 +960,7 @@ Expression   : Linear prediction, predict()
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">0.95</span>, CIType <span class="op">=</span> <span class="st">"ETI"</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"fixedonly"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span><span class="op">)</span></span>
@@ -988,7 +986,7 @@ Expression   : Linear prediction, predict()
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME grp"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME grp"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">0.95</span>, CIType <span class="op">=</span> <span class="st">"ETI"</span>, dpar <span class="op">=</span> <span class="st">"sigma"</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"fixedonly"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span><span class="op">)</span></span>
@@ -1016,7 +1014,7 @@ Expression   : Linear prediction, predict()
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span> <span class="op">/</span> <span class="va">h</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">0.95</span>, CIType <span class="op">=</span> <span class="st">"ETI"</span>, dpar <span class="op">=</span> <span class="st">"sigma"</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"fixedonly"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span><span class="op">)</span></span>

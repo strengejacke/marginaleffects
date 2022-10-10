@@ -74,6 +74,7 @@
 <span>  FUN_factor <span class="op">=</span> <span class="va">Mode</span>,</span>
 <span>  FUN_logical <span class="op">=</span> <span class="va">Mode</span>,</span>
 <span>  FUN_numeric <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  FUN_integer <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  FUN_other <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -109,6 +110,10 @@
 
 <dt>FUN_numeric</dt>
 <dd><p>the function to be applied to numeric variables.</p></dd>
+
+
+<dt>FUN_integer</dt>
+<dd><p>the function to be applied to integer variables.</p></dd>
 
 
 <dt>FUN_other</dt>

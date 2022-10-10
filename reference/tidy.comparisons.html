@@ -70,7 +70,7 @@ unit-level contrasts computed by the <code>predictions</code> function.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for comparisons</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf_level <span class="op">=</span> <span class="fl">0.95</span>, transform_avg <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">x</span>, conf_level <span class="op">=</span> <span class="cn">NULL</span>, transform_avg <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -80,7 +80,7 @@ unit-level contrasts computed by the <code>predictions</code> function.</p>
 
 
 <dt>conf_level</dt>
-<dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
+<dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval. The default <code>NULL</code> uses the <code>conf_level</code> value used in the original call to <code><a href="comparisons.html">comparisons()</a></code>.</p></dd>
 
 
 <dt>transform_avg</dt>
