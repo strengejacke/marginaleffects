@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -523,13 +523,13 @@
 <span>    variable.name <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    id trt time           y</span></span>
-<span><span class="co">#&gt; 1:  1   1  pre -0.23685218</span></span>
-<span><span class="co">#&gt; 2:  2   0  pre -0.06701878</span></span>
-<span><span class="co">#&gt; 3:  3   1  pre -0.93721094</span></span>
-<span><span class="co">#&gt; 4:  4   0  pre -0.38813169</span></span>
-<span><span class="co">#&gt; 5:  5   1  pre -0.04054924</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre  0.78914189</span></span></code></pre></div>
+<span><span class="co">#&gt;    id trt time          y</span></span>
+<span><span class="co">#&gt; 1:  1   0  pre -0.6007222</span></span>
+<span><span class="co">#&gt; 2:  2   0  pre -1.6721979</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre  0.4556759</span></span>
+<span><span class="co">#&gt; 4:  4   1  pre  0.9180805</span></span>
+<span><span class="co">#&gt; 5:  5   1  pre -0.7123819</span></span>
+<span><span class="co">#&gt; 6:  6   1  pre -1.0589416</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We also compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -538,12 +538,12 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast comparison  std.error statistic     p.value</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre 0.05761793 0.08254926 0.6979824 0.485188224</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre 0.24774719 0.07680506 3.2256626 0.001256814</span></span>
-<span><span class="co">#&gt;      conf.low conf.high   predicted predicted_hi predicted_lo          y time</span></span>
-<span><span class="co">#&gt; 1 -0.10417566 0.2194115 -0.04690788   0.01071005  -0.04690788 0.03264011  pre</span></span>
-<span><span class="co">#&gt; 2  0.09721205 0.3982823 -0.04731015   0.20043705  -0.04731015 0.03264011  pre</span></span>
+<span><span class="co">#&gt;   rowid     type term   contrast  comparison  std.error  statistic      p.value</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre -0.04828016 0.07392410 -0.6531045 5.136889e-01</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre  0.30607278 0.07617611  4.0179628 5.870346e-05</span></span>
+<span><span class="co">#&gt;     conf.low  conf.high    predicted predicted_hi predicted_lo          y time</span></span>
+<span><span class="co">#&gt; 1 -0.1931687 0.09660841 -0.001999111  -0.05027927 -0.001999111 0.04454858  pre</span></span>
+<span><span class="co">#&gt; 2  0.1567703 0.45537521 -0.033427591   0.27264519 -0.033427591 0.04454858  pre</span></span>
 <span><span class="co">#&gt;   trt</span></span>
 <span><span class="co">#&gt; 1   0</span></span>
 <span><span class="co">#&gt; 2   1</span></span></code></pre></div>
@@ -554,10 +554,10 @@
 <span>    variables <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type          term comparison std.error statistic    p.value   conf.low</span></span>
-<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.1901293 0.1127537 -1.686235 0.09175051 -0.4111225</span></span>
+<span><span class="co">#&gt;       type          term comparison std.error statistic      p.value   conf.low</span></span>
+<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3543529 0.1061488 -3.338265 0.0008430318 -0.5624008</span></span>
 <span><span class="co">#&gt;    conf.high</span></span>
-<span><span class="co">#&gt; 1 0.03086394</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -0.1463051</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

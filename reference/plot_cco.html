@@ -16,7 +16,7 @@ interactions, where the values of contrasts depend on the values of
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,7 +135,7 @@ the <code>marginaleffects:::type_dictionary</code> dataframe.</p></dd>
 
 
 <dt>transform_pre</dt>
-<dd><p>string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>Supported shortcuts strings: difference, differenceavg, differenceavgwts, dydx, eyex, eydx, dyex, dydxavg, eyexavg, eydxavg, dyexavg, dydxavgwts, eyexavgwts, eydxavgwts, dyexavgwts, ratio, ratioavg, ratioavg, lnratio, lnratioavg, lnratioavg, lnor, lnoravg, lnoravgwts, expdydx, expdydxavg, expdydxavgwts</p></li>
+<dd><p>string or function. How should pairs of adjusted predictions be contrasted?</p><ul><li><p>string: shortcuts to common contrast functions.</p><ul><li><p>Supported shortcuts strings: difference, differenceavg, differenceavgwts, dydx, eyex, eydx, dyex, dydxavg, eyexavg, eydxavg, dyexavg, dydxavgwts, eyexavgwts, eydxavgwts, dyexavgwts, ratio, ratioavg, ratioavgwts, lnratio, lnratioavg, lnratioavgwts, lnor, lnoravg, lnoravgwts, expdydx, expdydxavg, expdydxavgwts</p></li>
 <li><p>See the Transformations section below for definitions of each transformation.</p></li>
 </ul></li>
 <li><p>function: accept two equal-length numeric vectors of adjusted predictions (<code>hi</code> and <code>lo</code>) and returns a vector of contrasts of the same length, or a unique numeric value.</p><ul><li><p>See the Transformations section below for examples of valid functions.</p></li>

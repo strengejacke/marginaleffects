@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -217,19 +217,19 @@
 <span>                                   passengerClass <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type           term  contrast          dydx     conf.low</span></span>
 <span><span class="co">#&gt; 1     1 response          woman     dY/dX  0.1562784430  0.111359140</span></span>
-<span><span class="co">#&gt; 2     1 response            age     dY/dX -0.0002383118 -0.001355295</span></span>
-<span><span class="co">#&gt; 3     1 response passengerClass 2nd - 1st -0.1574415687 -0.223274987</span></span>
-<span><span class="co">#&gt; 4     1 response passengerClass 3rd - 1st -0.3653763624 -0.438319255</span></span>
+<span><span class="co">#&gt; 2     2 response            age     dY/dX -0.0002383118 -0.001355295</span></span>
+<span><span class="co">#&gt; 3     3 response passengerClass 2nd - 1st -0.1574415687 -0.223274987</span></span>
+<span><span class="co">#&gt; 4     4 response passengerClass 3rd - 1st -0.3653763624 -0.438319255</span></span>
 <span><span class="co">#&gt;       conf.high predicted predicted_hi predicted_lo  survived      age woman</span></span>
 <span><span class="co">#&gt; 1  0.2087557243 0.9364135    0.9364295    0.9364135 0.4082218 29.88113     1</span></span>
-<span><span class="co">#&gt; 2  0.0008710313 0.9364135    0.9364102    0.9364135 0.4082218 29.88113     1</span></span>
-<span><span class="co">#&gt; 3 -0.1028896556 0.9364135    0.7782929    0.9364135 0.4082218 29.88113     1</span></span>
-<span><span class="co">#&gt; 4 -0.2947694986 0.9364135    0.5701027    0.9364135 0.4082218 29.88113     1</span></span>
-<span><span class="co">#&gt;   passengerClass        eps</span></span>
-<span><span class="co">#&gt; 1            1st 0.00010000</span></span>
-<span><span class="co">#&gt; 2            1st 0.00798333</span></span>
-<span><span class="co">#&gt; 3            1st         NA</span></span>
-<span><span class="co">#&gt; 4            1st         NA</span></span></code></pre></div>
+<span><span class="co">#&gt; 2  0.0008710313 0.9364135    0.9364102    0.9364135        NA       NA    NA</span></span>
+<span><span class="co">#&gt; 3 -0.1028896556 0.9364135    0.7782929    0.9364135        NA       NA    NA</span></span>
+<span><span class="co">#&gt; 4 -0.2947694986 0.9364135    0.5701027    0.9364135        NA       NA    NA</span></span>
+<span><span class="co">#&gt;   passengerClass   eps</span></span>
+<span><span class="co">#&gt; 1            1st 1e-04</span></span>
+<span><span class="co">#&gt; 2           &lt;NA&gt;    NA</span></span>
+<span><span class="co">#&gt; 3           &lt;NA&gt;    NA</span></span>
+<span><span class="co">#&gt; 4           &lt;NA&gt;    NA</span></span></code></pre></div>
 <p>Compute and plot conditional marginal effects:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"woman"</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
@@ -349,13 +349,13 @@
 <span><span class="va">mfx</span></span>
 <span><span class="co">#&gt;   rowid     type            term     contrast      dydx  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1     1 response  party_autonomy TRUE - FALSE 0.2517104 0.1663314 0.3355927</span></span>
-<span><span class="co">#&gt; 2     1 response civil_liberties        dY/dX 0.8160498 0.6213970 1.0066362</span></span>
+<span><span class="co">#&gt; 2     2 response civil_liberties        dY/dX 0.8160498 0.6213970 1.0066362</span></span>
 <span><span class="co">#&gt;   predicted predicted_hi predicted_lo media_index party_autonomy</span></span>
 <span><span class="co">#&gt; 1 0.6213442    0.6213442    0.3684876   0.6723184           TRUE</span></span>
-<span><span class="co">#&gt; 2 0.6213442    0.6214182    0.6213442   0.6723184           TRUE</span></span>
-<span><span class="co">#&gt;   civil_liberties                       region      eps</span></span>
-<span><span class="co">#&gt; 1             0.5 Middle East and North Africa       NA</span></span>
-<span><span class="co">#&gt; 2             0.5 Middle East and North Africa 9.56e-05</span></span></code></pre></div>
+<span><span class="co">#&gt; 2 0.6213442    0.6214182    0.6213442          NA             NA</span></span>
+<span><span class="co">#&gt;   civil_liberties                       region eps</span></span>
+<span><span class="co">#&gt; 1             0.5 Middle East and North Africa  NA</span></span>
+<span><span class="co">#&gt; 2              NA                         &lt;NA&gt;  NA</span></span></code></pre></div>
 <p>Use the <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> to extract draws from the posterior distribution of marginal effects, and plot them:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -589,8 +589,8 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type x predicted  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response 0 0.4527301 0.3414855 0.5704938</span></span>
-<span><span class="co">#&gt; 2 response 1 0.5525219 0.4370113 0.6651359</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response 0 0.4523747 0.3381830 0.5669336</span></span>
+<span><span class="co">#&gt; 2 response 1 0.5502966 0.4409192 0.6675589</span></span></code></pre></div>
 <p>We can “integrate out” random effects in the other <code>marginaleffects</code> functions too. For instance,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -600,7 +600,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term Contrast  Effect   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x    1 - 0 0.09636 0.04702 0.1612</span></span>
+<span><span class="co">#&gt; 1    x    1 - 0 0.09716 0.04869 0.1641</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -617,7 +617,7 @@
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType</span></span>
-<span><span class="co">#&gt; 1 0.09899414 0.09726462 0.04650222 0.1629056          NA         NA 0.95    ETI</span></span>
+<span><span class="co">#&gt; 1 0.09908885 0.09680817 0.04783717 0.1622363          NA         NA 0.95    ETI</span></span>
 <span><span class="co">#&gt;   ROPE  MID Label</span></span>
 <span><span class="co">#&gt; 1 &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html" class="external-link">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
@@ -671,13 +671,17 @@
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group  Term   Effect   2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1    ec ic.gc   4.3839   4.007   4.7376</span></span>
-<span><span class="co">#&gt; 2    ec oc.gc  19.3866  17.717  20.9493</span></span>
-<span><span class="co">#&gt; 3    er ic.gc   0.0928  -0.270   0.4149</span></span>
-<span><span class="co">#&gt; 4    er oc.gc   0.4105  -1.194   1.8349</span></span>
-<span><span class="co">#&gt; 5    gc ic.gc  -7.9963  -8.498  -7.4477</span></span>
-<span><span class="co">#&gt; 6    gc oc.gc -35.3623 -37.581 -32.9363</span></span>
+<span><span class="co">#&gt;    Group  Term     Effect      2.5 %    97.5 %</span></span>
+<span><span class="co">#&gt; 1     ec ic.gc -1.773e-04 -3.961e-04 2.368e-05</span></span>
+<span><span class="co">#&gt; 2     ec oc.gc  4.877e-04 -4.035e-04 1.447e-03</span></span>
+<span><span class="co">#&gt; 3     er ic.gc  1.653e-05 -2.256e-04 2.506e-04</span></span>
+<span><span class="co">#&gt; 4     er oc.gc -1.020e-03 -2.069e-03 2.983e-05</span></span>
+<span><span class="co">#&gt; 5     gc ic.gc  1.380e-05 -3.724e-04 3.998e-04</span></span>
+<span><span class="co">#&gt; 6     gc oc.gc  1.044e-03 -7.393e-04 2.784e-03</span></span>
+<span><span class="co">#&gt; 7     gr ic.gc  4.243e-05 -2.365e-04 3.295e-04</span></span>
+<span><span class="co">#&gt; 8     gr oc.gc  9.458e-05 -1.186e-03 1.342e-03</span></span>
+<span><span class="co">#&gt; 9     hp ic.gc  1.073e-04 -7.726e-05 2.967e-04</span></span>
+<span><span class="co">#&gt; 10    hp oc.gc -5.853e-04 -1.453e-03 2.296e-04</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -705,7 +709,7 @@
 <span><span class="va">WARMUP</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span><span class="va">BAYES_SEED</span> <span class="op">&lt;-</span> <span class="fl">1234</span></span>
 <span></span>
-<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op">|&gt;</span> </span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="co"># Make a bunch of GDP values 0</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,</span>

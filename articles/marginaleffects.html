@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -372,11 +372,11 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span></span>
 <span><span class="co">#&gt;         dydx truth</span></span>
-<span><span class="co">#&gt; 1 -6.9958658    -7</span></span>
-<span><span class="co">#&gt; 2 -2.9980496    -3</span></span>
-<span><span class="co">#&gt; 3  0.9997667     1</span></span>
-<span><span class="co">#&gt; 4  4.9975830     5</span></span>
-<span><span class="co">#&gt; 5  8.9953993     9</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -7.0011458    -7</span></span>
+<span><span class="co">#&gt; 2 -3.0040054    -3</span></span>
+<span><span class="co">#&gt; 3  0.9931349     1</span></span>
+<span><span class="co">#&gt; 4  4.9902753     5</span></span>
+<span><span class="co">#&gt; 5  8.9874156     9</span></span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
