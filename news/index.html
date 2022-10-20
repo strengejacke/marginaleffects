@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,10 +63,13 @@
 <h2 class="pkg-version" data-toc-text="0.7.1.9000" id="marginaleffects-0719000">marginaleffects 0.7.1.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0719000"></a></h2>
 <ul><li>
 <code>brms</code> models: Integrate out random effects (see Bayes vignette for details)</li>
+<li>Can specify pairs of factors to compare in the <code>variables</code> argument of the <code>comparisons</code> function.</li>
 <li>Interactions with <code><a href="https://lrberge.github.io/fixest/reference/i.html" class="external-link">fixest::i()</a></code> are parsed properly as categorical variables</li>
 <li>The default value of <code>conf_level</code> in <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> is now <code>NULL</code>, which inherits the <code>conf_level</code> value in the original <code>comparisons</code>/<code>marginaleffects</code>/<code>predictions</code> calls.</li>
 <li>Fix typo in function names for missing “lnratioavgwts”</li>
 <li>New <code><a href="../reference/update_marginaleffects.html">update_marginaleffects()</a></code> function makes it easy to install the dev versions of <code>marginaleffects</code> and its dependencies (mostly useful for Vincent and people who report bugs).</li>
+<li>New vignette: Extending <code>marginaleffects</code>
+</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.1" id="marginaleffects-071">marginaleffects 0.7.1<a class="anchor" aria-label="anchor" href="#marginaleffects-071"></a></h2><p class="text-muted">CRAN release: 2022-09-25</p>
