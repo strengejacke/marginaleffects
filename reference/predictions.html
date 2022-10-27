@@ -28,7 +28,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9005</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,7 +113,34 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 
 
 <dt>newdata</dt>
-<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the grid of predictors on which we make predictions.</p><ul><li><p><code>NULL</code> (default): Predictions for each observed value in the original dataset.</p></li>
+<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute marginal effects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
+<li><p>data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
+<li><p>string:</p><ul><li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
+<li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its median or mode.</p></li>
+<li><p>"marginalmeans": Marginal Effects at Marginal Means. See Details section below.</p></li>
+<li><p>"tukey": Marginal Effects at Tukey's 5 numbers.</p></li>
+<li><p>"grid": Marginal Effects on a grid of representative numbers (Tukey's 5 numbers and unique values of categorical predictors).</p></li>
+</ul></li>
+<li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
+</ul></li>
+</ul></dd>
+
+
+<dt>variables</dt>
+<dd><p><code>NULL</code>, character vector, or named list. The subset of variables to use for creating a counterfactual grid of predictions. The entire dataset replicated for each unique combination of the variables in this list. See the Examples section below.</p><ul><li><p>Warning: This can use a lot of memory if there are many variables and values, and when the dataset is large.</p></li>
+<li><p><code>NULL</code>: computes one prediction per row of <code>newdata</code></p></li>
+<li><p>Named list: names identify the subset of variables of interest and their values. For numeric variables, the <code>variables</code> argument supports functions and string shortcuts:</p><ul><li><p>A function which returns a numeric value</p></li>
+<li><p>Numeric vector: Contrast between the 2nd element and the 1st element of the <code>x</code> vector.</p></li>
+<li><p>"iqr": Contrast across the interquartile range of the regressor.</p></li>
+<li><p>"sd": Contrast across one standard deviation around the regressor mean.</p></li>
+<li><p>"2sd": Contrast across two standard deviations around the regressor mean.</p></li>
+<li><p>"minmax": Contrast between the maximum and the minimum values of the regressor.</p></li>
+<li><p>"threenum": mean and 1 standard deviation on both sides</p></li>
+<li><p>"fivenum": Tukey's five numbers
+#' @param newdata <code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the grid of predictors on which we make predictions.</p></li>
+</ul></li>
+</ul><ul><li><p><code>NULL</code> (default): Predictions for each observed value in the original dataset.</p></li>
 <li><p>data frame: Predictions for each row of the <code>newdata</code> data frame.</p></li>
 <li><p>string:</p><ul><li><p>"mean": Predictions at the Mean. Predictions when each predictor is held at its mean or mode.</p></li>
 <li><p>"median": Predictions at the Median. Predictions when each predictor is held at its median or mode.</p></li>
@@ -125,14 +152,6 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 <li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
 </ul></li>
 </ul></dd>
-
-
-<dt>variables</dt>
-<dd><p>Named list of variables with values to create a
-counterfactual grid of predictions. The entire dataset replicated
-for each unique combination of the variables in this list. See the Examples
-section below. Warning: This can use a lot of memory if there are many
-variables and values, and when the dataset is large.</p></dd>
 
 
 <dt>vcov</dt>
@@ -258,6 +277,7 @@ the bounds of a binary response variables.</p>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/lme4.html" class="external-link">Mixed effects models</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mlogit.html" class="external-link">Multinomial Logit and Discrete Choice Models</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/multiple_imputation.html" class="external-link">Multiple Imputation</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html" class="external-link">Plots: interactions, predictions, contrasts, and slopes</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/python.html" class="external-link">Python NumPyro models in <code>marginaleffects</code></a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/logistic_contrasts.html" class="external-link">Unit-level contrasts in logistic regressions</a></p></li>
 </ul><p>Tips and technical notes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html" class="external-link">69 Supported Classes of Models</a></p></li>

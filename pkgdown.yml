@@ -20,6 +20,7 @@ articles:
   modelsummary: modelsummary.html
   multiple_imputation: multiple_imputation.html
   performance: performance.html
+  plot: plot.html
   predictions: predictions.html
   python: python.html
   sandwich: sandwich.html
@@ -27,5 +28,5 @@ articles:
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-10-20T12:20Z
+last_built: 2022-10-27T21:41Z
 
