@@ -7,6 +7,7 @@ articles:
   contrasts: contrasts.html
   documentation: documentation.html
   elasticity: elasticity.html
+  experiments: experiments.html
   extensions: extensions.html
   faq: faq.html
   gam: gam.html
@@ -28,5 +29,5 @@ articles:
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-10-28T16:17Z
+last_built: 2022-10-29T02:15Z
 

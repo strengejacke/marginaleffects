@@ -26,7 +26,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9008</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,6 +140,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 </ul></li>
 <li><p>Numeric variables:</p><ul><li><p>Numeric of length 1: Contrast for a gap of <code>x</code>, computed at the observed value plus and minus <code>x / 2</code>. For example, estimating a <code>+1</code> contrast compares adjusted predictions when the regressor is equal to its observed value minus 0.5 and its observed value plus 0.5.</p></li>
 <li><p>Numeric vector of length 2: Contrast between the 2nd element and the 1st element of the <code>x</code> vector.</p></li>
+<li><p>Function which accepts a numeric vector and returns a data frame with two columns of "low" and "high" values to compare. See examples below.</p></li>
 <li><p>"iqr": Contrast across the interquartile range of the regressor.</p></li>
 <li><p>"sd": Contrast across one standard deviation around the regressor mean.</p></li>
 <li><p>"2sd": Contrast across two standard deviations around the regressor mean.</p></li>
@@ -279,6 +280,7 @@ method.</p>
 </ul><p>Case studies:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html" class="external-link">Bayesian Analyses with <code>brms</code></a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html" class="external-link">Causal Inference with the g-Formula</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/elasticity.html" class="external-link">Elasticity</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/experiments.html" class="external-link">Experiments</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gam.html" class="external-link">Generalized Additive Models</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/lme4.html" class="external-link">Mixed effects models</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/mlogit.html" class="external-link">Multinomial Logit and Discrete Choice Models</a></p></li>
@@ -286,7 +288,7 @@ method.</p>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html" class="external-link">Plots: interactions, predictions, contrasts, and slopes</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/python.html" class="external-link">Python NumPyro models in <code>marginaleffects</code></a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/logistic_contrasts.html" class="external-link">Unit-level contrasts in logistic regressions</a></p></li>
-</ul><p>Tips and technical notes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html" class="external-link">69 Supported Classes of Models</a></p></li>
+</ul><p>Tips and technical notes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html" class="external-link">71 Supported Classes of Models</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/reference/index.html" class="external-link">Index of Functions and Documentation</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/extensions.html" class="external-link">Extending <code>marginaleffects</code>: add new models or modify existing ones</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/sandwich.html" class="external-link">Standard Errors and Confidence Intervals</a></p></li>
@@ -320,12 +322,23 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘magrittr’</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from ‘package:marginaleffects’:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     set_attributes</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Linear model</span></span></span>
 <span class="r-in"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>
 <span class="r-in"><span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">tmp</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"reference"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `cyl` variable is treated as a categorical (factor) variable, but</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   the original data is of class numeric. It is safer and faster to convert</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   such variables to factor before fitting the model and calling</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   `marginaleffects` functions.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   This warning appears once per session.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast   estimate std.error statistic      p.value   conf.low</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  cyl    6 - 4  -6.156118  1.535723 -4.008612 6.107658e-05  -9.166079</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl    8 - 4 -10.067560  1.452082 -6.933187 4.114626e-12 -12.913589</span>
@@ -444,6 +457,18 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp Max - Min -19.3086  2.863763 -6.742389 1.558038e-11 -24.92147</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -13.69573</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># using a function to specify a custom difference in one regressor</span></span></span>
+<span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>
+<span class="r-in"><span><span class="va">dat</span><span class="op">$</span><span class="va">new_hp</span> <span class="op">&lt;-</span> <span class="fl">49</span> <span class="op">*</span> <span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span><span class="va">modlog</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">new_hp</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fdiff</span> <span class="op">&lt;-</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">modlog</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>new_hp <span class="op">=</span> <span class="va">fdiff</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Term Contrast Effect Std. Error z value  Pr(&gt;|z|)  2.5 %  97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 new_hp   custom -1.974     0.7105  -2.778 0.0054696 -3.366 -0.5812</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjusted Risk Ratio: see the contrasts vignette</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
