@@ -524,12 +524,12 @@
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   1  pre  1.6309399</span></span>
-<span><span class="co">#&gt; 2:  2   0  pre -0.4683914</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre -0.7296343</span></span>
-<span><span class="co">#&gt; 4:  4   1  pre -0.7926716</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre  0.9631087</span></span>
-<span><span class="co">#&gt; 6:  6   0  pre -0.1323223</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:  1   0  pre -0.0106070</span></span>
+<span><span class="co">#&gt; 2:  2   0  pre -0.5718581</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre  2.1378202</span></span>
+<span><span class="co">#&gt; 4:  4   0  pre  2.2126474</span></span>
+<span><span class="co">#&gt; 5:  5   1  pre  0.9047156</span></span>
+<span><span class="co">#&gt; 6:  6   1  pre  0.5578188</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We also compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -539,14 +539,14 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type term   contrast   comparison  std.error   statistic</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.003891679 0.07434708 -0.05234474</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.333651098 0.07554630  4.41651129</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre -0.005405498 0.07948166 -0.06800938</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre  0.309290945 0.07499797  4.12399075</span></span>
 <span><span class="co">#&gt;        p.value   conf.low conf.high  predicted predicted_hi predicted_lo</span></span>
-<span><span class="co">#&gt; 1 9.582540e-01 -0.1496093 0.1418259 0.07661421   0.07272253   0.07661421</span></span>
-<span><span class="co">#&gt; 2 1.003067e-05  0.1855831 0.4817191 0.04415393   0.37780503   0.04415393</span></span>
+<span><span class="co">#&gt; 1 9.457782e-01 -0.1611867 0.1503757 0.04170742   0.03630192   0.04170742</span></span>
+<span><span class="co">#&gt; 2 3.723638e-05  0.1622976 0.4562843 0.03281829   0.34210924   0.03281829</span></span>
 <span><span class="co">#&gt;           y time trt</span></span>
-<span><span class="co">#&gt; 1 0.1417334  pre   0</span></span>
-<span><span class="co">#&gt; 2 0.1417334  pre   1</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.1175395  pre   0</span></span>
+<span><span class="co">#&gt; 2 0.1175395  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -555,9 +555,9 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type          term comparison std.error statistic     p.value   conf.low</span></span>
-<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3375428  0.105994 -3.184546 0.001449815 -0.5452872</span></span>
+<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3146964 0.1092796 -2.879737 0.003980075 -0.5288805</span></span>
 <span><span class="co">#&gt;    conf.high</span></span>
-<span><span class="co">#&gt; 1 -0.1297983</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -0.1005124</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
