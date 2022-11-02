@@ -22,7 +22,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  interaction <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cross <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  hypothesis <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  wts <span class="op">=</span> <span class="st">"equal"</span>,</span>
 <span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -107,7 +107,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 <dd><p>character vector Categorical predictors over which to
 compute marginal means. <code>NULL</code> calculates marginal means for all logical,
 character, or factor variables in the dataset used to fit <code>model</code>. Set
-<code>interaction=TRUE</code> to compute marginal means at combinations of the
+<code>cross=TRUE</code> to compute marginal means at combinations of the
 predictors specified in the <code>variables</code> argument.</p></dd>
 
 
@@ -154,10 +154,9 @@ on the link scale before backtransforming them using the inverse link function.<
 <dd><p>(experimental) A function applied to unit-level adjusted predictions and confidence intervals just before the function returns results. For bayesian models, this function is applied to individual draws from the posterior distribution, before computing summaries.</p></dd>
 
 
-<dt>interaction</dt>
-<dd><p>TRUE, FALSE, or NULL</p><ul><li><p><code>FALSE</code>: Marginal means are computed for each predictor individually.</p></li>
+<dt>cross</dt>
+<dd><p>TRUE or FALSE</p><ul><li><p><code>FALSE</code> (default): Marginal means are computed for each predictor individually.</p></li>
 <li><p><code>TRUE</code>: Marginal means are computed for each combination of predictors specified in the <code>variables</code> argument.</p></li>
-<li><p><code>NULL</code> (default): Behaves like <code>TRUE</code> when the <code>variables</code> argument is specified and the model formula includes interactions. Behaves like <code>FALSE</code> otherwise.</p></li>
 </ul></dd>
 
 
@@ -300,10 +299,10 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span>        term marginalmean std.error conf.low conf.high      p.value statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 &amp; 6 - 8     5.538228  1.513052   2.5727  8.503755 0.0002519178  3.660302</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># interaction</span></span></span>
+<span class="r-in"><span><span class="co"># cross</span></span></span>
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"carb"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  interaction <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    cyl carb marginalmean std.error  conf.low conf.high       p.value statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    6    4     19.14907  1.338478 16.525705  21.77244  1.990073e-46 14.306600</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    6    1     23.08862  1.765271 19.628756  26.54849  4.320526e-39 13.079362</span>
@@ -324,7 +323,7 @@ marginal effects, predictions, marginal means, and contrasts.</p><table class="t
 <span class="r-out co"><span class="r-pr">#&gt;</span> 17   8    6     13.38929  3.356162  6.811330  19.96724  6.622284e-05  3.989464</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18   8    8     12.86323  3.003716  6.976053  18.75040  1.848561e-05  4.282439</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># collapsed interaction</span></span></span>
+<span class="r-in"><span><span class="co"># collapsed cross</span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  carb <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">carb</span><span class="op">)</span><span class="op">)</span></span></span>

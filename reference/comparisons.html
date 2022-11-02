@@ -26,7 +26,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,7 +96,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  transform_pre <span class="op">=</span> <span class="st">"difference"</span>,</span>
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  interaction <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cross <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  wts <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  hypothesis <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -195,10 +195,9 @@ the <code>marginaleffects:::type_dictionary</code> dataframe.</p></dd>
 <dd><p>(experimental) A function applied to unit-level estimates and confidence intervals just before the function returns results.</p></dd>
 
 
-<dt>interaction</dt>
-<dd><p>TRUE, FALSE, or NULL</p><ul><li><p><code>FALSE</code>: Contrasts represent the change in adjusted predictions when one predictor changes and all other variables are held constant.</p></li>
-<li><p><code>TRUE</code>: Contrasts represent the changes in adjusted predictions when the predictors specified in the <code>variables</code> argument are manipulated simultaneously.</p></li>
-<li><p><code>NULL</code> (default): Behaves like <code>TRUE</code> when the <code>variables</code> argument is specified and the model formula includes interactions. Behaves like <code>FALSE</code> otherwise.</p></li>
+<dt>cross</dt>
+<dd><p>TRUE or FALSE</p><ul><li><p><code>FALSE</code>: Contrasts represent the change in adjusted predictions when one predictor changes and all other variables are held constant.</p></li>
+<li><p><code>TRUE</code>: Contrasts represent the changes in adjusted predictions when all the predictors specified in the <code>variables</code> argument are manipulated simultaneously (a "cross-contrast").</p></li>
 </ul></dd>
 
 
@@ -486,21 +485,22 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Pre-transformation:  function(hi, lo) log(mean(hi)/mean(lo)) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average-transformation:   </span>
-<span class="r-in"><span><span class="co"># Interactions between contrasts</span></span></span>
+<span class="r-in"><span><span class="co"># cross contrasts</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"gear"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"gear"</span><span class="op">)</span>, cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     cyl  gear  Effect Std. Error z value Pr(&gt;|z|)   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 4 4 - 3  4.2194      3.238  1.3033 0.192489 -2.1262 10.565</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 4 - 4 5 - 3  6.9870      3.700  1.8883 0.058987 -0.2652 14.239</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 6 - 4 3 - 3 -1.1472      3.706 -0.3096 0.756898 -8.4109  6.116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 6 - 4 4 - 3 -0.6306      3.405 -0.1852 0.853068 -7.3035  6.042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 6 - 4 5 - 3  2.6778      4.617  0.5800 0.561933 -6.3715 11.727</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 8 - 4 3 - 3 -0.8719      3.829 -0.2277 0.819850 -8.3757  6.632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7 8 - 4 4 - 3  3.3475      6.427  0.5208 0.602495 -9.2501 15.945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8 8 - 4 5 - 3  5.5250      5.868  0.9416 0.346419 -5.9760 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Term contrast_cyl contrast_gear  Effect Std. Error z value Pr(&gt;|z|)  2.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 cross        6 - 4         4 - 3 -0.6306      3.405 -0.1852  0.85307 -7.303</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 cross        6 - 4         5 - 3  2.6778      4.617  0.5800  0.56193 -6.372</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 cross        8 - 4         4 - 3  3.3475      6.427  0.5208  0.60249 -9.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 cross        8 - 4         5 - 3  5.5250      5.868  0.9416  0.34642 -5.976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 17.026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -510,9 +510,10 @@ compute derivatives and elasticities.</p><table class="table table"><tr><td>Shor
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gear  hp Effect Std. Error z value Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 - 3 +10  2.835      2.625  1.0801  0.28010 -2.310  7.980</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5 - 4 +10  2.054      2.611  0.7866  0.43151 -3.063  7.171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast  Effect Std. Error z value Pr(&gt;|z|)  2.5 %  97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear    4 - 3  3.4095      2.587  1.3177 0.187591 -1.662  8.4806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear    5 - 4  2.6277      2.747  0.9566 0.338744 -2.756  8.0113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp      +10 -0.5741      0.225 -2.5518 0.010718 -1.015 -0.1331</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>

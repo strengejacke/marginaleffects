@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -345,10 +345,10 @@
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     cyl    am Effect Std. Error z value  Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1 4 - 4 1 - 0  5.175      2.053  2.5209 0.0117059   1.151  9.199</span></span>
-<span><span class="co">#&gt; 2 6 - 4 1 - 0 -2.333      2.476 -0.9424 0.3459644  -7.186  2.519</span></span>
-<span><span class="co">#&gt; 3 8 - 4 1 - 0 -7.500      2.768 -2.7095 0.0067389 -12.925 -2.075</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect Std. Error z value  Pr(&gt;|z|)    2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  cyl    6 - 4 -5.292      1.608  -3.290 0.0010004  -8.4437 -2.140</span></span>
+<span><span class="co">#&gt; 2  cyl    8 - 4 -9.810      1.516  -6.470   9.8e-11 -12.7820 -6.838</span></span>
+<span><span class="co">#&gt; 3   am    1 - 0  2.247      1.335   1.684 0.0921982  -0.3684  4.863</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -449,24 +449,16 @@
 <span>    newdata <span class="op">=</span> <span class="st">"marginalmeans"</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>, <span class="st">"island"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;              species             island   Effect Std. Error z value   Pr(&gt;|z|)</span></span>
-<span><span class="co">#&gt; 1    Adelie - Adelie     Dream - Biscoe -0.45571     0.4533  -1.005    0.31472</span></span>
-<span><span class="co">#&gt; 2    Adelie - Adelie Torgersen - Biscoe  0.08507     0.4701   0.181    0.85639</span></span>
-<span><span class="co">#&gt; 3 Chinstrap - Adelie    Biscoe - Biscoe 10.26934     0.4067  25.252 &lt; 2.22e-16</span></span>
-<span><span class="co">#&gt; 4 Chinstrap - Adelie     Dream - Biscoe  9.81362     0.4336  22.630 &lt; 2.22e-16</span></span>
-<span><span class="co">#&gt; 5 Chinstrap - Adelie Torgersen - Biscoe 10.35441     0.6217  16.656 &lt; 2.22e-16</span></span>
-<span><span class="co">#&gt; 6    Gentoo - Adelie    Biscoe - Biscoe  5.89568     0.6773   8.705 &lt; 2.22e-16</span></span>
-<span><span class="co">#&gt; 7    Gentoo - Adelie     Dream - Biscoe  5.43996     0.9413   5.779  7.504e-09</span></span>
-<span><span class="co">#&gt; 8    Gentoo - Adelie Torgersen - Biscoe  5.98075     0.9542   6.268  3.667e-10</span></span>
-<span><span class="co">#&gt;     2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1 -1.3441  0.4327</span></span>
-<span><span class="co">#&gt; 2 -0.8363  1.0064</span></span>
-<span><span class="co">#&gt; 3  9.4723 11.0664</span></span>
-<span><span class="co">#&gt; 4  8.9637 10.6636</span></span>
-<span><span class="co">#&gt; 5  9.1360 11.5728</span></span>
-<span><span class="co">#&gt; 6  4.5683  7.2231</span></span>
-<span><span class="co">#&gt; 7  3.5951  7.2849</span></span>
-<span><span class="co">#&gt; 8  4.1105  7.8510</span></span>
+<span><span class="co">#&gt;      Term           Contrast   Effect Std. Error z value Pr(&gt;|z|)   2.5 %</span></span>
+<span><span class="co">#&gt; 1 species Chinstrap - Adelie 10.26934     0.4067  25.252  &lt; 2e-16  9.4723</span></span>
+<span><span class="co">#&gt; 2 species    Gentoo - Adelie  5.89568     0.6773   8.705  &lt; 2e-16  4.5683</span></span>
+<span><span class="co">#&gt; 3  island     Dream - Biscoe -0.45571     0.4533  -1.005  0.31472 -1.3441</span></span>
+<span><span class="co">#&gt; 4  island Torgersen - Biscoe  0.08507     0.4701   0.181  0.85639 -0.8363</span></span>
+<span><span class="co">#&gt;    97.5 %</span></span>
+<span><span class="co">#&gt; 1 11.0664</span></span>
+<span><span class="co">#&gt; 2  7.2231</span></span>
+<span><span class="co">#&gt; 3  0.4327</span></span>
+<span><span class="co">#&gt; 4  1.0064</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -881,7 +873,7 @@
 <span></span>
 <span><span class="co"># Build some 0s into the GDP column</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
-<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="co"># Make a bunch of GDP values 0</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,</span>

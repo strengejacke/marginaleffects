@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,23 +60,29 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.7.1.9000" id="marginaleffects-0719000">marginaleffects 0.7.1.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0719000"></a></h2>
-<ul><li>
-<code><a href="../reference/plot_cme.html">plot_cme()</a></code>, <code><a href="../reference/plot_cap.html">plot_cap()</a></code>, and <code><a href="../reference/plot_cco.html">plot_cco()</a></code> are now much more flexible. The <code>condition</code> argument accepts lists and shortcuts for common reference values.</li>
-<li>Support <code>rms</code> package.</li>
+<h2 class="pkg-version" data-toc-text="0.8.0" id="marginaleffects-080">marginaleffects 0.8.0<a class="anchor" aria-label="anchor" href="#marginaleffects-080"></a></h2>
+<p>Breaking change:</p>
+<ul><li>The <code>interaction</code> argument is deprecated and replaced by the <code>cross</code> argument. This is to reduce ambiguity with respect to the <code>interaction</code> argument in <code>emmeans</code>, which does something completely different, akin to the difference-in-differences illustrated in the Interactions vignette.</li></ul><p>71 classes of models supported, including the new:</p>
+<ul><li><code><a href="https://rdrr.io/pkg/rms/man/ols.html" class="external-link">rms::ols</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/rms/man/lrm.html" class="external-link">rms::lrm</a></code></li>
+<li><code><a href="https://rdrr.io/pkg/rms/man/orm.html" class="external-link">rms::orm</a></code></li>
+</ul><p>New features:</p>
+<ul><li>Plots: <code><a href="../reference/plot_cme.html">plot_cme()</a></code>, <code><a href="../reference/plot_cap.html">plot_cap()</a></code>, and <code><a href="../reference/plot_cco.html">plot_cco()</a></code> are now much more flexible in specifying the comparisons to display. The <code>condition</code> argument accepts lists, functions, and shortcuts for common reference values, such as “minmax”, “threenum”, etc.</li>
 <li>
-<code>brms</code> models: Integrate out random effects (see Bayes vignette for details)</li>
-<li>
-<code>variables</code> argument accepts functions to specify custom differences in numeric variables.</li>
+<code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function is more flexible:<ul><li>Accepts functions to specify custom differences in numeric variables (e.g., forward and backward differencing).</li>
 <li>Can specify pairs of factors to compare in the <code>variables</code> argument of the <code>comparisons</code> function.</li>
-<li>Interactions with <code><a href="https://lrberge.github.io/fixest/reference/i.html" class="external-link">fixest::i()</a></code> are parsed properly as categorical variables</li>
-<li>The default value of <code>conf_level</code> in <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> is now <code>NULL</code>, which inherits the <code>conf_level</code> value in the original <code>comparisons</code>/<code>marginaleffects</code>/<code>predictions</code> calls.</li>
+</ul></li>
 <li>
-<code>variables</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function is now much more powerful, supporting shortcut strings, functions, and vectors of arbitrary length.</li>
+<code>variables</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function is more flexible:<ul><li>Accepts shortcut strings, functions, and vectors of arbitrary length.</li></ul></li>
+<li>Integrate out random effects in bayesian <code>brms</code> models (see Bayesian analysis vignette)</li>
+</ul><p>New vignettes:</p>
+<ul><li>Experiments</li>
+<li>Extending marginal effects</li>
+<li>Integrating out random effects in bayesian models</li>
+</ul><p>Bug fixes and minor improvements:</p>
+<ul><li>The default value of <code>conf_level</code> in <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> is now <code>NULL</code>, which inherits the <code>conf_level</code> value in the original <code>comparisons</code>/<code>marginaleffects</code>/<code>predictions</code> calls.</li>
 <li>Fix typo in function names for missing “lnratioavgwts”</li>
-<li>New <code><a href="../reference/update_marginaleffects.html">update_marginaleffects()</a></code> function makes it easy to install the development versions of <code>marginaleffects</code> and its dependencies (mostly useful for Vincent and people who report bugs).</li>
-<li>New vignette: Extending <code>marginaleffects</code>
-</li>
+<li>Interactions with <code><a href="https://lrberge.github.io/fixest/reference/i.html" class="external-link">fixest::i()</a></code> are parsed properly as categorical variables</li>
 <li>For <code>betareg</code> objects, inference can now be done on all coefficients using <code><a href="../reference/deltamethod.html">deltamethod()</a></code>. previously only the location coefficients were available.</li>
 <li>For objects from <code>crch</code> package, a number of bugs have been fixed; standard errors should now be correct for <code><a href="../reference/deltamethod.html">deltamethod()</a></code>, <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, etc.</li>
 <li>Fixed a bug in the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function for <code>glmmTMB</code> models without random effects, which caused all t statistics to be identical.</li>
