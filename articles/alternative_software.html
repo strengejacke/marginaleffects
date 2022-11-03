@@ -118,34 +118,56 @@
 <h2 id="emmeans">
 <code>emmeans</code><a class="anchor" aria-label="anchor" href="#emmeans"></a>
 </h2>
-<p>The <a href="https://cran.r-project.org/web/packages/emmeans/index.html" class="external-link"><code>emmeans</code> package</a> is developed by Russell V. Lenth and colleagues. It is an extremely powerful package which focuses on the computation of marginal means, but which can also compute slopes.</p>
-<p>In my (Vincent’s) biased opinion, the main benefits of <code>marginaleffects</code> over <code>emmeans</code>:</p>
+<p>The <a href="https://cran.r-project.org/web/packages/emmeans/index.html" class="external-link"><code>emmeans</code> package</a> is developed by Russell V. Lenth and colleagues. <code>emmeans</code> is a truly incredible piece of software, and a trailblazer in the <code>R</code> ecosystem. It is an <em>extremely</em> powerful package whose functionality overlaps <code>marginaleffects</code> to a significant degree: marginal means, contrasts, and slopes. Even if the two packages can compute many of the same quantities, <code>emmeans</code> and <code>marginaleffects</code> have pretty different philosophies with respect to user interface and computation.</p>
+<p>An <code>emmeans</code> analysis typically starts by computing <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">“marginal means”</a> by holding all numeric covariates at their means, and by averaging across a balanced grid of categorical predictors. Then, users can use the <code><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast()</a></code> function to estimate the difference between marginal means.</p>
+<p>The <code>marginaleffects</code> package supplies a <code>marginalmeans</code> function which can also compute marginal means. However, the typical analysis is more squarely centered on predicted/fitted values. This is a useful starting point because, in many cases, analysts will find it easy and intuitive to express their scientific queries in terms of changes in predicted values. For example,</p>
+<ul>
+<li>How does the average predicted probability of survival differ between treatment and control group?</li>
+<li>What is the difference between the predicted wage of college and high school graduates?</li>
+</ul>
+<p>Let’s say we estimate a linear regression model with two continuous regressors and a multiplicative interaction:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1 x + \beta_2 z + \beta_3 x \cdot z + \varepsilon\]</span></p>
+<p>In this model, the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> will depend on the value of covariate <span class="math inline">\(z\)</span>. Let’s say the user wants to estimate what happens to the predicted value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> increases by 1 unit, when <span class="math inline">\(z \in \{-1, 0, 1\}\)</span>. To do this, we use the <code><a href="../reference/comparisons.html">comparisons()</a></code> function. The <code>variables</code> argument determines the scientific query of interest, and the <code>newdata</code> argument determines the grid of covariate values on which we want to evaluate the query:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">*</span> <span class="va">z</span>, <span class="va">data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, <span class="co"># what is the effect of 1-unit change in x?</span></span>
+<span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>z <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span> <span class="co"># when z is held at values -1, 0, or 1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>As <a href="https://vincentarelbundock.github.io/marginaleffects/index.html#table-of-contents" class="external-link">the vignettes show,</a> <code>marginaleffects</code> can also compute contrasts on marginal means. It can also compute various quantities of interest like raw fitted values, slopes (partial derivatives), and contrasts between marginal means. It also offers a flexible mechanism to run (non-)linear hypothesis tests using the delta method, and it offers fully customizable strategy to compute quantities like odds ratios (or completely arbitrary functions of predicted outcome).</p>
+<p>Thus, in my (Vincent’s) biased opinion, the main benefits of <code>marginaleffects</code> over <code>emmeans</code> are:</p>
 <ul>
 <li>Support more model types.</li>
-<li>Simpler and more intuitive user interface.</li>
+<li>Simpler, more intuitive, and highly consistent user interface.</li>
 <li>Easier to compute average marginal effects and unit-level marginal effects for whole datasets.</li>
 <li>Easier to compute marginal effects (slopes) for custom grids and continuous regressors.</li>
-<li>Common plots are easy with the <code><a href="../reference/plot_cap.html">plot_cap()</a></code> and <code><a href="../reference/plot_cme.html">plot_cme()</a></code> functions.</li>
+<li>Easier to implement causal inference strategies like the parametric g-formula and regression adjustement in experiments (see vignettes).</li>
+<li>Allows the computation of arbitrary quantities of interest via user-supplied functions and automatic delta method inference.</li>
+<li>Common plots are easy with the <code><a href="../reference/plot_cap.html">plot_cap()</a></code>, <code><a href="../reference/plot_cco.html">plot_cco()</a></code>, and <code><a href="../reference/plot_cme.html">plot_cme()</a></code> functions.</li>
 </ul>
-<p>Many of <code>marginaleffects</code> advantages come down to subjective preferences over user interface. Readers are thus encouraged to try both packages to see which interface they prefer. Please keep in mind that <code>emmeans</code> offers several features which are not yet available in <code>marginaleffects</code>, including:</p>
+<p>To be fair, many of the <code>marginaleffects</code> advantages listed above come down to subjective preferences over user interface. Readers are thus encouraged to try both packages to see which interface they prefer.</p>
+<p>AFAICT, the main advantages of <code>emmeans</code> over <code>marginaleffects</code> are:</p>
 <ul>
-<li>Equivalence tests.</li>
+<li>Omnibus tests.</li>
+<li>Equivalence and noninferiority tests.</li>
 <li>Multiplicity adjustments.</li>
-<li>Some plots.</li>
 </ul>
+<p>Please let me know if you find other features in <code>emmeans</code> so I can add them to this list.</p>
 <p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">Marginal Means Vignette</a> includes side-by-side comparisons of <code>emmeans</code> and <code>marginaleffects</code> to compute marginal means. The rest of this section compares the syntax for contrasts and marginaleffects.</p>
 <div class="section level3">
 <h3 id="contrasts">Contrasts<a class="anchor" aria-label="anchor" href="#contrasts"></a>
 </h3>
 <p>As far as I can tell, <code>emmeans</code> does not provide an easy way to compute unit-level contrasts for every row of the dataset used to fit our model. Therefore, the side-by-side syntax shown below will always include <code>newdata=datagrid()</code> to specify that we want to compute only one contrast: at the mean values of the regressors. In day-to-day practice with <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, however, this extra argument would not be necessary.</p>
 <p>Fit a model:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></code></pre></div>
 <p>Link scale, pairwise contrasts:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"revpairwise"</span>, adjust <span class="op">=</span> <span class="st">"none"</span>, df <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  contrast    estimate      SE  df z.ratio p.value</span></span>
@@ -173,7 +195,7 @@
 <span><span class="co">#&gt; 2   8</span></span>
 <span><span class="co">#&gt; 3   8</span></span></code></pre></div>
 <p>Response scale, reference groups:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span>, regrid <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast</a></span><span class="op">(</span><span class="va">emm</span>, method <span class="op">=</span> <span class="st">"trt.vs.ctrl1"</span>, adjust <span class="op">=</span> <span class="st">"none"</span>, df <span class="op">=</span> <span class="cn">Inf</span>, ratios <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  contrast    estimate    SE  df z.ratio p.value</span></span>
@@ -200,7 +222,7 @@
 <h3 id="contrasts-by-group">Contrasts by group<a class="anchor" aria-label="anchor" href="#contrasts-by-group"></a>
 </h3>
 <p>Here is a slightly more complicated example with contrasts estimated by subgroup in a <code>lme4</code> mixed effects model. First we estimate a model and compute pairwise contrasts by subgroup using <code>emmeans</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
@@ -253,7 +275,7 @@
 </li>
 </ol>
 <p>Although it is not idiomatic, we can use still use <code><a href="../reference/comparisons.html">comparisons()</a></code> to emulate the <code>emmeans</code> results. First, we create a prediction grid with one cell for each combination of categorical predictor in the model:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span></span>
 <span>    model <span class="op">=</span> <span class="va">mod</span>,</span>
 <span>    resp <span class="op">=</span> <span class="va">dat</span><span class="op">$</span><span class="va">resp</span>,</span>
@@ -263,7 +285,7 @@
 <span><span class="co">#&gt; [1] 18</span></span></code></pre></div>
 <p>This grid has 18 rows, one for each combination of levels for the <code>resp</code> (3), <code>situ</code> (2), and <code>btype</code> (3) variables (3 * 2 * 3 = 18).</p>
 <p>Then we compute pairwise contrasts over this grid:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"btype"</span> <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="va">nd</span>,</span>
@@ -272,7 +294,7 @@
 <span><span class="co">#&gt; [1] 54</span></span></code></pre></div>
 <p>There are 3 pairwise contrasts, corresponding to the 3 pairwise comparisons possible between the 3 levels of the focal variable <code>btype</code>: <code>scold-curse</code>, <code>shout-scold</code>, <code>shout-curse</code>. The <code><a href="../reference/comparisons.html">comparisons()</a></code> function estimates those 3 contrasts for each row of <code>newdata</code>, so we get <span class="math inline">\(18 \times 3 = 54\)</span> rows.</p>
 <p>Finally, if we wanted contrasts averaged over each subgroup of the <code>resp</code> variable, we can use the <code>by</code> argument:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"resp"</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"btype"</span> <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span>,</span>
@@ -309,7 +331,7 @@
 </h3>
 <p>As far as I can tell, <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> makes it easier to compute marginal effects for a few user-specified values than for large grids or for the full original dataset.</p>
 <p>Response scale, user-specified values:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emtrends</a></span><span class="op">(</span><span class="va">mod</span>, <span class="op">~</span><span class="va">hp</span>, <span class="st">"hp"</span>, regrid <span class="op">=</span> <span class="st">"response"</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
@@ -332,7 +354,7 @@
 <span><span class="co">#&gt; 2   4     NA</span></span>
 <span><span class="co">#&gt; 3   4     NA</span></span></code></pre></div>
 <p>Link scale, user-specified values:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emtrends</a></span><span class="op">(</span><span class="va">mod</span>, <span class="op">~</span><span class="va">hp</span>, <span class="st">"hp"</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   hp hp.trend     SE  df asymp.LCL asymp.UCL</span></span>
 <span><span class="co">#&gt;  147  -0.0326 0.0339 Inf    -0.099    0.0338</span></span>
@@ -371,7 +393,7 @@
 <div class="section level3">
 <h3 id="average-marginal-effects">Average Marginal Effects<a class="anchor" aria-label="anchor" href="#average-marginal-effects"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/margins" class="external-link">margins</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -398,7 +420,7 @@
 <h3 id="individual-level-marginal-effects">Individual-Level Marginal Effects<a class="anchor" aria-label="anchor" href="#individual-level-marginal-effects"></a>
 </h3>
 <p>Marginal effects in a user-specified data frame:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">mar</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb   fitted se.fitted</span></span>
 <span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 22.82043 0.6876212</span></span>
@@ -442,7 +464,7 @@
 <div class="section level3">
 <h3 id="marginal-effects-at-the-mean">Marginal Effects at the Mean<a class="anchor" aria-label="anchor" href="#marginal-effects-at-the-mean"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="../reference/mean_or_mode.html">mean_or_mode</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span>, unit_ses <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">mar</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        mpg    cyl     disp       hp     drat      wt     qsec     vs      am</span></span>
@@ -472,7 +494,7 @@
 <h3 id="counterfactual-average-marginal-effects">Counterfactual Average Marginal Effects<a class="anchor" aria-label="anchor" href="#counterfactual-average-marginal-effects"></a>
 </h3>
 <p>The <code>at</code> argument of the <code>margins</code> package emulates <code>Stata</code> by fixing the values of some variables at user-specified values, and by replicating the full dataset several times for each combination of the supplied values (see the <code>Stata</code> section below). For example, if the dataset includes 32 rows and the user calls <code>at=list(cyl=c(4, 6))</code>, <code>margins</code> will compute 64 unit-level marginal effects estimates:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">*</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
@@ -523,7 +545,7 @@
 <h3 id="adjusted-predictions">Adjusted Predictions<a class="anchor" aria-label="anchor" href="#adjusted-predictions"></a>
 </h3>
 <p>The syntax to compute adjusted predictions using the <code>predictions</code> package or <code>marginaleffects</code> is very similar:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">prediction</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/prediction/man/prediction.html" class="external-link">prediction</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb   fitted se.fitted</span></span>
 <span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 21.90488 0.6927034</span></span>
@@ -586,7 +608,7 @@ cyl |  -.9416168   .5509164    -1.71   0.098    -2.070118    .1868842
 <h4 id="marginaleffects">marginaleffects<a class="anchor" aria-label="anchor" href="#marginaleffects"></a>
 </h4>
 <p>The same results can be obtained with <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> like this:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">"marginaleffects"</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
@@ -646,7 +668,7 @@ hp           |
 <h4 id="marginaleffects-1">marginaleffects<a class="anchor" aria-label="anchor" href="#marginaleffects-1"></a>
 </h4>
 <p>You can estimate average counterfactual marginal effects with <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> by using the <code><a href="../reference/datagridcf.html">datagridcf()</a></code> to create a counterfactual dataset in which the full original dataset is replicated for each potential value of the <code>cyl</code> variable. Then, we tell the <code>by</code> argument to average within groups:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span></span>
@@ -663,7 +685,7 @@ hp           |
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>This is equivalent to taking the group-wise mean of observation-level marginal effects:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">dydx</span> <span class="op">~</span> <span class="va">term</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mfx</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term cyl        dydx</span></span>
 <span><span class="co">#&gt; 1   hp   4 -0.09946598</span></span>
@@ -671,7 +693,7 @@ hp           |
 <span><span class="co">#&gt; 3   hp   8 -0.01344103</span></span></code></pre></div>
 <!-- Taken from https://github.com/vincentarelbundock/marginaleffects/issues/226 -->
 <p>Note that following <code>Stata</code>, the standard errors for group-averaged marginal effects are computed by taking the “Jacobian at the mean:”</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">J</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">mfx</span>, <span class="st">"jacobian"</span><span class="op">)</span></span>
 <span><span class="va">J_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">J</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="va">J_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
@@ -722,7 +744,7 @@ Expression   : Linear prediction, predict()
 <h4 id="marginaleffects-2">marginaleffects<a class="anchor" aria-label="anchor" href="#marginaleffects-2"></a>
 </h4>
 <p>You can estimate average counterfactual adjusted predictions with <code><a href="../reference/predictions.html">predictions()</a></code> by, first, setting the <code>grid_type</code> argument of <code><a href="../reference/datagrid.html">datagrid()</a></code> to <code>"counterfactual"</code> and, second, by averaging the predictions using the <code>by</code> argument of <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, or a manual function like <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">dplyr::summarise()</a></code>.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
@@ -773,7 +795,7 @@ Expression   : Linear prediction, predict()
 <h4 id="ames-for-logistic-regression">AMEs for Logistic Regression<a class="anchor" aria-label="anchor" href="#ames-for-logistic-regression"></a>
 </h4>
 <p>Estimate a logistic regression model with <code>brms</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://joshuawiley.com/brmsmargins/" class="external-link">brmsmargins</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
@@ -789,7 +811,7 @@ Expression   : Linear prediction, predict()
 <span>      chains <span class="op">=</span> <span class="fl">4L</span>, cores <span class="op">=</span> <span class="fl">4L</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Compute AMEs manually:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="va">d2</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">d2</span><span class="op">$</span><span class="va">mpg</span> <span class="op">&lt;-</span> <span class="va">d2</span><span class="op">$</span><span class="va">mpg</span> <span class="op">+</span> <span class="va">h</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">posterior_epred</a></span><span class="op">(</span><span class="va">bayes.logistic</span>, newdata <span class="op">=</span> <span class="va">d1</span><span class="op">)</span></span>
@@ -799,7 +821,7 @@ Expression   : Linear prediction, predict()
 <span><span class="co">#&gt;        50%       2.5%      97.5% </span></span>
 <span><span class="co">#&gt; 0.07014014 0.05437810 0.09159280</span></span></code></pre></div>
 <p>Compute AMEs with <code>brmsmargins</code>:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">bayes.logistic</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span> <span class="op">+</span> <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -812,7 +834,7 @@ Expression   : Linear prediction, predict()
 <span><span class="co">#&gt;   ROPE  MID   Label</span></span>
 <span><span class="co">#&gt; 1 &lt;NA&gt; &lt;NA&gt; AME MPG</span></span></code></pre></div>
 <p>Compute AMEs using <code>marginaleffects</code>:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">bayes.logistic</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term   Effect    2.5 %   97.5 %</span></span>
@@ -828,7 +850,7 @@ Expression   : Linear prediction, predict()
 <h3 id="marginal-effects-for-mixed-effects-models">Marginal Effects for Mixed Effects Models<a class="anchor" aria-label="anchor" href="#marginal-effects-for-mixed-effects-models"></a>
 </h3>
 <p>Estimate a mixed effects logistic regression model with <code>brms</code>:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_seed.html" class="external-link">with_seed</a></span><span class="op">(</span></span>
 <span>  seed <span class="op">=</span> <span class="fl">12345</span>, code <span class="op">=</span> <span class="op">{</span></span>
 <span>    <span class="va">nGroups</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
@@ -875,7 +897,7 @@ Expression   : Linear prediction, predict()
 <div class="section level4">
 <h4 id="ame-including-random-effects">AME: Including Random Effects<a class="anchor" aria-label="anchor" href="#ame-including-random-effects"></a>
 </h4>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">mlogit</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -900,7 +922,7 @@ Expression   : Linear prediction, predict()
 <div class="section level4">
 <h4 id="ame-fixed-effects-only-grand-mean">AME: Fixed Effects Only (Grand Mean)<a class="anchor" aria-label="anchor" href="#ame-fixed-effects-only-grand-mean"></a>
 </h4>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">mlogit</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -930,7 +952,7 @@ Expression   : Linear prediction, predict()
 <h4 id="ames-for-fixed-effects-location-scale-models">AMEs for Fixed Effects Location Scale Models<a class="anchor" aria-label="anchor" href="#ames-for-fixed-effects-location-scale-models"></a>
 </h4>
 <p>Estimate a fixed effects location scale model with <code>brms</code>:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_seed.html" class="external-link">with_seed</a></span><span class="op">(</span></span>
 <span>  seed <span class="op">=</span> <span class="fl">12345</span>, code <span class="op">=</span> <span class="op">{</span></span>
 <span>    <span class="va">nObs</span> <span class="op">&lt;-</span> <span class="fl">1000L</span></span>
@@ -956,7 +978,7 @@ Expression   : Linear prediction, predict()
 <div class="section level4">
 <h4 id="fixed-effects-only">Fixed effects only<a class="anchor" aria-label="anchor" href="#fixed-effects-only"></a>
 </h4>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -982,7 +1004,7 @@ Expression   : Linear prediction, predict()
 <h4 id="discrete-change-and-distributional-parameter-dpar">Discrete change and distributional parameter (<code>dpar</code>)<a class="anchor" aria-label="anchor" href="#discrete-change-and-distributional-parameter-dpar"></a>
 </h4>
 <p>Compute the contrast between adjusted predictions on the <code>sigma</code> parameter, when <code>grp=0</code> and <code>grp=1</code>:</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>grp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -995,7 +1017,7 @@ Expression   : Linear prediction, predict()
 <span><span class="co">#&gt;    MID   Label</span></span>
 <span><span class="co">#&gt; 1 &lt;NA&gt; AME grp</span></span></code></pre></div>
 <p>In <code>marginaleffects</code> we use the <code><a href="../reference/comparisons.html">comparisons()</a></code> function and the <code>variables</code> argument:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>grp <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
@@ -1010,7 +1032,7 @@ Expression   : Linear prediction, predict()
 <div class="section level4">
 <h4 id="marginal-effect-continuous-on-sigma">Marginal effect (continuous) on sigma<a class="anchor" aria-label="anchor" href="#marginal-effect-continuous-on-sigma"></a>
 </h4>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">h</span><span class="op">)</span><span class="op">)</span>,</span>
