@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -589,8 +589,8 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type x predicted  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response 0 0.4522003 0.3380170 0.5652242</span></span>
-<span><span class="co">#&gt; 2 response 1 0.5515382 0.4334861 0.6616403</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response 0 0.4500977 0.3407214 0.5634308</span></span>
+<span><span class="co">#&gt; 2 response 1 0.5499034 0.4386591 0.6573940</span></span></code></pre></div>
 <p>We can “integrate out” random effects in the other <code>marginaleffects</code> functions too. For instance,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -599,8 +599,8 @@
 <span>    allow_new_levels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term Contrast  Effect  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x    1 - 0 0.09677 0.0488 0.1603</span></span>
+<span><span class="co">#&gt;   Term Contrast Effect   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1    x    1 - 0 0.0969 0.04734 0.1604</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -617,7 +617,7 @@
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType</span></span>
-<span><span class="co">#&gt; 1 0.09874654 0.09615823 0.04828143 0.1615003          NA         NA 0.95    ETI</span></span>
+<span><span class="co">#&gt; 1 0.09815895 0.09633721 0.04769081 0.1609762          NA         NA 0.95    ETI</span></span>
 <span><span class="co">#&gt;   ROPE  MID Label</span></span>
 <span><span class="co">#&gt; 1 &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html" class="external-link">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
@@ -941,6 +941,53 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="non-linear-hypothesis-testing">Non-linear hypothesis testing<a class="anchor" aria-label="anchor" href="#non-linear-hypothesis-testing"></a>
+</h2>
+<p>Note: The rest of this section requires version 0.8.1 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version.</a></p>
+<p>We begin by estimating a model:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">bernoulli</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>           seed <span class="op">=</span> <span class="fl">1024</span>, silent <span class="op">=</span> <span class="fl">2</span>, chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
+<p>Notice that we can compute average contrasts in two different ways, using the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function or the <code>transform_pre</code> argument:</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast    estimate   conf.low   conf.high</span></span>
+<span><span class="co">#&gt; 1 response   hp       +1 0.005987268 0.00288400 0.008860451</span></span>
+<span><span class="co">#&gt; 2 response  mpg       +1 0.135474011 0.07871312 0.174722602</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type term contrast  comparison   conf.low   conf.high predicted</span></span>
+<span><span class="co">#&gt; 1 response  mpg mean(+1) 0.135474011 0.07871312 0.174722602 0.2029083</span></span>
+<span><span class="co">#&gt; 2 response   hp mean(+1) 0.005987268 0.00288400 0.008860451 0.2029083</span></span>
+<span><span class="co">#&gt;   predicted_hi predicted_lo</span></span>
+<span><span class="co">#&gt; 1    0.3718606   0.09989568</span></span>
+<span><span class="co">#&gt; 2    0.2085257   0.19744730</span></span></code></pre></div>
+<p>Now, we use the <code>hypothesis</code> argument to compare the first to the second rows of the <code><a href="../reference/comparisons.html">comparisons()</a></code> output:</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span>,</span>
+<span>    hypothesis <span class="op">=</span> <span class="st">"b1 - b2 = 0.2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type      term  comparison   conf.low   conf.high</span></span>
+<span><span class="co">#&gt; 1 response b1-b2=0.2 -0.07020984 -0.1251562 -0.03339701</span></span></code></pre></div>
+<p>The <code>hypothesis</code> function of the <code>brms</code> package can also perform non-linear hypothesis testing, and it generates some convenient statistics and summaries. This function accepts a D-by-P matrix of draws from the posterior distribution, where D is the number of draws and N is the number of parameters. We can obtain such a matrix using the <code>posteriordraws(x, shape = "DxP")</code>, and we can simply add a couple calls to our chain of operations:</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"DxP"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">brms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/brms/man/hypothesis.brmsfit.html" class="external-link">hypothesis</a></span><span class="op">(</span><span class="st">"b2 - b1 &gt; .2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Hypothesis Tests for class :</span></span>
+<span><span class="co">#&gt;         Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob</span></span>
+<span><span class="co">#&gt; 1 (b2-b1)-(.2) &gt; 0    -0.07      0.02    -0.12    -0.04          0         0</span></span>
+<span><span class="co">#&gt;   Star</span></span>
+<span><span class="co">#&gt; 1     </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; 'CI': 90%-CI for one-sided and 95%-CI for two-sided hypotheses.</span></span>
+<span><span class="co">#&gt; '*': For one-sided hypotheses, the posterior probability exceeds 95%;</span></span>
+<span><span class="co">#&gt; for two-sided hypotheses, the value tested against lies outside the 95%-CI.</span></span>
+<span><span class="co">#&gt; Posterior probabilities of point hypotheses assume equal prior probabilities.</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
