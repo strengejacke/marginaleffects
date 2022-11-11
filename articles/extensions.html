@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -154,29 +154,36 @@
 <li>
 <code><a href="../reference/get_coef.html">get_coef()</a></code>
 <ul>
-<li>Input: <code>model</code> object and <code>newdata</code> data frame.</li>
-<li>Output: named vector of parameters (coefficients).</li>
+<li>Mandatory arguments: <code>model</code>, <code>...</code>
+</li>
+<li>Returns: named vector of parameters (coefficients).</li>
 </ul>
 </li>
 <li>
 <code><a href="../reference/set_coef.html">set_coef()</a></code>
 <ul>
-<li>Input: <code>model</code> object and <code>coef</code> vector of coefficients.</li>
-<li>Output: A new model object in which the original coefficients were replaced by the new vector.</li>
+<li>Mandatory arguments: <code>model</code>, <code>coefs</code> (named vector of coefficients), <code>...</code>
+</li>
+<li>Returns: A new model object in which the original coefficients were replaced by the new vector.</li>
+<li><a href="https://github.com/vincentarelbundock/marginaleffects/blob/main/R/set_coef.R" class="external-link">Example</a></li>
 </ul>
 </li>
 <li>
 <code><a href="../reference/get_vcov.html">get_vcov()</a></code>
 <ul>
-<li>Input: <code>model</code> object.</li>
-<li>Output: A square variance-covariance matrix.</li>
+<li>Mandatory arguments: <code>model</code>, <code>...</code>.</li>
+<li>Optional arguments: <code>vcov</code>
+</li>
+<li>Returns: A named square variance-covariance matrix.</li>
 </ul>
 </li>
 <li>
 <code><a href="../reference/get_predict.html">get_predict()</a></code>
 <ul>
-<li>Input: <code>model</code> object and <code>newdata</code> data frame.</li>
-<li>Output: A data frame with two columns: a unique <code>rowid</code> and a column of <code>predicted</code> values.</li>
+<li>Mandatory arguments: <code>model</code>, <code>newdata</code> (data frame), <code>...</code>
+</li>
+<li>Option arguments: <code>type</code> and other model-specific arguments.</li>
+<li>Returns: A data frame with two columns: a unique <code>rowid</code> and a column of <code>predicted</code> values.</li>
 </ul>
 </li>
 </ol>
