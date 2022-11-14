@@ -88,12 +88,17 @@
 
     
     
-<p>This vignette shows how to add support for new models and add new functionality for supported models. If you add support for a new model object, please consider submitting your code for inclusion in the package.</p>
+<p>This vignette shows how to add support for new models and add new functionality for supported models.</p>
 <div class="section level2">
 <h2 id="support-a-new-model-type">Support a new model type<a class="anchor" aria-label="anchor" href="#support-a-new-model-type"></a>
 </h2>
 <p>It is very easy to add support for new models in <code>marginaleffects</code>. All we need is to set a global option and define 4 very simple functions.</p>
-<p>If you add support for a class of model produced by a CRAN package, please consider submitting your code for inclusion in the package: <a href="https://github.com/vincentarelbundock/marginaleffects" class="external-link uri">https://github.com/vincentarelbundock/marginaleffects</a></p>
+<p>If you add support for a class of models produced by a CRAN package, please consider submitting your code for inclusion in the package: <a href="https://github.com/vincentarelbundock/marginaleffects" class="external-link uri">https://github.com/vincentarelbundock/marginaleffects</a></p>
+<p>If you add support for a class of models produced by a package hosted <em>elsewhere</em> than CRAN, you can submit it for inclusion in the <em>unsupported</em> user-submitted library of extensions: Currently</p>
+<ul>
+<li>
+<a href="https://github.com/vincentarelbundock/marginaleffects/blob/main/sandbox/methods_countreg.R" class="external-link"><code>countreg</code> package</a>. Thanks to Olivier Beaumais.</li>
+</ul>
 <p>The rest of this section illustrates how to add support for a very simple lm_manual model.</p>
 <div class="section level3">
 <h3 id="fit-function">Fit function<a class="anchor" aria-label="anchor" href="#fit-function"></a>
