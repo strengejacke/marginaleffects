@@ -36,19 +36,19 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
 </li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+<li class="active nav-item">
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -88,7 +88,7 @@
 
     
     
-<p>The code in this vignette requires <code>marginaleffects</code> version 0.6.0 or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version hosted on Github.</a></p>
+<p>The code in this vignette requires <code>marginaleffects</code> version 0.6.0 or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">the development version hosted on Github.</a></p>
 <p>This vignette introduces the <code><a href="../reference/deltamethod.html">deltamethod()</a></code> function, and the <code>hypothesis</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, and <code><a href="../reference/predictions.html">predictions()</a></code> function. These features allow users to conduct linear and non-linear hypothesis tests and to compute custom contrasts (linear combinations) between parameters.</p>
 <div class="section level2">
 <h2 id="delta-method">Delta method<a class="anchor" aria-label="anchor" href="#delta-method"></a>
@@ -97,7 +97,7 @@
 <p><code><a href="../reference/deltamethod.html">deltamethod()</a></code> can be used to compute estimates and standard errors of arbitrary functions of model parameters. For example, it can be used to conduct tests of equality between coefficients, or to test the value of some linear or non-linear combination of quantities of interest. <code><a href="../reference/deltamethod.html">deltamethod()</a></code> can also be used to conduct hypothesis tests on other functions of a model’s parameter, such as adjusted predictions or marginal effects.</p>
 <p>Let’s start by estimating a simple model:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p>When the <code>FUN</code> and <code>hypothesis</code> arguments of <code><a href="../reference/deltamethod.html">deltamethod()</a></code> equal <code>NULL</code> (the default), the function returns a data.frame of raw estimates:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -181,9 +181,9 @@
 <div class="section level3">
 <h3 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
 </h3>
-<p>For example, let’s fit a model and compute some <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html#marginal-effect-at-the-mean-mem" class="external-link">marginal effects at the mean:</a></p>
+<p>For example, let’s fit a model and compute some <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html#marginal-effect-at-the-mean-mem">marginal effects at the mean:</a></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
@@ -202,7 +202,7 @@
 <span><span class="co">#&gt; 1 response am=vs -0.8626984  1.939057 -0.4449063 0.6563875 -4.66318  2.937783</span></span></code></pre></div>
 <p>Alternatively, we can specify the hypothesis directly in the original call:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
@@ -313,7 +313,7 @@
 <span><span class="co">#&gt;   conf.low conf.high predicted predicted_hi predicted_lo</span></span>
 <span><span class="co">#&gt; 1 3.568022  8.565312  20.66111     20.66111     14.59444</span></span>
 <span><span class="co">#&gt; 2 4.455633  9.403098  20.66111     27.59048     20.66111</span></span></code></pre></div>
-<p>Notice that in the last one we did not need to use <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, and yet we still obtained average contrasts. <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html" class="external-link">See the transformations section of the Contrasts vignette for more details.</a></p>
+<p>Notice that in the last one we did not need to use <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, and yet we still obtained average contrasts. <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">See the transformations section of the Contrasts vignette for more details.</a></p>
 <p>With these results in hand, we can finally conduct a linear hypothesis test between average marginal effects:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -337,10 +337,10 @@
 <h2 id="hypothesis-vectors-and-matrices">
 <code>hypothesis</code> Vectors and Matrices<a class="anchor" aria-label="anchor" href="#hypothesis-vectors-and-matrices"></a>
 </h2>
-<p>The <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function computes <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">estimated marginal means.</a> The <code>hypothesis</code> argument of that function offers a powerful mechanism to estimate custom contrasts between marginal means, by way of linear combination.</p>
+<p>The <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function computes <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">estimated marginal means.</a> The <code>hypothesis</code> argument of that function offers a powerful mechanism to estimate custom contrasts between marginal means, by way of linear combination.</p>
 <p>Consider a simple example:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span></span>
 <span></span>
@@ -534,13 +534,13 @@
 <span>    variable.name <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   0  pre  0.8536046</span></span>
-<span><span class="co">#&gt; 2:  2   1  pre -1.6683968</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre  0.8332951</span></span>
-<span><span class="co">#&gt; 4:  4   0  pre -1.5290060</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre -0.2448139</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre -0.5807927</span></span></code></pre></div>
+<span><span class="co">#&gt;    id trt time           y</span></span>
+<span><span class="co">#&gt; 1:  1   0  pre -1.54797743</span></span>
+<span><span class="co">#&gt; 2:  2   1  pre -0.53837837</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre  0.32746218</span></span>
+<span><span class="co">#&gt; 4:  4   1  pre -0.89731174</span></span>
+<span><span class="co">#&gt; 5:  5   0  pre -0.40765492</span></span>
+<span><span class="co">#&gt; 6:  6   0  pre -0.05930836</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We also compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -549,15 +549,12 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast  comparison  std.error  statistic     p.value</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.06516977 0.07685012 -0.8480112 0.396431709</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.24289921 0.07685012  3.1606874 0.001573973</span></span>
-<span><span class="co">#&gt;      conf.low conf.high    predicted predicted_hi predicted_lo         y time</span></span>
-<span><span class="co">#&gt; 1 -0.21579323 0.0854537 -0.009163342  -0.07433311 -0.009163342 0.0331338  pre</span></span>
-<span><span class="co">#&gt; 2  0.09227574 0.3935227 -0.013433772   0.22946543 -0.013433772 0.0331338  pre</span></span>
-<span><span class="co">#&gt;   trt</span></span>
-<span><span class="co">#&gt; 1   0</span></span>
-<span><span class="co">#&gt; 2   1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term   contrast  comparison  std.error  statistic      p.value</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre -0.02324303 0.07849559 -0.2961062 0.7671489993</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre  0.29752845 0.07833875  3.7979728 0.0001458843</span></span>
+<span><span class="co">#&gt;     conf.low conf.high   predicted predicted_hi predicted_lo         y time trt</span></span>
+<span><span class="co">#&gt; 1 -0.1770916 0.1306055 -0.05327288  -0.07651591  -0.05327288 -0.014174  pre   0</span></span>
+<span><span class="co">#&gt; 2  0.1439873 0.4510696 -0.11242030   0.18510815  -0.11242030 -0.014174  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -566,9 +563,9 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type          term comparison std.error statistic     p.value   conf.low</span></span>
-<span><span class="co">#&gt; 1 response Row 1 - Row 2  -0.308069 0.1086825 -2.834578 0.004588626 -0.5210827</span></span>
-<span><span class="co">#&gt;     conf.high</span></span>
-<span><span class="co">#&gt; 1 -0.09505522</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3207715 0.1108987 -2.892473 0.003822216 -0.5381289</span></span>
+<span><span class="co">#&gt;    conf.high</span></span>
+<span><span class="co">#&gt; 1 -0.1034141</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
