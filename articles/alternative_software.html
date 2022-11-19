@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +36,19 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
+  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -119,7 +119,7 @@
 <code>emmeans</code><a class="anchor" aria-label="anchor" href="#emmeans"></a>
 </h2>
 <p>The <a href="https://cran.r-project.org/web/packages/emmeans/index.html" class="external-link"><code>emmeans</code> package</a> is developed by Russell V. Lenth and colleagues. <code>emmeans</code> is a truly incredible piece of software, and a trailblazer in the <code>R</code> ecosystem. It is an <em>extremely</em> powerful package whose functionality overlaps <code>marginaleffects</code> to a significant degree: marginal means, contrasts, and slopes. Even if the two packages can compute many of the same quantities, <code>emmeans</code> and <code>marginaleffects</code> have pretty different philosophies with respect to user interface and computation.</p>
-<p>An <code>emmeans</code> analysis typically starts by computing <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">“marginal means”</a> by holding all numeric covariates at their means, and by averaging across a balanced grid of categorical predictors. Then, users can use the <code><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast()</a></code> function to estimate the difference between marginal means.</p>
+<p>An <code>emmeans</code> analysis typically starts by computing <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">“marginal means”</a> by holding all numeric covariates at their means, and by averaging across a balanced grid of categorical predictors. Then, users can use the <code><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast()</a></code> function to estimate the difference between marginal means.</p>
 <p>The <code>marginaleffects</code> package supplies a <code>marginalmeans</code> function which can also compute marginal means. However, the typical analysis is more squarely centered on predicted/fitted values. This is a useful starting point because, in many cases, analysts will find it easy and intuitive to express their scientific queries in terms of changes in predicted values. For example,</p>
 <ul>
 <li>How does the average predicted probability of survival differ between treatment and control group?</li>
@@ -136,7 +136,7 @@
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, <span class="co"># what is the effect of 1-unit change in x?</span></span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>z <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span> <span class="co"># when z is held at values -1, 0, or 1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>As <a href="https://vincentarelbundock.github.io/marginaleffects/index.html#table-of-contents">the vignettes show,</a> <code>marginaleffects</code> can also compute contrasts on marginal means. It can also compute various quantities of interest like raw fitted values, slopes (partial derivatives), and contrasts between marginal means. It also offers a flexible mechanism to run (non-)linear hypothesis tests using the delta method, and it offers fully customizable strategy to compute quantities like odds ratios (or completely arbitrary functions of predicted outcome).</p>
+<p>As <a href="https://vincentarelbundock.github.io/marginaleffects/index.html#table-of-contents" class="external-link">the vignettes show,</a> <code>marginaleffects</code> can also compute contrasts on marginal means. It can also compute various quantities of interest like raw fitted values, slopes (partial derivatives), and contrasts between marginal means. It also offers a flexible mechanism to run (non-)linear hypothesis tests using the delta method, and it offers fully customizable strategy to compute quantities like odds ratios (or completely arbitrary functions of predicted outcome).</p>
 <p>Thus, in my (Vincent’s) biased opinion, the main benefits of <code>marginaleffects</code> over <code>emmeans</code> are:</p>
 <ul>
 <li>Support more model types.</li>
@@ -155,7 +155,7 @@
 <li>Multiplicity adjustments.</li>
 </ul>
 <p>Please let me know if you find other features in <code>emmeans</code> so I can add them to this list.</p>
-<p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal Means Vignette</a> includes side-by-side comparisons of <code>emmeans</code> and <code>marginaleffects</code> to compute marginal means. The rest of this section compares the syntax for contrasts and marginaleffects.</p>
+<p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html" class="external-link">Marginal Means Vignette</a> includes side-by-side comparisons of <code>emmeans</code> and <code>marginaleffects</code> to compute marginal means. The rest of this section compares the syntax for contrasts and marginaleffects.</p>
 <div class="section level3">
 <h3 id="contrasts">Contrasts<a class="anchor" aria-label="anchor" href="#contrasts"></a>
 </h3>
@@ -163,7 +163,7 @@
 <p>Fit a model:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></code></pre></div>
 <p>Link scale, pairwise contrasts:</p>
@@ -471,7 +471,7 @@
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/margins" class="external-link">margins</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
@@ -685,7 +685,7 @@ cyl |  -.9416168   .5509164    -1.71   0.098    -2.070118    .1868842
 </h4>
 <p>The same results can be obtained with <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> like this:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://vincentarelbundock.github.io/marginaleffects/">"marginaleffects"</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">"marginaleffects"</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -874,7 +874,7 @@ Expression   : Linear prediction, predict()
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://joshuawiley.com/brmsmargins/" class="external-link">brmsmargins</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://withr.r-lib.org" class="external-link">withr</a></span><span class="op">)</span></span>
 <span><span class="va">h</span> <span class="op">&lt;-</span> <span class="fl">1e-4</span></span>
@@ -1141,7 +1141,7 @@ Expression   : Linear prediction, predict()
 <li>
 <code>marginaleffects</code> supports 30+ more model types than <code>effects</code>.</li>
 <li>
-<code>effects</code> focuses on the computation of <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">“adjusted predictions.”</a> The plots it produces are roughly equivalent to the ones produced by the <code>plot_cap</code> and <code>predictions</code> functions in <code>marginaleffects</code>.</li>
+<code>effects</code> focuses on the computation of <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">“adjusted predictions.”</a> The plots it produces are roughly equivalent to the ones produced by the <code>plot_cap</code> and <code>predictions</code> functions in <code>marginaleffects</code>.</li>
 <li>
 <code>effects</code> does not appear support marginal effects (slopes), marginal means, or contrasts</li>
 <li>
