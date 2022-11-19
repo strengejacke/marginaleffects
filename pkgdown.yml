@@ -29,5 +29,8 @@ articles:
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-11-19T17:25Z
+last_built: 2022-11-19T17:37Z
+urls:
+  reference: https://vincentarelbundock.github.io/marginaleffects/reference
+  article: https://vincentarelbundock.github.io/marginaleffects/articles
 

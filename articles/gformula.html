@@ -36,19 +36,19 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -91,7 +91,7 @@
 <p>This vignette has 3 goals:</p>
 <ol style="list-style-type: decimal">
 <li>Give a <em>concise</em> introduction to the idea of “Parametric g-Formula”</li>
-<li>Highlight the equivalence between one form of g-estimation and the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html#average-contrasts" class="external-link">“Average Contrasts”</a> computed by <code>marginaleffects</code>
+<li>Highlight the equivalence between one form of g-estimation and the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html#average-contrasts">“Average Contrasts”</a> computed by <code>marginaleffects</code>
 </li>
 <li>Show how to obtain estimates, standard errors, and confidence intervals via the Parametric g-Formula, using a single line of <code>marginaleffects</code> code. This is convenient because, typically, analysts have to construct counterfactual datasets manually and must bootstrap their estimates.</li>
 </ol>
@@ -121,7 +121,7 @@
 <li>Use the model from Step 1 to compute adjusted predictions in the two counterfactual datasets from Steps 2 and 3.</li>
 <li>The quantity of interest is the difference between the means of adjusted predictions in the two counterfactual datasets.</li>
 </ol>
-<p>This is equivalent to computing an <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html#average-contrasts" class="external-link">“Average Contrast”</a>, in which the value of <span class="math inline">\(X\)</span> moves from 0 to 1. Thanks to this equivalence, we can apply the parametric g-formula method using a single line of code in <code>marginaleffects</code>, and obtain delta method standard errors automatically.</p>
+<p>This is equivalent to computing an <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html#average-contrasts">“Average Contrast”</a>, in which the value of <span class="math inline">\(X\)</span> moves from 0 to 1. Thanks to this equivalence, we can apply the parametric g-formula method using a single line of code in <code>marginaleffects</code>, and obtain delta method standard errors automatically.</p>
 </div>
 <div class="section level2">
 <h2 id="example-with-real-world-data">Example with real-world data<a class="anchor" aria-label="anchor" href="#example-with-real-world-data"></a>
@@ -130,7 +130,7 @@
 <p>Step 1 is to fit a regression model of the outcome on the treatment and control variables:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">boot</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">wt82_71</span> <span class="op">~</span> <span class="va">qsmk</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">race</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">age</span> <span class="op">*</span> <span class="va">age</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">education</span><span class="op">)</span> <span class="op">+</span></span>
 <span>     <span class="va">smokeintensity</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">smokeintensity</span> <span class="op">*</span> <span class="va">smokeintensity</span><span class="op">)</span> <span class="op">+</span> <span class="va">smokeyrs</span> <span class="op">+</span></span>
@@ -188,7 +188,7 @@
 <span><span class="va">interv1</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">interv1</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span></span>
-<span><span class="va">onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">nhefs</span>, <span class="va">interv0</span>, <span class="va">interv1</span><span class="op">)</span> <span class="co"># combining datasets</span></span>
+<span><span class="va">onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">nhefs</span>, <span class="va">interv0</span>, <span class="va">interv1</span><span class="op">)</span> <span class="co"># combining datasets</span></span>
 <span></span>
 <span><span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
 <span><span class="co"># parameters are estimated using original observations only (nhefs)</span></span>
@@ -255,7 +255,7 @@
 <span>    <span class="va">d1</span><span class="op">$</span><span class="va">interv</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span>    <span class="va">d1</span><span class="op">$</span><span class="va">qsmk</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span>    <span class="va">d1</span><span class="op">$</span><span class="va">wt82_71</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span>    <span class="va">d.onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">d0</span>, <span class="va">d1</span><span class="op">)</span> <span class="co"># combining datasets</span></span>
+<span>    <span class="va">d.onesample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">d0</span>, <span class="va">d1</span><span class="op">)</span> <span class="co"># combining datasets</span></span>
 <span></span>
 <span>    <span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
 <span>    <span class="co"># parameters are estimated using original observations only (interv= -1)</span></span>
@@ -288,7 +288,7 @@
 <span>    check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">bootstrap</span></span></code></pre></div>
 <pre><code><span><span class="co">##                            estimate std.error conf.low conf.high</span></span>
-<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4825183 2.571656  4.463093</span></span></code></pre>
+<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4837459  2.56925  4.465499</span></span></code></pre>
 <p>The results are close to those that we obtained with <code><a href="../reference/comparisons.html">comparisons()</a></code>, but the confidence interval differs slightly because of the difference between bootstrapping and the delta method.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>

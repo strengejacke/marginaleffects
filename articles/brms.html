@@ -36,19 +36,19 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -110,7 +110,7 @@
 </h2>
 <p>Load libraries and download data on passengers of the Titanic from <a href="https://vincentarelbundock.github.io/Rdatasets/" class="external-link">the Rdatasets archive:</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
@@ -127,7 +127,7 @@
 <div class="section level3">
 <h3 id="adjusted-predictions">Adjusted predictions<a class="anchor" aria-label="anchor" href="#adjusted-predictions"></a>
 </h3>
-<p>We can compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html" class="external-link">adjusted predicted values</a> of the outcome variable (i.e., probability of survival aboard the Titanic) using the <code>predictions</code> function. By default, this function calculates predictions for each row of the dataset:</p>
+<p>We can compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">adjusted predicted values</a> of the outcome variable (i.e., probability of survival aboard the Titanic) using the <code>predictions</code> function. By default, this function calculates predictions for each row of the dataset:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
@@ -198,7 +198,7 @@
 <div class="section level3">
 <h3 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
 </h3>
-<p>Use <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> to <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html" class="external-link">compute marginal effects (slopes of the regression equation)</a> for each row of the dataset, and use <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> to compute “Average Marginal Effects”, that is, the average of all observation-level marginal effects:</p>
+<p>Use <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> to <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">compute marginal effects (slopes of the regression equation)</a> for each row of the dataset, and use <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> to compute “Average Marginal Effects”, that is, the average of all observation-level marginal effects:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -287,7 +287,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">vdem_2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://github.com/vincentarelbundock/marginaleffects/raw/main/data-raw/vdem_2015.csv"</span><span class="op">)</span></span>
 <span></span>
@@ -327,7 +327,7 @@
 <span>    <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"prediction"</span>, newdata <span class="op">=</span> <span class="va">nd</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div>
 <p>Extract posterior draws and plot them:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pred</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">draw</span>, fill <span class="op">=</span> <span class="va">party_autonomy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -341,7 +341,7 @@
 <div class="section level3">
 <h3 id="marginal-effects-and-contrasts">Marginal effects and contrasts<a class="anchor" aria-label="anchor" href="#marginal-effects-and-contrasts"></a>
 </h3>
-<p>As noted in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html" class="external-link">Marginal Effects vignette</a>, there should be one distinct marginal effect for each combination of regressor values. Here, we consider only one combination of regressor values, where <code>region</code> is “Middle East and North Africa”, and <code>civil_liberties</code> is 0.5. Then, we calculate the mean of the posterior distribution of marginal effects:</p>
+<p>As noted in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal Effects vignette</a>, there should be one distinct marginal effect for each combination of regressor values. Here, we consider only one combination of regressor values, where <code>region</code> is “Middle East and North Africa”, and <code>civil_liberties</code> is 0.5. Then, we calculate the mean of the posterior distribution of marginal effects:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                       newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>civil_liberties <span class="op">=</span> <span class="fl">.5</span>,</span>
@@ -589,8 +589,8 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type x predicted  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response 0 0.4507107 0.3405855 0.5664907</span></span>
-<span><span class="co">#&gt; 2 response 1 0.5509045 0.4345240 0.6652526</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response 0 0.4506205 0.3328820 0.5627769</span></span>
+<span><span class="co">#&gt; 2 response 1 0.5494184 0.4337478 0.6626343</span></span></code></pre></div>
 <p>We can “integrate out” random effects in the other <code>marginaleffects</code> functions too. For instance,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -600,7 +600,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term Contrast  Effect   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x    1 - 0 0.09731 0.04701 0.1623</span></span>
+<span><span class="co">#&gt; 1    x    1 - 0 0.09665 0.04895  0.161</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -613,14 +613,14 @@
 <span>  at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">.95</span>,</span>
 <span>  CIType <span class="op">=</span> <span class="st">"ETI"</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            M       Mdn         LL        UL PercentROPE PercentMID   CI CIType</span></span>
-<span><span class="co">#&gt; 1 0.09894841 0.0970129 0.04868789 0.1608887          NA         NA 0.95    ETI</span></span>
+<span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType</span></span>
+<span><span class="co">#&gt; 1 0.09874954 0.09664902 0.04592538 0.1628255          NA         NA 0.95    ETI</span></span>
 <span><span class="co">#&gt;   ROPE  MID Label</span></span>
 <span><span class="co">#&gt; 1 &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
-<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html" class="external-link">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
+<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -700,7 +700,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/cmdstanr/" class="external-link">cmdstanr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1024</span><span class="op">)</span></span>
 <span></span>
@@ -920,7 +920,7 @@
 <p>The default credible intervals are equal-tailed intervals (quantiles). Users can customize the type of intervals reported by setting a global option. Currently, the only alternative to ETI is the Highest Density Interval (HDI). Note that, in these two commands, the confidence intervals change slightly, but not the median estimates:</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/insight/" class="external-link">insight</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/download_model.html" class="external-link">download_model</a></span><span class="op">(</span><span class="st">"brms_1"</span><span class="op">)</span></span>
 <span></span>
@@ -945,21 +945,21 @@
 <div class="section level2">
 <h2 id="random-variables-posterior-and-ggdist">Random variables: <code>posterior</code> and <code>ggdist</code><a class="anchor" aria-label="anchor" href="#random-variables-posterior-and-ggdist"></a>
 </h2>
-<p>Note: The rest of this section requires version 0.8.1 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version.</a></p>
+<p>Note: The rest of this section requires version 0.8.1 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">the development version.</a></p>
 <p>Recent versions of the <code>posterior</code>, <code>brms</code>, and <code>ggdist</code> packages make it easy to draw, summarize and plot random variables. The <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> can produce objects of class <code>rvar</code> which make it easy to use those features by returning a data frame with a column of type <code>rvar</code>:</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
 <span><span class="va">rvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">p</span>, shape <span class="op">=</span> <span class="st">"rvar"</span><span class="op">)</span> </span>
 <span><span class="va">rvar</span></span>
 <span><span class="co">#&gt;       type am predicted conf.low conf.high                rvar</span></span>
-<span><span class="co">#&gt; 1 response  0  17.12209 14.84306  19.35892 17.11857 ± 1.143444</span></span>
-<span><span class="co">#&gt; 2 response  1  24.36521 21.60264  27.06747 24.35178 ± 1.387159</span></span>
+<span><span class="co">#&gt; 1 response  0  17.09406 14.80701  19.31986 17.09298 ± 1.155353</span></span>
+<span><span class="co">#&gt; 2 response  1  24.34526 21.49521  27.34284 24.37037 ± 1.454903</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">rvar</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">am</span>, xdist <span class="op">=</span> <span class="va">rvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slabinterval.html" class="external-link">stat_slabinterval</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -968,7 +968,7 @@
 <div class="section level2">
 <h2 id="non-linear-hypothesis-testing">Non-linear hypothesis testing<a class="anchor" aria-label="anchor" href="#non-linear-hypothesis-testing"></a>
 </h2>
-<p>Note: The rest of this section requires version 0.8.1 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version.</a></p>
+<p>Note: The rest of this section requires version 0.8.1 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">the development version.</a></p>
 <p>We begin by estimating a model:</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">bernoulli</a></span><span class="op">(</span><span class="op">)</span>,</span>
