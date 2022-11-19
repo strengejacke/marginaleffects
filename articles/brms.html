@@ -589,8 +589,8 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type x predicted  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response 0 0.4530013 0.3438500 0.5691383</span></span>
-<span><span class="co">#&gt; 2 response 1 0.5512969 0.4369632 0.6643267</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response 0 0.4507107 0.3405855 0.5664907</span></span>
+<span><span class="co">#&gt; 2 response 1 0.5509045 0.4345240 0.6652526</span></span></code></pre></div>
 <p>We can “integrate out” random effects in the other <code>marginaleffects</code> functions too. For instance,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -600,7 +600,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term Contrast  Effect   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x    1 - 0 0.09705 0.04879 0.1637</span></span>
+<span><span class="co">#&gt; 1    x    1 - 0 0.09731 0.04701 0.1623</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -616,8 +616,8 @@
 <span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType</span></span>
-<span><span class="co">#&gt; 1 0.09840355 0.09628012 0.04774788 0.1595801          NA         NA 0.95    ETI</span></span>
+<span><span class="co">#&gt;            M       Mdn         LL        UL PercentROPE PercentMID   CI CIType</span></span>
+<span><span class="co">#&gt; 1 0.09894841 0.0970129 0.04868789 0.1608887          NA         NA 0.95    ETI</span></span>
 <span><span class="co">#&gt;   ROPE  MID Label</span></span>
 <span><span class="co">#&gt; 1 &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html" class="external-link">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
@@ -943,15 +943,38 @@
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="random-variables-posterior-and-ggdist">Random variables: <code>posterior</code> and <code>ggdist</code><a class="anchor" aria-label="anchor" href="#random-variables-posterior-and-ggdist"></a>
+</h2>
+<p>Note: The rest of this section requires version 0.8.1 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version.</a></p>
+<p>Recent versions of the <code>posterior</code>, <code>brms</code>, and <code>ggdist</code> packages make it easy to draw, summarize and plot random variables. The <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> can produce objects of class <code>rvar</code> which make it easy to use those features by returning a data frame with a column of type <code>rvar</code>:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/" class="external-link">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
+<span><span class="va">rvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">p</span>, shape <span class="op">=</span> <span class="st">"rvar"</span><span class="op">)</span> </span>
+<span><span class="va">rvar</span></span>
+<span><span class="co">#&gt;       type am predicted conf.low conf.high                rvar</span></span>
+<span><span class="co">#&gt; 1 response  0  17.12209 14.84306  19.35892 17.11857 ± 1.143444</span></span>
+<span><span class="co">#&gt; 2 response  1  24.36521 21.60264  27.06747 24.35178 ± 1.387159</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">rvar</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">am</span>, xdist <span class="op">=</span> <span class="va">rvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slabinterval.html" class="external-link">stat_slabinterval</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="brms_files/figure-html/unnamed-chunk-66-1.png" width="100%"></p>
+</div>
+<div class="section level2">
 <h2 id="non-linear-hypothesis-testing">Non-linear hypothesis testing<a class="anchor" aria-label="anchor" href="#non-linear-hypothesis-testing"></a>
 </h2>
 <p>Note: The rest of this section requires version 0.8.1 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation" class="external-link">the development version.</a></p>
 <p>We begin by estimating a model:</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">bernoulli</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>           seed <span class="op">=</span> <span class="fl">1024</span>, silent <span class="op">=</span> <span class="fl">2</span>, chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
 <p>Notice that we can compute average contrasts in two different ways, using the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function or the <code>transform_pre</code> argument:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type term contrast    estimate   conf.low   conf.high</span></span>
 <span><span class="co">#&gt; 1 response   hp       +1 0.005987268 0.00288400 0.008860451</span></span>
@@ -965,7 +988,7 @@
 <span><span class="co">#&gt; 1    0.3718606   0.09989568</span></span>
 <span><span class="co">#&gt; 2    0.2085257   0.19744730</span></span></code></pre></div>
 <p>Now, we use the <code>hypothesis</code> argument to compare the first to the second rows of the <code><a href="../reference/comparisons.html">comparisons()</a></code> output:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span>,</span>
@@ -973,7 +996,7 @@
 <span><span class="co">#&gt;       type      term  comparison   conf.low   conf.high</span></span>
 <span><span class="co">#&gt; 1 response b1-b2=0.2 -0.07020984 -0.1251562 -0.03339701</span></span></code></pre></div>
 <p>The <code>hypothesis</code> function of the <code>brms</code> package can also perform non-linear hypothesis testing, and it generates some convenient statistics and summaries. This function accepts a D-by-P matrix of draws from the posterior distribution, where D is the number of draws and N is the number of parameters. We can obtain such a matrix using the <code>posteriordraws(x, shape = "DxP")</code>, and we can simply add a couple calls to our chain of operations:</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"DxP"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
