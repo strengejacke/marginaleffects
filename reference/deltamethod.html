@@ -20,7 +20,7 @@ offers some convenience features like shortcuts for robust standard errors."><!-
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9005</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -209,17 +209,49 @@ programmatically.</p>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">deltamethod</span><span class="op">(</span><span class="va">cmp</span>, hypothesis <span class="op">=</span> <span class="st">"b1 = b2"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(parse(text = hypothesis), envir = envir):</span> object 'b2' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Models of class "function" are not supported. Supported model classes</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   include:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   Gam, afex_aov, betareg, bife, bigglm, biglm, bracl, brglmFit, brmsfit,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   brnb, clm, clogit, coxph, crch, fixest, gam, gamlss, geeglm, glimML,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   glm, glmerMod, glmmPQL, glmmTMB, glmrob, glmx, gls, hurdle, hxlr,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   iv_robust, ivreg, lm, lmRob, lm_robust, lmerMod, lmerModLmerTest, lmrob,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   loess, lrm, mblogit, mclogit, mhurdle, mlogit, multinom, negbin, ols,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   orm, plm, polr, rlmerMod, rq, scam, selection, speedglm, speedlm,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   stanreg, tobit, tobit1, truncreg, zeroinfl</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   New modeling packages can usually be supported by `marginaleffects` if</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   they include a working `predict()` method. If you believe that this is</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   the case, please file a feature request on Github:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">deltamethod</span><span class="op">(</span><span class="va">cmp</span>, hypothesis <span class="op">=</span> <span class="st">"b2 = 0.2"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(parse(text = hypothesis), envir = envir):</span> object 'b2' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Models of class "function" are not supported. Supported model classes</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   include:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   Gam, afex_aov, betareg, bife, bigglm, biglm, bracl, brglmFit, brmsfit,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   brnb, clm, clogit, coxph, crch, fixest, gam, gamlss, geeglm, glimML,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   glm, glmerMod, glmmPQL, glmmTMB, glmrob, glmx, gls, hurdle, hxlr,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   iv_robust, ivreg, lm, lmRob, lm_robust, lmerMod, lmerModLmerTest, lmrob,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   loess, lrm, mblogit, mclogit, mhurdle, mlogit, multinom, negbin, ols,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   orm, plm, polr, rlmerMod, rq, scam, selection, speedglm, speedlm,</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   stanreg, tobit, tobit1, truncreg, zeroinfl</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   New modeling packages can usually be supported by `marginaleffects` if</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   they include a working `predict()` method. If you believe that this is</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   the case, please file a feature request on Github:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">pre</span> <span class="op">&lt;-</span> <span class="fu"><a href="predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">110</span>, mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">35</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">deltamethod</span><span class="op">(</span><span class="va">pre</span>, hypothesis <span class="op">=</span> <span class="st">"b1 = b2"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some of the variable names are missing from the model data: hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type  term predicted conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response b1=b2         0        0         0</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some of the variable names are missing from the model data: hp, mpg</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Unable to compute predicted values with this model. You can try to</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   supply a different dataset to the `newdata` argument. If this does not</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   work, you can file a report on the Github Issue Tracker:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   This error was also raised: no applicable method for 'predict' applied</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   to an object of class "function"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The `FUN` argument can be used to compute standard errors for fitted values</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
