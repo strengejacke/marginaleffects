@@ -16,7 +16,7 @@ interactions, where the values of marginal effects depend on the values of
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,8 +94,11 @@ interactions, where the values of marginal effects depend on the values of
 
 
 <dt>effect</dt>
-<dd><p>Name of the variable whose marginal effect we want to plot on the y-axis
-#' @param condition character vector or named list of length smaller than 3. Character vectors must be the names of the predictor variables to display. The names of the list must The first element is displayed on the x-axis. The second element determines the colors. The third element creates facets. Unspecified variables are held at their means or modes. Lists can include these types of values (see Examples section below):</p><ul><li><p>Numeric vector</p></li>
+<dd><p>Name of the variable whose marginal effect we want to plot on the y-axis</p></dd>
+
+
+<dt>condition</dt>
+<dd><p>character vector or named list of length smaller than 3. Character vectors must be the names of the predictor variables to display. The names of the list must The first element is displayed on the x-axis. The second element determines the colors. The third element creates facets. Unspecified variables are held at their means or modes. Lists can include these types of values (see Examples section below):</p><ul><li><p>Numeric vector</p></li>
 <li><p>Function which returns a numeric vector or a set of unique categorical values</p></li>
 <li><p>Shortcut strings for common reference values: "minmax", "quartile", "threenum"</p></li>
 </ul></dd>
