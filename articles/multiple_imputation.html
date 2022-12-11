@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,8 +127,8 @@
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1   hp -0.06463466 0.01133711 -5.701156 4394.001 1.267929e-08</span></span></code></pre></div>
+<span><span class="co">#&gt;   term    estimate  std.error statistic      df      p.value</span></span>
+<span><span class="co">#&gt; 1   hp -0.06611676 0.01144151 -5.778677 4601.36 8.025572e-09</span></span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
@@ -147,7 +147,13 @@
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
+group.x
+</th>
+<th style="text-align:center;">
 Listwise Deletion
+</th>
+<th style="text-align:center;">
+group.y
 </th>
 <th style="text-align:center;">
 Complete
@@ -162,20 +168,28 @@ Multiple Imputation
 hp
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 −0.063
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 −0.068
 </td>
 <td style="text-align:center;">
-−0.065
+−0.066
 </td>
 </tr>
 <tr>
 <td style="text-align:left;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
 (0.011)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
 (0.010)
@@ -189,7 +203,11 @@ hp
 Num.Obs.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 25
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 32
@@ -202,7 +220,11 @@ Num.Obs.
 R2
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 0.573
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.602
@@ -215,7 +237,11 @@ R2
 R2 Adj.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 0.555
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.589
@@ -228,7 +254,11 @@ R2 Adj.
 AIC
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 143.6
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 181.2
@@ -241,7 +271,11 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 147.3
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 185.6
@@ -254,7 +288,11 @@ BIC
 Log.Lik.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 −68.815
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 −87.619
@@ -267,7 +305,11 @@ Log.Lik.
 F
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 30.881
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 45.460
@@ -280,7 +322,11 @@ F
 RMSE
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 3.79
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 3.74
@@ -316,8 +362,8 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term  estimate std.error statistic       df     p.value</span></span>
-<span><span class="co">#&gt; 1  cyl -8.997955  2.800798  -3.21264 78.18477 0.001910865</span></span></code></pre></div>
+<span><span class="co">#&gt;   term  estimate std.error statistic       df    p.value</span></span>
+<span><span class="co">#&gt; 1  cyl -9.237127  2.789204 -3.311743 78.63668 0.00140223</span></span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
@@ -339,9 +385,9 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        term   estimate std.error statistic        df      p.value</span></span>
-<span><span class="co">#&gt; 1 cyl 6 - 4  -6.767597  1.779296 -3.803526  956.3248 1.517007e-04</span></span>
-<span><span class="co">#&gt; 2 cyl 8 - 4 -11.228312  1.447674 -7.756105 1945.4554 1.398881e-14</span></span></code></pre></div>
+<span><span class="co">#&gt;        term   estimate std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1 cyl 6 - 4  -7.006234  1.750358 -4.002743 1473.430 6.572624e-05</span></span>
+<span><span class="co">#&gt; 2 cyl 8 - 4 -11.468019  1.434110 -7.996611 2759.148 1.776357e-15</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -360,7 +406,7 @@ RMSE
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term   estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  mpg 0.04962403 0.01024745  4.842576 754.1844 1.555543e-06</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  mpg 0.05063355 0.01028216  4.924409 792.2748 1.030088e-06</span></span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
@@ -379,7 +425,13 @@ RMSE
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
+group.x
+</th>
+<th style="text-align:center;">
 Listwise Deletion
+</th>
+<th style="text-align:center;">
+group.y
 </th>
 <th style="text-align:center;">
 Complete
@@ -394,20 +446,28 @@ Multiple Imputation
 mpg
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 0.044
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.046
 </td>
 <td style="text-align:center;">
-0.050
+0.051
 </td>
 </tr>
 <tr>
 <td style="text-align:left;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
 (0.009)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
 (0.009)
@@ -421,7 +481,11 @@ mpg
 Num.Obs.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 24
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 32
@@ -434,7 +498,11 @@ Num.Obs.
 AIC
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 24.0
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 33.7
@@ -447,7 +515,11 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 26.4
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 36.6
@@ -460,7 +532,11 @@ BIC
 Log.Lik.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 −10.023
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 −14.838
@@ -473,7 +549,11 @@ Log.Lik.
 F
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 5.702
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 7.148
@@ -486,7 +566,11 @@ F
 RMSE
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 0.37
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.39
@@ -546,7 +630,13 @@ RMSE
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
+group.x
+</th>
+<th style="text-align:center;">
 Listwise Deletion
+</th>
+<th style="text-align:center;">
+group.y
 </th>
 <th style="text-align:center;">
 Complete
@@ -561,7 +651,11 @@ Multiple Imputation
 Days
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 10.407
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 10.467
@@ -574,7 +668,11 @@ Days
 <td style="text-align:left;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
 (1.622)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
 (1.546)
@@ -588,7 +686,11 @@ Days
 Num.Obs.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 170
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 180
@@ -606,6 +708,10 @@ Num.Imp.
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 20
 </td>
 </tr>
@@ -614,7 +720,11 @@ Num.Imp.
 R2 Marg.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 0.274
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.279
@@ -627,7 +737,11 @@ R2 Marg.
 R2 Cond.
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 0.796
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.799
@@ -640,7 +754,11 @@ R2 Cond.
 AIC
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 1664.9
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 1755.6
@@ -653,7 +771,11 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 1683.7
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 1774.8
@@ -666,7 +788,11 @@ BIC
 ICC
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 0.7
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.7
@@ -679,7 +805,11 @@ ICC
 RMSE
 </td>
 <td style="text-align:center;">
+</td>
+<td style="text-align:center;">
 23.55
+</td>
+<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 23.44

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,7 +126,9 @@
 <p>External links:</p>
 <ul>
 <li>
-<a href="https://www.ajordannafa.com/blog/2022/05/24/bma-ames/" class="external-link">Bayesian model averaged marginal effects</a> by A. Jordan Nafa</li>
+<a href="https://cran.r-project.org/web/packages/MatchIt/vignettes/estimating-effects.html" class="external-link">Matching</a> by Noah Greifer</li>
+<li>
+<a href="https://www.ajordannafa.com/blog/2022/05/24/bma-ames/" class="external-link">Bayesian model averaging</a> by A. Jordan Nafa</li>
 <li>
 <a href="https://www.andrewheiss.com/blog/2022/05/20/marginalia/" class="external-link">Marginalia: A guide to figuring out what the heck marginal effects, marginal slopes, average marginal effects, marginal effects at the mean, and all these other marginal things are</a> by Andrew Heiss</li>
 <li>
@@ -255,23 +257,51 @@
 <p>By default, the <code><a href="reference/predictions.html">predictions()</a></code> function returns adjusted predictions for every value in original dataset:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high  mpg  hp    wt am</span></span>
-<span><span class="co">#&gt; 1     1 response  22.48857 0.8841487  25.43528 1.027254e-142 20.66378  24.31336 21.0 110 2.620  1</span></span>
-<span><span class="co">#&gt; 2     2 response  20.80186 1.1942050  17.41900  5.920119e-68 18.33714  23.26658 21.0 110 2.875  1</span></span>
-<span><span class="co">#&gt; 3     3 response  25.26465 0.7085307  35.65781 1.783452e-278 23.80232  26.72699 22.8  93 2.320  1</span></span>
-<span><span class="co">#&gt; 4     4 response  20.25549 0.7044641  28.75305 8.296026e-182 18.80155  21.70943 21.4 110 3.215  0</span></span>
-<span><span class="co">#&gt; 5     5 response  16.99782 0.7118658  23.87784 5.205109e-126 15.52860  18.46704 18.7 175 3.440  0</span></span>
-<span><span class="co">#&gt; 6     6 response  19.66353 0.8753226  22.46433 9.270636e-112 17.85696  21.47011 18.1 105 3.460  0</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic</span></span>
+<span><span class="co">#&gt; 1     1 response  22.48857 0.8841487  25.43528</span></span>
+<span><span class="co">#&gt; 2     2 response  20.80186 1.1942050  17.41900</span></span>
+<span><span class="co">#&gt; 3     3 response  25.26465 0.7085307  35.65781</span></span>
+<span><span class="co">#&gt; 4     4 response  20.25549 0.7044641  28.75305</span></span>
+<span><span class="co">#&gt; 5     5 response  16.99782 0.7118658  23.87784</span></span>
+<span><span class="co">#&gt; 6     6 response  19.66353 0.8753226  22.46433</span></span>
+<span><span class="co">#&gt;         p.value conf.low conf.high  mpg  hp    wt</span></span>
+<span><span class="co">#&gt; 1 1.027254e-142 20.66378  24.31336 21.0 110 2.620</span></span>
+<span><span class="co">#&gt; 2  5.920119e-68 18.33714  23.26658 21.0 110 2.875</span></span>
+<span><span class="co">#&gt; 3 1.783452e-278 23.80232  26.72699 22.8  93 2.320</span></span>
+<span><span class="co">#&gt; 4 8.296026e-182 18.80155  21.70943 21.4 110 3.215</span></span>
+<span><span class="co">#&gt; 5 5.205109e-126 15.52860  18.46704 18.7 175 3.440</span></span>
+<span><span class="co">#&gt; 6 9.270636e-112 17.85696  21.47011 18.1 105 3.460</span></span>
+<span><span class="co">#&gt;   am</span></span>
+<span><span class="co">#&gt; 1  1</span></span>
+<span><span class="co">#&gt; 2  1</span></span>
+<span><span class="co">#&gt; 3  1</span></span>
+<span><span class="co">#&gt; 4  0</span></span>
+<span><span class="co">#&gt; 5  0</span></span>
+<span><span class="co">#&gt; 6  0</span></span></code></pre></div>
 <p>The <a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagrid.html"><code>datagrid</code> function gives us a powerful way to define a grid of predictors.</a> All the variables not mentioned explicitly in <code><a href="reference/datagrid.html">datagrid()</a></code> are fixed to their mean or mode:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span>, wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high      mpg       hp am  wt</span></span>
-<span><span class="co">#&gt; 1     1 response  21.95621 2.0386301  10.77008  4.765935e-27 17.74868  26.16373 20.09062 146.6875  0 2.0</span></span>
-<span><span class="co">#&gt; 2     2 response  21.42097 1.7699036  12.10290  1.019401e-33 17.76807  25.07388 20.09062 146.6875  0 2.2</span></span>
-<span><span class="co">#&gt; 3     3 response  20.88574 1.5067373  13.86157  1.082834e-43 17.77599  23.99549 20.09062 146.6875  0 2.4</span></span>
-<span><span class="co">#&gt; 4     4 response  20.35051 1.2526403  16.24609  2.380723e-59 17.76518  22.93583 20.09062 146.6875  0 2.6</span></span>
-<span><span class="co">#&gt; 5     5 response  19.81527 1.0144509  19.53301  5.755097e-85 17.72155  21.90900 20.09062 146.6875  0 2.8</span></span>
-<span><span class="co">#&gt; 6     6 response  19.28004 0.8063905  23.90906 2.465206e-126 17.61573  20.94435 20.09062 146.6875  0 3.0</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic</span></span>
+<span><span class="co">#&gt; 1     1 response  21.95621 2.0386301  10.77008</span></span>
+<span><span class="co">#&gt; 2     2 response  21.42097 1.7699036  12.10290</span></span>
+<span><span class="co">#&gt; 3     3 response  20.88574 1.5067373  13.86157</span></span>
+<span><span class="co">#&gt; 4     4 response  20.35051 1.2526403  16.24609</span></span>
+<span><span class="co">#&gt; 5     5 response  19.81527 1.0144509  19.53301</span></span>
+<span><span class="co">#&gt; 6     6 response  19.28004 0.8063905  23.90906</span></span>
+<span><span class="co">#&gt;         p.value conf.low conf.high      mpg</span></span>
+<span><span class="co">#&gt; 1  4.765935e-27 17.74868  26.16373 20.09062</span></span>
+<span><span class="co">#&gt; 2  1.019401e-33 17.76807  25.07388 20.09062</span></span>
+<span><span class="co">#&gt; 3  1.082834e-43 17.77599  23.99549 20.09062</span></span>
+<span><span class="co">#&gt; 4  2.380723e-59 17.76518  22.93583 20.09062</span></span>
+<span><span class="co">#&gt; 5  5.755097e-85 17.72155  21.90900 20.09062</span></span>
+<span><span class="co">#&gt; 6 2.465206e-126 17.61573  20.94435 20.09062</span></span>
+<span><span class="co">#&gt;         hp am  wt</span></span>
+<span><span class="co">#&gt; 1 146.6875  0 2.0</span></span>
+<span><span class="co">#&gt; 2 146.6875  0 2.2</span></span>
+<span><span class="co">#&gt; 3 146.6875  0 2.4</span></span>
+<span><span class="co">#&gt; 4 146.6875  0 2.6</span></span>
+<span><span class="co">#&gt; 5 146.6875  0 2.8</span></span>
+<span><span class="co">#&gt; 6 146.6875  0 3.0</span></span></code></pre></div>
 <p>We can plot how predictions change for different values of one or more variables – Conditional Adjusted Predictions – using the <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"wt"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -301,11 +331,16 @@
 <span></span>
 <span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Term     Contrast   Effect Std. Error z value   Pr(&gt;|z|)     2.5 %    97.5 %</span></span>
-<span><span class="co">#&gt; 1  Woman TRUE - FALSE  0.50329   0.031654  15.899 &lt; 2.22e-16  0.441244  0.565327</span></span>
-<span><span class="co">#&gt; 2    Age           +1 -0.00558   0.001084  -5.147 2.6471e-07 -0.007705 -0.003455</span></span>
-<span><span class="co">#&gt; 3 PClass    2nd - 1st -0.22603   0.043546  -5.191 2.0950e-07 -0.311383 -0.140686</span></span>
-<span><span class="co">#&gt; 4 PClass    3rd - 1st -0.38397   0.041845  -9.176 &lt; 2.22e-16 -0.465985 -0.301957</span></span>
+<span><span class="co">#&gt;     Term     Contrast   Effect Std. Error z value</span></span>
+<span><span class="co">#&gt; 1  Woman TRUE - FALSE  0.50329   0.031654  15.899</span></span>
+<span><span class="co">#&gt; 2    Age           +1 -0.00558   0.001084  -5.147</span></span>
+<span><span class="co">#&gt; 3 PClass    2nd - 1st -0.22603   0.043546  -5.191</span></span>
+<span><span class="co">#&gt; 4 PClass    3rd - 1st -0.38397   0.041845  -9.176</span></span>
+<span><span class="co">#&gt;     Pr(&gt;|z|)     2.5 %    97.5 %</span></span>
+<span><span class="co">#&gt; 1 &lt; 2.22e-16  0.441244  0.565327</span></span>
+<span><span class="co">#&gt; 2 2.6471e-07 -0.007705 -0.003455</span></span>
+<span><span class="co">#&gt; 3 2.0950e-07 -0.311383 -0.140686</span></span>
+<span><span class="co">#&gt; 4 &lt; 2.22e-16 -0.465985 -0.301957</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -316,11 +351,16 @@
 <span>    transform_pre <span class="op">=</span> <span class="st">"ratio"</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Age <span class="op">=</span> <span class="st">"2sd"</span>, PClass <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     Term            Contrast Effect Std. Error z value   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    Age (x - sd) / (x + sd) 0.6225    0.09166   6.791 1.1126e-11 0.4428 0.8021</span></span>
-<span><span class="co">#&gt; 2 PClass           2nd / 1st 0.5636    0.05497  10.253 &lt; 2.22e-16 0.4559 0.6713</span></span>
-<span><span class="co">#&gt; 3 PClass           3rd / 1st 0.3351    0.03932   8.523 &lt; 2.22e-16 0.2580 0.4122</span></span>
-<span><span class="co">#&gt; 4 PClass           3rd / 2nd 0.6155    0.14373   4.282 1.8484e-05 0.3338 0.8972</span></span>
+<span><span class="co">#&gt;     Term            Contrast Effect Std. Error</span></span>
+<span><span class="co">#&gt; 1    Age (x - sd) / (x + sd) 0.6225    0.09166</span></span>
+<span><span class="co">#&gt; 2 PClass           2nd / 1st 0.5636    0.05497</span></span>
+<span><span class="co">#&gt; 3 PClass           3rd / 1st 0.3351    0.03932</span></span>
+<span><span class="co">#&gt; 4 PClass           3rd / 2nd 0.6155    0.14373</span></span>
+<span><span class="co">#&gt;   z value   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1   6.791 1.1126e-11 0.4428 0.8021</span></span>
+<span><span class="co">#&gt; 2  10.253 &lt; 2.22e-16 0.4559 0.6713</span></span>
+<span><span class="co">#&gt; 3   8.523 &lt; 2.22e-16 0.2580 0.4122</span></span>
+<span><span class="co">#&gt; 4   4.282 1.8484e-05 0.3338 0.8972</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -351,18 +391,37 @@
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term        dydx  std.error statistic     p.value    conf.low     conf.high predicted predicted_hi predicted_lo  mpg  hp    wt am    eps</span></span>
-<span><span class="co">#&gt; 1     1 response   hp -0.03690556 0.01850172 -1.994710 0.046074551 -0.07316825 -0.0006428553  22.48857     22.48752     22.48857 21.0 110 2.620  1 0.0283</span></span>
-<span><span class="co">#&gt; 2     2 response   hp -0.02868936 0.01562861 -1.835695 0.066402771 -0.05932087  0.0019421508  20.80186     20.80105     20.80186 21.0 110 2.875  1 0.0283</span></span>
-<span><span class="co">#&gt; 3     3 response   hp -0.04657166 0.02258715 -2.061866 0.039220507 -0.09084166 -0.0023016728  25.26465     25.26333     25.26465 22.8  93 2.320  1 0.0283</span></span>
-<span><span class="co">#&gt; 4     4 response   hp -0.04227128 0.01328278 -3.182412 0.001460541 -0.06830506 -0.0162375066  20.25549     20.25430     20.25549 21.4 110 3.215  0 0.0283</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term        dydx  std.error</span></span>
+<span><span class="co">#&gt; 1     1 response   hp -0.03690556 0.01850172</span></span>
+<span><span class="co">#&gt; 2     2 response   hp -0.02868936 0.01562861</span></span>
+<span><span class="co">#&gt; 3     3 response   hp -0.04657166 0.02258715</span></span>
+<span><span class="co">#&gt; 4     4 response   hp -0.04227128 0.01328278</span></span>
+<span><span class="co">#&gt;   statistic     p.value    conf.low     conf.high</span></span>
+<span><span class="co">#&gt; 1 -1.994710 0.046074551 -0.07316825 -0.0006428553</span></span>
+<span><span class="co">#&gt; 2 -1.835695 0.066402771 -0.05932087  0.0019421508</span></span>
+<span><span class="co">#&gt; 3 -2.061866 0.039220507 -0.09084166 -0.0023016728</span></span>
+<span><span class="co">#&gt; 4 -3.182412 0.001460541 -0.06830506 -0.0162375066</span></span>
+<span><span class="co">#&gt;   predicted predicted_hi predicted_lo  mpg  hp</span></span>
+<span><span class="co">#&gt; 1  22.48857     22.48752     22.48857 21.0 110</span></span>
+<span><span class="co">#&gt; 2  20.80186     20.80105     20.80186 21.0 110</span></span>
+<span><span class="co">#&gt; 3  25.26465     25.26333     25.26465 22.8  93</span></span>
+<span><span class="co">#&gt; 4  20.25549     20.25430     20.25549 21.4 110</span></span>
+<span><span class="co">#&gt;      wt am    eps</span></span>
+<span><span class="co">#&gt; 1 2.620  1 0.0283</span></span>
+<span><span class="co">#&gt; 2 2.875  1 0.0283</span></span>
+<span><span class="co">#&gt; 3 2.320  1 0.0283</span></span>
+<span><span class="co">#&gt; 4 3.215  0 0.0283</span></span></code></pre></div>
 <p>The function <code>summary</code> calculates the “Average Marginal Effect,” that is, the average of all unit-specific marginal effects:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term   Effect Std. Error  z value   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp -0.03807    0.01279 -2.97725 0.00290848 -0.06314 -0.01301</span></span>
-<span><span class="co">#&gt; 2   wt -3.93909    1.08596 -3.62728 0.00028642 -6.06754 -1.81065</span></span>
-<span><span class="co">#&gt; 3   am -0.04811    1.85260 -0.02597 0.97928234 -3.67913  3.58292</span></span>
+<span><span class="co">#&gt;   Term   Effect Std. Error  z value   Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt; 1   hp -0.03807    0.01279 -2.97725 0.00290848</span></span>
+<span><span class="co">#&gt; 2   wt -3.93909    1.08596 -3.62728 0.00028642</span></span>
+<span><span class="co">#&gt; 3   am -0.04811    1.85260 -0.02597 0.97928234</span></span>
+<span><span class="co">#&gt;      2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt; 1 -0.06314 -0.01301</span></span>
+<span><span class="co">#&gt; 2 -6.06754 -1.81065</span></span>
+<span><span class="co">#&gt; 3 -3.67913  3.58292</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -394,12 +453,18 @@
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term Value  Mean Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1   am FALSE 18.32     0.7854   23.33 &lt; 2.22e-16 16.78  19.86</span></span>
-<span><span class="co">#&gt; 2   am  TRUE 22.48     0.8343   26.94 &lt; 2.22e-16 20.84  24.11</span></span>
-<span><span class="co">#&gt; 3  cyl     4 22.88     1.3566   16.87 &lt; 2.22e-16 20.23  25.54</span></span>
-<span><span class="co">#&gt; 4  cyl     6 18.96     1.0729   17.67 &lt; 2.22e-16 16.86  21.06</span></span>
-<span><span class="co">#&gt; 5  cyl     8 19.35     1.3771   14.05 &lt; 2.22e-16 16.65  22.05</span></span>
+<span><span class="co">#&gt;   Term Value  Mean Std. Error z value   Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt; 1   am FALSE 18.32     0.7854   23.33 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 2   am  TRUE 22.48     0.8343   26.94 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 3  cyl     4 22.88     1.3566   16.87 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 4  cyl     6 18.96     1.0729   17.67 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; 5  cyl     8 19.35     1.3771   14.05 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt;   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1 16.78  19.86</span></span>
+<span><span class="co">#&gt; 2 20.84  24.11</span></span>
+<span><span class="co">#&gt; 3 20.23  25.54</span></span>
+<span><span class="co">#&gt; 4 16.86  21.06</span></span>
+<span><span class="co">#&gt; 5 16.65  22.05</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
