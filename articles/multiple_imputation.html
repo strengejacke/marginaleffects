@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,8 +127,8 @@
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    estimate  std.error statistic      df      p.value</span></span>
-<span><span class="co">#&gt; 1   hp -0.06611676 0.01144151 -5.778677 4601.36 8.025572e-09</span></span></code></pre></div>
+<span><span class="co">#&gt;   term    estimate  std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1   hp -0.06559716 0.01134261 -5.783252 11855.61 7.512043e-09</span></span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
@@ -362,8 +362,8 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term  estimate std.error statistic       df    p.value</span></span>
-<span><span class="co">#&gt; 1  cyl -9.237127  2.789204 -3.311743 78.63668 0.00140223</span></span></code></pre></div>
+<span><span class="co">#&gt;   term  estimate std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1  cyl -9.274529  2.713725 -3.417638 81.94533 0.0009860154</span></span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
@@ -386,8 +386,8 @@ RMSE
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        term   estimate std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1 cyl 6 - 4  -7.006234  1.750358 -4.002743 1473.430 6.572624e-05</span></span>
-<span><span class="co">#&gt; 2 cyl 8 - 4 -11.468019  1.434110 -7.996611 2759.148 1.776357e-15</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 cyl 6 - 4  -7.119351  1.726065 -4.124613 2096.830 3.858513e-05</span></span>
+<span><span class="co">#&gt; 2 cyl 8 - 4 -11.429708  1.415486 -8.074761 4405.102 8.881784e-16</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -405,8 +405,8 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term   estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  mpg 0.05063355 0.01028216  4.924409 792.2748 1.030088e-06</span></span></code></pre></div>
+<span><span class="co">#&gt;   term   estimate  std.error statistic      df      p.value</span></span>
+<span><span class="co">#&gt; 1  mpg 0.04943406 0.01040333  4.751754 532.129 2.598133e-06</span></span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
@@ -456,7 +456,7 @@ mpg
 0.046
 </td>
 <td style="text-align:center;">
-0.051
+0.049
 </td>
 </tr>
 <tr>
