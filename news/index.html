@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +61,12 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.1.9000" id="marginaleffects-0819000">marginaleffects 0.8.1.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0819000"></a></h2>
-<p>Bug fixes:</p>
+<p>New features:</p>
+<ul><li>Bayesian posterior distribution summaries can be customized using global options:<ul><li><code>options("marginaleffects_posterior_interval" = "eti")</code></li>
+<li><code>options("marginaleffects_posterior_interval" = "hdi")</code></li>
+<li><code>options("marginaleffects_posterior_center" = median)</code></li>
+<li><code>options("marginaleffects_posterior_center" = mean)</code></li>
+</ul></li></ul><p>Bug fixes:</p>
 <ul><li>the <code>vcov</code> argument accepts functions for most several models.</li>
 <li>Fix corner case for slopes when the dataset includes infinite values.</li>
 <li>

@@ -26,7 +26,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -315,6 +315,29 @@ contrast. <code>lo</code> is a vector of adjusted predictions for the "low" side
 contrast. <code>y</code> is a vector of adjusted predictions for the original data. <code>x</code>
 is the predictor in the original data. <code>eps</code> is the step size to use to
 compute derivatives and elasticities.</p><table class="table table"><tr><td>Shortcut</td><td>Function</td></tr><tr><td>difference</td><td>\(hi, lo) hi - lo</td></tr><tr><td>differenceavg</td><td>\(hi, lo) mean(hi) - mean(lo)</td></tr><tr><td>differenceavgwts</td><td>\(hi, lo, w) wmean(hi, w) - wmean(lo, w)</td></tr><tr><td>dydx</td><td>\(hi, lo, eps) (hi - lo)/eps</td></tr><tr><td>eyex</td><td>\(hi, lo, eps, y, x) (hi - lo)/eps * (x/y)</td></tr><tr><td>eydx</td><td>\(hi, lo, eps, y, x) ((hi - lo)/eps)/y</td></tr><tr><td>dyex</td><td>\(hi, lo, eps, x) ((hi - lo)/eps) * x</td></tr><tr><td>dydxavg</td><td>\(hi, lo, eps) mean((hi - lo)/eps)</td></tr><tr><td>eyexavg</td><td>\(hi, lo, eps, y, x) mean((hi - lo)/eps * (x/y))</td></tr><tr><td>eydxavg</td><td>\(hi, lo, eps, y, x) mean(((hi - lo)/eps)/y)</td></tr><tr><td>dyexavg</td><td>\(hi, lo, eps, x) mean(((hi - lo)/eps) * x)</td></tr><tr><td>dydxavgwts</td><td>\(hi, lo, eps, w) wmean((hi - lo)/eps, w)</td></tr><tr><td>eyexavgwts</td><td>\(hi, lo, eps, y, x, w) wmean((hi - lo)/eps * (x/y), w)</td></tr><tr><td>eydxavgwts</td><td>\(hi, lo, eps, y, x, w) wmean(((hi - lo)/eps)/y, w)</td></tr><tr><td>dyexavgwts</td><td>\(hi, lo, eps, x, w) wmean(((hi - lo)/eps) * x, w)</td></tr><tr><td>ratio</td><td>\(hi, lo) hi/lo</td></tr><tr><td>ratioavg</td><td>\(hi, lo) mean(hi)/mean(lo)</td></tr><tr><td>ratioavgwts</td><td>\(hi, lo) wmean(hi)/wmean(lo)</td></tr><tr><td>lnratio</td><td>\(hi, lo) log(hi/lo)</td></tr><tr><td>lnratioavg</td><td>\(hi, lo) log(mean(hi)/mean(lo))</td></tr><tr><td>lnratioavgwts</td><td>\(hi, lo) log(wmean(hi)/wmean(lo))</td></tr><tr><td>lnor</td><td>\(hi, lo) log((hi/(1 - hi))/(lo/(1 - lo)))</td></tr><tr><td>lnoravg</td><td>\(hi, lo) log((mean(hi)/(1 - mean(hi)))/(mean(lo)/(1 - mean(lo))))</td></tr><tr><td>lnoravgwts</td><td>\(hi, lo, w) log((wmean(hi, w)/(1 - wmean(hi, w)))/(wmean(lo, w)/(1 - wmean(lo, w))))</td></tr><tr><td>expdydx</td><td>\(hi, lo, eps) ((exp(hi) - exp(lo))/exp(eps))/eps</td></tr><tr><td>expdydxavg</td><td>\(hi, lo, eps) mean(((exp(hi) - exp(lo))/exp(eps))/eps)</td></tr><tr><td>expdydxavgwts</td><td>\(hi, lo, eps, w) wmean(((exp(hi) - exp(lo))/exp(eps))/eps, w)</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="bayesian-posterior-summaries">Bayesian posterior summaries<a class="anchor" aria-label="anchor" href="#bayesian-posterior-summaries"></a></h2>
+    
+
+
+<p>By default, credible intervals in bayesian models are built as equal-tailed
+intervals. This can be changed to a highest density interval by setting a global
+option:</p>
+<p><code>options("marginaleffects_posterior_interval" = "eti")</code></p>
+<p><code>options("marginaleffects_posterior_interval" = "hdi")</code></p>
+<p>By default, the center of the posterior distribution in bayesian models is
+identified by the median. Users can use a different summary function by setting a
+global option:</p>
+<p><code>options("marginaleffects_posterior_center" = mean)</code></p>
+<p><code>options("marginaleffects_posterior_center" = median)</code></p>
+<p>When estimates are averaged using the <code>by</code> argument, the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function, or
+the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function, the posterior distribution is marginalized twice over.
+First, we take the average <em>across</em> units but <em>within</em> each iteration of the
+MCMC chain, according to what the user requested in <code>by</code> argument or
+<code>tidy()/summary()</code> functions. Then, we identify the center of the resulting
+posterior using the function supplied to the
+<code>"marginaleffects_posterior_center"</code> option (the median by default).</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

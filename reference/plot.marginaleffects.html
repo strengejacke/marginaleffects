@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,12 +105,6 @@ function.</p>
 <p>The standard error of the average marginal effects is obtained by
 taking the mean of each column of the Jacobian. . Then, we use this
 "Jacobian at the mean" in the Delta method to obtained standard errors.</p>
-<p>In Bayesian models (e.g., <code>brms</code>), we compute Average Marginal
-Effects by applying the mean function twice. First, we apply it to all
-marginal effects for each posterior draw, thereby estimating one Average (or
-Median) Marginal Effect per iteration of the MCMC chain. Second, we take
-the <code>mean</code> and <code>quantile</code> function to the results of Step 1 to obtain the
-Average (or Median) Marginal Effect and its associated interval.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -534,13 +534,13 @@
 <span>    variable.name <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   1  pre  1.6565117</span></span>
-<span><span class="co">#&gt; 2:  2   1  pre -1.4484936</span></span>
-<span><span class="co">#&gt; 3:  3   1  pre -0.4418833</span></span>
-<span><span class="co">#&gt; 4:  4   1  pre -0.3082606</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre  0.5769682</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre -1.5210398</span></span></code></pre></div>
+<span><span class="co">#&gt;    id trt time           y</span></span>
+<span><span class="co">#&gt; 1:  1   1  pre  0.81696551</span></span>
+<span><span class="co">#&gt; 2:  2   0  pre  0.35507924</span></span>
+<span><span class="co">#&gt; 3:  3   0  pre -0.10530645</span></span>
+<span><span class="co">#&gt; 4:  4   1  pre  2.01119658</span></span>
+<span><span class="co">#&gt; 5:  5   0  pre -0.07428201</span></span>
+<span><span class="co">#&gt; 6:  6   1  pre -0.18135331</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We also compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -549,12 +549,12 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast  comparison  std.error  statistic      p.value</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.04041727 0.07680857 -0.5262078 5.987438e-01</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.33328599 0.07804750  4.2702967 1.952131e-05</span></span>
-<span><span class="co">#&gt;     conf.low conf.high  predicted predicted_hi predicted_lo          y time trt</span></span>
-<span><span class="co">#&gt; 1 -0.1909593 0.1101248 0.00749778  -0.03291949   0.00749778 0.09130317  pre   0</span></span>
-<span><span class="co">#&gt; 2  0.1803157 0.4862563 0.03205678   0.36534277   0.03205678 0.09130317  pre   1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term   contrast comparison  std.error statistic      p.value</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre 0.01294222 0.07780797 0.1663354 8.678930e-01</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre 0.34338605 0.07657284 4.4844365 7.310688e-06</span></span>
+<span><span class="co">#&gt;     conf.low conf.high   predicted predicted_hi predicted_lo         y time trt</span></span>
+<span><span class="co">#&gt; 1 -0.1395586 0.1654430  0.06330218    0.0762444   0.06330218 0.1087575  pre   0</span></span>
+<span><span class="co">#&gt; 2  0.1933060 0.4934661 -0.02517907    0.3182070  -0.02517907 0.1087575  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -563,9 +563,9 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type          term comparison std.error statistic     p.value   conf.low</span></span>
-<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3737033 0.1095033 -3.412713 0.000643197 -0.5883258</span></span>
-<span><span class="co">#&gt;    conf.high</span></span>
-<span><span class="co">#&gt; 1 -0.1590808</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3304438 0.1091672 -3.026951 0.002470338 -0.5444076</span></span>
+<span><span class="co">#&gt;   conf.high</span></span>
+<span><span class="co">#&gt; 1  -0.11648</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
