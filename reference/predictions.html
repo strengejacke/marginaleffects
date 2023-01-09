@@ -8,7 +8,7 @@ package website, or scroll down this page for a full list of vignettes:
 https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html
 https://vincentarelbundock.github.io/marginaleffects/
 
-'><title>Adjusted Predictions — predictions • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Adjusted Predictions — predictions"><meta property="og:description" content='Outcome predicted by a fitted model on a specified scale for a given
+'><title>Adjusted Predictions — predictions • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Adjusted Predictions — predictions"><meta property="og:description" content='Outcome predicted by a fitted model on a specified scale for a given
 combination of values of the predictor variables, such as their observed
 values, their means, or factor levels (a.k.a. "reference grid"). The
 tidy() and summary() functions can be used to aggregate the output of
@@ -28,7 +28,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9103</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,13 +37,13 @@ https://vincentarelbundock.github.io/marginaleffects/
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
@@ -113,16 +113,16 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 
 
 <dt>newdata</dt>
-<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute marginal effects.</p><ul><li><p><code>NULL</code> (default): Unit-level marginal effects for each observed value in the original dataset.</p></li>
-<li><p>data frame: Unit-level marginal effects for each row of the <code>newdata</code> data frame.</p></li>
-<li><p>string:</p><ul><li><p>"mean": Marginal Effects at the Mean. Marginal effects when each predictor is held at its mean or mode.</p></li>
-<li><p>"median": Marginal Effects at the Median. Marginal effects when each predictor is held at its median or mode.</p></li>
+<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute slopes.</p><ul><li><p><code>NULL</code> (default): Unit-level slopes each observed value in the original dataset.</p></li>
+<li><p>data frame: Unit-level slopes for each row of the <code>newdata</code> data frame.</p></li>
+<li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
+<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
+</ul></li>
+<li><p>string:</p><ul><li><p>"mean": Marginal Effects at the Mean. Slopes when each predictor is held at its mean or mode.</p></li>
+<li><p>"median": Marginal Effects at the Median. Slopes when each predictor is held at its median or mode.</p></li>
 <li><p>"marginalmeans": Marginal Effects at Marginal Means. See Details section below.</p></li>
 <li><p>"tukey": Marginal Effects at Tukey's 5 numbers.</p></li>
 <li><p>"grid": Marginal Effects on a grid of representative numbers (Tukey's 5 numbers and unique values of categorical predictors).</p></li>
-</ul></li>
-<li><p><code><a href="datagrid.html">datagrid()</a></code> call to specify a custom grid of regressors. For example:</p><ul><li><p><code>newdata = datagrid(cyl = c(4, 6))</code>: <code>cyl</code> variable equal to 4 and 6 and other regressors fixed at their means or modes.</p></li>
-<li><p>See the Examples section and the <code><a href="datagrid.html">datagrid()</a></code> documentation.</p></li>
 </ul></li>
 </ul></dd>
 
@@ -174,7 +174,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 
 <dt>type</dt>
 <dd><p>string indicates the type (scale) of the predictions used to
-compute marginal effects or contrasts. This can differ based on the model
+compute contrasts or slopes. This can differ based on the model
 type, but will typically be a string such as: "response", "link", "probs",
 or "zero". When an unsupported string is entered, the model-specific list of
 acceptable values is returned in an error message. When <code>type</code> is <code>NULL</code>, the
@@ -197,7 +197,7 @@ levels. See examples section.</p></dd>
 
 <dt>wts</dt>
 <dd><p>string or numeric: weights to use when computing average
-contrasts or marginaleffects. These weights only affect the averaging in
+contrasts or slopes. These weights only affect the averaging in
 <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, and not the unit-level estimates themselves.</p><ul><li><p>string: column name of the weights variable in <code>newdata</code>. When supplying a column name to <code>wts</code>, it is recommended to supply the original data (including the weights variable) explicitly to <code>newdata</code>.</p></li>
 <li><p>numeric: vector of length equal to the number of rows in the original data or in <code>newdata</code> (if supplied).</p></li>
 </ul></dd>
@@ -208,17 +208,19 @@ contrasts or marginaleffects. These weights only affect the averaging in
 
 
 <dt>hypothesis</dt>
-<dd><p>specify a hypothesis test or custom contrast using a vector, matrix, string, or string formula.</p><ul><li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
-<li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
-<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
-<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
+<dd><p>specify a hypothesis test or custom contrast using a numeric value, vector, or matrix, a string, or a string formula.</p><ul><li><p>Numeric:</p><ul><li><p>Single value: the null hypothesis used in the computation of Z and p (before applying <code>transform_post</code>).</p></li>
+<li><p>Vector: Weights to compute a linear combination of (custom contrast between) estimates. Length equal to the number of rows generated by the same function call, but without the <code>hypothesis</code> argument.</p></li>
+<li><p>Matrix: Each column is a vector of weights, as describe above, used to compute a distinct linear combination of (contrast between) estimates. The column names of the matrix are used as labels in the output.</p></li>
 </ul></li>
 <li><p>String formula to specify linear or non-linear hypothesis tests. If the <code>term</code> column uniquely identifies rows, terms can be used in the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to identify the position of each parameter. Examples:</p><ul><li><p><code>hp = drat</code></p></li>
 <li><p><code>hp + drat = 12</code></p></li>
 <li><p><code>b1 + b2 + b3 = 0</code></p></li>
 </ul></li>
-<li><p>Numeric vector: Weights to compute a linear combination of (custom contrast between) estimates. Length equal to the number of rows generated by the same function call, but without the <code>hypothesis</code> argument.</p></li>
-<li><p>Numeric matrix: Each column is a vector of weights, as describe above, used to compute a distinct linear combination of (contrast between) estimates. The column names of the matrix are used as labels in the output.</p></li>
+<li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
+<li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
+<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
+<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
+</ul></li>
 <li><p>See the Examples section below and the vignette: https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</p></li>
 </ul></dd>
 
@@ -265,11 +267,11 @@ the bounds of a binary response variables.</p>
     
 
 
-<p>Vignettes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted Predictions</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal Effects</a></p></li>
+<p>Vignettes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal Means</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests and Custom Contrasts using the Delta Method</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests and Custom Contrasts</a></p></li>
 </ul><p>Case studies:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html">Bayesian Analyses with <code>brms</code></a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html">Causal Inference with the g-Formula</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/elasticity.html">Elasticity</a></p></li>
@@ -334,13 +336,13 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response  15.92247 0.9924560  16.04350  6.347069e-58 13.88952  17.95543</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response  20.15839 1.2186288  16.54186  1.832792e-61 17.66214  22.65463</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg  hp cyl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0 110   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0 110   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8  93   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4 110   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7 175   8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1 105   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjusted Predictions at User-Specified Values of the Regressors</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span>, cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -370,20 +372,12 @@ posterior using the function supplied to the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Average Adjusted Predictions (AAP)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘dplyr’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     filter, lag</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:base’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     20.09     0.4844   41.47 &lt; 2.22e-16  19.14   21.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Effect Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  20.09     0.4844 41.47 &lt; 2.22e-16 19.14  21.04</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -410,13 +404,13 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response  20.10726 0.7754954  25.92827 3.197502e-148 18.52119  21.69332</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response  16.27955 0.6773841  24.03297 1.258166e-127 14.89414  17.66495</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response  20.40169 0.7962179  25.62325 8.401973e-145 18.77325  22.03014</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg  hp am</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0 110  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0 110  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8  93  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4 110  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7 175  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1 105  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 32</span>
 <span class="r-in"><span></span></span>
@@ -493,20 +487,20 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 probs     3 4.044657e-01 1.965452e-01   2.05787667 0.03960197</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562752 0.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high gear  mpg am vs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.888569e-03 3.961047e-03    4 21.0  1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.888569e-03 3.961047e-03    4 21.0  1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.345367e-05 1.364063e-05    4 22.8  1  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.924426e-02 7.896871e-01    3 21.4  0  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  9.975289e-01 1.002414e+00    3 18.7  0  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -4.966881e-02 1.086336e+00    3 18.1  0  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.345367e-05 1.364063e-05 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.924426e-02 7.896871e-01 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  9.975289e-01 1.002414e+00 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># average predictions</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Group Predicted Std. Error z value   Pr(&gt;|z|)  CI low CI high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     3    0.4688    0.04043  11.595 &lt; 2.22e-16 0.38952  0.5480</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     4    0.3750    0.06142   6.106 1.0231e-09 0.25462  0.4954</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     5    0.1562    0.04624   3.379  0.0007279 0.06561  0.2469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Group Effect Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     3 0.4688    0.04043 11.595 &lt; 2.22e-16 0.38952 0.5480</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     4 0.3750    0.06142  6.106 1.0231e-09 0.25462 0.4954</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     5 0.1562    0.04624  3.379  0.0007279 0.06561 0.2469</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  multinom </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  probs </span>
@@ -526,7 +520,6 @@ posterior using the function supplied to the
 <span class="r-in"><span>    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4,6"</span>, <span class="st">"4,6"</span>, <span class="st">"8"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span>, byfun <span class="op">=</span> <span class="va">sum</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some of the variable names are missing from the model data: group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    type  predicted std.error statistic      p.value   conf.low conf.high  by</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs 0.91584335 0.1218077 7.5187647 5.529622e-14  0.6771047 1.1545820 4,6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs 0.08415665 0.1218077 0.6908977 4.896298e-01 -0.1545820 0.3228953   8</span>

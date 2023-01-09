@@ -8,8 +8,8 @@
 <meta name="description" content="marginaleffects">
 <title>Extending or modifying marginaleffects • marginaleffects</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extending or modifying marginaleffects">
 <meta property="og:description" content="marginaleffects">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9103</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,13 +36,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
@@ -130,7 +130,7 @@
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lm_manual"</span>, <span class="st">"list"</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>IMPORTANT: The custom fit function must assign a new class name to the object it returns. In the example above, the model is assigned to be of class <code>lm_manual</code> (see the penultimate line of code in the function).</p>
+<p>Important: The custom fit function must assign a new class name to the object it returns. In the example above, the model is assigned to be of class <code>lm_manual</code> (see the penultimate line of code in the function).</p>
 <p>Our new function replicates the results of <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">lm_manual</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
@@ -238,33 +238,26 @@
 <span><span class="co">#&gt; 4     4  19.56366</span></span>
 <span><span class="co">#&gt; 5     5  16.52639</span></span>
 <span><span class="co">#&gt; 6     6  18.31918</span></span></code></pre></div>
-<p>Now we can use the <code>marginaleffects</code> function:</p>
+<p>Now we can use the <code>slopes</code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">mtcars</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"drat"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">mtcars</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"drat"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term   Effect Std. Error z value   Pr(&gt;|z|)  2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp -0.05179   0.009293  -5.573 2.5072e-08 -0.070 -0.03357</span></span>
-<span><span class="co">#&gt; 2 drat  4.69816   1.191633   3.943 8.0596e-05  2.363  7.03372</span></span>
+<span><span class="co">#&gt;   Term    Contrast   Effect Std. Error      z   Pr(&gt;|z|)  2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.05179   0.009293 -5.573 2.5059e-08 -0.070 -0.03357</span></span>
+<span><span class="co">#&gt; 2 drat mean(dY/dX)  4.69816   1.191633  3.943 8.0596e-05  2.363  7.03372</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm_manual </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1     1 response  23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152</span></span>
-<span><span class="co">#&gt; 2     2 response  23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152</span></span>
-<span><span class="co">#&gt; 3     3 response  24.06161 0.7203817  33.40119 1.317292e-244 22.64969  25.47353</span></span>
-<span><span class="co">#&gt; 4     4 response  19.56366 0.9987782  19.58759  1.973210e-85 17.60609  21.52122</span></span>
-<span><span class="co">#&gt; 5     5 response  16.52639 0.7353921  22.47290 7.642913e-112 15.08505  17.96774</span></span>
-<span><span class="co">#&gt; 6     6 response  18.31918 1.3433197  13.63724  2.404772e-42 15.68632  20.95204</span></span>
-<span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
-<span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
-<span><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
-<span><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 response  23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response  23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 response  24.06161 0.7203817  33.40119 1.317292e-244 22.64969  25.47353 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 response  19.56366 0.9987782  19.58759  1.973210e-85 17.60609  21.52122 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 response  16.52639 0.7353921  22.47290 7.642913e-112 15.08505  17.96774 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 response  18.31918 1.3433197  13.63724  2.404772e-42 15.68632  20.95204 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
 <p>Note that, for custom model, we typically have to supply values for the <code>newdata</code> and <code>variables</code> arguments explicitly.</p>
 </div>
 </div>
@@ -294,7 +287,7 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_predict.customclass</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">newdata</span>, type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">out</span><span class="op">)</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">out</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">D</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">out</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
@@ -306,22 +299,22 @@
 <span>        value.name <span class="op">=</span> <span class="st">"predicted"</span>,</span>
 <span>        variable.name <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Finally, we can call any <code>marginaleffects</code> function and obtain results. Notice that our object of class <code>customclass</code> now produces different results than the default <code>mblogit</code> object:</p>
+<p>Finally, we can call any <code>slopes</code> function and obtain results. Notice that our object of class <code>customclass</code> now produces different results than the default <code>mblogit</code> object:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group Predicted Std. Error z value   Pr(&gt;|z|)  CI low CI high</span></span>
-<span><span class="co">#&gt; 1     3    0.4688    0.04440  10.558 &lt; 2.22e-16 0.38173  0.5558</span></span>
-<span><span class="co">#&gt; 2     4    0.3750    0.06764   5.544 2.9505e-08 0.24244  0.5076</span></span>
-<span><span class="co">#&gt; 3     5    0.1563    0.05103   3.062  0.0021976 0.05624  0.2563</span></span>
+<span><span class="co">#&gt;   Group Effect Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1     3 0.4688    0.04440 10.558 &lt; 2.22e-16 0.38173 0.5558</span></span>
+<span><span class="co">#&gt; 2     4 0.3750    0.06764  5.544 2.9505e-08 0.24244 0.5076</span></span>
+<span><span class="co">#&gt; 3     5 0.1563    0.05103  3.062  0.0021976 0.05624 0.2563</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  mblogit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model_custom</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group Predicted Std. Error    z value Pr(&gt;|z|) CI low CI high</span></span>
-<span><span class="co">#&gt; 1     3    -1.418       2525 -0.0005614  0.99955  -4950    4947</span></span>
-<span><span class="co">#&gt; 2     4     6.365       1779  0.0035776  0.99715  -3480    3493</span></span>
-<span><span class="co">#&gt; 3     5    -4.947       3074 -0.0016094  0.99872  -6030    6020</span></span>
+<span><span class="co">#&gt;   Group Effect Std. Error          z Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1     3 -1.418       2525 -0.0005614  0.99955 -4950   4947</span></span>
+<span><span class="co">#&gt; 2     4  6.365       1779  0.0035776  0.99715 -3480   3493</span></span>
+<span><span class="co">#&gt; 3     5 -4.947       3074 -0.0016094  0.99872 -6030   6020</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  customclass </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>

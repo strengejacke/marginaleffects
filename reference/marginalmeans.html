@@ -5,7 +5,7 @@ package website, or scroll down this page for a full list of vignettes:
 https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html
 https://vincentarelbundock.github.io/marginaleffects/
 
-"><title>Marginal Means — marginalmeans • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Marginal Means — marginalmeans"><meta property="og:description" content="Marginal means are adjusted predictions, averaged across a grid of categorical predictors,
+"><title>Marginal Means — marginalmeans • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Marginal Means — marginalmeans"><meta property="og:description" content="Marginal means are adjusted predictions, averaged across a grid of categorical predictors,
 holding other numeric predictors at their means. To learn more, read the marginal means vignette, visit the
 package website, or scroll down this page for a full list of vignettes:
 https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html
@@ -22,7 +22,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9103</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,13 +31,13 @@ https://vincentarelbundock.github.io/marginaleffects/
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
@@ -161,17 +161,19 @@ on the link scale before backtransforming them using the inverse link function.<
 
 
 <dt>hypothesis</dt>
-<dd><p>specify a hypothesis test or custom contrast using a vector, matrix, string, or string formula.</p><ul><li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
-<li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
-<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
-<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
+<dd><p>specify a hypothesis test or custom contrast using a numeric value, vector, or matrix, a string, or a string formula.</p><ul><li><p>Numeric:</p><ul><li><p>Single value: the null hypothesis used in the computation of Z and p (before applying <code>transform_post</code>).</p></li>
+<li><p>Vector: Weights to compute a linear combination of (custom contrast between) estimates. Length equal to the number of rows generated by the same function call, but without the <code>hypothesis</code> argument.</p></li>
+<li><p>Matrix: Each column is a vector of weights, as describe above, used to compute a distinct linear combination of (contrast between) estimates. The column names of the matrix are used as labels in the output.</p></li>
 </ul></li>
 <li><p>String formula to specify linear or non-linear hypothesis tests. If the <code>term</code> column uniquely identifies rows, terms can be used in the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to identify the position of each parameter. Examples:</p><ul><li><p><code>hp = drat</code></p></li>
 <li><p><code>hp + drat = 12</code></p></li>
 <li><p><code>b1 + b2 + b3 = 0</code></p></li>
 </ul></li>
-<li><p>Numeric vector: Weights to compute a linear combination of (custom contrast between) estimates. Length equal to the number of rows generated by the same function call, but without the <code>hypothesis</code> argument.</p></li>
-<li><p>Numeric matrix: Each column is a vector of weights, as describe above, used to compute a distinct linear combination of (contrast between) estimates. The column names of the matrix are used as labels in the output.</p></li>
+<li><p>String:</p><ul><li><p>"pairwise": pairwise differences between estimates in each row.</p></li>
+<li><p>"reference": differences between the estimates in each row and the estimate in the first row.</p></li>
+<li><p>"sequential": difference between an estimate and the estimate in the next row.</p></li>
+<li><p>"revpairwise", "revreference", "revsequential": inverse of the corresponding hypotheses, as described above.</p></li>
+</ul></li>
 <li><p>See the Examples section below and the vignette: https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</p></li>
 </ul></dd>
 
@@ -228,11 +230,11 @@ functionality: https://vincentarelbundock.github.io/marginaleffects/</p>
     
 
 
-<p>Vignettes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted Predictions</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal Effects</a></p></li>
+<p>Vignettes:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal Means</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests and Custom Contrasts using the Delta Method</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests and Custom Contrasts</a></p></li>
 </ul><p>Case studies:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html">Bayesian Analyses with <code>brms</code></a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html">Causal Inference with the g-Formula</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/elasticity.html">Elasticity</a></p></li>
@@ -298,10 +300,14 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term value marginalmean std.error conf.low conf.high      p.value statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  cyl     4     23.11334  1.658224 19.86328  26.36340 3.690579e-44  13.93861</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl     6     20.38477  1.337106 17.76409  23.00545 1.765453e-52  15.24544</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  cyl     8     16.21082  1.072551 14.10866  18.31299 1.304150e-51  15.11427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term value cyl marginalmean std.error conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  cyl     4   4     23.11334  1.658224 19.86328  26.36340</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl     6   6     20.38477  1.337106 17.76409  23.00545</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response  cyl     8   8     16.21082  1.072551 14.10866  18.31299</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        p.value statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 3.690579e-44  13.93861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.765453e-52  15.24544</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1.304150e-51  15.11427</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># collapse levels of cyl by averaging</span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -326,25 +332,44 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"carb"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    cyl carb marginalmean std.error  conf.low conf.high       p.value statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    6    4     19.14907  1.338478 16.525705  21.77244  1.990073e-46 14.306600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    6    1     23.08862  1.765271 19.628756  26.54849  4.320526e-39 13.079362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    6    2     22.85979  1.867465 19.199624  26.51995  1.875206e-34 12.241080</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    6    3     22.61071  2.365152 17.975102  27.24633  1.178225e-21  9.559942</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    6    6     17.56323  3.003716 11.676053  23.45040  5.000145e-09  5.847167</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    6    8     17.03717  3.481207 10.214129  23.86021  9.878645e-07  4.894041</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    4    4     21.87765  1.901048 18.151659  25.60363  1.199563e-30 11.508200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    4    1     25.81720  1.263909 23.339980  28.29441  9.729029e-93 20.426468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    4    2     25.58836  1.166714 23.301643  27.87508 1.286605e-106 21.931995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   4    3     25.33929  2.365152 20.703673  29.97490  8.787848e-27 10.713598</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   4    6     20.29180  3.766424 12.909744  27.67385  7.142425e-08  5.387551</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   4    8     19.76574  3.814283 12.289884  27.24160  2.194796e-07  5.182034</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   8    4     14.97513  1.195291 12.632406  17.31786  5.217536e-36 12.528445</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   8    1     18.91468  1.942030 15.108373  22.72099  2.042705e-22  9.739643</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   8    2     18.68585  1.570513 15.607698  21.76399  1.213213e-32 11.897929</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   8    3     18.43677  1.830964 14.848149  22.02540  7.540931e-24 10.069436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   8    6     13.38929  3.356162  6.811330  19.96724  6.622284e-05  3.989464</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   8    8     12.86323  3.003716  6.976053  18.75040  1.848561e-05  4.282439</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        type cyl carb marginalmean std.error  conf.low conf.high       p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  response   4    1     25.81720  1.263909 23.339980  28.29441  9.729029e-93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  response   4    2     25.58836  1.166714 23.301643  27.87508 1.286605e-106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  response   4    3     25.33929  2.365152 20.703673  29.97490  8.787848e-27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  response   4    4     21.87765  1.901048 18.151659  25.60363  1.199563e-30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  response   4    6     20.29180  3.766424 12.909744  27.67385  7.142425e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  response   4    8     19.76574  3.814283 12.289884  27.24160  2.194796e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  response   6    1     23.08862  1.765271 19.628756  26.54849  4.320526e-39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  response   6    2     22.85979  1.867465 19.199624  26.51995  1.875206e-34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  response   6    3     22.61071  2.365152 17.975102  27.24633  1.178225e-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 response   6    4     19.14907  1.338478 16.525705  21.77244  1.990073e-46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 response   6    6     17.56323  3.003716 11.676053  23.45040  5.000145e-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 response   6    8     17.03717  3.481207 10.214129  23.86021  9.878645e-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 response   8    1     18.91468  1.942030 15.108373  22.72099  2.042705e-22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 response   8    2     18.68585  1.570513 15.607698  21.76399  1.213213e-32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 response   8    3     18.43677  1.830964 14.848149  22.02540  7.540931e-24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 response   8    4     14.97513  1.195291 12.632406  17.31786  5.217536e-36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 response   8    6     13.38929  3.356162  6.811330  19.96724  6.622284e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 response   8    8     12.86323  3.003716  6.976053  18.75040  1.848561e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  20.426468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  21.931995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  10.713598</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  11.508200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5.387551</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   5.182034</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  13.079362</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  12.241080</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9.559942</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 14.306600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  5.847167</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  4.894041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  9.739643</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 11.897929</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 10.069436</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 12.528445</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  3.989464</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  4.282439</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># collapsed cross</span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span></span></span>
@@ -365,15 +390,15 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Compute and summarize marginal means</span></span></span>
 <span class="r-in"><span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Value  Mean Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   am FALSE 17.87      1.244  14.366 &lt; 2.22e-16 15.43  20.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   am  TRUE 23.11      0.974  23.724 &lt; 2.22e-16 21.20  25.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 carb     1 21.99      1.345  16.350 &lt; 2.22e-16 19.35  24.63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 carb     2 21.48      1.025  20.955 &lt; 2.22e-16 19.47  23.49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 carb     3 20.55      1.780  11.549 &lt; 2.22e-16 17.06  24.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 carb     4 18.82      1.042  18.065 &lt; 2.22e-16 16.77  20.86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7 carb     6 18.47      3.019   6.118 9.4743e-10 12.55  24.39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8 carb     8 21.62      4.055   5.332 9.6936e-08 13.68  29.57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Value  Mean Std. Error      z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 carb     1 21.99      1.345 16.350 &lt; 2.22e-16 19.35  24.63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 carb     2 21.48      1.025 20.955 &lt; 2.22e-16 19.47  23.49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 carb     3 20.55      1.780 11.549 &lt; 2.22e-16 17.06  24.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 carb     4 18.82      1.042 18.065 &lt; 2.22e-16 16.77  20.86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 carb     6 18.47      3.019  6.118 9.4743e-10 12.55  24.39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 carb     8 21.62      4.055  5.332 9.6936e-08 13.68  29.57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   am FALSE 17.87      1.244 14.366 &lt; 2.22e-16 15.43  20.31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   am  TRUE 23.11      0.974 23.724 &lt; 2.22e-16 21.20  25.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>

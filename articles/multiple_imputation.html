@@ -8,8 +8,8 @@
 <meta name="description" content="marginaleffects">
 <title>Multiple Imputation • marginaleffects</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Multiple Imputation">
 <meta property="og:description" content="marginaleffects">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9103</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,13 +36,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
@@ -118,7 +118,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Using this function, we can apply it to each data set in the <code>dat_mice</code> list using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>. From there, we can pool and get a summary.</p>
@@ -128,13 +128,13 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term   estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1   hp -0.0648756 0.01124098 -5.771348 14520.87 8.024477e-09</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   hp -0.0648185 0.01121755 -5.778311 6789.333 7.879606e-09</span></span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
+<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
 <span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
+<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Listwise Deletion"</span> <span class="op">=</span> <span class="va">mod_missing</span>,</span>
@@ -147,19 +147,13 @@
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-group.x
-</th>
-<th style="text-align:center;">
 Listwise Deletion
-</th>
-<th style="text-align:center;">
-group.y
 </th>
 <th style="text-align:center;">
 Complete
 </th>
 <th style="text-align:center;">
-Multiple Imputation
+ Multiple Imputation
 </th>
 </tr></thead>
 <tbody>
@@ -168,11 +162,7 @@ Multiple Imputation
 hp
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 −0.063
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 −0.068
@@ -182,19 +172,15 @@ hp
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.011)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.010)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.011)
 </td>
 </tr>
@@ -203,11 +189,7 @@ hp
 Num.Obs.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 25
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 32
@@ -220,11 +202,7 @@ Num.Obs.
 R2
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 0.573
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.602
@@ -237,11 +215,7 @@ R2
 R2 Adj.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 0.555
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.589
@@ -254,11 +228,7 @@ R2 Adj.
 AIC
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 143.6
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 181.2
@@ -271,11 +241,7 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 147.3
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 185.6
@@ -288,11 +254,7 @@ BIC
 Log.Lik.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 −68.815
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 −87.619
@@ -305,11 +267,7 @@ Log.Lik.
 F
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 30.881
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 45.460
@@ -322,11 +280,7 @@ F
 RMSE
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 3.79
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 3.74
@@ -343,19 +297,19 @@ RMSE
 <p>One particular problem arises in the cases of contrasts and categorical predictors. To see it, notice that when there are contrasts or categorical predictors, the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> method of <code>marginaleffects</code> identifies unique estimates using two columns called <code>term</code> and <code>contrast</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term contrast   estimate std.error statistic      p.value  conf.low</span></span>
-<span><span class="co">#&gt; 1 response  cyl    6 - 4  -7.811111  1.671348 -4.673540 2.960519e-06 -11.08689</span></span>
-<span><span class="co">#&gt; 2 response  cyl    8 - 4 -11.882906  1.375107 -8.641441 5.550854e-18 -14.57807</span></span>
-<span><span class="co">#&gt;   conf.high</span></span>
-<span><span class="co">#&gt; 1 -4.535330</span></span>
-<span><span class="co">#&gt; 2 -9.187746</span></span></code></pre></div>
+<span><span class="co">#&gt;       type term          contrast   estimate std.error statistic      p.value</span></span>
+<span><span class="co">#&gt; 1 response  cyl mean(6) - mean(4)  -7.811111  1.671348 -4.673540 2.960519e-06</span></span>
+<span><span class="co">#&gt; 2 response  cyl mean(8) - mean(4) -11.882906  1.375107 -8.641441 5.550854e-18</span></span>
+<span><span class="co">#&gt;    conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 -11.08689 -4.535330</span></span>
+<span><span class="co">#&gt; 2 -14.57807 -9.187746</span></span></code></pre></div>
 <p>This poses problems because the <code><a href="https://amices.org/mice/reference/pool.html" class="external-link">mice::pool</a></code> function merges estimates based <em>only</em> on the <code>term</code> column. This means that our original procedure will erroneously combine different contrast levels. For example:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_reg</span><span class="op">)</span></span>
@@ -363,12 +317,12 @@ RMSE
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term  estimate std.error statistic       df     p.value</span></span>
-<span><span class="co">#&gt; 1  cyl -9.144838  2.757455 -3.316406 79.30665 0.001377434</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  cyl -9.079919   2.77791 -3.268616 75.61352 0.001627612</span></span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span>    <span class="co"># the next line assigns a custom class</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"custom"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
@@ -376,7 +330,7 @@ RMSE
 <span></span>
 <span><span class="co"># this custom method will be called automatically for all objects produced by fit_reg()</span></span>
 <span><span class="va">tidy.custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">marginaleffects</span><span class="fu">:::</span><span class="fu"><a href="../reference/tidy.marginaleffects.html">tidy.marginaleffects</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">marginaleffects</span><span class="fu">:::</span><span class="fu">tidy.slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span>    <span class="va">out</span><span class="op">$</span><span class="va">term</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">term</span>, <span class="va">out</span><span class="op">$</span><span class="va">contrast</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -385,9 +339,9 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        term   estimate std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1 cyl 6 - 4  -6.958766  1.760469 -3.952790 1043.860 8.244616e-05</span></span>
-<span><span class="co">#&gt; 2 cyl 8 - 4 -11.330909  1.446214 -7.834876 1576.039 8.437695e-15</span></span></code></pre></div>
+<span><span class="co">#&gt;                    term   estimate std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1 cyl mean(6) - mean(4)  -6.841169  1.701093 -4.021632 1489.759 6.069085e-05</span></span>
+<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) -11.318669  1.424721 -7.944479 1280.600 4.218847e-15</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -396,7 +350,7 @@ RMSE
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_logistic</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Using this function, we can apply it to each data set in the <code>dat_mice</code> list using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>. From there, we can pool and get a summary.</p>
@@ -405,14 +359,14 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term  estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  mpg 0.0503705 0.01075946  4.681509 406.9616 3.885234e-06</span></span></code></pre></div>
+<span><span class="co">#&gt;   term   estimate std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1  mpg 0.05094119 0.0100953  5.046032 680.0017 5.795868e-07</span></span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
 <span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
-<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
+<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
+<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Listwise Deletion"</span> <span class="op">=</span> <span class="va">mod_missing</span>,</span>
@@ -425,19 +379,13 @@ RMSE
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-group.x
-</th>
-<th style="text-align:center;">
 Listwise Deletion
-</th>
-<th style="text-align:center;">
-group.y
 </th>
 <th style="text-align:center;">
 Complete
 </th>
 <th style="text-align:center;">
-Multiple Imputation
+ Multiple Imputation
 </th>
 </tr></thead>
 <tbody>
@@ -446,34 +394,26 @@ Multiple Imputation
 mpg
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 0.044
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.046
 </td>
 <td style="text-align:center;">
-0.050
+0.051
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.009)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.009)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
+<td style="text-align:center;box-shadow: 0px 1.5px">
+(0.010)
 </td>
 </tr>
 <tr>
@@ -481,11 +421,7 @@ mpg
 Num.Obs.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 24
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 32
@@ -498,11 +434,7 @@ Num.Obs.
 AIC
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 24.0
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 33.7
@@ -515,11 +447,7 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 26.4
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 36.6
@@ -532,11 +460,7 @@ BIC
 Log.Lik.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 −10.023
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 −14.838
@@ -549,11 +473,7 @@ Log.Lik.
 F
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 5.702
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 7.148
@@ -566,11 +486,7 @@ F
 RMSE
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 0.37
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.39
@@ -601,7 +517,7 @@ RMSE
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_mlm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Days</span><span class="op">|</span><span class="va">Subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Using this function, we can apply it to each data set in the <code>dat_mice</code> list using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>. From there, we can pool and get a summary.</p>
@@ -616,8 +532,8 @@ RMSE
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Days</span><span class="op">|</span><span class="va">Subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">sleepstudy</span><span class="op">)</span></span>
 <span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Days</span><span class="op">|</span><span class="va">Subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat2</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
-<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
+<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
+<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Listwise Deletion"</span> <span class="op">=</span> <span class="va">mod_missing</span>,</span>
@@ -630,19 +546,13 @@ RMSE
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-group.x
-</th>
-<th style="text-align:center;">
 Listwise Deletion
-</th>
-<th style="text-align:center;">
-group.y
 </th>
 <th style="text-align:center;">
 Complete
 </th>
 <th style="text-align:center;">
-Multiple Imputation
+ Multiple Imputation
 </th>
 </tr></thead>
 <tbody>
@@ -651,11 +561,7 @@ Multiple Imputation
 Days
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 10.407
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 10.467
@@ -665,19 +571,15 @@ Days
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (1.622)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (1.546)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (1.563)
 </td>
 </tr>
@@ -686,11 +588,7 @@ Days
 Num.Obs.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 170
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 180
@@ -708,10 +606,6 @@ Num.Imp.
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 20
 </td>
 </tr>
@@ -720,11 +614,7 @@ Num.Imp.
 R2 Marg.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 0.274
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.279
@@ -737,11 +627,7 @@ R2 Marg.
 R2 Cond.
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 0.796
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.799
@@ -754,11 +640,7 @@ R2 Cond.
 AIC
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 1664.9
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 1755.6
@@ -771,11 +653,7 @@ AIC
 BIC
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 1683.7
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 1774.8
@@ -788,11 +666,7 @@ BIC
 ICC
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 0.7
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 0.7
@@ -805,11 +679,7 @@ ICC
 RMSE
 </td>
 <td style="text-align:center;">
-</td>
-<td style="text-align:center;">
 23.55
-</td>
-<td style="text-align:center;">
 </td>
 <td style="text-align:center;">
 23.44

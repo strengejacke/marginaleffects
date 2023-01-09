@@ -8,8 +8,8 @@
 <meta name="description" content="marginaleffects">
 <title>Tables and Plots • marginaleffects</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tables and Plots">
 <meta property="og:description" content="marginaleffects">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9103</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,13 +36,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
@@ -93,13 +93,13 @@
 <div class="section level2">
 <h2 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
 </h2>
-<p>We can summarize the results of the <code><a href="../reference/comparisons.html">comparisons()</a></code> or <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> functions using <a href="https://github.com/vincentarelbundock/modelsummary" class="external-link">the <code>modelsummary</code> package.</a></p>
+<p>We can summarize the results of the <code><a href="../reference/comparisons.html">comparisons()</a></code> or <code><a href="../reference/slopes.html">slopes()</a></code> functions using <a href="https://github.com/vincentarelbundock/modelsummary" class="external-link">the <code>modelsummary</code> package.</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">modelsummary</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">drat</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -107,7 +107,7 @@
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 </tr></thead>
 <tbody>
@@ -135,9 +135,9 @@ drat
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.168)
 </td>
 </tr>
@@ -200,7 +200,7 @@ RMSE
 <h2 id="contrasts">Contrasts<a class="anchor" aria-label="anchor" href="#contrasts"></a>
 </h2>
 <p>Note: The code in this section requires a version of the <code>modelsummary</code> package greater than 1.2.0. If it is not available from CRAN, you can install the development version by following the instructions on <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">the <code>modelsummary</code> website.</a></p>
-<p>When using the <code><a href="../reference/comparisons.html">comparisons()</a></code> function (or the <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function with categorical variables), the output will include two columns to uniquely identify the quantities of interest: <code>term</code> and <code>contrast</code>.</p>
+<p>When using the <code><a href="../reference/comparisons.html">comparisons()</a></code> function (or the <code><a href="../reference/slopes.html">slopes()</a></code> function with categorical variables), the output will include two columns to uniquely identify the quantities of interest: <code>term</code> and <code>contrast</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">gear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">gear</span><span class="op">)</span></span>
@@ -208,14 +208,10 @@ RMSE
 <span></span>
 <span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term contrast    estimate  std.error  statistic      p.value</span></span>
-<span><span class="co">#&gt; 1 response gear    4 - 3  0.03717842 0.13656702  0.2722357 7.854408e-01</span></span>
-<span><span class="co">#&gt; 2 response gear    5 - 3 -0.33968823 0.09882783 -3.4371718 5.878226e-04</span></span>
-<span><span class="co">#&gt; 3 response  mpg       +1  0.06080995 0.01283781  4.7367850 2.171353e-06</span></span>
-<span><span class="co">#&gt;      conf.low  conf.high</span></span>
-<span><span class="co">#&gt; 1 -0.23048802  0.3048449</span></span>
-<span><span class="co">#&gt; 2 -0.53338721 -0.1459892</span></span>
-<span><span class="co">#&gt; 3  0.03564831  0.0859716</span></span></code></pre></div>
+<span><span class="co">#&gt;       type term          contrast    estimate  std.error  statistic      p.value    conf.low  conf.high</span></span>
+<span><span class="co">#&gt; 1 response gear mean(4) - mean(3)  0.03717842 0.13656702  0.2722357 7.854408e-01 -0.23048802  0.3048449</span></span>
+<span><span class="co">#&gt; 2 response gear mean(5) - mean(3) -0.33968823 0.09882783 -3.4371718 5.878226e-04 -0.53338721 -0.1459892</span></span>
+<span><span class="co">#&gt; 3 response  mpg          mean(+1)  0.06080995 0.01283781  4.7367850 2.171353e-06  0.03564831  0.0859716</span></span></code></pre></div>
 <p>We can use the <code>group</code> argument of the <code>modelsummary</code> function to structure the table properly:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">cmp</span>, group <span class="op">=</span> <span class="va">term</span> <span class="op">+</span> <span class="va">contrast</span> <span class="op">~</span> <span class="va">model</span><span class="op">)</span></span></code></pre></div>
@@ -226,7 +222,7 @@ RMSE
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 </tr></thead>
 <tbody>
@@ -235,7 +231,7 @@ Model 1
 gear
 </td>
 <td style="text-align:left;">
-4 - 3
+mean(4) - mean(3)
 </td>
 <td style="text-align:center;">
 0.037
@@ -245,7 +241,7 @@ gear
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-4 - 3
+mean(4) - mean(3)
 </td>
 <td style="text-align:center;">
 (0.137)
@@ -255,7 +251,7 @@ gear
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-5 - 3
+mean(5) - mean(3)
 </td>
 <td style="text-align:center;">
 −0.340
@@ -265,7 +261,7 @@ gear
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-5 - 3
+mean(5) - mean(3)
 </td>
 <td style="text-align:center;">
 (0.099)
@@ -276,19 +272,19 @@ gear
 mpg
 </td>
 <td style="text-align:left;">
-+1
+mean(+1)
 </td>
 <td style="text-align:center;">
 0.061
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:left;box-shadow: 0px 1px">
-+1
+<td style="text-align:left;box-shadow: 0px 1.5px">
+mean(+1)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.013)
 </td>
 </tr>
@@ -362,16 +358,11 @@ RMSE
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gear"</span>, <span class="st">"cyl"</span><span class="op">)</span>,</span>
 <span>  cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type  term contrast_gear contrast_cyl  estimate std.error statistic</span></span>
-<span><span class="co">#&gt; 1 response cross         4 - 3        6 - 4 -5.331884  2.768998 -1.925564</span></span>
-<span><span class="co">#&gt; 2 response cross         4 - 3        8 - 4 -9.218116  3.618491 -2.547503</span></span>
-<span><span class="co">#&gt; 3 response cross         5 - 3        6 - 4 -5.155797  2.630642 -1.959901</span></span>
-<span><span class="co">#&gt; 4 response cross         5 - 3        8 - 4 -9.042029  3.185042 -2.838904</span></span>
-<span><span class="co">#&gt;       p.value  conf.low     conf.high</span></span>
-<span><span class="co">#&gt; 1 0.054158790 -10.75902  0.0952524474</span></span>
-<span><span class="co">#&gt; 2 0.010849693 -16.31023 -2.1260044175</span></span>
-<span><span class="co">#&gt; 3 0.050007362 -10.31176  0.0001656772</span></span>
-<span><span class="co">#&gt; 4 0.004526879 -15.28460 -2.7994608309</span></span></code></pre></div>
+<span><span class="co">#&gt;       type  term     contrast_gear      contrast_cyl  estimate std.error statistic     p.value  conf.low     conf.high</span></span>
+<span><span class="co">#&gt; 1 response cross mean(4) - mean(3) mean(6) - mean(4) -5.331884  2.768998 -1.925564 0.054158790 -10.75902  0.0952524474</span></span>
+<span><span class="co">#&gt; 2 response cross mean(4) - mean(3) mean(8) - mean(4) -9.218116  3.618491 -2.547503 0.010849693 -16.31023 -2.1260044175</span></span>
+<span><span class="co">#&gt; 3 response cross mean(5) - mean(3) mean(6) - mean(4) -5.155797  2.630642 -1.959901 0.050007362 -10.31176  0.0001656772</span></span>
+<span><span class="co">#&gt; 4 response cross mean(5) - mean(3) mean(8) - mean(4) -9.042029  3.185042 -2.838904 0.004526879 -15.28460 -2.7994608309</span></span></code></pre></div>
 <p>As we can see above, there are two relevant grouping columns: <code>contrast_gear</code> and <code>contrast_cyl</code>. We can simply plug those names in the <code>shape</code> argument:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span></span>
@@ -386,16 +377,16 @@ gear
 cyl
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-4 - 3
+mean(4) - mean(3)
 </td>
 <td style="text-align:left;">
-6 - 4
+mean(6) - mean(4)
 </td>
 <td style="text-align:center;">
 −5.332
@@ -403,10 +394,10 @@ Model 1
 </tr>
 <tr>
 <td style="text-align:left;">
-4 - 3
+mean(4) - mean(3)
 </td>
 <td style="text-align:left;">
-6 - 4
+mean(6) - mean(4)
 </td>
 <td style="text-align:center;">
 (2.769)
@@ -414,10 +405,10 @@ Model 1
 </tr>
 <tr>
 <td style="text-align:left;">
-4 - 3
+mean(4) - mean(3)
 </td>
 <td style="text-align:left;">
-8 - 4
+mean(8) - mean(4)
 </td>
 <td style="text-align:center;">
 −9.218
@@ -425,10 +416,10 @@ Model 1
 </tr>
 <tr>
 <td style="text-align:left;">
-4 - 3
+mean(4) - mean(3)
 </td>
 <td style="text-align:left;">
-8 - 4
+mean(8) - mean(4)
 </td>
 <td style="text-align:center;">
 (3.618)
@@ -436,10 +427,10 @@ Model 1
 </tr>
 <tr>
 <td style="text-align:left;">
-5 - 3
+mean(5) - mean(3)
 </td>
 <td style="text-align:left;">
-6 - 4
+mean(6) - mean(4)
 </td>
 <td style="text-align:center;">
 −5.156
@@ -447,10 +438,10 @@ Model 1
 </tr>
 <tr>
 <td style="text-align:left;">
-5 - 3
+mean(5) - mean(3)
 </td>
 <td style="text-align:left;">
-6 - 4
+mean(6) - mean(4)
 </td>
 <td style="text-align:center;">
 (2.631)
@@ -458,23 +449,23 @@ Model 1
 </tr>
 <tr>
 <td style="text-align:left;">
-5 - 3
+mean(5) - mean(3)
 </td>
 <td style="text-align:left;">
-8 - 4
+mean(8) - mean(4)
 </td>
 <td style="text-align:center;">
 −9.042
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
-5 - 3
+<td style="text-align:left;box-shadow: 0px 1.5px">
+mean(5) - mean(3)
 </td>
-<td style="text-align:left;box-shadow: 0px 1px">
-8 - 4
+<td style="text-align:left;box-shadow: 0px 1.5px">
+mean(8) - mean(4)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (3.185)
 </td>
 </tr>
@@ -589,31 +580,10 @@ Estimated Marginal Means
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-am
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:center;">
-18.320 (0.785)***
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:center;">
-22.478 (0.834)***
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 cyl
@@ -636,13 +606,34 @@ cyl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;">
 </td>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;">
 8
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;">
 19.351 (1.377)***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+am
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:center;">
+18.320 (0.785)***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+</td>
+<td style="text-align:left;box-shadow: 0px 1.5px">
+TRUE
+</td>
+<td style="text-align:center;box-shadow: 0px 1.5px">
+22.478 (0.834)***
 </td>
 </tr>
 <tr>

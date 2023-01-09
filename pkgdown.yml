@@ -15,7 +15,6 @@ articles:
   hypothesis: hypothesis.html
   lme4: lme4.html
   logistic_contrasts: logistic_contrasts.html
-  marginaleffects: marginaleffects.html
   marginalmeans: marginalmeans.html
   mlogit: mlogit.html
   modelsummary: modelsummary.html
@@ -25,11 +24,12 @@ articles:
   predictions: predictions.html
   python: python.html
   sandwich: sandwich.html
+  slopes: slopes.html
   supported_models: supported_models.html
   toc: toc.html
   toc_external: toc_external.html
   transformation: transformation.html
-last_built: 2022-12-17T16:48Z
+last_built: 2023-01-09T22:45Z
 urls:
   reference: https://vincentarelbundock.github.io/marginaleffects/reference
   article: https://vincentarelbundock.github.io/marginaleffects/articles

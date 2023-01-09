@@ -8,8 +8,8 @@
 <meta name="description" content="marginaleffects">
 <title>Adjusted Predictions • marginaleffects</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Adjusted Predictions">
 <meta property="og:description" content="marginaleffects">
@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9103</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,13 +36,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="active nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
@@ -119,26 +119,19 @@
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1     1 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span></span>
-<span><span class="co">#&gt; 2     2 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span></span>
-<span><span class="co">#&gt; 3     3 response  26.41451 0.9619738  27.45866 5.476301e-166 24.44399  28.38502</span></span>
-<span><span class="co">#&gt; 4     4 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span></span>
-<span><span class="co">#&gt; 5     5 response  15.92247 0.9924560  16.04350  6.347069e-58 13.88952  17.95543</span></span>
-<span><span class="co">#&gt; 6     6 response  20.15839 1.2186288  16.54186  1.832792e-61 17.66214  22.65463</span></span>
-<span><span class="co">#&gt;    mpg  hp cyl</span></span>
-<span><span class="co">#&gt; 1 21.0 110   6</span></span>
-<span><span class="co">#&gt; 2 21.0 110   6</span></span>
-<span><span class="co">#&gt; 3 22.8  93   4</span></span>
-<span><span class="co">#&gt; 4 21.4 110   6</span></span>
-<span><span class="co">#&gt; 5 18.7 175   8</span></span>
-<span><span class="co">#&gt; 6 18.1 105   6</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 response  26.41451 0.9619738  27.45866 5.476301e-166 24.44399  28.38502 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 response  15.92247 0.9924560  16.04350  6.347069e-58 13.88952  17.95543 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 response  20.15839 1.2186288  16.54186  1.832792e-61 17.66214  22.65463 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
 <p>In many cases, this is too limiting, and researchers will want to specify a grid of “typical” values over which to compute adjusted predictions.</p>
 </div>
 <div class="section level2">
 <h2 id="adjusted-predictions-at-user-specified-values-aka-adjusted-predictions-at-representative-values-apr">Adjusted Predictions at User-Specified values (aka Adjusted Predictions at Representative values, APR)<a class="anchor" aria-label="anchor" href="#adjusted-predictions-at-user-specified-values-aka-adjusted-predictions-at-representative-values-apr"></a>
 </h2>
-<p>There are two main ways to select the reference grid over which we want to compute adjusted predictions. The first is using the <code>variables</code> argument. The second is with the <code>newdata</code> argument and the <a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagrid.html"><code>datagrid()</code> function</a> that we already introduced in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">marginal effects vignette.</a></p>
+<p>There are two main ways to select the reference grid over which we want to compute adjusted predictions. The first is using the <code>variables</code> argument. The second is with the <code>newdata</code> argument and the <a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagrid.html"><code>datagrid()</code> function</a> that we already introduced in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">marginal effects vignette.</a></p>
 <div class="section level3">
 <h3 id="variables-counterfactual-predictions">
 <code>variables</code>: Counterfactual predictions<a class="anchor" aria-label="anchor" href="#variables-counterfactual-predictions"></a>
@@ -147,20 +140,13 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid rowidcf     type predicted std.error statistic       p.value conf.low</span></span>
-<span><span class="co">#&gt; 1     1       1 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316</span></span>
-<span><span class="co">#&gt; 2     2       2 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316</span></span>
-<span><span class="co">#&gt; 3     3       3 response  26.24623 0.9856325 26.628826 3.148430e-156 24.22726</span></span>
-<span><span class="co">#&gt; 4     4       4 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316</span></span>
-<span><span class="co">#&gt; 5     5       5 response  17.72538 1.8811567  9.422599  4.400597e-21 13.87201</span></span>
-<span><span class="co">#&gt; 6     6       6 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316</span></span>
-<span><span class="co">#&gt;   conf.high  mpg cyl  hp</span></span>
-<span><span class="co">#&gt; 1  22.81400 21.0   6 100</span></span>
-<span><span class="co">#&gt; 2  22.81400 21.0   6 100</span></span>
-<span><span class="co">#&gt; 3  28.26521 22.8   4 100</span></span>
-<span><span class="co">#&gt; 4  22.81400 21.4   6 100</span></span>
-<span><span class="co">#&gt; 5  21.57876 18.7   8 100</span></span>
-<span><span class="co">#&gt; 6  22.81400 18.1   6 100</span></span>
+<span><span class="co">#&gt;   rowid rowidcf     type predicted std.error statistic       p.value conf.low conf.high  mpg cyl  hp</span></span>
+<span><span class="co">#&gt; 1     1       1 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 21.0   6 100</span></span>
+<span><span class="co">#&gt; 2     2       2 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 21.0   6 100</span></span>
+<span><span class="co">#&gt; 3     3       3 response  26.24623 0.9856325 26.628826 3.148430e-156 24.22726  28.26521 22.8   4 100</span></span>
+<span><span class="co">#&gt; 4     4       4 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 21.4   6 100</span></span>
+<span><span class="co">#&gt; 5     5       5 response  17.72538 1.8811567  9.422599  4.400597e-21 13.87201  21.57876 18.7   8 100</span></span>
+<span><span class="co">#&gt; 6     6       6 response  20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 18.1   6 100</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 64</span></span></code></pre></div>
 </div>
@@ -178,38 +164,25 @@
 <p>We can also use this <code>datagrid</code> function in a <code>predictions</code> call (omitting the <code>model</code> argument):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1     1 response  16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248</span></span>
-<span><span class="co">#&gt;        mpg       hp cyl</span></span>
-<span><span class="co">#&gt; 1 20.09062 146.6875   8</span></span>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high      mpg       hp cyl</span></span>
+<span><span class="co">#&gt; 1     1 response  16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248 20.09062 146.6875   8</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1     1 response  25.12392  1.368888  18.35353 3.093502e-75 22.31988  27.92796</span></span>
-<span><span class="co">#&gt; 2     2 response  19.15627  1.247190  15.35955 3.057119e-53 16.60151  21.71102</span></span>
-<span><span class="co">#&gt; 3     3 response  16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248</span></span>
-<span><span class="co">#&gt;        mpg       hp cyl</span></span>
-<span><span class="co">#&gt; 1 20.09062 146.6875   4</span></span>
-<span><span class="co">#&gt; 2 20.09062 146.6875   6</span></span>
-<span><span class="co">#&gt; 3 20.09062 146.6875   8</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high      mpg       hp cyl</span></span>
+<span><span class="co">#&gt; 1     1 response  25.12392  1.368888  18.35353 3.093502e-75 22.31988  27.92796 20.09062 146.6875   4</span></span>
+<span><span class="co">#&gt; 2     2 response  19.15627  1.247190  15.35955 3.057119e-53 16.60151  21.71102 20.09062 146.6875   6</span></span>
+<span><span class="co">#&gt; 3     3 response  16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248 20.09062 146.6875   8</span></span></code></pre></div>
 <p>Users can change the summary function used to summarize each type of variables using the <code>FUN_numeric</code>, <code>FUN_factor</code>, and related arguments. For example:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">drat</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">m</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>FUN_factor <span class="op">=</span> <span class="va">unique</span>, FUN_numeric <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1     1 response  21.95333  1.288065  17.04365 3.896507e-65 19.30567  24.60099</span></span>
-<span><span class="co">#&gt; 2     2 response  18.18910  1.270927  14.31168 1.849819e-46 15.57667  20.80153</span></span>
-<span><span class="co">#&gt; 3     3 response  25.54890  1.322154  19.32369 3.395189e-83 22.83117  28.26663</span></span>
-<span><span class="co">#&gt; 4     4 response  21.78467  1.541301  14.13395 2.346178e-45 18.61648  24.95286</span></span>
-<span><span class="co">#&gt; 5     5 response  22.61705  2.140950  10.56403 4.374878e-26 18.21627  27.01784</span></span>
-<span><span class="co">#&gt; 6     6 response  18.85282  1.734026  10.87228 1.562441e-27 15.28848  22.41716</span></span>
-<span><span class="co">#&gt;    mpg  hp  drat cyl am</span></span>
-<span><span class="co">#&gt; 1 19.2 123 3.695   6  1</span></span>
-<span><span class="co">#&gt; 2 19.2 123 3.695   6  0</span></span>
-<span><span class="co">#&gt; 3 19.2 123 3.695   4  1</span></span>
-<span><span class="co">#&gt; 4 19.2 123 3.695   4  0</span></span>
-<span><span class="co">#&gt; 5 19.2 123 3.695   8  1</span></span>
-<span><span class="co">#&gt; 6 19.2 123 3.695   8  0</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value conf.low conf.high  mpg  hp  drat cyl am</span></span>
+<span><span class="co">#&gt; 1     1 response  21.95333  1.288065  17.04365 3.896507e-65 19.30567  24.60099 19.2 123 3.695   6  1</span></span>
+<span><span class="co">#&gt; 2     2 response  18.18910  1.270927  14.31168 1.849819e-46 15.57667  20.80153 19.2 123 3.695   6  0</span></span>
+<span><span class="co">#&gt; 3     3 response  25.54890  1.322154  19.32369 3.395189e-83 22.83117  28.26663 19.2 123 3.695   4  1</span></span>
+<span><span class="co">#&gt; 4     4 response  21.78467  1.541301  14.13395 2.346178e-45 18.61648  24.95286 19.2 123 3.695   4  0</span></span>
+<span><span class="co">#&gt; 5     5 response  22.61705  2.140950  10.56403 4.374878e-26 18.21627  27.01784 19.2 123 3.695   8  1</span></span>
+<span><span class="co">#&gt; 6     6 response  18.85282  1.734026  10.87228 1.562441e-27 15.28848  22.41716 19.2 123 3.695   8  0</span></span></code></pre></div>
 <p>The <code>data.frame</code> produced by <code>predictions</code> is “tidy”, which makes it easy to manipulate with other <code>R</code> packages and functions:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span>
@@ -320,17 +293,13 @@ hp
 <p>Some analysts may want to calculate an “Adjusted Prediction at the Mean,” that is, the predicted outcome when all the regressors are held at their mean (or mode). To achieve this, we use the <code>datagrid</code> function. By default, this function produces a grid of data with regressors at their means or modes, so all we need to do to get the APM is:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type  predicted  std.error statistic   p.value    conf.low</span></span>
-<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.7282823 0.4664408 0.003794253</span></span>
-<span><span class="co">#&gt;   conf.high     vs       hp      am</span></span>
-<span><span class="co">#&gt; 1  0.543491 0.4375 146.6875 0.40625</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type  predicted  std.error statistic   p.value    conf.low conf.high     vs       hp      am</span></span>
+<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.7282823 0.4664408 0.003794253  0.543491 0.4375 146.6875 0.40625</span></span></code></pre></div>
 <p>This is equivalent to calling:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type  predicted  std.error statistic   p.value    conf.low</span></span>
-<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.7282823 0.4664408 0.003794253</span></span>
-<span><span class="co">#&gt;   conf.high     vs       hp      am</span></span>
-<span><span class="co">#&gt; 1  0.543491 0.4375 146.6875 0.40625</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type  predicted  std.error statistic   p.value    conf.low conf.high     vs       hp      am</span></span>
+<span><span class="co">#&gt; 1     1 response 0.06308965 0.08662801 0.7282823 0.4664408 0.003794253  0.543491 0.4375 146.6875 0.40625</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="average-adjusted-predictions-aap">Average Adjusted Predictions (AAP)<a class="anchor" aria-label="anchor" href="#average-adjusted-predictions-aap"></a>
@@ -344,8 +313,8 @@ hp
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span></span>
-<span><span class="co">#&gt; 1    0.4375    0.04288    10.2 &lt; 2.22e-16 0.3535  0.5215</span></span>
+<span><span class="co">#&gt;   Effect Std. Error    z   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1 0.4375    0.04288 10.2 &lt; 2.22e-16 0.3535 0.5215</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -357,32 +326,27 @@ hp
 <div class="section level2">
 <h2 id="average-adjusted-predictions-by-group">Average Adjusted Predictions by Group<a class="anchor" aria-label="anchor" href="#average-adjusted-predictions-by-group"></a>
 </h2>
-<p>The code in this section requires version 0.8.0 of <code>marginaleffects</code>, or <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">the development version from Github.</a></p>
 <p>We can compute average adjusted predictions for different subsets of the data with the <code>by</code> argument.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   am Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span></span>
-<span><span class="co">#&gt; 1  1    0.5385    0.08476   6.352 2.1193e-10 0.3723  0.7046</span></span>
-<span><span class="co">#&gt; 2  0    0.3684    0.04303   8.562 &lt; 2.22e-16 0.2841  0.4528</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  glm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type am predicted  std.error statistic      p.value  conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response  1 0.5384615 0.08476453  6.352439 2.119271e-10 0.3723261 0.7045970</span></span>
+<span><span class="co">#&gt; 2 response  0 0.3684211 0.04303045  8.561868 1.110528e-17 0.2840829 0.4527592</span></span></code></pre></div>
 <p>In the next example, we create a “counterfactual” data grid where each observation of the dataset is repeated twice, with different values of the <code>am</code> variable, and all other variables held at the observed values. We also show the equivalent results using <code>dplyr</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"am"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   am Predicted Std. Error z value   Pr(&gt;|z|) CI low CI high</span></span>
-<span><span class="co">#&gt; 1  0    0.5261    0.03303   15.93 &lt; 2.22e-16 0.4614  0.5909</span></span>
-<span><span class="co">#&gt; 2  1    0.3302    0.06462    5.11 3.2272e-07 0.2035  0.4568</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  glm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span><span class="co">#&gt;       type am predicted  std.error statistic      p.value  conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response  0 0.5261185 0.03302867 15.929147 3.977479e-57 0.4613835 0.5908535</span></span>
+<span><span class="co">#&gt; 2 response  1 0.3301815 0.06461896  5.109669 3.227235e-07 0.2035307 0.4568324</span></span>
 <span></span>
-<span><span class="va">p</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
+<span>    <span class="va">mod</span>,</span>
+<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
 <span><span class="co">#&gt;      am   AAP</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -398,27 +362,20 @@ hp
 <span></span>
 <span><span class="co"># first 5 raw predictions</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid  type group    predicted    std.error    statistic    p.value</span></span>
-<span><span class="co">#&gt; 1     1 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142</span></span>
-<span><span class="co">#&gt; 2     2 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142</span></span>
-<span><span class="co">#&gt; 3     3 probs     3 9.347603e-08 6.911938e-06   0.01352385 0.98920986</span></span>
-<span><span class="co">#&gt; 4     4 probs     3 4.044657e-01 1.965452e-01   2.05787667 0.03960197</span></span>
-<span><span class="co">#&gt; 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562752 0.00000000</span></span>
-<span><span class="co">#&gt; 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321</span></span>
-<span><span class="co">#&gt;        conf.low    conf.high gear  mpg am vs</span></span>
-<span><span class="co">#&gt; 1 -3.888569e-03 3.961047e-03    4 21.0  1  0</span></span>
-<span><span class="co">#&gt; 2 -3.888569e-03 3.961047e-03    4 21.0  1  0</span></span>
-<span><span class="co">#&gt; 3 -1.345367e-05 1.364063e-05    4 22.8  1  1</span></span>
-<span><span class="co">#&gt; 4  1.924426e-02 7.896871e-01    3 21.4  0  1</span></span>
-<span><span class="co">#&gt; 5  9.975289e-01 1.002414e+00    3 18.7  0  0</span></span>
-<span><span class="co">#&gt; 6 -4.966881e-02 1.086336e+00    3 18.1  0  1</span></span>
+<span><span class="co">#&gt;   rowid  type group    predicted    std.error    statistic    p.value      conf.low    conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 probs     3 9.347603e-08 6.911938e-06   0.01352385 0.98920986 -1.345367e-05 1.364063e-05 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 probs     3 4.044657e-01 1.965452e-01   2.05787667 0.03960197  1.924426e-02 7.896871e-01 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562752 0.00000000  9.975289e-01 1.002414e+00 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span>
 <span></span>
 <span><span class="co"># average predictions</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group Predicted Std. Error z value   Pr(&gt;|z|)  CI low CI high</span></span>
-<span><span class="co">#&gt; 1     3    0.4688    0.04043  11.595 &lt; 2.22e-16 0.38952  0.5480</span></span>
-<span><span class="co">#&gt; 2     4    0.3750    0.06142   6.106 1.0231e-09 0.25462  0.4954</span></span>
-<span><span class="co">#&gt; 3     5    0.1562    0.04624   3.379  0.0007279 0.06561  0.2469</span></span>
+<span><span class="co">#&gt;   Group Effect Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1     3 0.4688    0.04043 11.595 &lt; 2.22e-16 0.38952 0.5480</span></span>
+<span><span class="co">#&gt; 2     4 0.3750    0.06142  6.106 1.0231e-09 0.25462 0.4954</span></span>
+<span><span class="co">#&gt; 3     5 0.1562    0.04624  3.379  0.0007279 0.06561 0.2469</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  multinom </span></span>
 <span><span class="co">#&gt; Prediction type:  probs</span></span></code></pre></div>
@@ -436,8 +393,8 @@ hp
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span>, hypothesis <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      Term Predicted Std. Error z value  Pr(&gt;|z|)  CI low CI high</span></span>
-<span><span class="co">#&gt; 1 5 - 3,4   -0.2656    0.06936   -3.83 0.0001284 -0.4016 -0.1297</span></span>
+<span><span class="co">#&gt;      Term  Effect Std. Error     z  Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1 5 - 3,4 -0.2656    0.06936 -3.83 0.0001284 -0.4016 -0.1297</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  multinom </span></span>
 <span><span class="co">#&gt; Prediction type:  probs</span></span></code></pre></div>
@@ -456,55 +413,32 @@ hp
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"5 Gears &amp; %s Cylinders"</span>, <span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    type predicted  std.error statistic      p.value    conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 probs 0.4285648 0.06606515  6.487003 8.756078e-11  0.29907950 0.5580501</span></span>
-<span><span class="co">#&gt; 2 probs 0.4092432 0.05797517  7.058938 1.677800e-12  0.29561390 0.5228724</span></span>
-<span><span class="co">#&gt; 3 probs 0.4285364 0.04584405  9.347700 8.957431e-21  0.33868374 0.5183891</span></span>
-<span><span class="co">#&gt; 4 probs 0.1428704 0.13213030  1.081284 2.795709e-01 -0.11610027 0.4018410</span></span>
-<span><span class="co">#&gt; 5 probs 0.1815137 0.11595035  1.565443 1.174790e-01 -0.04574482 0.4087722</span></span>
-<span><span class="co">#&gt; 6 probs 0.1429271 0.09168810  1.558841 1.190341e-01 -0.03677823 0.3226325</span></span>
-<span><span class="co">#&gt;                        by</span></span>
-<span><span class="co">#&gt; 1 3/4 Gears &amp; 6 Cylinders</span></span>
-<span><span class="co">#&gt; 2 3/4 Gears &amp; 4 Cylinders</span></span>
-<span><span class="co">#&gt; 3 3/4 Gears &amp; 8 Cylinders</span></span>
-<span><span class="co">#&gt; 4   5 Gears &amp; 6 Cylinders</span></span>
-<span><span class="co">#&gt; 5   5 Gears &amp; 4 Cylinders</span></span>
-<span><span class="co">#&gt; 6   5 Gears &amp; 8 Cylinders</span></span></code></pre></div>
+<span><span class="co">#&gt;    type predicted  std.error statistic      p.value    conf.low conf.high                      by</span></span>
+<span><span class="co">#&gt; 1 probs 0.4285648 0.06606515  6.487003 8.756078e-11  0.29907950 0.5580501 3/4 Gears &amp; 6 Cylinders</span></span>
+<span><span class="co">#&gt; 2 probs 0.4092432 0.05797517  7.058938 1.677800e-12  0.29561390 0.5228724 3/4 Gears &amp; 4 Cylinders</span></span>
+<span><span class="co">#&gt; 3 probs 0.4285364 0.04584405  9.347700 8.957431e-21  0.33868374 0.5183891 3/4 Gears &amp; 8 Cylinders</span></span>
+<span><span class="co">#&gt; 4 probs 0.1428704 0.13213030  1.081284 2.795709e-01 -0.11610027 0.4018410   5 Gears &amp; 6 Cylinders</span></span>
+<span><span class="co">#&gt; 5 probs 0.1815137 0.11595035  1.565443 1.174790e-01 -0.04574482 0.4087722   5 Gears &amp; 4 Cylinders</span></span>
+<span><span class="co">#&gt; 6 probs 0.1429271 0.09168810  1.558841 1.190341e-01 -0.03677823 0.3226325   5 Gears &amp; 8 Cylinders</span></span></code></pre></div>
 <p>And we can then compare the different groups using the <code>hypothesis</code> argument:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, by <span class="op">=</span> <span class="va">by</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     type                                              term     predicted</span></span>
-<span><span class="co">#&gt; 1  probs 3/4 Gears &amp; 6 Cylinders - 3/4 Gears &amp; 4 Cylinders  1.932166e-02</span></span>
-<span><span class="co">#&gt; 2  probs 3/4 Gears &amp; 6 Cylinders - 3/4 Gears &amp; 8 Cylinders  2.839251e-05</span></span>
-<span><span class="co">#&gt; 3  probs   3/4 Gears &amp; 6 Cylinders - 5 Gears &amp; 6 Cylinders  2.856945e-01</span></span>
-<span><span class="co">#&gt; 4  probs   3/4 Gears &amp; 6 Cylinders - 5 Gears &amp; 4 Cylinders  2.470511e-01</span></span>
-<span><span class="co">#&gt; 5  probs   3/4 Gears &amp; 6 Cylinders - 5 Gears &amp; 8 Cylinders  2.856377e-01</span></span>
-<span><span class="co">#&gt; 6  probs 3/4 Gears &amp; 4 Cylinders - 3/4 Gears &amp; 8 Cylinders -1.929327e-02</span></span>
-<span><span class="co">#&gt; 7  probs   3/4 Gears &amp; 4 Cylinders - 5 Gears &amp; 6 Cylinders  2.663728e-01</span></span>
-<span><span class="co">#&gt; 8  probs   3/4 Gears &amp; 4 Cylinders - 5 Gears &amp; 4 Cylinders  2.277295e-01</span></span>
-<span><span class="co">#&gt; 9  probs   3/4 Gears &amp; 4 Cylinders - 5 Gears &amp; 8 Cylinders  2.663160e-01</span></span>
-<span><span class="co">#&gt; 10 probs   3/4 Gears &amp; 8 Cylinders - 5 Gears &amp; 6 Cylinders  2.856661e-01</span></span>
-<span><span class="co">#&gt; 11 probs   3/4 Gears &amp; 8 Cylinders - 5 Gears &amp; 4 Cylinders  2.470227e-01</span></span>
-<span><span class="co">#&gt; 12 probs   3/4 Gears &amp; 8 Cylinders - 5 Gears &amp; 8 Cylinders  2.856093e-01</span></span>
-<span><span class="co">#&gt; 13 probs     5 Gears &amp; 6 Cylinders - 5 Gears &amp; 4 Cylinders -3.864332e-02</span></span>
-<span><span class="co">#&gt; 14 probs     5 Gears &amp; 6 Cylinders - 5 Gears &amp; 8 Cylinders -5.678502e-05</span></span>
-<span><span class="co">#&gt; 15 probs     5 Gears &amp; 4 Cylinders - 5 Gears &amp; 8 Cylinders  3.858654e-02</span></span>
-<span><span class="co">#&gt;     std.error     statistic    p.value     conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1  0.08789439  0.2198281561 0.82600499 -0.152948169 0.1915915</span></span>
-<span><span class="co">#&gt; 2  0.08041288  0.0003530841 0.99971828 -0.157577948 0.1576347</span></span>
-<span><span class="co">#&gt; 3  0.19819546  1.4414783343 0.14944959 -0.102761500 0.6741504</span></span>
-<span><span class="co">#&gt; 4  0.13345296  1.8512226242 0.06413753 -0.014511856 0.5086141</span></span>
-<span><span class="co">#&gt; 5  0.11301068  2.5275281722 0.01148686  0.064140813 0.5071345</span></span>
-<span><span class="co">#&gt; 6  0.07390977 -0.2610381284 0.79406310 -0.164153757 0.1255672</span></span>
-<span><span class="co">#&gt; 7  0.14429187  1.8460693876 0.06488213 -0.016434064 0.5491797</span></span>
-<span><span class="co">#&gt; 8  0.17392552  1.3093505208 0.19041564 -0.113158287 0.5686172</span></span>
-<span><span class="co">#&gt; 9  0.10848095  2.4549565672 0.01409016  0.053697263 0.4789348</span></span>
-<span><span class="co">#&gt; 10 0.13985777  2.0425469855 0.04109730  0.011549874 0.5597823</span></span>
-<span><span class="co">#&gt; 11 0.12468539  1.9811682440 0.04757241  0.002643861 0.4914016</span></span>
-<span><span class="co">#&gt; 12 0.13753215  2.0766728278 0.03783177  0.016051218 0.5551673</span></span>
-<span><span class="co">#&gt; 13 0.17578877 -0.2198281561 0.82600499 -0.383182981 0.3058963</span></span>
-<span><span class="co">#&gt; 14 0.16082575 -0.0003530841 0.99971828 -0.315269466 0.3151559</span></span>
-<span><span class="co">#&gt; 15 0.14781954  0.2610381284 0.79406310 -0.251134441 0.3283075</span></span></code></pre></div>
+<span><span class="co">#&gt;     type                                              term     predicted  std.error     statistic    p.value     conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1  probs 3/4 Gears &amp; 6 Cylinders - 3/4 Gears &amp; 4 Cylinders  1.932166e-02 0.08789439  0.2198281561 0.82600499 -0.152948169 0.1915915</span></span>
+<span><span class="co">#&gt; 2  probs 3/4 Gears &amp; 6 Cylinders - 3/4 Gears &amp; 8 Cylinders  2.839251e-05 0.08041288  0.0003530841 0.99971828 -0.157577948 0.1576347</span></span>
+<span><span class="co">#&gt; 3  probs   3/4 Gears &amp; 6 Cylinders - 5 Gears &amp; 6 Cylinders  2.856945e-01 0.19819546  1.4414783343 0.14944959 -0.102761500 0.6741504</span></span>
+<span><span class="co">#&gt; 4  probs   3/4 Gears &amp; 6 Cylinders - 5 Gears &amp; 4 Cylinders  2.470511e-01 0.13345296  1.8512226242 0.06413753 -0.014511856 0.5086141</span></span>
+<span><span class="co">#&gt; 5  probs   3/4 Gears &amp; 6 Cylinders - 5 Gears &amp; 8 Cylinders  2.856377e-01 0.11301068  2.5275281722 0.01148686  0.064140813 0.5071345</span></span>
+<span><span class="co">#&gt; 6  probs 3/4 Gears &amp; 4 Cylinders - 3/4 Gears &amp; 8 Cylinders -1.929327e-02 0.07390977 -0.2610381284 0.79406310 -0.164153757 0.1255672</span></span>
+<span><span class="co">#&gt; 7  probs   3/4 Gears &amp; 4 Cylinders - 5 Gears &amp; 6 Cylinders  2.663728e-01 0.14429187  1.8460693876 0.06488213 -0.016434064 0.5491797</span></span>
+<span><span class="co">#&gt; 8  probs   3/4 Gears &amp; 4 Cylinders - 5 Gears &amp; 4 Cylinders  2.277295e-01 0.17392552  1.3093505208 0.19041564 -0.113158287 0.5686172</span></span>
+<span><span class="co">#&gt; 9  probs   3/4 Gears &amp; 4 Cylinders - 5 Gears &amp; 8 Cylinders  2.663160e-01 0.10848095  2.4549565672 0.01409016  0.053697263 0.4789348</span></span>
+<span><span class="co">#&gt; 10 probs   3/4 Gears &amp; 8 Cylinders - 5 Gears &amp; 6 Cylinders  2.856661e-01 0.13985777  2.0425469855 0.04109730  0.011549874 0.5597823</span></span>
+<span><span class="co">#&gt; 11 probs   3/4 Gears &amp; 8 Cylinders - 5 Gears &amp; 4 Cylinders  2.470227e-01 0.12468539  1.9811682440 0.04757241  0.002643861 0.4914016</span></span>
+<span><span class="co">#&gt; 12 probs   3/4 Gears &amp; 8 Cylinders - 5 Gears &amp; 8 Cylinders  2.856093e-01 0.13753215  2.0766728278 0.03783177  0.016051218 0.5551673</span></span>
+<span><span class="co">#&gt; 13 probs     5 Gears &amp; 6 Cylinders - 5 Gears &amp; 4 Cylinders -3.864332e-02 0.17578877 -0.2198281561 0.82600499 -0.383182981 0.3058963</span></span>
+<span><span class="co">#&gt; 14 probs     5 Gears &amp; 6 Cylinders - 5 Gears &amp; 8 Cylinders -5.678502e-05 0.16082575 -0.0003530841 0.99971828 -0.315269466 0.3151559</span></span>
+<span><span class="co">#&gt; 15 probs     5 Gears &amp; 4 Cylinders - 5 Gears &amp; 8 Cylinders  3.858654e-02 0.14781954  0.2610381284 0.79406310 -0.251134441 0.3283075</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="bayesian-models">Bayesian models<a class="anchor" aria-label="anchor" href="#bayesian-models"></a>
@@ -589,20 +523,13 @@ hp
 <span>    draw <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid  type group predicted  std.error statistic       p.value  conf.low</span></span>
-<span><span class="co">#&gt; 1     1 probs     3 0.9714990 0.03871641 25.092693 5.976078e-139 0.8956163</span></span>
-<span><span class="co">#&gt; 2     2 probs     3 0.9583559 0.04985914 19.221268  2.456932e-82 0.8606338</span></span>
-<span><span class="co">#&gt; 3     3 probs     3 0.9393514 0.06291986 14.929330  2.123901e-50 0.8160307</span></span>
-<span><span class="co">#&gt; 4     4 probs     3 0.9122105 0.07727155 11.805256  3.666725e-32 0.7607610</span></span>
-<span><span class="co">#&gt; 5     5 probs     3 0.8741884 0.09157738  9.545900  1.349314e-21 0.6947001</span></span>
-<span><span class="co">#&gt; 6     6 probs     3 0.8224163 0.10383644  7.920305  2.369279e-15 0.6189006</span></span>
-<span><span class="co">#&gt;   conf.high gear condition1</span></span>
-<span><span class="co">#&gt; 1  1.047382    3   10.40000</span></span>
-<span><span class="co">#&gt; 2  1.056078    3   11.37917</span></span>
-<span><span class="co">#&gt; 3  1.062672    3   12.35833</span></span>
-<span><span class="co">#&gt; 4  1.063660    3   13.33750</span></span>
-<span><span class="co">#&gt; 5  1.053677    3   14.31667</span></span>
-<span><span class="co">#&gt; 6  1.025932    3   15.29583</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid  type group predicted  std.error statistic       p.value  conf.low conf.high gear condition1</span></span>
+<span><span class="co">#&gt; 1     1 probs     3 0.9714990 0.03871641 25.092693 5.976078e-139 0.8956163  1.047382    3   10.40000</span></span>
+<span><span class="co">#&gt; 2     2 probs     3 0.9583559 0.04985914 19.221268  2.456932e-82 0.8606338  1.056078    3   11.37917</span></span>
+<span><span class="co">#&gt; 3     3 probs     3 0.9393514 0.06291986 14.929330  2.123901e-50 0.8160307  1.062672    3   12.35833</span></span>
+<span><span class="co">#&gt; 4     4 probs     3 0.9122105 0.07727155 11.805256  3.666725e-32 0.7607610  1.063660    3   13.33750</span></span>
+<span><span class="co">#&gt; 5     5 probs     3 0.8741884 0.09157738  9.545900  1.349314e-21 0.6947001  1.053677    3   14.31667</span></span>
+<span><span class="co">#&gt; 6     6 probs     3 0.8224163 0.10383644  7.920305  2.369279e-15 0.6189006  1.025932    3   15.29583</span></span></code></pre></div>
 <p>Now we use the <code>group</code> column:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
@@ -621,37 +548,23 @@ hp
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted  std.error statistic      p.value  conf.low</span></span>
-<span><span class="co">#&gt; 1     1 response 0.4610951 0.11584004  3.980447 6.878584e-05 0.2554723</span></span>
-<span><span class="co">#&gt; 2     2 response 0.4610951 0.11584004  3.980447 6.878584e-05 0.2554723</span></span>
-<span><span class="co">#&gt; 3     3 response 0.5978984 0.13239819  4.515911 6.304522e-06 0.3356711</span></span>
-<span><span class="co">#&gt; 4     4 response 0.4917199 0.11961263  4.110936 3.940579e-05 0.2746560</span></span>
-<span><span class="co">#&gt; 5     5 response 0.2969009 0.10051954  2.953663 3.140264e-03 0.1411369</span></span>
-<span><span class="co">#&gt; 6     6 response 0.2599331 0.09782666  2.657078 7.882118e-03 0.1147580</span></span>
-<span><span class="co">#&gt;   conf.high am  mpg</span></span>
-<span><span class="co">#&gt; 1 0.6808686  1 21.0</span></span>
-<span><span class="co">#&gt; 2 0.6808686  1 21.0</span></span>
-<span><span class="co">#&gt; 3 0.8139794  1 22.8</span></span>
-<span><span class="co">#&gt; 4 0.7119512  0 21.4</span></span>
-<span><span class="co">#&gt; 5 0.5204086  0 18.7</span></span>
-<span><span class="co">#&gt; 6 0.4876032  0 18.1</span></span>
+<span><span class="co">#&gt;   rowid     type predicted  std.error statistic      p.value  conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 response 0.4610951 0.11584004  3.980447 6.878584e-05 0.2554723 0.6808686 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response 0.4610951 0.11584004  3.980447 6.878584e-05 0.2554723 0.6808686 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 response 0.5978984 0.13239819  4.515911 6.304522e-06 0.3356711 0.8139794 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 response 0.4917199 0.11961263  4.110936 3.940579e-05 0.2746560 0.7119512 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 response 0.2969009 0.10051954  2.953663 3.140264e-03 0.1411369 0.5204086 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 response 0.2599331 0.09782666  2.657078 7.882118e-03 0.1147580 0.4876032 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span>
 <span></span>
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid type   predicted std.error   statistic    p.value   conf.low</span></span>
-<span><span class="co">#&gt; 1     1 link -0.15593472 0.4661826 -0.33449281 0.73800772 -1.0696358</span></span>
-<span><span class="co">#&gt; 2     2 link -0.15593472 0.4661826 -0.33449281 0.73800772 -1.0696358</span></span>
-<span><span class="co">#&gt; 3     3 link  0.39671602 0.5507048  0.72037875 0.47129183 -0.6826455</span></span>
-<span><span class="co">#&gt; 4     4 link -0.03312345 0.4785818 -0.06921168 0.94482113 -0.9711265</span></span>
-<span><span class="co">#&gt; 5     5 link -0.86209956 0.4815290 -1.79033775 0.07339963 -1.8058791</span></span>
-<span><span class="co">#&gt; 6     6 link -1.04631647 0.5085395 -2.05749308 0.03963882 -2.0430356</span></span>
-<span><span class="co">#&gt;     conf.high am  mpg</span></span>
-<span><span class="co">#&gt; 1  0.75776637  1 21.0</span></span>
-<span><span class="co">#&gt; 2  0.75776637  1 21.0</span></span>
-<span><span class="co">#&gt; 3  1.47607755  1 22.8</span></span>
-<span><span class="co">#&gt; 4  0.90487956  0 21.4</span></span>
-<span><span class="co">#&gt; 5  0.08167995  0 18.7</span></span>
-<span><span class="co">#&gt; 6 -0.04959739  0 18.1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid type   predicted std.error   statistic    p.value   conf.low   conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 link -0.15593472 0.4661826 -0.33449281 0.73800772 -1.0696358  0.75776637 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 link -0.15593472 0.4661826 -0.33449281 0.73800772 -1.0696358  0.75776637 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 link  0.39671602 0.5507048  0.72037875 0.47129183 -0.6826455  1.47607755 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 link -0.03312345 0.4785818 -0.06921168 0.94482113 -0.9711265  0.90487956 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 link -0.86209956 0.4815290 -1.79033775 0.07339963 -1.8058791  0.08167995 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 link -1.04631647 0.5085395 -2.05749308 0.03963882 -2.0430356 -0.04959739 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
 <p>We can also plot predictions on different outcome scales:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"mpg"</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></code></pre></div>
