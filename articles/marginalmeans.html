@@ -242,11 +242,11 @@ Marginal means by am
 <span>    type <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type   term  value marginalmean  std.error</span></span>
-<span><span class="co">#&gt; 1 response    Sex female    0.7383418 0.02069275</span></span>
-<span><span class="co">#&gt; 2 response    Sex   male    0.2354188 0.02025242</span></span>
-<span><span class="co">#&gt; 3 response PClass    1st    0.7076062 0.02726375</span></span>
-<span><span class="co">#&gt; 4 response PClass    2nd    0.5113187 0.02349549</span></span>
-<span><span class="co">#&gt; 5 response PClass    3rd    0.2417159 0.02814300</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response PClass    1st    0.7076062 0.02726375</span></span>
+<span><span class="co">#&gt; 2 response PClass    2nd    0.5113187 0.02349549</span></span>
+<span><span class="co">#&gt; 3 response PClass    3rd    0.2417159 0.02814300</span></span>
+<span><span class="co">#&gt; 4 response    Sex female    0.7383418 0.02069275</span></span>
+<span><span class="co">#&gt; 5 response    Sex   male    0.2354188 0.02025242</span></span></code></pre></div>
 <p>When the model is linear or on the link scale, it also produces confidence intervals:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
@@ -254,11 +254,11 @@ Marginal means by am
 <span>    type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   type   term  value marginalmean std.error   conf.low  conf.high      p.value   statistic</span></span>
-<span><span class="co">#&gt; 1 link    Sex female   1.64068554 0.2055020  1.2379090  2.0434621 1.419041e-15   7.9837928</span></span>
-<span><span class="co">#&gt; 2 link    Sex   male  -1.33990940 0.1237476 -1.5824502 -1.0973686 2.542950e-27 -10.8277618</span></span>
-<span><span class="co">#&gt; 3 link PClass    1st   1.63065474 0.2705172  1.1004508  2.1608587 1.660877e-09   6.0279156</span></span>
-<span><span class="co">#&gt; 4 link PClass    2nd   0.09968203 0.2109697 -0.3138111  0.5131751 6.365739e-01   0.4724944</span></span>
-<span><span class="co">#&gt; 5 link PClass    3rd  -1.27917256 0.1549518 -1.5828724 -0.9754727 1.515276e-16  -8.2552949</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 link PClass    1st   1.63065474 0.2705172  1.1004508  2.1608587 1.660877e-09   6.0279156</span></span>
+<span><span class="co">#&gt; 2 link PClass    2nd   0.09968203 0.2109697 -0.3138111  0.5131751 6.365739e-01   0.4724944</span></span>
+<span><span class="co">#&gt; 3 link PClass    3rd  -1.27917256 0.1549518 -1.5828724 -0.9754727 1.515276e-16  -8.2552949</span></span>
+<span><span class="co">#&gt; 4 link    Sex female   1.64068554 0.2055020  1.2379090  2.0434621 1.419041e-15   7.9837928</span></span>
+<span><span class="co">#&gt; 5 link    Sex   male  -1.33990940 0.1237476 -1.5824502 -1.0973686 2.542950e-27 -10.8277618</span></span></code></pre></div>
 <p>It is easy to transform those link-scale marginal means with arbitrary functions using the <code>transform_post</code> argument:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
@@ -267,11 +267,11 @@ Marginal means by am
 <span>    transform_post <span class="op">=</span> <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/link_inverse.html" class="external-link">link_inverse</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   type   term  value marginalmean  conf.low conf.high      p.value</span></span>
-<span><span class="co">#&gt; 1 link    Sex female    0.8376282 0.7751998 0.8852853 1.419041e-15</span></span>
-<span><span class="co">#&gt; 2 link    Sex   male    0.2075250 0.1704488 0.2502333 2.542950e-27</span></span>
-<span><span class="co">#&gt; 3 link PClass    1st    0.8362593 0.7503446 0.8966791 1.660877e-09</span></span>
-<span><span class="co">#&gt; 4 link PClass    2nd    0.5248999 0.4221848 0.6255505 6.365739e-01</span></span>
-<span><span class="co">#&gt; 5 link PClass    3rd    0.2176911 0.1703891 0.2737910 1.515276e-16</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 link PClass    1st    0.8362593 0.7503446 0.8966791 1.660877e-09</span></span>
+<span><span class="co">#&gt; 2 link PClass    2nd    0.5248999 0.4221848 0.6255505 6.365739e-01</span></span>
+<span><span class="co">#&gt; 3 link PClass    3rd    0.2176911 0.1703891 0.2737910 1.515276e-16</span></span>
+<span><span class="co">#&gt; 4 link    Sex female    0.8376282 0.7751998 0.8852853 1.419041e-15</span></span>
+<span><span class="co">#&gt; 5 link    Sex   male    0.2075250 0.1704488 0.2502333 2.542950e-27</span></span></code></pre></div>
 <p><code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> defaults to reporting EMMs for each category individually, without cross-margins:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">titanic2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span></span>
@@ -283,24 +283,24 @@ Marginal means by am
 <span>    <span class="va">titanic2</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   type   term  value marginalmean  conf.low conf.high      p.value</span></span>
-<span><span class="co">#&gt; 1 link    Sex female    0.7854373 0.7307995 0.8315419 1.779451e-17</span></span>
-<span><span class="co">#&gt; 2 link    Sex   male    0.2085450 0.1709283 0.2519246 1.660045e-26</span></span>
-<span><span class="co">#&gt; 3 link PClass    1st    0.7778338 0.7059595 0.8362154 7.498210e-11</span></span>
-<span><span class="co">#&gt; 4 link PClass    2nd    0.4902824 0.4071513 0.5739545 8.210648e-01</span></span>
-<span><span class="co">#&gt; 5 link PClass    3rd    0.2195429 0.1683384 0.2810591 4.247510e-14</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 link PClass    1st    0.7778338 0.7059595 0.8362154 7.498210e-11</span></span>
+<span><span class="co">#&gt; 2 link PClass    2nd    0.4902824 0.4071513 0.5739545 8.210648e-01</span></span>
+<span><span class="co">#&gt; 3 link PClass    3rd    0.2195429 0.1683384 0.2810591 4.247510e-14</span></span>
+<span><span class="co">#&gt; 4 link    Sex female    0.7854373 0.7307995 0.8315419 1.779451e-17</span></span>
+<span><span class="co">#&gt; 5 link    Sex   male    0.2085450 0.1709283 0.2519246 1.660045e-26</span></span></code></pre></div>
 <p>We can force the cross:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span></span>
 <span>    <span class="va">titanic2</span>,</span>
 <span>    cross <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid type    Sex PClass marginalmean   conf.low conf.high      p.value</span></span>
-<span><span class="co">#&gt; 1     1 link female    1st   0.92882414 0.89008215 0.9546074 5.036296e-26</span></span>
-<span><span class="co">#&gt; 2     2 link female    2nd   0.78190514 0.70413410 0.8437691 1.012089e-09</span></span>
-<span><span class="co">#&gt; 3     3 link female    3rd   0.51183442 0.42257389 0.6003465 7.963418e-01</span></span>
-<span><span class="co">#&gt; 4     4 link   male    1st   0.48435732 0.39415021 0.5755954 7.383894e-01</span></span>
-<span><span class="co">#&gt; 5     5 link   male    2nd   0.20512692 0.15125465 0.2720369 7.462936e-13</span></span>
-<span><span class="co">#&gt; 6     6 link   male    3rd   0.07017461 0.04785084 0.1017996 1.310275e-35</span></span></code></pre></div>
+<span><span class="co">#&gt;   type    Sex PClass marginalmean   conf.low conf.high      p.value</span></span>
+<span><span class="co">#&gt; 1 link female    1st   0.92882414 0.89008215 0.9546074 5.036296e-26</span></span>
+<span><span class="co">#&gt; 2 link female    2nd   0.78190514 0.70413410 0.8437691 1.012089e-09</span></span>
+<span><span class="co">#&gt; 3 link female    3rd   0.51183442 0.42257389 0.6003465 7.963418e-01</span></span>
+<span><span class="co">#&gt; 4 link   male    1st   0.48435732 0.39415021 0.5755954 7.383894e-01</span></span>
+<span><span class="co">#&gt; 5 link   male    2nd   0.20512692 0.15125465 0.2720369 7.462936e-13</span></span>
+<span><span class="co">#&gt; 6 link   male    3rd   0.07017461 0.04785084 0.1017996 1.310275e-35</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="group-averages-with-the-by-argument">Group averages with the <code>by</code> argument<a class="anchor" aria-label="anchor" href="#group-averages-with-the-by-argument"></a>

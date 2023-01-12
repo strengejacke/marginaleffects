@@ -131,13 +131,13 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted  conf.low conf.high survived woman     age passengerClass</span></span>
-<span><span class="co">#&gt; 1     1 response 0.9366604 0.9069674 0.9590097        1     1 29.0000            1st</span></span>
-<span><span class="co">#&gt; 2     2 response 0.8493050 0.7453010 0.9186720        1     0  0.9167            1st</span></span>
-<span><span class="co">#&gt; 3     3 response 0.9433293 0.8948592 0.9704210        0     1  2.0000            1st</span></span>
-<span><span class="co">#&gt; 4     4 response 0.5131011 0.4302430 0.5999582        0     0 30.0000            1st</span></span>
-<span><span class="co">#&gt; 5     5 response 0.9374937 0.9080051 0.9600572        0     1 25.0000            1st</span></span>
-<span><span class="co">#&gt; 6     6 response 0.2730542 0.2028999 0.3517513        1     0 48.0000            1st</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type predicted  conf.low conf.high                               X survived    sex     age passengerClass woman</span></span>
+<span><span class="co">#&gt; 1     1 response 0.9366604 0.9069674 0.9590097   Allen, Miss. Elisabeth Walton        1 female 29.0000            1st     1</span></span>
+<span><span class="co">#&gt; 2     2 response 0.8493050 0.7453010 0.9186720  Allison, Master. Hudson Trevor        1   male  0.9167            1st     0</span></span>
+<span><span class="co">#&gt; 3     3 response 0.9433293 0.8948592 0.9704210    Allison, Miss. Helen Loraine        0 female  2.0000            1st     1</span></span>
+<span><span class="co">#&gt; 4     4 response 0.5131011 0.4302430 0.5999582 Allison, Mr. Hudson Joshua Crei        0   male 30.0000            1st     0</span></span>
+<span><span class="co">#&gt; 5     5 response 0.9374937 0.9080051 0.9600572 Allison, Mrs. Hudson J C (Bessi        0 female 25.0000            1st     1</span></span>
+<span><span class="co">#&gt; 6     6 response 0.2730542 0.2028999 0.3517513             Anderson, Mr. Harry        1   male 48.0000            1st     0</span></span></code></pre></div>
 <p>To visualize the relationship between the outcome and one of the regressors, we can plot conditional adjusted predictions with the <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
@@ -208,16 +208,16 @@
 <code class="sourceCode R"><span><span class="va">draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 16736000       17</span></span>
+<span><span class="co">#&gt; [1] 16736000       19</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   drawid      draw rowid     type  term contrast       dydx   conf.low conf.high predicted predicted_hi predicted_lo survived woman     age passengerClass   eps</span></span>
-<span><span class="co">#&gt; 1      1 0.1633609     1 response woman    dY/dX 0.15298096 0.10883007 0.2051898 0.9366604    0.9366751    0.9366604        1     1 29.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 2      1 0.1359009     2 response woman    dY/dX 0.13546458 0.03607654 0.2970409 0.8493050    0.8493174    0.8493050        1     0  0.9167            1st 1e-04</span></span>
-<span><span class="co">#&gt; 3      1 0.0615405     3 response woman    dY/dX 0.05878909 0.02875607 0.1009453 0.9433293    0.9433358    0.9433293        0     1  2.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 4      1 0.7088821     4 response woman    dY/dX 0.65453708 0.56699300 0.7442501 0.5131011    0.5131652    0.5131011        0     0 30.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 5      1 0.1473759     5 response woman    dY/dX 0.13828737 0.09722433 0.1863969 0.9374937    0.9375085    0.9374937        0     1 25.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 6      1 0.6635099     6 response woman    dY/dX 0.70740470 0.58935737 0.8406470 0.2730542    0.2731252    0.2730542        1     0 48.0000            1st 1e-04</span></span></code></pre></div>
+<span><span class="co">#&gt;   drawid      draw rowid     type  term contrast       dydx   conf.low conf.high predicted predicted_hi predicted_lo                               X survived    sex     age passengerClass woman   eps</span></span>
+<span><span class="co">#&gt; 1      1 0.1633609     1 response woman    dY/dX 0.15298096 0.10883007 0.2051898 0.9366604    0.9366751    0.9366604   Allen, Miss. Elisabeth Walton        1 female 29.0000            1st     1 1e-04</span></span>
+<span><span class="co">#&gt; 2      1 0.1359009     2 response woman    dY/dX 0.13546458 0.03607654 0.2970409 0.8493050    0.8493174    0.8493050  Allison, Master. Hudson Trevor        1   male  0.9167            1st     0 1e-04</span></span>
+<span><span class="co">#&gt; 3      1 0.0615405     3 response woman    dY/dX 0.05878909 0.02875607 0.1009453 0.9433293    0.9433358    0.9433293    Allison, Miss. Helen Loraine        0 female  2.0000            1st     1 1e-04</span></span>
+<span><span class="co">#&gt; 4      1 0.7088821     4 response woman    dY/dX 0.65453708 0.56699300 0.7442501 0.5131011    0.5131652    0.5131011 Allison, Mr. Hudson Joshua Crei        0   male 30.0000            1st     0 1e-04</span></span>
+<span><span class="co">#&gt; 5      1 0.1473759     5 response woman    dY/dX 0.13828737 0.09722433 0.1863969 0.9374937    0.9375085    0.9374937 Allison, Mrs. Hudson J C (Bessi        0 female 25.0000            1st     1 1e-04</span></span>
+<span><span class="co">#&gt; 6      1 0.6635099     6 response woman    dY/dX 0.70740470 0.58935737 0.8406470 0.2730542    0.2731252    0.2730542             Anderson, Mr. Harry        1   male 48.0000            1st     0 1e-04</span></span></code></pre></div>
 <p>We can use this dataset to plot our results. For example, to plot the posterior density of the marginal effect of <code>age</code> when the <code>woman</code> variable is equal to 0 or 1:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
@@ -523,8 +523,8 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type x predicted  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response 0 0.4516261 0.3375899 0.5631569</span></span>
-<span><span class="co">#&gt; 2 response 1 0.5510033 0.4319385 0.6613466</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response 0 0.4513299 0.3405276 0.5629114</span></span>
+<span><span class="co">#&gt; 2 response 1 0.5500021 0.4369912 0.6618146</span></span></code></pre></div>
 <p>We can “integrate out” random effects in the other <code>slopes</code> functions too. For instance,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -534,7 +534,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term          Contrast  Effect   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x mean(1) - mean(0) 0.09689 0.04741 0.1633</span></span>
+<span><span class="co">#&gt; 1    x mean(1) - mean(0) 0.09781 0.04687 0.1614</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -550,8 +550,8 @@
 <span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            M        Mdn         LL       UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09824389 0.09602248 0.04829486 0.160403          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
+<span><span class="co">#&gt; 1 0.09870633 0.09666407 0.04818231 0.1613011          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -573,13 +573,13 @@
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type group  predicted   conf.low  conf.high depvar  ic.gc  oc.gc</span></span>
-<span><span class="co">#&gt; 1     1 response    ec 0.06626689 0.04471591 0.09304536     gc 866.00 199.69</span></span>
-<span><span class="co">#&gt; 2     2 response    ec 0.07681658 0.05896082 0.09740047     gc 727.93 168.66</span></span>
-<span><span class="co">#&gt; 3     3 response    ec 0.10300017 0.06181137 0.15849874     gc 599.48 165.58</span></span>
-<span><span class="co">#&gt; 4     4 response    ec 0.06335247 0.04590258 0.08378809     er 835.17 180.88</span></span>
-<span><span class="co">#&gt; 5     5 response    ec 0.07452660 0.05739728 0.09467869     er 755.59 174.91</span></span>
-<span><span class="co">#&gt; 6     6 response    ec 0.07086098 0.04545918 0.10359585     gc 666.11 135.67</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type group  predicted   conf.low  conf.high X idcase depvar  ic.gc  ic.gr  ic.ec  ic.er   ic.hp  oc.gc  oc.gr  oc.ec  oc.er  oc.hp income agehed rooms region    pb.gc    pb.gr    pb.ec    pb.er    pb.hp</span></span>
+<span><span class="co">#&gt; 1     1 response    ec 0.06626689 0.04471591 0.09304536 1      1     gc 866.00 962.64 859.90 995.76 1135.50 199.69 151.72 553.34 505.60 237.88      7     25     6 ncostl 4.336722 6.344846 1.554017 1.969462 4.773415</span></span>
+<span><span class="co">#&gt; 2     2 response    ec 0.07681658 0.05896082 0.09740047 2      2     gc 727.93 758.89 796.82 894.69  968.90 168.66 168.66 520.24 486.49 199.19      5     60     5 scostl 4.315961 4.499526 1.531639 1.839072 4.864200</span></span>
+<span><span class="co">#&gt; 3     3 response    ec 0.10300017 0.06181137 0.15849874 3      3     gc 599.48 783.05 719.86 900.11 1048.30 165.58 137.80 439.06 404.74 171.47      4     65     2 ncostl 3.620486 5.682511 1.639548 2.223922 6.113606</span></span>
+<span><span class="co">#&gt; 4     4 response    ec 0.06335247 0.04590258 0.08378809 4      4     er 835.17 793.06 761.25 831.04 1048.70 180.88 147.14 483.00 425.22 222.95      2     50     4 scostl 4.617260 5.389833 1.576087 1.954377 4.703745</span></span>
+<span><span class="co">#&gt; 5     5 response    ec 0.07452660 0.05739728 0.09467869 5      5     er 755.59 846.29 858.86 985.64  883.05 174.91 138.90 404.41 389.52 178.49      2     25     6 valley 4.319879 6.092801 2.123736 2.530396 4.947336</span></span>
+<span><span class="co">#&gt; 6     6 response    ec 0.07086098 0.04545918 0.10359585 6      6     gc 666.11 841.71 693.74 862.56  859.18 135.67 140.97 398.22 371.04 209.27      6     65     7 scostl 4.909781 5.970845 1.742102 2.324709 4.105605</span></span></code></pre></div>
 <p>Extract posterior draws and plot them:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
@@ -883,8 +883,8 @@
 <span><span class="va">rvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">p</span>, shape <span class="op">=</span> <span class="st">"rvar"</span><span class="op">)</span> </span>
 <span><span class="va">rvar</span></span>
 <span><span class="co">#&gt;       type am predicted conf.low conf.high                rvar</span></span>
-<span><span class="co">#&gt; 1 response  0  17.10861 14.79219  19.35741 17.11711 ± 1.150312</span></span>
-<span><span class="co">#&gt; 2 response  1  24.37697 21.63595  27.13261 24.35434 ± 1.408264</span></span>
+<span><span class="co">#&gt; 1 response  0  17.08973 14.80941  19.51200 17.11797 ± 1.167301</span></span>
+<span><span class="co">#&gt; 2 response  1  24.37157 21.62127  27.16224 24.36875 ± 1.401039</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">rvar</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">am</span>, xdist <span class="op">=</span> <span class="va">rvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slabinterval.html" class="external-link">stat_slabinterval</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>

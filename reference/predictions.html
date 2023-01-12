@@ -336,13 +336,13 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response  20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response  15.92247 0.9924560  16.04350  6.347069e-58 13.88952  17.95543</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response  20.15839 1.2186288  16.54186  1.832792e-61 17.66214  22.65463</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg  hp cyl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0 110   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0 110   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8  93   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4 110   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7 175   8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1 105   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjusted Predictions at User-Specified Values of the Regressors</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span>, cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -412,13 +412,13 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response  20.10726 0.7754954  25.92827 3.197502e-148 18.52119  21.69332</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response  16.27955 0.6773841  24.03297 1.258166e-127 14.89414  17.66495</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response  20.40169 0.7962179  25.62325 8.401973e-145 18.77325  22.03014</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg  hp am</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0 110  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0 110  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8  93  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4 110  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7 175  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1 105  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 32</span>
 <span class="r-in"><span></span></span>
@@ -495,13 +495,13 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 probs     3 4.044657e-01 1.965452e-01   2.05787667 0.03960197</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562752 0.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high gear  mpg am vs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.888569e-03 3.961047e-03    4 21.0  1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.888569e-03 3.961047e-03    4 21.0  1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.345367e-05 1.364063e-05    4 22.8  1  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.924426e-02 7.896871e-01    3 21.4  0  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  9.975289e-01 1.002414e+00    3 18.7  0  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -4.966881e-02 1.086336e+00    3 18.1  0  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.345367e-05 1.364063e-05 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.924426e-02 7.896871e-01 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  9.975289e-01 1.002414e+00 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># average predictions</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span></span>

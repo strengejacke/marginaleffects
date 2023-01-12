@@ -528,13 +528,20 @@
 <span><span class="co">#&gt; 4     4 response  cyl -0.9416168 0.5509163 -1.709183 0.08741706 -2.021393</span></span>
 <span><span class="co">#&gt; 5     5 response  cyl -0.9416168 0.5509164 -1.709183 0.08741710 -2.021393</span></span>
 <span><span class="co">#&gt; 6     6 response  cyl -0.9416168 0.5509163 -1.709183 0.08741706 -2.021393</span></span>
-<span><span class="co">#&gt;   conf.high predicted predicted_hi predicted_lo  mpg cyl  hp    wt   eps</span></span>
-<span><span class="co">#&gt; 1 0.1381594  22.82043     22.82005     22.82043 21.0   6 110 2.620 4e-04</span></span>
-<span><span class="co">#&gt; 2 0.1381594  22.01285     22.01247     22.01285 21.0   6 110 2.875 4e-04</span></span>
-<span><span class="co">#&gt; 3 0.1381595  25.96040     25.96002     25.96040 22.8   4  93 2.320 4e-04</span></span>
-<span><span class="co">#&gt; 4 0.1381594  20.93608     20.93570     20.93608 21.4   6 110 3.215 4e-04</span></span>
-<span><span class="co">#&gt; 5 0.1381595  17.16780     17.16742     17.16780 18.7   8 175 3.440 4e-04</span></span>
-<span><span class="co">#&gt; 6 0.1381594  20.25036     20.24998     20.25036 18.1   6 105 3.460 4e-04</span></span>
+<span><span class="co">#&gt;   conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt</span></span>
+<span><span class="co">#&gt; 1 0.1381594  22.82043     22.82005     22.82043 21.0   6  160 110 3.90 2.620</span></span>
+<span><span class="co">#&gt; 2 0.1381594  22.01285     22.01247     22.01285 21.0   6  160 110 3.90 2.875</span></span>
+<span><span class="co">#&gt; 3 0.1381595  25.96040     25.96002     25.96040 22.8   4  108  93 3.85 2.320</span></span>
+<span><span class="co">#&gt; 4 0.1381594  20.93608     20.93570     20.93608 21.4   6  258 110 3.08 3.215</span></span>
+<span><span class="co">#&gt; 5 0.1381595  17.16780     17.16742     17.16780 18.7   8  360 175 3.15 3.440</span></span>
+<span><span class="co">#&gt; 6 0.1381594  20.25036     20.24998     20.25036 18.1   6  225 105 2.76 3.460</span></span>
+<span><span class="co">#&gt;    qsec vs am gear carb   eps</span></span>
+<span><span class="co">#&gt; 1 16.46  0  1    4    4 4e-04</span></span>
+<span><span class="co">#&gt; 2 17.02  0  1    4    4 4e-04</span></span>
+<span><span class="co">#&gt; 3 18.61  1  1    4    1 4e-04</span></span>
+<span><span class="co">#&gt; 4 19.44  1  0    3    1 4e-04</span></span>
+<span><span class="co">#&gt; 5 17.02  0  0    3    2 4e-04</span></span>
+<span><span class="co">#&gt; 6 20.22  1  0    3    1 4e-04</span></span>
 <span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span>, hp <span class="op">=</span> <span class="fl">110</span>, wt <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -639,13 +646,13 @@
 <span><span class="co">#&gt; 4     4 response  20.04859 0.6041400  33.18534 1.751939e-241 18.80900  21.28819</span></span>
 <span><span class="co">#&gt; 5     5 response  17.25445 0.7436172  23.20340 4.207206e-119 15.72867  18.78022</span></span>
 <span><span class="co">#&gt; 6     6 response  19.53360 0.6436862  30.34646 2.797513e-202 18.21286  20.85434</span></span>
-<span><span class="co">#&gt;    mpg cyl  hp    wt</span></span>
-<span><span class="co">#&gt; 1 21.0   6 110 2.620</span></span>
-<span><span class="co">#&gt; 2 21.0   6 110 2.875</span></span>
-<span><span class="co">#&gt; 3 22.8   4  93 2.320</span></span>
-<span><span class="co">#&gt; 4 21.4   6 110 3.215</span></span>
-<span><span class="co">#&gt; 5 18.7   8 175 3.440</span></span>
-<span><span class="co">#&gt; 6 18.1   6 105 3.460</span></span></code></pre></div>
+<span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

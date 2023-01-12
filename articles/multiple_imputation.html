@@ -128,7 +128,7 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term    contrast    estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.06443837 0.01131822 -5.693332 6091.902 1.303944e-08</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.06547945 0.01137644 -5.755709 6992.175 8.993012e-09</span></span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
@@ -168,7 +168,7 @@ hp
 −0.068
 </td>
 <td style="text-align:center;">
-−0.064
+−0.065
 </td>
 </tr>
 <tr>
@@ -317,8 +317,8 @@ RMSE
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term          contrast   estimate std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  cyl mean(6) - mean(4)  -6.808377  1.722678 -3.952205 2821.648 7.933440e-05</span></span>
-<span><span class="co">#&gt; 2  cyl mean(8) - mean(4) -11.197305  1.472418 -7.604707 1170.002 5.842208e-14</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  cyl mean(6) - mean(4)  -7.080649  1.690932 -4.187425 3875.284 2.884098e-05</span></span>
+<span><span class="co">#&gt; 2  cyl mean(8) - mean(4) -11.391721  1.428552 -7.974313 2098.110 2.494023e-15</span></span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
@@ -341,11 +341,11 @@ RMSE
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                    term          contrast   estimate std.error statistic</span></span>
-<span><span class="co">#&gt; 1 cyl mean(6) - mean(4) mean(6) - mean(4)  -6.808377  1.722678 -3.952205</span></span>
-<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) mean(8) - mean(4) -11.197305  1.472418 -7.604707</span></span>
+<span><span class="co">#&gt; 1 cyl mean(6) - mean(4) mean(6) - mean(4)  -7.080649  1.690932 -4.187425</span></span>
+<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) mean(8) - mean(4) -11.391721  1.428552 -7.974313</span></span>
 <span><span class="co">#&gt;         df      p.value</span></span>
-<span><span class="co">#&gt; 1 2821.648 7.933440e-05</span></span>
-<span><span class="co">#&gt; 2 1170.002 5.842208e-14</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 3875.284 2.884098e-05</span></span>
+<span><span class="co">#&gt; 2 2098.110 2.494023e-15</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -363,8 +363,8 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    contrast   estimate  std.error statistic      df      p.value</span></span>
-<span><span class="co">#&gt; 1  mpg mean(dY/dX) 0.05083118 0.01042383  4.876441 1175.67 1.228285e-06</span></span></code></pre></div>
+<span><span class="co">#&gt;   term    contrast   estimate  std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1  mpg mean(dY/dX) 0.05043836 0.01012203  4.983027 3414.712 6.570737e-07</span></span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
@@ -404,7 +404,7 @@ mpg
 0.046
 </td>
 <td style="text-align:center;">
-0.051
+0.050
 </td>
 </tr>
 <tr>

@@ -334,20 +334,20 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0019348755 0.0024508961 0.7894564 0.4298453</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0029928602 0.0033775105 0.8861142 0.3755560</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001476461 0.0003452784 0.4276146 0.6689317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high   predicted predicted_hi predicted_lo am  hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0045401417 0.0185065919 0.898311019   0.89850864  0.898311019  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0098359916 0.0426442370 0.467644655   0.46810889  0.467644655  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0045227004 0.0101796038 0.967103810   0.96718386  0.967103810  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0028687925 0.0067385435 0.038895584   0.03895034  0.038895584  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0036269388 0.0096126591 0.076483825   0.07656852  0.076483825  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0005290872 0.0008243794 0.003566962   0.00357114  0.003566962  0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high   predicted predicted_hi predicted_lo  mpg cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0045401417 0.0185065919 0.898311019   0.89850864  0.898311019 21.0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0098359916 0.0426442370 0.467644655   0.46810889  0.467644655 21.0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0045227004 0.0101796038 0.967103810   0.96718386  0.967103810 22.8   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0028687925 0.0067385435 0.038895584   0.03895034  0.038895584 21.4   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0036269388 0.0096126591 0.076483825   0.07656852  0.076483825 18.7   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0005290872 0.0008243794 0.003566962   0.00357114  0.003566962 18.1   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   disp  hp drat    wt  qsec vs am gear carb    eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  258 110 3.08 3.215 19.44  1  0    3    1 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  360 175 3.15 3.440 17.02  0  0    3    2 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  225 105 2.76 3.460 20.22  1  0    3    1 0.0283</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Average Marginal Effect (AME)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span></span>
@@ -454,20 +454,20 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp 0.0019348755 0.0018435014 1.0495655 0.2939179</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp 0.0029928602 0.0027826624 1.0755384 0.2821338</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response   hp 0.0001476461 0.0002545412 0.5800478 0.5618824</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high   predicted predicted_hi predicted_lo am  hp    wt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0110232453 0.0249896955 0.898311019   0.89850864  0.898311019  1 110 2.620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0098642451 0.0426724905 0.467644655   0.46810889  0.467644655  1 110 2.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0068007517 0.0124576550 0.967103810   0.96718386  0.967103810  1  93 2.320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0016783208 0.0055480719 0.038895584   0.03895034  0.038895584  0 110 3.215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0024610579 0.0084467782 0.076483825   0.07656852  0.076483825  0 175 3.440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0003512456 0.0006465378 0.003566962   0.00357114  0.003566962  0 105 3.460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high   predicted predicted_hi predicted_lo  mpg cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.0110232453 0.0249896955 0.898311019   0.89850864  0.898311019 21.0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.0098642451 0.0426724905 0.467644655   0.46810889  0.467644655 21.0   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.0068007517 0.0124576550 0.967103810   0.96718386  0.967103810 22.8   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.0016783208 0.0055480719 0.038895584   0.03895034  0.038895584 21.4   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.0024610579 0.0084467782 0.076483825   0.07656852  0.076483825 18.7   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -0.0003512456 0.0006465378 0.003566962   0.00357114  0.003566962 18.1   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   disp  hp drat    wt  qsec vs am gear carb    eps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  258 110 3.08 3.215 19.44  1  0    3    1 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  360 175 3.15 3.440 17.02  0  0    3    2 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  225 105 2.76 3.460 20.22  1  0    3    1 0.0283</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># hypothesis test: is the `hp` marginal effect at the mean equal to the `drat` marginal effect</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>

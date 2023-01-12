@@ -213,20 +213,27 @@ RMSE
 <span><span class="co">#&gt; 4     4 response   tx SK - tPA 0.0011367499 0.0004999032  2.273940 0.02296960</span></span>
 <span><span class="co">#&gt; 5     5 response   tx SK - tPA 0.0013655083 0.0005934013  2.301155 0.02138288</span></span>
 <span><span class="co">#&gt; 6     6 response   tx SK - tPA 0.0024015964 0.0010127226  2.371426 0.01771961</span></span>
-<span><span class="co">#&gt;       conf.low   conf.high   predicted predicted_hi predicted_lo day30  tx</span></span>
-<span><span class="co">#&gt; 1 0.0001007278 0.002047658 0.005769605  0.005769605  0.004695412     0  SK</span></span>
-<span><span class="co">#&gt; 2 0.0001125746 0.001602046 0.003742994  0.004600304  0.003742994     0 tPA</span></span>
-<span><span class="co">#&gt; 3 0.0002540634 0.003305496 0.009589391  0.009589391  0.007809612     0  SK</span></span>
-<span><span class="co">#&gt; 4 0.0001569575 0.002116542 0.004970544  0.006107294  0.004970544     0 tPA</span></span>
-<span><span class="co">#&gt; 5 0.0002024631 0.002528553 0.007343757  0.007343757  0.005978249     0  SK</span></span>
-<span><span class="co">#&gt; 6 0.0004166965 0.004386496 0.012975875  0.012975875  0.010574279     0  SK</span></span>
-<span><span class="co">#&gt;   Killip pmi    miloc    sex    age pulse sysbp</span></span>
-<span><span class="co">#&gt; 1      I  no Anterior   male 19.027    60   130</span></span>
-<span><span class="co">#&gt; 2      I  no Inferior   male 20.781    75   124</span></span>
-<span><span class="co">#&gt; 3      I  no Anterior   male 20.969    85   135</span></span>
-<span><span class="co">#&gt; 4      I  no Inferior   male 20.984    90   129</span></span>
-<span><span class="co">#&gt; 5      I  no Anterior   male 21.449    70   157</span></span>
-<span><span class="co">#&gt; 6      I  no Anterior female 22.523    84   135</span></span></code></pre></div>
+<span><span class="co">#&gt;       conf.low   conf.high   predicted predicted_hi predicted_lo day30 sho hig</span></span>
+<span><span class="co">#&gt; 1 0.0001007278 0.002047658 0.005769605  0.005769605  0.004695412     0   0   1</span></span>
+<span><span class="co">#&gt; 2 0.0001125746 0.001602046 0.003742994  0.004600304  0.003742994     0   0   0</span></span>
+<span><span class="co">#&gt; 3 0.0002540634 0.003305496 0.009589391  0.009589391  0.007809612     0   0   1</span></span>
+<span><span class="co">#&gt; 4 0.0001569575 0.002116542 0.004970544  0.006107294  0.004970544     0   0   0</span></span>
+<span><span class="co">#&gt; 5 0.0002024631 0.002528553 0.007343757  0.007343757  0.005978249     0   0   1</span></span>
+<span><span class="co">#&gt; 6 0.0004166965 0.004386496 0.012975875  0.012975875  0.010574279     0   0   1</span></span>
+<span><span class="co">#&gt;   dia hyp hrt ttr    sex Killip    age ste pulse sysbp ant    miloc height</span></span>
+<span><span class="co">#&gt; 1   0   0   0   1   male      I 19.027   4    60   130   1 Anterior  170.0</span></span>
+<span><span class="co">#&gt; 2   0   0   0   1   male      I 20.781   8    75   124   0 Inferior  180.3</span></span>
+<span><span class="co">#&gt; 3   0   0   1   0   male      I 20.969   5    85   135   1 Anterior  187.9</span></span>
+<span><span class="co">#&gt; 4   0   0   1   1   male      I 20.984   1    90   129   0 Inferior  189.0</span></span>
+<span><span class="co">#&gt; 5   0   0   0   1   male      I 21.449   8    70   157   1 Anterior  175.0</span></span>
+<span><span class="co">#&gt; 6   0   0   1   1 female      I 22.523   9    84   135   1 Anterior  174.0</span></span>
+<span><span class="co">#&gt;   weight pmi htn     smk pan fam prevcvd prevcabg regl grpl grps tpa  tx</span></span>
+<span><span class="co">#&gt; 1     60  no   1   never   1   2       1        1    6   17   98   0  SK</span></span>
+<span><span class="co">#&gt; 2     69  no   1   never   2   2       1        1    7   19   42   1 tPA</span></span>
+<span><span class="co">#&gt; 3    107  no   1    quit   1   2       1        1    2    6   95   0  SK</span></span>
+<span><span class="co">#&gt; 4    115  no   1   never   1   2       1        1   10   30   67   1 tPA</span></span>
+<span><span class="co">#&gt; 5     65  no   1   never   2   2       1        1    5   15   32   0  SK</span></span>
+<span><span class="co">#&gt; 6     57  no   1 current   2   1       1        1   13   39   90   0  SK</span></span></code></pre></div>
 <p>Population-averaged (aka “marginal”) adjusted risk difference (<a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html">see this vignette</a>) can be obtained using the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -283,20 +290,27 @@ RMSE
 <span><span class="co">#&gt; 4     4 response   tx SK - tPA 0.0011367499 0.0004999032  2.273940 0.02296960</span></span>
 <span><span class="co">#&gt; 5     5 response   tx SK - tPA 0.0013655083 0.0005934013  2.301155 0.02138288</span></span>
 <span><span class="co">#&gt; 6     6 response   tx SK - tPA 0.0024015964 0.0010127226  2.371426 0.01771961</span></span>
-<span><span class="co">#&gt;       conf.low   conf.high   predicted predicted_hi predicted_lo day30  tx</span></span>
-<span><span class="co">#&gt; 1 0.0001007278 0.002047658 0.005769605  0.005769605  0.004695412     0  SK</span></span>
-<span><span class="co">#&gt; 2 0.0001125746 0.001602046 0.003742994  0.004600304  0.003742994     0 tPA</span></span>
-<span><span class="co">#&gt; 3 0.0002540634 0.003305496 0.009589391  0.009589391  0.007809612     0  SK</span></span>
-<span><span class="co">#&gt; 4 0.0001569575 0.002116542 0.004970544  0.006107294  0.004970544     0 tPA</span></span>
-<span><span class="co">#&gt; 5 0.0002024631 0.002528553 0.007343757  0.007343757  0.005978249     0  SK</span></span>
-<span><span class="co">#&gt; 6 0.0004166965 0.004386496 0.012975875  0.012975875  0.010574279     0  SK</span></span>
-<span><span class="co">#&gt;   Killip pmi    miloc    sex    age pulse sysbp</span></span>
-<span><span class="co">#&gt; 1      I  no Anterior   male 19.027    60   130</span></span>
-<span><span class="co">#&gt; 2      I  no Inferior   male 20.781    75   124</span></span>
-<span><span class="co">#&gt; 3      I  no Anterior   male 20.969    85   135</span></span>
-<span><span class="co">#&gt; 4      I  no Inferior   male 20.984    90   129</span></span>
-<span><span class="co">#&gt; 5      I  no Anterior   male 21.449    70   157</span></span>
-<span><span class="co">#&gt; 6      I  no Anterior female 22.523    84   135</span></span></code></pre></div>
+<span><span class="co">#&gt;       conf.low   conf.high   predicted predicted_hi predicted_lo day30 sho hig</span></span>
+<span><span class="co">#&gt; 1 0.0001007278 0.002047658 0.005769605  0.005769605  0.004695412     0   0   1</span></span>
+<span><span class="co">#&gt; 2 0.0001125746 0.001602046 0.003742994  0.004600304  0.003742994     0   0   0</span></span>
+<span><span class="co">#&gt; 3 0.0002540634 0.003305496 0.009589391  0.009589391  0.007809612     0   0   1</span></span>
+<span><span class="co">#&gt; 4 0.0001569575 0.002116542 0.004970544  0.006107294  0.004970544     0   0   0</span></span>
+<span><span class="co">#&gt; 5 0.0002024631 0.002528553 0.007343757  0.007343757  0.005978249     0   0   1</span></span>
+<span><span class="co">#&gt; 6 0.0004166965 0.004386496 0.012975875  0.012975875  0.010574279     0   0   1</span></span>
+<span><span class="co">#&gt;   dia hyp hrt ttr    sex Killip    age ste pulse sysbp ant    miloc height</span></span>
+<span><span class="co">#&gt; 1   0   0   0   1   male      I 19.027   4    60   130   1 Anterior  170.0</span></span>
+<span><span class="co">#&gt; 2   0   0   0   1   male      I 20.781   8    75   124   0 Inferior  180.3</span></span>
+<span><span class="co">#&gt; 3   0   0   1   0   male      I 20.969   5    85   135   1 Anterior  187.9</span></span>
+<span><span class="co">#&gt; 4   0   0   1   1   male      I 20.984   1    90   129   0 Inferior  189.0</span></span>
+<span><span class="co">#&gt; 5   0   0   0   1   male      I 21.449   8    70   157   1 Anterior  175.0</span></span>
+<span><span class="co">#&gt; 6   0   0   1   1 female      I 22.523   9    84   135   1 Anterior  174.0</span></span>
+<span><span class="co">#&gt;   weight pmi htn     smk pan fam prevcvd prevcabg regl grpl grps tpa  tx</span></span>
+<span><span class="co">#&gt; 1     60  no   1   never   1   2       1        1    6   17   98   0  SK</span></span>
+<span><span class="co">#&gt; 2     69  no   1   never   2   2       1        1    7   19   42   1 tPA</span></span>
+<span><span class="co">#&gt; 3    107  no   1    quit   1   2       1        1    2    6   95   0  SK</span></span>
+<span><span class="co">#&gt; 4    115  no   1   never   1   2       1        1   10   30   67   1 tPA</span></span>
+<span><span class="co">#&gt; 5     65  no   1   never   2   2       1        1    5   15   32   0  SK</span></span>
+<span><span class="co">#&gt; 6     57  no   1 current   2   1       1        1   13   39   90   0  SK</span></span></code></pre></div>
 <p>Show the predicted probability for individual patients under both treatment alternatives.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cmp</span><span class="op">$</span><span class="va">predicted_hi</span>,</span>

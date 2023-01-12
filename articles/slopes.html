@@ -133,13 +133,13 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type           term contrast       dydx   std.error statistic      p.value   conf.low  conf.high  predicted predicted_hi predicted_lo large_penguin bill_length_mm flipper_length_mm species     eps</span></span>
-<span><span class="co">#&gt; 1     1 response bill_length_mm    dY/dX 0.01763035 0.007841310  2.248393 2.455116e-02 0.00226166 0.03299903 0.05123266   0.05128115   0.05123266             0           39.1               181  Adelie 0.00275</span></span>
-<span><span class="co">#&gt; 2     2 response bill_length_mm    dY/dX 0.03586004 0.011923232  3.007577 2.633393e-03 0.01249093 0.05922914 0.11125087   0.11134949   0.11125087             0           39.5               186  Adelie 0.00275</span></span>
-<span><span class="co">#&gt; 3     3 response bill_length_mm    dY/dX 0.08444404 0.021123004  3.997729 6.395319e-05 0.04304371 0.12584437 0.36919834   0.36943056   0.36919834             0           40.3               195  Adelie 0.00275</span></span>
-<span><span class="co">#&gt; 4     4 response bill_length_mm    dY/dX 0.03472711 0.006508685  5.335504 9.527951e-08 0.02197033 0.04748390 0.10725326   0.10734876   0.10725326             0           36.7               193  Adelie 0.00275</span></span>
-<span><span class="co">#&gt; 5     5 response bill_length_mm    dY/dX 0.05089119 0.013414434  3.793763 1.483813e-04 0.02459938 0.07718299 0.16882994   0.16896989   0.16882994             0           39.3               190  Adelie 0.00275</span></span>
-<span><span class="co">#&gt; 6     6 response bill_length_mm    dY/dX 0.01651544 0.007256548  2.275937 2.284981e-02 0.00229287 0.03073802 0.04782069   0.04786611   0.04782069             0           38.9               181  Adelie 0.00275</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type           term contrast       dydx   std.error statistic      p.value   conf.low  conf.high  predicted predicted_hi predicted_lo X species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g    sex year large_penguin     eps</span></span>
+<span><span class="co">#&gt; 1     1 response bill_length_mm    dY/dX 0.01763035 0.007841310  2.248393 2.455116e-02 0.00226166 0.03299903 0.05123266   0.05128115   0.05123266 1  Adelie Torgersen           39.1          18.7               181        3750   male 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 2     2 response bill_length_mm    dY/dX 0.03586004 0.011923232  3.007577 2.633393e-03 0.01249093 0.05922914 0.11125087   0.11134949   0.11125087 2  Adelie Torgersen           39.5          17.4               186        3800 female 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 3     3 response bill_length_mm    dY/dX 0.08444404 0.021123004  3.997729 6.395319e-05 0.04304371 0.12584437 0.36919834   0.36943056   0.36919834 3  Adelie Torgersen           40.3          18.0               195        3250 female 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 4     4 response bill_length_mm    dY/dX 0.03472711 0.006508685  5.335504 9.527951e-08 0.02197033 0.04748390 0.10725326   0.10734876   0.10725326 5  Adelie Torgersen           36.7          19.3               193        3450 female 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 5     5 response bill_length_mm    dY/dX 0.05089119 0.013414434  3.793763 1.483813e-04 0.02459938 0.07718299 0.16882994   0.16896989   0.16882994 6  Adelie Torgersen           39.3          20.6               190        3650   male 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 6     6 response bill_length_mm    dY/dX 0.01651544 0.007256548  2.275937 2.284981e-02 0.00229287 0.03073802 0.04782069   0.04786611   0.04782069 7  Adelie Torgersen           38.9          17.8               181        3625 female 2007             0 0.00275</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="the-marginal-effects-zoo">The Marginal Effects Zoo<a class="anchor" aria-label="anchor" href="#the-marginal-effects-zoo"></a>
@@ -323,11 +323,11 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">dydx</span>, <span class="va">truth</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        dydx truth</span></span>
-<span><span class="co">#&gt; 1 -7.003554    -7</span></span>
-<span><span class="co">#&gt; 2 -2.999170    -3</span></span>
-<span><span class="co">#&gt; 3  1.005214     1</span></span>
-<span><span class="co">#&gt; 4  5.009598     5</span></span>
-<span><span class="co">#&gt; 5  9.013982     9</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -6.983562    -7</span></span>
+<span><span class="co">#&gt; 2 -2.990163    -3</span></span>
+<span><span class="co">#&gt; 3  1.003237     1</span></span>
+<span><span class="co">#&gt; 4  4.996637     5</span></span>
+<span><span class="co">#&gt; 5  8.990037     9</span></span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
