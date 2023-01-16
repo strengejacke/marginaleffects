@@ -4,7 +4,7 @@ graduates vs. others), and compare those predictions by computing a difference,
 ratio, or some other function. comparisons() can return many quantities of
 interest, such as contrasts, differences, risk ratios, changes in log odds,
 slopes, elasticities, etc.
-Comparisons or contrasts are "conditional" (or "unit-level") estimates: they
+Comparisons or contrasts are typically "conditional" (or "unit-level") estimates: they
 will typically vary based on the values of predictors in the model. By
 default, the comparisons() function thus returns one estimate of the
 comparison for each row of the dataset used to fit a model.
@@ -16,12 +16,12 @@ See the comparisons vignette and package website for worked examples and case st
 https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html
 https://vincentarelbundock.github.io/marginaleffects/
 
-'><title>Comparisons Between Predictions Made for Different Regressor Values — comparisons • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparisons Between Predictions Made for Different Regressor Values — comparisons"><meta property="og:description" content='Predict the outcome variable at different regressor values (e.g., college
+'><title>Comparisons Between Predictions Made for Different Regressor Values — comparisons • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparisons Between Predictions Made for Different Regressor Values — comparisons"><meta property="og:description" content='Predict the outcome variable at different regressor values (e.g., college
 graduates vs. others), and compare those predictions by computing a difference,
 ratio, or some other function. comparisons() can return many quantities of
 interest, such as contrasts, differences, risk ratios, changes in log odds,
 slopes, elasticities, etc.
-Comparisons or contrasts are "conditional" (or "unit-level") estimates: they
+Comparisons or contrasts are typically "conditional" (or "unit-level") estimates: they
 will typically vary based on the values of predictors in the model. By
 default, the comparisons() function thus returns one estimate of the
 comparison for each row of the dataset used to fit a model.
@@ -100,7 +100,7 @@ graduates vs. others), and compare those predictions by computing a difference,
 ratio, or some other function. <code>comparisons()</code> can return many quantities of
 interest, such as contrasts, differences, risk ratios, changes in log odds,
 slopes, elasticities, etc.</p>
-<p>Comparisons or contrasts are "conditional" (or "unit-level") estimates: they
+<p>Comparisons or contrasts are typically "conditional" (or "unit-level") estimates: they
 will typically vary based on the values of predictors in the model. By
 default, the <code>comparisons()</code> function thus returns one estimate of the
 comparison for each row of the dataset used to fit a model.</p>
@@ -380,44 +380,45 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">tmp</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"reference"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term          Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  cyl mean(6) - mean(4)   -6.156      1.536 -4.009 6.1077e-05  -9.166 -3.146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl mean(8) - mean(4)  -10.068      1.452 -6.933 4.1146e-12 -12.914 -7.222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term          contrast   estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  cyl mean(6) - mean(4)  -6.156118  1.535723 -4.008612 6.107658e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl mean(8) - mean(4) -10.067560  1.452082 -6.933187 4.114626e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -9.166079 -3.146156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -12.913589 -7.221530</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term          Contrast Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  cyl mean(6) - mean(4)   -6.156      1.536 -4.009 6.1077e-05 -9.166 -3.146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl mean(8) - mean(6)   -3.911      1.470 -2.660  0.0078051 -6.793 -1.030</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term          contrast  estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  cyl mean(6) - mean(4) -6.156118  1.535723 -4.008612 6.107658e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl mean(8) - mean(6) -3.911442  1.470254 -2.660385 7.805144e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -9.166079 -3.146156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -6.793087 -1.029797</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term          Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  cyl mean(6) - mean(4)   -6.156      1.536 -4.009 6.1077e-05  -9.166 -3.146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  cyl mean(8) - mean(4)  -10.068      1.452 -6.933 4.1146e-12 -12.914 -7.222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  cyl mean(8) - mean(6)   -3.911      1.470 -2.660  0.0078051  -6.793 -1.030</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term          contrast   estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  cyl mean(6) - mean(4)  -6.156118  1.535723 -4.008612 6.107658e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl mean(8) - mean(4) -10.067560  1.452082 -6.933187 4.114626e-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response  cyl mean(8) - mean(6)  -3.911442  1.470254 -2.660385 7.805144e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -9.166079 -3.146156</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -12.913589 -7.221530</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -6.793087 -1.029797</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># GLM with different scale types</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term          Contrast Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear mean(4) - mean(3)   0.6667     0.1174 5.676 1.3751e-08 0.4365 0.8969</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear mean(5) - mean(3)   1.0000     0.1566 6.386 1.7026e-10 0.6931 1.3069</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term          contrast  estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response gear mean(4) - mean(3) 0.6666667 0.1174440  5.676462 1.375090e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response gear mean(5) - mean(3) 1.0000000 0.1565921  6.386020 1.702589e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term          Contrast Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear mean(4) - mean(3)   0.6667     0.1174 5.676 1.3751e-08 0.4365 0.8969</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear mean(5) - mean(3)   1.0000     0.1566 6.386 1.7026e-10 0.6931 1.3069</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  link </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   type term          contrast  estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 link gear mean(4) - mean(3) 0.6666667 0.1174440  5.676462 1.375090e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 link gear mean(5) - mean(3) 1.0000000 0.1565921  6.386020 1.702589e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrasts at the mean</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span></span>
@@ -493,45 +494,35 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Numeric contrasts</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Estimate Std. Error      z  Pr(&gt;|z|)    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(+1) -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast    estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp mean(+1) -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Estimate Std. Error      z  Pr(&gt;|z|)   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(+5)  -0.3411     0.0506 -6.742 1.558e-11 -0.4403 -0.242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term contrast   estimate  std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp mean(+5) -0.3411414 0.05059652 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.4403087 -0.241974</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term             Contrast Estimate Std. Error      z  Pr(&gt;|z|)   2.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(100) - mean(90)  -0.6823     0.1012 -6.742 1.558e-11 -0.8806</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.4839</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term             contrast   estimate std.error statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp mean(100) - mean(90) -0.6822828  0.101193 -6.742389</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        p.value   conf.low  conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.558038e-11 -0.8806175 -0.4839481</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"iqr"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term            Contrast Estimate Std. Error      z  Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(Q3) - mean(Q1)   -5.697      0.845 -6.742 1.558e-11 -7.353 -4.041</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term            contrast  estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp mean(Q3) - mean(Q1) -5.697061 0.8449619 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -7.353156 -4.040966</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term                        Contrast Estimate Std. Error      z  Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(x + sd/2) - mean(x - sd/2)   -4.678     0.6938 -6.742 1.558e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -6.038 -3.318</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term                        contrast  estimate std.error statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp mean(x + sd/2) - mean(x - sd/2) -4.677926 0.6938085 -6.742389</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        p.value  conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 1.558038e-11 -6.037766 -3.318087</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"minmax"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term              Contrast Estimate Std. Error      z  Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(Max) - mean(Min)   -19.31      2.864 -6.742 1.558e-11 -24.92  -13.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term              contrast estimate std.error statistic      p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response   hp mean(Max) - mean(Min) -19.3086  2.863763 -6.742389 1.558038e-11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -24.92147 -13.69573</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># using a function to specify a custom difference in one regressor</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>
@@ -702,7 +693,7 @@ posterior using the function supplied to the
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

@@ -11,7 +11,7 @@
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Slopes">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Slopes">
 <meta property="og:description" content="marginaleffects">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -175,14 +175,11 @@
 <p>You can also extract average marginal effects using <code>tidy</code> and <code>glance</code> methods which conform to the <a href="https://broom.tidymodels.org/" class="external-link"><code>broom</code> package specification</a>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                Term                       Contrast Estimate Std. Error       z   Pr(&gt;|z|)     2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1    bill_length_mm                    mean(dY/dX)  0.02757   0.005784  4.7675 1.8653e-06  0.016238  0.03891</span></span>
-<span><span class="co">#&gt; 2 flipper_length_mm                    mean(dY/dX)  0.01058   0.002357  4.4895 7.1390e-06  0.005963  0.01520</span></span>
-<span><span class="co">#&gt; 3           species mean(Chinstrap) - mean(Adelie) -0.41479   0.056900 -7.2898 3.1032e-13 -0.526312 -0.30327</span></span>
-<span><span class="co">#&gt; 4           species    mean(Gentoo) - mean(Adelie)  0.06170   0.106856  0.5774    0.56367 -0.147735  0.27113</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  glm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span><span class="co">#&gt;       type              term                       contrast    estimate   std.error  statistic      p.value     conf.low   conf.high</span></span>
+<span><span class="co">#&gt; 1 response    bill_length_mm                    mean(dY/dX)  0.02757371 0.005783687  4.7674971 1.865287e-06  0.016237894  0.03890953</span></span>
+<span><span class="co">#&gt; 2 response flipper_length_mm                    mean(dY/dX)  0.01058283 0.002357239  4.4895005 7.139036e-06  0.005962722  0.01520293</span></span>
+<span><span class="co">#&gt; 3 response           species mean(Chinstrap) - mean(Adelie) -0.41479008 0.056899735 -7.2898420 3.103188e-13 -0.526311511 -0.30326865</span></span>
+<span><span class="co">#&gt; 4 response           species    mean(Gentoo) - mean(Adelie)  0.06169819 0.106855875  0.5773963 5.636718e-01 -0.147735476  0.27113186</span></span>
 <span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        aic      bic   r2.tjur      rmse nobs        F    logLik</span></span>
@@ -326,11 +323,11 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="va">truth</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    estimate truth</span></span>
-<span><span class="co">#&gt; 1 -6.995674    -7</span></span>
-<span><span class="co">#&gt; 2 -2.997145    -3</span></span>
-<span><span class="co">#&gt; 3  1.001384     1</span></span>
-<span><span class="co">#&gt; 4  4.999914     5</span></span>
-<span><span class="co">#&gt; 5  8.998443     9</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -6.995074    -7</span></span>
+<span><span class="co">#&gt; 2 -2.995369    -3</span></span>
+<span><span class="co">#&gt; 3  1.004337     1</span></span>
+<span><span class="co">#&gt; 4  5.004042     5</span></span>
+<span><span class="co">#&gt; 5  9.003747     9</span></span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
@@ -436,7 +433,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
