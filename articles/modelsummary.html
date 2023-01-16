@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -208,10 +208,13 @@ RMSE
 <span></span>
 <span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term          contrast    estimate  std.error  statistic      p.value    conf.low  conf.high</span></span>
-<span><span class="co">#&gt; 1 response gear mean(4) - mean(3)  0.03717842 0.13656702  0.2722357 7.854408e-01 -0.23048802  0.3048449</span></span>
-<span><span class="co">#&gt; 2 response gear mean(5) - mean(3) -0.33968823 0.09882783 -3.4371718 5.878226e-04 -0.53338721 -0.1459892</span></span>
-<span><span class="co">#&gt; 3 response  mpg          mean(+1)  0.06080995 0.01283781  4.7367850 2.171353e-06  0.03564831  0.0859716</span></span></code></pre></div>
+<span><span class="co">#&gt;   Term          Contrast Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt; 1 gear mean(4) - mean(3)  0.03718    0.13657  0.2722 0.78544078 -0.23049  0.30484</span></span>
+<span><span class="co">#&gt; 2 gear mean(5) - mean(3) -0.33969    0.09883 -3.4372 0.00058782 -0.53339 -0.14599</span></span>
+<span><span class="co">#&gt; 3  mpg          mean(+1)  0.06081    0.01284  4.7368 2.1714e-06  0.03565  0.08597</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  glm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>We can use the <code>group</code> argument of the <code>modelsummary</code> function to structure the table properly:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">cmp</span>, group <span class="op">=</span> <span class="va">term</span> <span class="op">+</span> <span class="va">contrast</span> <span class="op">~</span> <span class="va">model</span><span class="op">)</span></span></code></pre></div>
@@ -358,11 +361,14 @@ RMSE
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gear"</span>, <span class="st">"cyl"</span><span class="op">)</span>,</span>
 <span>  cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type  term     contrast_gear      contrast_cyl  estimate std.error statistic     p.value  conf.low     conf.high</span></span>
-<span><span class="co">#&gt; 1 response cross mean(4) - mean(3) mean(6) - mean(4) -5.331884  2.768998 -1.925564 0.054158790 -10.75902  0.0952524474</span></span>
-<span><span class="co">#&gt; 2 response cross mean(4) - mean(3) mean(8) - mean(4) -9.218116  3.618491 -2.547503 0.010849693 -16.31023 -2.1260044175</span></span>
-<span><span class="co">#&gt; 3 response cross mean(5) - mean(3) mean(6) - mean(4) -5.155797  2.630642 -1.959901 0.050007362 -10.31176  0.0001656772</span></span>
-<span><span class="co">#&gt; 4 response cross mean(5) - mean(3) mean(8) - mean(4) -9.042029  3.185042 -2.838904 0.004526879 -15.28460 -2.7994608309</span></span></code></pre></div>
+<span><span class="co">#&gt;                gear               cyl Estimate Std. Error      z  Pr(&gt;|z|)  2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt; 1 mean(4) - mean(3) mean(6) - mean(4)   -5.332      2.769 -1.926 0.0541588 -10.76  0.0952524</span></span>
+<span><span class="co">#&gt; 2 mean(4) - mean(3) mean(8) - mean(4)   -9.218      3.618 -2.548 0.0108497 -16.31 -2.1260044</span></span>
+<span><span class="co">#&gt; 3 mean(5) - mean(3) mean(6) - mean(4)   -5.156      2.631 -1.960 0.0500074 -10.31  0.0001657</span></span>
+<span><span class="co">#&gt; 4 mean(5) - mean(3) mean(8) - mean(4)   -9.042      3.185 -2.839 0.0045269 -15.28 -2.7994608</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  lm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>As we can see above, there are two relevant grouping columns: <code>contrast_gear</code> and <code>contrast_cyl</code>. We can simply plug those names in the <code>shape</code> argument:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span></span>

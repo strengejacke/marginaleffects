@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -190,11 +190,11 @@
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
-<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span>, hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">hp</span>, <span class="va">cyl</span>, <span class="va">estimate</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>values_from <span class="op">=</span> <span class="va">estimate</span>, names_from <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"A table of Adjusted Predictions"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span>, hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">hp</span>, <span class="va">cyl</span>, <span class="va">estimate</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>values_from <span class="op">=</span> <span class="va">estimate</span>, names_from <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"A table of Adjusted Predictions"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span>header <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, <span class="st">"cyl"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
 <caption>
@@ -272,8 +272,8 @@ hp
 <span><span class="co">#&gt; [1] 64  4</span></span></code></pre></div>
 <p>Then, we can use this dataset and the <code>predictions</code> function to create interesting visualizations:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">am</span>, <span class="va">estimate</span>, <span class="va">rowidcf</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">am</span>, <span class="va">estimate</span>, <span class="va">rowidcf</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>id_cols <span class="op">=</span> <span class="va">rowidcf</span>, </span>
 <span>                names_from <span class="op">=</span> <span class="va">am</span>,</span>
 <span>                values_from <span class="op">=</span> <span class="va">estimate</span><span class="op">)</span></span>
@@ -309,12 +309,12 @@ hp
 <li>Create a new dataset with each of the original regressor values, but fixing some regressors to values of interest.</li>
 <li>Take the average of the predicted values in this new dataset.</li>
 </ol>
-<p>We can obtain AAPs by applying the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> functions to an object produced by the <code><a href="../reference/predictions.html">predictions()</a></code> function:</p>
+<p>We can obtain AAPs by applying the <code><a href="../reference/averages.html">averages()</a></code> functions to an object produced by the <code><a href="../reference/predictions.html">predictions()</a></code> function:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Effect Std. Error    z   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1 0.4375    0.04288 10.2 &lt; 2.22e-16 0.3535 0.5215</span></span>
+<span><span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Estimate Std. Error    z   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1   0.4375    0.04288 10.2 &lt; 2.22e-16 0.3535 0.5215</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -345,7 +345,7 @@ hp
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
 <span><span class="co">#&gt;      am   AAP</span></span>
@@ -371,11 +371,11 @@ hp
 <span><span class="co">#&gt; 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span>
 <span></span>
 <span><span class="co"># average predictions</span></span>
-<span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group Effect Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1     3 0.4688    0.04043 11.595 &lt; 2.22e-16 0.38952 0.5480</span></span>
-<span><span class="co">#&gt; 2     4 0.3750    0.06142  6.106 1.0231e-09 0.25462 0.4954</span></span>
-<span><span class="co">#&gt; 3     5 0.1562    0.04624  3.379  0.0007279 0.06561 0.2469</span></span>
+<span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Group Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1     3   0.4688    0.04043 11.595 &lt; 2.22e-16 0.38952 0.5480</span></span>
+<span><span class="co">#&gt; 2     4   0.3750    0.06142  6.106 1.0231e-09 0.25462 0.4954</span></span>
+<span><span class="co">#&gt; 3     5   0.1562    0.04624  3.379  0.0007279 0.06561 0.2469</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  multinom </span></span>
 <span><span class="co">#&gt; Prediction type:  probs</span></span></code></pre></div>
@@ -391,13 +391,9 @@ hp
 <span><span class="co">#&gt; 2 probs 0.1562469 0.04624265  3.378848 7.279037e-04 0.06561294 0.2468808   5</span></span></code></pre></div>
 <p>This can be very useful in combination with the <code>hypothesis</code> argument. For example, here we compute the difference between average adjusted predictions for the 3 and 4 response levels, compared to the 5 response level:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span>, hypothesis <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      Term  Effect Std. Error     z  Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1 5 - 3,4 -0.2656    0.06936 -3.83 0.0001284 -0.4016 -0.1297</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  multinom </span></span>
-<span><span class="co">#&gt; Prediction type:  probs</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span>, hypothesis <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    type    term   estimate  std.error statistic      p.value   conf.low  conf.high</span></span>
+<span><span class="co">#&gt; 1 probs 5 - 3,4 -0.2656297 0.06936398 -3.829505 0.0001284013 -0.4015806 -0.1296788</span></span></code></pre></div>
 <p>We can also use more complicated aggregations. Here, we compute the predicted probability of outcome levels for each value of <code>cyl</code>, by collapsing the “3” and “4” outcome levels:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -469,13 +465,13 @@ hp
 <p>First, we download the <code>ggplot2movies</code> dataset from the <a href="https://vincentarelbundock.github.io/Rdatasets/articles/data.html" class="external-link">RDatasets archive</a>. Then, we create a variable called <code>certified_fresh</code> for movies with a rating of at least 8. Finally, we discard some outliers and fit a logistic regression model:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2movies/movies.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/ggplot2movies/movies.csv"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">Action</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Action"</span>,</span>
 <span>                             <span class="va">Comedy</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Comedy"</span>,</span>
 <span>                             <span class="va">Drama</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Drama"</span>,</span>
 <span>                             <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Other"</span><span class="op">)</span>,</span>
 <span>           style <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">style</span><span class="op">)</span>,</span>
-<span>           certified_fresh <span class="op">=</span> <span class="va">rating</span> <span class="op">&gt;=</span> <span class="fl">8</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>           certified_fresh <span class="op">=</span> <span class="va">rating</span> <span class="op">&gt;=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">length</span> <span class="op">&lt;</span> <span class="fl">240</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">certified_fresh</span> <span class="op">~</span> <span class="va">length</span> <span class="op">*</span> <span class="va">style</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></code></pre></div>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 [![status](https://tinyverse.netlify.com/badge/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 --><p>Compute and plot adjusted predictions, contrasts, marginal effects, and marginal means for 73 classes of statistical models in <code>R</code>. Conduct linear and non-linear hypothesis tests using the delta method.</p>
-<p>This code on this website was executed using <code>marginaleffects</code> 0.8.1.9106. See the <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">installation section</a> to install the latest CRAN or development version.</p>
+<p>The code on this website was executed using <code>marginaleffects</code> 0.8.1.9108. See the <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">installation section</a> to install the latest CRAN or development version.</p>
 <div class="section level2">
 <h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
 </h2>
@@ -281,13 +281,13 @@
 <span><span class="co">#&gt; [1] 32</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pre</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span><span class="co">#&gt; 1     1 response  22.48857 0.8841487  25.43528 1.027254e-142 20.66378  24.31336 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
-<span><span class="co">#&gt; 2     2 response  20.80186 1.1942050  17.41900  5.920119e-68 18.33714  23.26658 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
-<span><span class="co">#&gt; 3     3 response  25.26465 0.7085307  35.65781 1.783452e-278 23.80232  26.72699 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
-<span><span class="co">#&gt; 4     4 response  20.25549 0.7044641  28.75305 8.296026e-182 18.80155  21.70943 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span><span class="co">#&gt; 5     5 response  16.99782 0.7118658  23.87784 5.205109e-126 15.52860  18.46704 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span><span class="co">#&gt; 6     6 response  19.66353 0.8753226  22.46433 9.270636e-112 17.85696  21.47011 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 response 22.48857 0.8841487  25.43528 1.027254e-142 20.66378  24.31336 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response 20.80186 1.1942050  17.41900  5.920119e-68 18.33714  23.26658 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 response 25.26465 0.7085307  35.65781 1.783452e-278 23.80232  26.72699 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 response 20.25549 0.7044641  28.75305 8.296026e-182 18.80155  21.70943 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 response 16.99782 0.7118658  23.87784 5.205109e-126 15.52860  18.46704 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 response 19.66353 0.8753226  22.46433 9.270636e-112 17.85696  21.47011 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
 <p>Now, we use the <code><a href="reference/comparisons.html">comparisons()</a></code> function to compute the different in predicted outcome when each of the predictors is incremented by 1 unit (one predictor at a time, holding all others constant). Once again, comparisons are unit-level quantities. And since there are 3 predictors in the model and our data has 32 rows, we obtain 96 comparisons:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
@@ -296,7 +296,7 @@
 <span><span class="co">#&gt; [1] 96</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term contrast  comparison  std.error statistic     p.value    conf.low     conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
+<span><span class="co">#&gt;   rowid     type term contrast    estimate  std.error statistic     p.value    conf.low     conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
 <span><span class="co">#&gt; 1     1 response   hp       +1 -0.03690556 0.01850171 -1.994710 0.046074491 -0.07316824 -0.0006428654  22.48857     22.47012     22.50702 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 2     2 response   hp       +1 -0.02868936 0.01562861 -1.835695 0.066402820 -0.05932088  0.0019421563  20.80186     20.78751     20.81620 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 3     3 response   hp       +1 -0.04657166 0.02258715 -2.061866 0.039220505 -0.09084166 -0.0023016732  25.26465     25.24137     25.28794 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
@@ -307,7 +307,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term  contrast comparison std.error statistic     p.value  conf.low   conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
+<span><span class="co">#&gt;   rowid     type term  contrast   estimate std.error statistic     p.value  conf.low   conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
 <span><span class="co">#&gt; 1     1 response   hp 120 - 100 -0.7381111 0.3700342 -1.994710 0.046074489 -1.463365 -0.01285731  22.48857     22.11951     22.85762 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 2     2 response   hp 120 - 100 -0.5737872 0.3125723 -1.835695 0.066402820 -1.186418  0.03884313  20.80186     20.51496     21.08875 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 3     3 response   hp 120 - 100 -0.9314333 0.4517429 -2.061866 0.039220507 -1.816833 -0.04603346  25.26465     24.00722     24.93865 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
@@ -318,21 +318,21 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term                contrast comparison std.error statistic     p.value  conf.low   conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
-<span><span class="co">#&gt; 1     1 response   hp (x + sd/2) - (x - sd/2)  -2.530351 1.2685305 -1.994710 0.046074489 -5.016625 -0.04407671  22.48857     19.86942     22.39977 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
-<span><span class="co">#&gt; 2     2 response   hp (x + sd/2) - (x - sd/2)  -1.967025 1.0715425 -1.835695 0.066402820 -4.067210  0.13315980  20.80186     18.76581     20.73283 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
-<span><span class="co">#&gt; 3     3 response   hp (x + sd/2) - (x - sd/2)  -3.193087 1.5486395 -2.061866 0.039220507 -6.228365 -0.15780929  25.26465     21.16779     24.36088 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
-<span><span class="co">#&gt; 4     4 response   hp (x + sd/2) - (x - sd/2)  -2.898240 0.9107057 -3.182412 0.001460541 -4.683191 -1.11329004  20.25549     17.25554     20.15378 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 0.0283</span></span>
-<span><span class="co">#&gt; 5     5 response   hp (x + sd/2) - (x - sd/2)  -2.675217 0.9194805 -2.909487 0.003620221 -4.477366 -0.87306820  16.99782     16.76492     19.44014 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 0.0283</span></span>
-<span><span class="co">#&gt; 6     6 response   hp (x + sd/2) - (x - sd/2)  -2.655393 0.9248359 -2.871204 0.004089117 -4.468038 -0.84274738  19.66353     16.72131     19.37670 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 0.0283</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term                contrast  estimate std.error statistic     p.value  conf.low   conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
+<span><span class="co">#&gt; 1     1 response   hp (x + sd/2) - (x - sd/2) -2.530351 1.2685305 -1.994710 0.046074489 -5.016625 -0.04407671  22.48857     19.86942     22.39977 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
+<span><span class="co">#&gt; 2     2 response   hp (x + sd/2) - (x - sd/2) -1.967025 1.0715425 -1.835695 0.066402820 -4.067210  0.13315980  20.80186     18.76581     20.73283 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
+<span><span class="co">#&gt; 3     3 response   hp (x + sd/2) - (x - sd/2) -3.193087 1.5486395 -2.061866 0.039220507 -6.228365 -0.15780929  25.26465     21.16779     24.36088 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
+<span><span class="co">#&gt; 4     4 response   hp (x + sd/2) - (x - sd/2) -2.898240 0.9107057 -3.182412 0.001460541 -4.683191 -1.11329004  20.25549     17.25554     20.15378 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 0.0283</span></span>
+<span><span class="co">#&gt; 5     5 response   hp (x + sd/2) - (x - sd/2) -2.675217 0.9194805 -2.909487 0.003620221 -4.477366 -0.87306820  16.99782     16.76492     19.44014 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 0.0283</span></span>
+<span><span class="co">#&gt; 6     6 response   hp (x + sd/2) - (x - sd/2) -2.655393 0.9248359 -2.871204 0.004089117 -4.468038 -0.84274738  19.66353     16.72131     19.37670 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 0.0283</span></span></code></pre></div>
 <p>The <code><a href="reference/comparisons.html">comparisons()</a></code> function also allows users to specify arbitrary functions of predictions, with the <code>transform_pre</code> argument. For example, what is the average ratio between predicted Miles per Gallon after an increase of 50 units in Horsepower?</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span>
 <span>  transform_pre <span class="op">=</span> <span class="st">"ratioavg"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term  contrast comparison  std.error statistic       p.value  conf.low conf.high predicted predicted_hi predicted_lo</span></span>
-<span><span class="co">#&gt; 1 response   hp mean(+50)  0.9095338 0.02895173  31.41553 1.241931e-216 0.8527894 0.9662781  22.48857     21.56593     23.41121</span></span></code></pre></div>
+<span><span class="co">#&gt;       type term  contrast  estimate  std.error statistic       p.value  conf.low conf.high predicted predicted_hi predicted_lo</span></span>
+<span><span class="co">#&gt; 1 response   hp mean(+50) 0.9095338 0.02895173  31.41553 1.241931e-216 0.8527894 0.9662781  22.48857     21.56593     23.41121</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons vignette for detailed explanations and more options.</a></p>
 <p>The <code><a href="reference/slopes.html">slopes()</a></code> function allows us to compute the partial derivative of the outcome equation with respect to each of the predictors. Once again, we obtain a data frame with 96 rows:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -342,7 +342,7 @@
 <span><span class="co">#&gt; [1] 96</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term        dydx  std.error statistic     p.value    conf.low     conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
+<span><span class="co">#&gt;   rowid     type term    estimate  std.error statistic     p.value    conf.low     conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
 <span><span class="co">#&gt; 1     1 response   hp -0.03690556 0.01850172 -1.994710 0.046074551 -0.07316825 -0.0006428553  22.48857     22.48752     22.48857 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 2     2 response   hp -0.02868936 0.01562861 -1.835695 0.066402771 -0.05932087  0.0019421508  20.80186     20.80105     20.80186 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 3     3 response   hp -0.04657166 0.02258715 -2.061866 0.039220507 -0.09084166 -0.0023016728  25.26465     25.26333     25.26465 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
@@ -358,12 +358,12 @@
 <p><code>newdata</code> accepts data frames, shortcut strings, or a call to the <code><a href="reference/datagrid.html">datagrid()</a></code> function. For example, to compute the predicted outcome for a hypothetical car with all predictors equal to the sample mean or median, we can do:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high      mpg       hp      wt      am</span></span>
-<span><span class="co">#&gt; 1     1 response  18.37015 0.6798781  27.01978 8.656522e-161 16.96696  19.77335 20.09062 146.6875 3.21725 0.40625</span></span>
+<span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high      mpg       hp      wt      am</span></span>
+<span><span class="co">#&gt; 1     1 response 18.37015 0.6798781  27.01978 8.656522e-161 16.96696  19.77335 20.09062 146.6875 3.21725 0.40625</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high  mpg  hp    wt am</span></span>
-<span><span class="co">#&gt; 1     1 response  19.37392 0.6464425  29.97006 2.410906e-197 18.03973  20.70811 19.2 123 3.325  0</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high  mpg  hp    wt am</span></span>
+<span><span class="co">#&gt; 1     1 response 19.37392 0.6464425  29.97006 2.410906e-197 18.03973  20.70811 19.2 123 3.325  0</span></span></code></pre></div>
 <p>The <a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagrid.html"><code>datagrid</code> function gives us a powerful way to define a grid of predictors.</a> All the variables not mentioned explicitly in <code><a href="reference/datagrid.html">datagrid()</a></code> are fixed to their mean or mode:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span></span>
@@ -371,7 +371,7 @@
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span></span>
 <span>    am <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>    wt <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic      p.value  conf.low conf.high      mpg       hp am    wt</span></span>
+<span><span class="co">#&gt;   rowid     type  estimate std.error statistic      p.value  conf.low conf.high      mpg       hp am    wt</span></span>
 <span><span class="co">#&gt; 1     1 response 23.259500  2.705934  8.595737 8.273174e-18 17.674726  28.84427 20.09062 146.6875  0 1.513</span></span>
 <span><span class="co">#&gt; 2     2 response 12.793013  2.978494  4.295128 1.745928e-05  6.645703  18.94032 20.09062 146.6875  0 5.424</span></span>
 <span><span class="co">#&gt; 3     3 response 27.148334  2.851805  9.519702 1.736766e-21 21.262498  33.03417 20.09062 146.6875  1 1.513</span></span>
@@ -382,7 +382,7 @@
 <span>  <span class="va">mod</span>,</span>
 <span>  variables <span class="op">=</span> <span class="st">"wt"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term      dydx std.error statistic    p.value  conf.low  conf.high predicted predicted_hi predicted_lo      mpg       hp      wt am       eps</span></span>
+<span><span class="co">#&gt;   rowid     type term  estimate std.error statistic    p.value  conf.low  conf.high predicted predicted_hi predicted_lo      mpg       hp      wt am       eps</span></span>
 <span><span class="co">#&gt; 1     1 response   wt -2.676166  1.419297 -1.885558 0.05935449 -5.457937  0.1056037  18.69864     18.69760     18.69864 20.09062 146.6875 3.21725  0 0.0003911</span></span>
 <span><span class="co">#&gt; 2     2 response   wt -5.432464  2.152370 -2.523946 0.01160458 -9.651031 -1.2138976  17.89006     17.88793     17.89006 20.09062 146.6875 3.21725  1 0.0003911</span></span></code></pre></div>
 <p>We can also plot how predictions, comparisons, or slopes change across different values of the predictors using <a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html">three powerful plotting functions:</a></p>
@@ -409,19 +409,26 @@
 </h2>
 <p>Since predictions, comparisons, and slopes are conditional quantities, they can be a bit unwieldy. Often, it can be useful to report a one-number summary instead of one estimate per observation. Instead of presenting “conditional” estimates, some statisticians recommend reporting “marginal” estimates, that is, an average of unit-level estimates.</p>
 <p>(This use of the word “marginal” as “averaging” should not be confused with the term “marginal effect” which, in the econometrics tradition, correspond to a partial derivative, or the effect of a “small/marginal” change.)</p>
-<p>To marginalize (average over) our unit-level estimates, we can use the <code><a href="reference/averages.html">averages()</a></code> function. For example, this gives us this average predicted outcome in the <code>mtcars</code> dataset:</p>
+<p>To marginalize (average over) our unit-level estimates, we can use the <code>by</code> argument or the <code><a href="reference/averages.html">averages()</a></code> function. For example, both of these commands give us the same result: the average predicted outcome in the <code>mtcars</code> dataset:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type predicted std.error statistic p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response  20.09062 0.3904163   51.4595       0 19.32542  20.85583</span></span></code></pre></div>
+<span><span class="co">#&gt;   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1    20.09     0.3904 51.46 &lt; 2.22e-16 19.33  20.86</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model type:  lm </span></span>
+<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       type estimate std.error statistic p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response 20.09062 0.3904163   51.4595       0 19.32542  20.85583</span></span></code></pre></div>
 <p>This is equivalent to manual computation by:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">predicted</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 20.09062</span></span></code></pre></div>
 <p>The main <code>marginaleffects</code> functions all include a <code>by</code> argument, which allows us to marginalize within sub-groups of the data. For example,</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term          contrast  comparison  std.error  statistic     p.value    conf.low    conf.high predicted predicted_hi predicted_lo am</span></span>
+<span><span class="co">#&gt;       type term          contrast    estimate  std.error  statistic     p.value    conf.low    conf.high predicted predicted_hi predicted_lo am</span></span>
 <span><span class="co">#&gt; 1 response   hp          mean(+1) -0.04363961 0.02128997 -2.0497735 0.040386540 -0.08536718 -0.001912041  22.48857     22.47012     22.50702  1</span></span>
 <span><span class="co">#&gt; 2 response   hp          mean(+1) -0.03426361 0.01586407 -2.1598241 0.030786291 -0.06535662 -0.003170595  20.25549     20.23436     20.27663  0</span></span>
 <span><span class="co">#&gt; 3 response   wt          mean(+1) -6.07175987 1.97621069 -3.0724254 0.002123269 -9.94506165 -2.198458079  22.48857     19.18129     25.79584  1</span></span>
@@ -429,45 +436,41 @@
 <span><span class="co">#&gt; 5 response   am mean(1) - mean(0)  1.90289761 2.30862946  0.8242542 0.409795116 -2.62193298  6.427728204  22.48857     22.48857     22.16340  1</span></span>
 <span><span class="co">#&gt; 6 response   am mean(1) - mean(0) -1.38300908 2.52499366 -0.5477277 0.583878860 -6.33190570  3.565887552  20.25549     18.55291     20.25549  0</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/averages.html">averages</a></span><span class="op">(</span>by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term    contrast        dydx  std.error  statistic     p.value    conf.low    conf.high predicted predicted_hi predicted_lo am</span></span>
-<span><span class="co">#&gt; 1 response   hp mean(dY/dX) -0.04363961 0.02128997 -2.0497736 0.040386532 -0.08536718 -0.001912043  22.48857     22.48752     22.48857  1</span></span>
-<span><span class="co">#&gt; 2 response   hp mean(dY/dX) -0.03426361 0.01586407 -2.1598241 0.030786287 -0.06535662 -0.003170596  20.25549     20.25430     20.25549  0</span></span>
-<span><span class="co">#&gt; 3 response   wt mean(dY/dX) -6.07175987 1.97621071 -3.0724253 0.002123269 -9.94506169 -2.198458047  22.48857     22.48598     22.48857  1</span></span>
-<span><span class="co">#&gt; 4 response   wt mean(dY/dX) -2.47990263 1.23162894 -2.0135144 0.044060539 -4.89385099 -0.065954270  20.25549     20.25424     20.25549  0</span></span>
-<span><span class="co">#&gt; 5 response   am mean(dY/dX)  1.90289761 2.30863295  0.8242530 0.409795824 -2.62193983  6.427735051  22.48857     22.48860     22.48857  1</span></span>
-<span><span class="co">#&gt; 6 response   am mean(dY/dX) -1.38300908 2.52499367 -0.5477277 0.583878862 -6.33190573  3.565887583  20.25549     20.25532     20.25549  0</span></span></code></pre></div>
-<p>For a nicer printed output, we can also use the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>by <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   cyl Effect Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1   6  20.10     0.5773 34.81 &lt; 2.22e-16 18.96  21.23</span></span>
-<span><span class="co">#&gt; 2   4  26.41     0.6100 43.30 &lt; 2.22e-16 25.22  27.61</span></span>
-<span><span class="co">#&gt; 3   8  15.12     0.5622 26.89 &lt; 2.22e-16 14.02  16.22</span></span>
+<span><span class="fu"><a href="reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/averages.html">averages</a></span><span class="op">(</span>by <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %    97.5 % cyl</span></span>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.03667    0.01048 -3.4996 0.00046588 -0.05721 -0.016134   6</span></span>
+<span><span class="co">#&gt; 2   hp mean(dY/dX) -0.05301    0.01989 -2.6657 0.00768339 -0.09199 -0.014034   4</span></span>
+<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.02704    0.01738 -1.5553 0.11987297 -0.06110  0.007034   8</span></span>
+<span><span class="co">#&gt; 4   wt mean(dY/dX) -4.32457    1.39608 -3.0977 0.00195057 -7.06083 -1.588306   6</span></span>
+<span><span class="co">#&gt; 5   wt mean(dY/dX) -6.44404    1.45832 -4.4188 9.9252e-06 -9.30230 -3.585773   4</span></span>
+<span><span class="co">#&gt; 6   wt mean(dY/dX) -1.77819    1.00704 -1.7658 0.07743628 -3.75196  0.195572   8</span></span>
+<span><span class="co">#&gt; 7   am mean(dY/dX) -1.12930    1.60146 -0.7052 0.48070735 -4.26810  2.009513   6</span></span>
+<span><span class="co">#&gt; 8   am mean(dY/dX)  1.27543    2.63009  0.4849 0.62772027 -3.87945  6.430303   4</span></span>
+<span><span class="co">#&gt; 9   am mean(dY/dX) -0.54744    2.77930 -0.1970 0.84385090 -5.99477  4.899891   8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>Marginal Means are a special case of predictions, which are marginalized (or averaged) across a balanced grid of categorical predictors. To illustrate, we estimate a new model with categorical predictors:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
 <span><span class="va">mod_cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <p>We can compute marginal means manually using the functions already described:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_cat</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="va">unique</span>, am <span class="op">=</span> <span class="va">unique</span><span class="op">)</span>,</span>
 <span>  by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type    am predicted std.error statistic       p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response  TRUE  22.47772 0.8343346  26.94090 7.291801e-160 20.84246  24.11299</span></span>
-<span><span class="co">#&gt; 2 response FALSE  18.31987 0.7853925  23.32575 2.429618e-120 16.78053  19.85921</span></span></code></pre></div>
+<span><span class="co">#&gt;       type    am estimate std.error statistic       p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response  TRUE 22.47772 0.8343346  26.94090 7.291801e-160 20.84246  24.11299</span></span>
+<span><span class="co">#&gt; 2 response FALSE 18.31987 0.7853925  23.32575 2.429618e-120 16.78053  19.85921</span></span></code></pre></div>
 <p>For convenience, the <code>marginaleffects</code> package also includes a <code><a href="reference/marginalmeans.html">marginalmeans()</a></code> function:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod_cat</span>, variables <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term value    am marginalmean std.error conf.low conf.high       p.value statistic</span></span>
-<span><span class="co">#&gt; 1 response   am FALSE FALSE     18.31987 0.7853925 16.78053  19.85921 2.429619e-120  23.32575</span></span>
-<span><span class="co">#&gt; 2 response   am  TRUE  TRUE     22.47772 0.8343346 20.84246  24.11299 7.291801e-160  26.94090</span></span></code></pre></div>
+<span><span class="co">#&gt;       type term value    am estimate std.error conf.low conf.high       p.value statistic</span></span>
+<span><span class="co">#&gt; 1 response   am FALSE FALSE 18.31987 0.7853925 16.78053  19.85921 2.429619e-120  23.32575</span></span>
+<span><span class="co">#&gt; 2 response   am  TRUE  TRUE 22.47772 0.8343346 20.84246  24.11299 7.291801e-160  26.94090</span></span></code></pre></div>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">The Marginal Means vignette</a> offers more detail.</p>
 </div>
 <div class="section level2">
@@ -475,40 +478,40 @@
 </h2>
 <p>The <code><a href="reference/hypotheses.html">hypotheses()</a></code> function and the <code>hypothesis</code> argument can be used to conduct linear and non-linear hypothesis tests on model coefficients, or on any of the quantities computed by the functions introduced above.</p>
 <p>Consider this model:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">qsec</span> <span class="op">*</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept)        qsec        drat   qsec:drat </span></span>
 <span><span class="co">#&gt;  12.3371987  -1.0241183  -3.4371461   0.5973153</span></span></code></pre></div>
 <p>Can we reject the null hypothesis that the <code>drat</code> coefficient is 2 times the size of the <code>qsec</code> coefficient?</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, <span class="st">"drat = 2 * qsec"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;              term  estimate std.error statistic   p.value  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 drat = 2 * qsec -1.388909  10.77593  -0.12889 0.8974447 -22.50934  19.73153</span></span></code></pre></div>
 <p>We can ask the same question but refer to parameters by position, with indices <code>b1</code>, <code>b2</code>, <code>b3</code>, etc. and get a nicer printout by using <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, <span class="st">"b3 = 2 * b2"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;          Term Effect Std. Error       z Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1 b3 = 2 * b2 -1.389      10.78 -0.1289  0.89744 -22.51  19.73</span></span>
+<span><span class="co">#&gt;          Term Estimate Std. Error       z Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1 b3 = 2 * b2   -1.389      10.78 -0.1289  0.89744 -22.51  19.73</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm</span></span></code></pre></div>
 <p>The main functions in <code>marginaleffects</code> all have a <code>hypothesis</code> argument, which means that we can do complex model testing. For example, consider two slope estimates:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
 <span>  variables <span class="op">=</span> <span class="st">"drat"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsec <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term      dydx std.error statistic    p.value   conf.low conf.high predicted predicted_hi predicted_lo      mpg     drat qsec      eps</span></span>
+<span><span class="co">#&gt;   rowid     type term  estimate std.error statistic    p.value   conf.low conf.high predicted predicted_hi predicted_lo      mpg     drat qsec      eps</span></span>
 <span><span class="co">#&gt; 1     1 response drat  5.223926  3.791061  1.377959 0.16821604 -2.2064175  12.65427  16.27566     16.27679     16.27566 20.09062 3.596563 14.5 0.000217</span></span>
 <span><span class="co">#&gt; 2     2 response drat 10.241374  5.161440  1.984209 0.04723256  0.1251384  20.35761  25.71863     25.72085     25.71863 20.09062 3.596563 22.9 0.000217</span></span></code></pre></div>
 <p>Are these two slopes significantly different from one another? To test this, we can use the <code>hypothesis</code> argument:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
 <span>  hypothesis <span class="op">=</span> <span class="st">"b1 = b2"</span>,</span>
 <span>  variables <span class="op">=</span> <span class="st">"drat"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsec <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type  term      dydx std.error  statistic   p.value  conf.low conf.high</span></span>
+<span><span class="co">#&gt;       type  term  estimate std.error  statistic   p.value  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 response b1=b2 -5.017448  8.519298 -0.5889509 0.5558942 -21.71497  11.68007</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests and Custom Contrasts vignette</a> for background, details, and for instructions on how to conduct hypothesis tests in more complex situations.</p>
 </div>

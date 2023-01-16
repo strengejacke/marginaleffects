@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -301,7 +301,7 @@
 <span>    newdata <span class="op">=</span> <span class="va">nd</span>,</span>
 <span>    type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    Term                  Contrast   Effect Std. Error       z  Pr(&gt;|z|)   2.5 %</span></span>
+<span><span class="co">#&gt;    Term                  Contrast Estimate Std. Error       z  Pr(&gt;|z|)   2.5 %</span></span>
 <span><span class="co">#&gt; 1 btype mean(scold) - mean(curse) -0.01520    0.10965 -0.1386 0.8897581 -0.2301</span></span>
 <span><span class="co">#&gt; 2 btype mean(scold) - mean(curse) -0.23928    0.11779 -2.0314 0.0422130 -0.4701</span></span>
 <span><span class="co">#&gt; 3 btype mean(scold) - mean(curse)  0.03907    0.12922  0.3023 0.7623876 -0.2142</span></span>
@@ -311,16 +311,16 @@
 <span><span class="co">#&gt; 7 btype mean(shout) - mean(scold) -0.23810    0.08864 -2.6860 0.0072316 -0.4118</span></span>
 <span><span class="co">#&gt; 8 btype mean(shout) - mean(scold)  0.15592    0.13583  1.1479 0.2510250 -0.1103</span></span>
 <span><span class="co">#&gt; 9 btype mean(shout) - mean(scold)  0.54111    0.18881  2.8660 0.0041574  0.1711</span></span>
-<span><span class="co">#&gt;      97.5 % predicted predicted_hi predicted_lo    resp</span></span>
-<span><span class="co">#&gt; 1  0.199715 1.4457928    1.4305939    1.4457928      no</span></span>
-<span><span class="co">#&gt; 2 -0.008416 1.2728795    1.0336011    1.2728795 perhaps</span></span>
-<span><span class="co">#&gt; 3  0.292344 0.9532549    0.9923252    0.9532549     yes</span></span>
-<span><span class="co">#&gt; 4 -0.053004 1.4457928    1.1924954    1.4457928      no</span></span>
-<span><span class="co">#&gt; 5  0.177372 1.2728795    1.1895202    1.2728795 perhaps</span></span>
-<span><span class="co">#&gt; 6  0.929873 0.9532549    1.5334348    0.9532549     yes</span></span>
-<span><span class="co">#&gt; 7 -0.064358 1.4457928    1.1924954    1.4305939      no</span></span>
-<span><span class="co">#&gt; 8  0.422149 1.2728795    1.1895202    1.0336011 perhaps</span></span>
-<span><span class="co">#&gt; 9  0.911161 0.9532549    1.5334348    0.9923252     yes</span></span>
+<span><span class="co">#&gt;      97.5 %    resp</span></span>
+<span><span class="co">#&gt; 1  0.199715      no</span></span>
+<span><span class="co">#&gt; 2 -0.008416 perhaps</span></span>
+<span><span class="co">#&gt; 3  0.292344     yes</span></span>
+<span><span class="co">#&gt; 4 -0.053004      no</span></span>
+<span><span class="co">#&gt; 5  0.177372 perhaps</span></span>
+<span><span class="co">#&gt; 6  0.929873     yes</span></span>
+<span><span class="co">#&gt; 7 -0.064358      no</span></span>
+<span><span class="co">#&gt; 8  0.422149 perhaps</span></span>
+<span><span class="co">#&gt; 9  0.911161     yes</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glmerMod </span></span>
 <span><span class="co">#&gt; Prediction type:  link</span></span></code></pre></div>
@@ -388,7 +388,7 @@
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a><span class="co"># use the mtcars data, set up am as a factor</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a><span class="kw">data</span>(mtcars)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a>mc &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">am =</span> <span class="kw">factor</span>(am))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a>mc &lt;-<span class="st"> </span>mtcars <span class="op">|</span><span class="er">&gt;</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">am =</span> <span class="kw">factor</span>(am))</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a></span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co"># fit a linear model to mpg with wt x am interaction</span></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a>m &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt<span class="op">*</span>am, <span class="dt">data =</span> mc)</span>
@@ -483,8 +483,8 @@
 <span><span class="co">#&gt;      wt -3.1670 0.7406 -4.2764 0.0000 -4.6185 -1.7155</span></span>
 <span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast   Effect Std. Error      z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
 <span><span class="co">#&gt; 1  cyl mean(dY/dX) -0.94162    0.55092 -1.709   0.087417 -2.02139  0.138159</span></span>
 <span><span class="co">#&gt; 2   hp mean(dY/dX) -0.01804    0.01188 -1.519   0.128803 -0.04132  0.005239</span></span>
 <span><span class="co">#&gt; 3   wt mean(dY/dX) -3.16697    0.74058 -4.276 1.8997e-05 -4.61848 -1.715471</span></span>
@@ -599,8 +599,8 @@
 <span>    <span class="va">mod</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"cyl"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast   Effect Std. Error        z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error        z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
 <span><span class="co">#&gt; 1  cyl mean(dY/dX)  0.03814    0.59989  0.06357 0.94930949 -1.13762  1.213899</span></span>
 <span><span class="co">#&gt; 2  cyl mean(dY/dX)  0.03814    0.59989  0.06357 0.94930949 -1.13762  1.213899</span></span>
 <span><span class="co">#&gt; 3  cyl mean(dY/dX)  0.03814    0.59989  0.06357 0.94930949 -1.13762  1.213899</span></span>
@@ -610,16 +610,16 @@
 <span><span class="co">#&gt; 7   wt mean(dY/dX) -3.11981    0.66132 -4.71754 2.3871e-06 -4.41598 -1.823648</span></span>
 <span><span class="co">#&gt; 8   wt mean(dY/dX) -3.11981    0.66132 -4.71754 2.3871e-06 -4.41598 -1.823648</span></span>
 <span><span class="co">#&gt; 9   wt mean(dY/dX) -3.11981    0.66132 -4.71754 2.3871e-06 -4.41598 -1.823648</span></span>
-<span><span class="co">#&gt;   predicted predicted_hi predicted_lo cyl</span></span>
-<span><span class="co">#&gt; 1  23.21933     23.21907     23.21933   4</span></span>
-<span><span class="co">#&gt; 2  21.90488     21.90462     21.90488   6</span></span>
-<span><span class="co">#&gt; 3  20.59043     20.59017     20.59043   8</span></span>
-<span><span class="co">#&gt; 4  23.21933     23.21685     23.21933   4</span></span>
-<span><span class="co">#&gt; 5  21.90488     21.90347     21.90488   6</span></span>
-<span><span class="co">#&gt; 6  20.59043     20.59009     20.59043   8</span></span>
-<span><span class="co">#&gt; 7  23.21933     23.21811     23.21933   4</span></span>
-<span><span class="co">#&gt; 8  21.90488     21.90366     21.90488   6</span></span>
-<span><span class="co">#&gt; 9  20.59043     20.58921     20.59043   8</span></span>
+<span><span class="co">#&gt;   cyl</span></span>
+<span><span class="co">#&gt; 1   4</span></span>
+<span><span class="co">#&gt; 2   6</span></span>
+<span><span class="co">#&gt; 3   8</span></span>
+<span><span class="co">#&gt; 4   4</span></span>
+<span><span class="co">#&gt; 5   6</span></span>
+<span><span class="co">#&gt; 6   8</span></span>
+<span><span class="co">#&gt; 7   4</span></span>
+<span><span class="co">#&gt; 8   6</span></span>
+<span><span class="co">#&gt; 9   8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -695,8 +695,8 @@ cyl |  -.9416168   .5509164    -1.71   0.098    -2.070118    .1868842
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://vincentarelbundock.github.io/marginaleffects/">"marginaleffects"</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast   Effect Std. Error      z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
 <span><span class="co">#&gt; 1  cyl mean(dY/dX) -0.94162    0.55092 -1.709   0.087417 -2.02139  0.138159</span></span>
 <span><span class="co">#&gt; 2   hp mean(dY/dX) -0.01804    0.01188 -1.519   0.128803 -0.04132  0.005239</span></span>
 <span><span class="co">#&gt; 3   wt mean(dY/dX) -3.16697    0.74058 -4.276 1.8997e-05 -4.61848 -1.715471</span></span>
@@ -759,15 +759,11 @@ hp           |
 <span>    variables <span class="op">=</span> <span class="st">"hp"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"cyl"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast   Effect Std. Error       z Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.09947    0.03487 -2.8528 0.004334 -0.16780 -0.03113</span></span>
-<span><span class="co">#&gt; 2   hp mean(dY/dX) -0.02138    0.03882 -0.5506 0.581884 -0.09747  0.05471</span></span>
-<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.01344    0.01251 -1.0741 0.282780 -0.03797  0.01109</span></span>
-<span><span class="co">#&gt;   predicted predicted_hi predicted_lo cyl</span></span>
-<span><span class="co">#&gt; 1  22.91903     22.91622     22.91903   4</span></span>
-<span><span class="co">#&gt; 2  21.52671     21.52611     21.52671   6</span></span>
-<span><span class="co">#&gt; 3  20.65385     20.65347     20.65385   8</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error       z Pr(&gt;|z|)    2.5 %   97.5 % cyl</span></span>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.09947    0.03487 -2.8528 0.004334 -0.16780 -0.03113   4</span></span>
+<span><span class="co">#&gt; 2   hp mean(dY/dX) -0.02138    0.03882 -0.5506 0.581884 -0.09747  0.05471   6</span></span>
+<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.01344    0.01251 -1.0741 0.282780 -0.03797  0.01109   8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -843,18 +839,18 @@ Expression   : Linear prediction, predict()
 <span>    by <span class="op">=</span> <span class="st">"cyl"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   cyl Effect Std. Error      z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1   4  17.44      2.373  7.351 1.9733e-13 12.79  22.09</span></span>
-<span><span class="co">#&gt; 2   6  18.91      1.291 14.646 &lt; 2.22e-16 16.38  21.45</span></span>
-<span><span class="co">#&gt; 3   8  18.33      1.124 16.312 &lt; 2.22e-16 16.13  20.54</span></span>
+<span><span class="co">#&gt;   cyl Estimate Std. Error      z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1   4    17.44      2.373  7.351 1.9733e-13 12.79  22.09</span></span>
+<span><span class="co">#&gt; 2   6    18.91      1.291 14.646 &lt; 2.22e-16 16.38  21.45</span></span>
+<span><span class="co">#&gt; 3   8    18.33      1.124 16.312 &lt; 2.22e-16 16.13  20.54</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
-<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
 <span><span class="co">#&gt;   cyl     AAP</span></span>
@@ -929,8 +925,8 @@ Expression   : Linear prediction, predict()
 <p>Compute AMEs using <code>marginaleffects</code>:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">bayes.logistic</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast   Effect    2.5 %   97.5 %</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate    2.5 %   97.5 %</span></span>
 <span><span class="co">#&gt; 1   am mean(dY/dX) -0.31810 -0.52182 -0.07808</span></span>
 <span><span class="co">#&gt; 2  mpg mean(dY/dX)  0.07015  0.05439  0.09158</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1005,9 +1001,9 @@ Expression   : Linear prediction, predict()
 <span><span class="co">#&gt; 1 &lt;NA&gt; &lt;NA&gt; AME x</span></span>
 <span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mlogit</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x mean(dY/dX) 0.1115 0.08037  0.142</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1    x mean(dY/dX)   0.1115 0.08037  0.142</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -1030,9 +1026,9 @@ Expression   : Linear prediction, predict()
 <span><span class="co">#&gt; 1 &lt;NA&gt; &lt;NA&gt; AME x</span></span>
 <span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mlogit</span>, re_formula <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x mean(dY/dX) 0.1033 0.06328 0.1486</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1    x mean(dY/dX)   0.1033 0.06328 0.1486</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -1085,10 +1081,10 @@ Expression   : Linear prediction, predict()
 <span><span class="co">#&gt; 1 &lt;NA&gt; AME x</span></span>
 <span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">ls.fe</span>, re_formula <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x mean(dY/dX)  1.633 0.7559  2.497</span></span>
-<span><span class="co">#&gt; 2  grp mean(dY/dX)  1.012 0.3482  1.678</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1    x mean(dY/dX)    1.633 0.7559  2.497</span></span>
+<span><span class="co">#&gt; 2  grp mean(dY/dX)    1.012 0.3482  1.678</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -1115,9 +1111,9 @@ Expression   : Linear prediction, predict()
 <span>  <span class="va">ls.fe</span>,</span>
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>grp <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>  dpar <span class="op">=</span> <span class="st">"sigma"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term          Contrast Effect 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1  grp mean(1) - mean(0)  4.895 4.405  5.418</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term          Contrast Estimate 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1  grp mean(1) - mean(0)    4.895 4.405  5.418</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -1139,10 +1135,10 @@ Expression   : Linear prediction, predict()
 <span><span class="co">#&gt; 1 &lt;NA&gt; AME x</span></span>
 <span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">ls.fe</span>, dpar <span class="op">=</span> <span class="st">"sigma"</span>, re_formula <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Effect 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x mean(dY/dX)  4.444 3.501  5.450</span></span>
-<span><span class="co">#&gt; 2  grp mean(dY/dX)  5.287 4.694  5.926</span></span>
+<span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term    Contrast Estimate 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1    x mean(dY/dX)    4.444 3.501  5.450</span></span>
+<span><span class="co">#&gt; 2  grp mean(dY/dX)    5.287 4.694  5.926</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
