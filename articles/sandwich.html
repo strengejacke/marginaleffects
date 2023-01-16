@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9106</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -157,7 +157,7 @@
 <span></span>
 <span><span class="co"># average group-wise predictions</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"groupid"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type groupid predicted  std.error statistic      p.value  conf.low conf.high</span></span>
+<span><span class="co">#&gt;       type groupid  estimate  std.error statistic      p.value  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 response       1 0.8888889 0.10282561  8.644626 5.398200e-18 0.6873544  1.090423</span></span>
 <span><span class="co">#&gt; 2 response       0 0.8750000 0.07697122 11.367885 6.043421e-30 0.7241392  1.025861</span></span></code></pre></div>
 <p>Note that if we simply add 1.96*SE to the predictions, the upper bound of the confidence interval will exceed the logical limit of 1. Instead, one possibility would be to estimate the predicted values on the link scale, and then transform the results:</p>
@@ -167,7 +167,7 @@
 <span>    by <span class="op">=</span> <span class="st">"groupid"</span>,</span>
 <span>    type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>    transform_post <span class="op">=</span> <span class="fu"><a href="https://easystats.github.io/insight/reference/link_inverse.html" class="external-link">link_inverse</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   type groupid predicted    p.value  conf.low conf.high</span></span>
+<span><span class="co">#&gt;   type groupid  estimate    p.value  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 link       1 0.9135928 0.03809366 0.5323305 0.9899205</span></span>
 <span><span class="co">#&gt; 2 link       0 0.9229036 0.02478264 0.5780974 0.9905287</span></span></code></pre></div>
 <p>We can do something similar with average predictions using the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> functions:</p>
@@ -252,15 +252,15 @@
 <span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span><span class="co">#&gt; 1     1 response  22.59375 0.7772744  29.06792 9.135725e-186 21.00634  24.18116  21   6  160 110  3.9 2.620 16.46  0  1    4    4</span></span>
-<span><span class="co">#&gt; 2     2 response  22.59375 0.7772744  29.06792 9.135725e-186 21.00634  24.18116  21   6  160 110  3.9 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 response 22.59375 0.7772744  29.06792 9.135725e-186 21.00634  24.18116  21   6  160 110  3.9 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response 22.59375 0.7772744  29.06792 9.135725e-186 21.00634  24.18116  21   6  160 110  3.9 2.875 17.02  0  1    4    4</span></span>
 <span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="st">"HC3"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span><span class="co">#&gt; 1     1 response  22.59375 0.8629746  26.18125 4.345995e-151 20.83132  24.35618  21   6  160 110  3.9 2.620 16.46  0  1    4    4</span></span>
-<span><span class="co">#&gt; 2     2 response  22.59375 0.8629746  26.18125 4.345995e-151 20.83132  24.35618  21   6  160 110  3.9 2.875 17.02  0  1    4    4</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 response 22.59375 0.8629746  26.18125 4.345995e-151 20.83132  24.35618  21   6  160 110  3.9 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response 22.59375 0.8629746  26.18125 4.345995e-151 20.83132  24.35618  21   6  160 110  3.9 2.875 17.02  0  1    4    4</span></span></code></pre></div>
 <p>Marginal effects with cluster-robust standard errors:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
@@ -293,7 +293,7 @@
 <p>Marginal effects at the mean with classical standard errors and z-statistic:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic      p.value    conf.low   conf.high predicted predicted_hi predicted_lo      mpg       hp    am cyl    eps</span></span>
+<span><span class="co">#&gt;   rowid     type term     contrast    estimate  std.error statistic      p.value    conf.low   conf.high predicted predicted_hi predicted_lo      mpg       hp    am cyl    eps</span></span>
 <span><span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01146238 -4.522784 6.103158e-06 -0.07430773 -0.02937602   17.7327     17.73123      17.7327 20.09062 146.6875 FALSE   8 0.0283</span></span>
 <span><span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.13425639  4.113833 3.891429e-05  2.44303975  6.88924310   17.7327     22.39884      17.7327 20.09062 146.6875 FALSE   8     NA</span></span></code></pre></div>
 <p>Marginal effects at the mean with Kenward-Roger adjusted variance-covariance and degrees of freedom:</p>
@@ -301,7 +301,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>                vcov <span class="op">=</span> <span class="st">"kenward-roger"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term     contrast        dydx  std.error statistic    p.value   conf.low   conf.high       df predicted predicted_hi predicted_lo      mpg       hp    am cyl    eps</span></span>
+<span><span class="co">#&gt;   rowid     type term     contrast    estimate  std.error statistic    p.value   conf.low   conf.high       df predicted predicted_hi predicted_lo      mpg       hp    am cyl    eps</span></span>
 <span><span class="co">#&gt; 1     1 response   hp        dY/dX -0.05184187 0.01518879 -3.413167 0.09642979 -0.1305545  0.02687074 1.682575   17.7327     17.73123      17.7327 20.09062 146.6875 FALSE   8 0.0283</span></span>
 <span><span class="co">#&gt; 2     1 response   am TRUE - FALSE  4.66614142 1.28244270  3.638479 0.08741990 -1.9798401 11.31212296 1.682575   17.7327     22.39884      17.7327 20.09062 146.6875 FALSE   8     NA</span></span></code></pre></div>
 <p>We can use the same option in any of the package’s core functions, including:</p>

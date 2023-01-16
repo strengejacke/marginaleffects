@@ -3,7 +3,8 @@
 estimates computed by the predictions(), comparisons(), or slopes() functions.
 Warning: It is generally faster and safer to use the by argument of one of
 the three functions listed above. Alternatively, one can call it in one step:
-average(slopes(model))
+slopes(model, by = TRUE)
+averages(slopes(model))
 slopes(model) |&amp;gt; averages()
 Proceeding in two steps by assigning the unit-level estimates is typically
 slower, because the whole estimate must be executed twice.
@@ -11,7 +12,8 @@ Note that the tidy() and summary() methods are simple wrappers around averages()
 estimates computed by the predictions(), comparisons(), or slopes() functions.
 Warning: It is generally faster and safer to use the by argument of one of
 the three functions listed above. Alternatively, one can call it in one step:
-average(slopes(model))
+slopes(model, by = TRUE)
+averages(slopes(model))
 slopes(model) |&amp;gt; averages()
 Proceeding in two steps by assigning the unit-level estimates is typically
 slower, because the whole estimate must be executed twice.
@@ -26,7 +28,7 @@ Note that the tidy() and summary() methods are simple wrappers around averages()
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9106</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +83,8 @@ Note that the tidy() and summary() methods are simple wrappers around averages()
 estimates computed by the <code><a href="predictions.html">predictions()</a></code>, <code><a href="comparisons.html">comparisons()</a></code>, or <code><a href="slopes.html">slopes()</a></code> functions.</p>
 <p>Warning: It is generally faster and safer to use the <code>by</code> argument of one of
 the three functions listed above. Alternatively, one can call it in one step:</p>
-<p><code>average(slopes(model))</code></p>
+<p><code>slopes(model, by = TRUE)</code></p>
+<p><code>averages(slopes(model))</code></p>
 <p><code>slopes(model) |&gt; averages()</code></p>
 <p>Proceeding in two steps by assigning the unit-level estimates is typically
 slower, because the whole estimate must be executed twice.</p>
@@ -90,16 +93,16 @@ slower, because the whole estimate must be executed twice.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for predictions</span></span>
-<span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">NULL</span>, byfun <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">TRUE</span>, byfun <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for comparisons</span></span>
-<span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for slopes</span></span>
-<span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">averages</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">

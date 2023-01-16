@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9106</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -182,7 +182,7 @@
 <span>            type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>            variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid type term contrast  comparison   std.error    statistic   p.value</span></span>
+<span><span class="co">#&gt;   rowid type term contrast    estimate   std.error    statistic   p.value</span></span>
 <span><span class="co">#&gt; 1     1 link  cyl    6 - 4  -0.9048741    1.630231 -0.555058785 0.5788545</span></span>
 <span><span class="co">#&gt; 2     1 link  cyl    8 - 4 -19.5417566 4367.165924 -0.004474700 0.9964297</span></span>
 <span><span class="co">#&gt; 3     1 link  cyl    8 - 6 -18.6368825 4367.165407 -0.004267501 0.9965950</span></span>
@@ -205,7 +205,7 @@
 <span><span class="co">#&gt; Degrees-of-freedom method: user-specified</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term contrast    comparison    std.error   statistic   p.value</span></span>
+<span><span class="co">#&gt;   rowid     type term contrast      estimate    std.error   statistic   p.value</span></span>
 <span><span class="co">#&gt; 1     1 response   hp       +1 -1.557824e-10 6.803615e-07 -0.00022897 0.9998173</span></span>
 <span><span class="co">#&gt; 2     1 response  cyl    6 - 4 -2.221851e-01 3.916435e-01 -0.56731461 0.5705005</span></span>
 <span><span class="co">#&gt; 3     1 response  cyl    8 - 4 -5.946855e-01 5.097420e-01 -1.16664014 0.2433557</span></span>
@@ -311,16 +311,16 @@
 <span><span class="co">#&gt; 7 btype mean(shout) - mean(scold) -0.23810    0.08864 -2.6860 0.0072316 -0.4118</span></span>
 <span><span class="co">#&gt; 8 btype mean(shout) - mean(scold)  0.15592    0.13583  1.1479 0.2510250 -0.1103</span></span>
 <span><span class="co">#&gt; 9 btype mean(shout) - mean(scold)  0.54111    0.18881  2.8660 0.0041574  0.1711</span></span>
-<span><span class="co">#&gt;      97.5 %    resp</span></span>
-<span><span class="co">#&gt; 1  0.199715      no</span></span>
-<span><span class="co">#&gt; 2 -0.008416 perhaps</span></span>
-<span><span class="co">#&gt; 3  0.292344     yes</span></span>
-<span><span class="co">#&gt; 4 -0.053004      no</span></span>
-<span><span class="co">#&gt; 5  0.177372 perhaps</span></span>
-<span><span class="co">#&gt; 6  0.929873     yes</span></span>
-<span><span class="co">#&gt; 7 -0.064358      no</span></span>
-<span><span class="co">#&gt; 8  0.422149 perhaps</span></span>
-<span><span class="co">#&gt; 9  0.911161     yes</span></span>
+<span><span class="co">#&gt;      97.5 % predicted predicted_hi predicted_lo    resp</span></span>
+<span><span class="co">#&gt; 1  0.199715 1.4457928    1.4305939    1.4457928      no</span></span>
+<span><span class="co">#&gt; 2 -0.008416 1.2728795    1.0336011    1.2728795 perhaps</span></span>
+<span><span class="co">#&gt; 3  0.292344 0.9532549    0.9923252    0.9532549     yes</span></span>
+<span><span class="co">#&gt; 4 -0.053004 1.4457928    1.1924954    1.4457928      no</span></span>
+<span><span class="co">#&gt; 5  0.177372 1.2728795    1.1895202    1.2728795 perhaps</span></span>
+<span><span class="co">#&gt; 6  0.929873 0.9532549    1.5334348    0.9532549     yes</span></span>
+<span><span class="co">#&gt; 7 -0.064358 1.4457928    1.1924954    1.4305939      no</span></span>
+<span><span class="co">#&gt; 8  0.422149 1.2728795    1.1895202    1.0336011 perhaps</span></span>
+<span><span class="co">#&gt; 9  0.911161 0.9532549    1.5334348    0.9923252     yes</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glmerMod </span></span>
 <span><span class="co">#&gt; Prediction type:  link</span></span></code></pre></div>
@@ -341,7 +341,7 @@
 <span><span class="co">#&gt; Confidence level used: 0.95</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term contrast         dydx  std.error  statistic   p.value</span></span>
+<span><span class="co">#&gt;   rowid     type term contrast     estimate  std.error  statistic   p.value</span></span>
 <span><span class="co">#&gt; 1     1 response   hp    dY/dX -0.007852329 0.01110851 -0.7068751 0.4796441</span></span>
 <span><span class="co">#&gt; 2     1 response  cyl    6 - 4 -0.222185055 0.39164346 -0.5673146 0.5705005</span></span>
 <span><span class="co">#&gt; 3     1 response  cyl    8 - 4 -0.594685481 0.50974200 -1.1666401 0.2433557</span></span>
@@ -362,7 +362,7 @@
 <span><span class="co">#&gt; Confidence level used: 0.95</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"link"</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid type term contrast         dydx    std.error  statistic   p.value</span></span>
+<span><span class="co">#&gt;   rowid type term contrast     estimate    std.error  statistic   p.value</span></span>
 <span><span class="co">#&gt; 1     1 link   hp    dY/dX  -0.03257475 3.388105e-02 -0.9614446 0.3363287</span></span>
 <span><span class="co">#&gt; 2     1 link  cyl    6 - 4  -0.90487411 1.630231e+00 -0.5550588 0.5788545</span></span>
 <span><span class="co">#&gt; 3     1 link  cyl    8 - 4 -19.54175662 4.367166e+03 -0.0044747 0.9964297</span></span>
@@ -521,7 +521,7 @@
 <span><span class="co">#&gt; 6        NA           1</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term       dydx std.error statistic    p.value  conf.low</span></span>
+<span><span class="co">#&gt;   rowid     type term   estimate std.error statistic    p.value  conf.low</span></span>
 <span><span class="co">#&gt; 1     1 response  cyl -0.9416168 0.5509163 -1.709183 0.08741706 -2.021393</span></span>
 <span><span class="co">#&gt; 2     2 response  cyl -0.9416168 0.5509163 -1.709183 0.08741706 -2.021393</span></span>
 <span><span class="co">#&gt; 3     3 response  cyl -0.9416168 0.5509164 -1.709183 0.08741712 -2.021393</span></span>
@@ -560,7 +560,7 @@
 <span><span class="co">#&gt; 1           1</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term       dydx  std.error statistic      p.value    conf.low</span></span>
+<span><span class="co">#&gt;   rowid     type term   estimate  std.error statistic      p.value    conf.low</span></span>
 <span><span class="co">#&gt; 1     1 response  cyl -0.9416168 0.55091633 -1.709183 8.741706e-02 -2.02139298</span></span>
 <span><span class="co">#&gt; 2     1 response   hp -0.0180381 0.01187625 -1.518838 1.288032e-01 -0.04131512</span></span>
 <span><span class="co">#&gt; 3     1 response   wt -3.1669731 0.74057579 -4.276366 1.899688e-05 -4.61847499</span></span>
@@ -610,16 +610,16 @@
 <span><span class="co">#&gt; 7   wt mean(dY/dX) -3.11981    0.66132 -4.71754 2.3871e-06 -4.41598 -1.823648</span></span>
 <span><span class="co">#&gt; 8   wt mean(dY/dX) -3.11981    0.66132 -4.71754 2.3871e-06 -4.41598 -1.823648</span></span>
 <span><span class="co">#&gt; 9   wt mean(dY/dX) -3.11981    0.66132 -4.71754 2.3871e-06 -4.41598 -1.823648</span></span>
-<span><span class="co">#&gt;   cyl</span></span>
-<span><span class="co">#&gt; 1   4</span></span>
-<span><span class="co">#&gt; 2   6</span></span>
-<span><span class="co">#&gt; 3   8</span></span>
-<span><span class="co">#&gt; 4   4</span></span>
-<span><span class="co">#&gt; 5   6</span></span>
-<span><span class="co">#&gt; 6   8</span></span>
-<span><span class="co">#&gt; 7   4</span></span>
-<span><span class="co">#&gt; 8   6</span></span>
-<span><span class="co">#&gt; 9   8</span></span>
+<span><span class="co">#&gt;   predicted predicted_hi predicted_lo cyl</span></span>
+<span><span class="co">#&gt; 1  23.21933     23.21907     23.21933   4</span></span>
+<span><span class="co">#&gt; 2  21.90488     21.90462     21.90488   6</span></span>
+<span><span class="co">#&gt; 3  20.59043     20.59017     20.59043   8</span></span>
+<span><span class="co">#&gt; 4  23.21933     23.21685     23.21933   4</span></span>
+<span><span class="co">#&gt; 5  21.90488     21.90347     21.90488   6</span></span>
+<span><span class="co">#&gt; 6  20.59043     20.59009     20.59043   8</span></span>
+<span><span class="co">#&gt; 7  23.21933     23.21811     23.21933   4</span></span>
+<span><span class="co">#&gt; 8  21.90488     21.90366     21.90488   6</span></span>
+<span><span class="co">#&gt; 9  20.59043     20.58921     20.59043   8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -639,13 +639,13 @@
 <span><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 19.53360 0.6436862</span></span>
 <span></span>
 <span><span class="fu">marginaleffects</span><span class="fu">::</span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1     1 response  21.90488 0.6927034  31.62231 1.822647e-219 20.48357  23.32619</span></span>
-<span><span class="co">#&gt; 2     2 response  21.10933 0.6266557  33.68569 9.366966e-249 19.82354  22.39512</span></span>
-<span><span class="co">#&gt; 3     3 response  25.64753 0.6652076  38.55568  0.000000e+00 24.28264  27.01242</span></span>
-<span><span class="co">#&gt; 4     4 response  20.04859 0.6041400  33.18534 1.751939e-241 18.80900  21.28819</span></span>
-<span><span class="co">#&gt; 5     5 response  17.25445 0.7436172  23.20340 4.207206e-119 15.72867  18.78022</span></span>
-<span><span class="co">#&gt; 6     6 response  19.53360 0.6436862  30.34646 2.797513e-202 18.21286  20.85434</span></span>
+<span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1     1 response 21.90488 0.6927034  31.62231 1.822647e-219 20.48357  23.32619</span></span>
+<span><span class="co">#&gt; 2     2 response 21.10933 0.6266557  33.68569 9.366966e-249 19.82354  22.39512</span></span>
+<span><span class="co">#&gt; 3     3 response 25.64753 0.6652076  38.55568  0.000000e+00 24.28264  27.01242</span></span>
+<span><span class="co">#&gt; 4     4 response 20.04859 0.6041400  33.18534 1.751939e-241 18.80900  21.28819</span></span>
+<span><span class="co">#&gt; 5     5 response 17.25445 0.7436172  23.20340 4.207206e-119 15.72867  18.78022</span></span>
+<span><span class="co">#&gt; 6     6 response 19.53360 0.6436862  30.34646 2.797513e-202 18.21286  20.85434</span></span>
 <span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
 <span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
 <span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
@@ -760,10 +760,14 @@ hp           |
 <span>    by <span class="op">=</span> <span class="st">"cyl"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast   Effect Std. Error       z Pr(&gt;|z|)    2.5 %   97.5 % cyl</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.09947    0.03487 -2.8528 0.004334 -0.16780 -0.03113   4</span></span>
-<span><span class="co">#&gt; 2   hp mean(dY/dX) -0.02138    0.03882 -0.5506 0.581884 -0.09747  0.05471   6</span></span>
-<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.01344    0.01251 -1.0741 0.282780 -0.03797  0.01109   8</span></span>
+<span><span class="co">#&gt;   Term    Contrast   Effect Std. Error       z Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.09947    0.03487 -2.8528 0.004334 -0.16780 -0.03113</span></span>
+<span><span class="co">#&gt; 2   hp mean(dY/dX) -0.02138    0.03882 -0.5506 0.581884 -0.09747  0.05471</span></span>
+<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.01344    0.01251 -1.0741 0.282780 -0.03797  0.01109</span></span>
+<span><span class="co">#&gt;   predicted predicted_hi predicted_lo cyl</span></span>
+<span><span class="co">#&gt; 1  22.91903     22.91622     22.91903   4</span></span>
+<span><span class="co">#&gt; 2  21.52671     21.52611     21.52671   6</span></span>
+<span><span class="co">#&gt; 3  20.65385     20.65347     20.65385   8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -773,8 +777,8 @@ hp           |
 <span>    <span class="va">mod</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"hp"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">dydx</span> <span class="op">~</span> <span class="va">term</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mfx</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term cyl        dydx</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">estimate</span> <span class="op">~</span> <span class="va">term</span> <span class="op">+</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mfx</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   term cyl    estimate</span></span>
 <span><span class="co">#&gt; 1   hp   4 -0.09946598</span></span>
 <span><span class="co">#&gt; 2   hp   6 -0.02137679</span></span>
 <span><span class="co">#&gt; 3   hp   8 -0.01344103</span></span></code></pre></div>
@@ -851,7 +855,7 @@ Expression   : Linear prediction, predict()
 <span>    <span class="va">mod</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">predicted</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
 <span><span class="co">#&gt;   cyl     AAP</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>

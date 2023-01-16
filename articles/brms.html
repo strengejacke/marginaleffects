@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9106</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,7 +131,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted  conf.low conf.high                               X survived    sex     age passengerClass woman</span></span>
+<span><span class="co">#&gt;   rowid     type  estimate  conf.low conf.high                               X survived    sex     age passengerClass woman</span></span>
 <span><span class="co">#&gt; 1     1 response 0.9366604 0.9069674 0.9590097   Allen, Miss. Elisabeth Walton        1 female 29.0000            1st     1</span></span>
 <span><span class="co">#&gt; 2     2 response 0.8493050 0.7453010 0.9186720  Allison, Master. Hudson Trevor        1   male  0.9167            1st     0</span></span>
 <span><span class="co">#&gt; 3     3 response 0.9433293 0.8948592 0.9704210    Allison, Miss. Helen Loraine        0 female  2.0000            1st     1</span></span>
@@ -148,7 +148,7 @@
 <span>                    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>woman <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,</span>
 <span>                                       passengerClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pred</span></span>
-<span><span class="co">#&gt;   rowid     type  predicted   conf.low conf.high  survived      age woman passengerClass</span></span>
+<span><span class="co">#&gt;   rowid     type   estimate   conf.low conf.high  survived      age woman passengerClass</span></span>
 <span><span class="co">#&gt; 1     1 response 0.51492993 0.43192231 0.6018749 0.4082218 29.88113     0            1st</span></span>
 <span><span class="co">#&gt; 2     2 response 0.20128833 0.15362308 0.2613351 0.4082218 29.88113     0            2nd</span></span>
 <span><span class="co">#&gt; 3     3 response 0.08750369 0.06555724 0.1141134 0.4082218 29.88113     0            3rd</span></span>
@@ -159,7 +159,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   drawid       draw rowid     type  predicted   conf.low conf.high  survived      age woman passengerClass</span></span>
+<span><span class="co">#&gt;   drawid       draw rowid     type   estimate   conf.low conf.high  survived      age woman passengerClass</span></span>
 <span><span class="co">#&gt; 1      1 0.46566713     1 response 0.51492993 0.43192231 0.6018749 0.4082218 29.88113     0            1st</span></span>
 <span><span class="co">#&gt; 2      1 0.16658900     2 response 0.20128833 0.15362308 0.2613351 0.4082218 29.88113     0            2nd</span></span>
 <span><span class="co">#&gt; 3      1 0.08750961     3 response 0.08750369 0.06555724 0.1141134 0.4082218 29.88113     0            3rd</span></span>
@@ -194,7 +194,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>woman <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                                   passengerClass <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type           term  contrast          dydx     conf.low     conf.high predicted predicted_hi predicted_lo  survived      age woman passengerClass        eps</span></span>
+<span><span class="co">#&gt;   rowid     type           term  contrast      estimate     conf.low     conf.high predicted predicted_hi predicted_lo  survived      age woman passengerClass        eps</span></span>
 <span><span class="co">#&gt; 1     1 response          woman     dY/dX  0.1562784430  0.111359140  0.2087557243 0.9364135    0.9364295    0.9364135 0.4082218 29.88113     1            1st 0.00010000</span></span>
 <span><span class="co">#&gt; 2     1 response            age     dY/dX -0.0002383118 -0.001355295  0.0008710313 0.9364135    0.9364102    0.9364135 0.4082218 29.88113     1            1st 0.00798333</span></span>
 <span><span class="co">#&gt; 3     1 response passengerClass 2nd - 1st -0.1574415687 -0.223274987 -0.1028896556 0.9364135    0.7782929    0.9364135 0.4082218 29.88113     1            1st         NA</span></span>
@@ -211,7 +211,7 @@
 <span><span class="co">#&gt; [1] 16736000       19</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   drawid      draw rowid     type  term contrast       dydx   conf.low conf.high predicted predicted_hi predicted_lo                               X survived    sex     age passengerClass woman   eps</span></span>
+<span><span class="co">#&gt;   drawid      draw rowid     type  term contrast   estimate   conf.low conf.high predicted predicted_hi predicted_lo                               X survived    sex     age passengerClass woman   eps</span></span>
 <span><span class="co">#&gt; 1      1 0.1633609     1 response woman    dY/dX 0.15298096 0.10883007 0.2051898 0.9366604    0.9366751    0.9366604   Allen, Miss. Elisabeth Walton        1 female 29.0000            1st     1 1e-04</span></span>
 <span><span class="co">#&gt; 2      1 0.1359009     2 response woman    dY/dX 0.13546458 0.03607654 0.2970409 0.8493050    0.8493174    0.8493050  Allison, Master. Hudson Trevor        1   male  0.9167            1st     0 1e-04</span></span>
 <span><span class="co">#&gt; 3      1 0.0615405     3 response woman    dY/dX 0.05878909 0.02875607 0.1009453 0.9433293    0.9433358    0.9433293    Allison, Miss. Helen Loraine        0 female  2.0000            1st     1 1e-04</span></span>
@@ -295,7 +295,7 @@
 <span>                       newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>civil_liberties <span class="op">=</span> <span class="fl">.5</span>,</span>
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
-<span><span class="co">#&gt;   rowid     type            term     contrast      dydx  conf.low conf.high predicted predicted_hi predicted_lo media_index party_autonomy civil_liberties                       region      eps</span></span>
+<span><span class="co">#&gt;   rowid     type            term     contrast  estimate  conf.low conf.high predicted predicted_hi predicted_lo media_index party_autonomy civil_liberties                       region      eps</span></span>
 <span><span class="co">#&gt; 1     1 response  party_autonomy TRUE - FALSE 0.2517104 0.1663314 0.3355927 0.6213442    0.6213442    0.3684876   0.6723184           TRUE             0.5 Middle East and North Africa       NA</span></span>
 <span><span class="co">#&gt; 2     1 response civil_liberties        dY/dX 0.8160498 0.6213970 1.0066362 0.6213442    0.6214182    0.6213442   0.6723184           TRUE             0.5 Middle East and North Africa 9.56e-05</span></span></code></pre></div>
 <p>Use the <code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> to extract draws from the posterior distribution of marginal effects, and plot them:</p>
@@ -338,7 +338,7 @@
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span>,</span>
 <span>                       variables <span class="op">=</span> <span class="st">"civil_liberties"</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
-<span><span class="co">#&gt;   rowid     type            term      dydx  conf.low conf.high predicted predicted_hi predicted_lo media_index civil_liberties party_autonomy                       region      eps</span></span>
+<span><span class="co">#&gt;   rowid     type            term  estimate  conf.low conf.high predicted predicted_hi predicted_lo media_index civil_liberties party_autonomy                       region      eps</span></span>
 <span><span class="co">#&gt; 1     1 response civil_liberties 0.4900170 0.3609330 0.6388463 0.1700110    0.1700591    0.1700110   0.6723184             0.2          FALSE Middle East and North Africa 9.56e-05</span></span>
 <span><span class="co">#&gt; 2     2 response civil_liberties 0.8071389 0.6121827 0.9926679 0.3684876    0.3685630    0.3684876   0.6723184             0.5          FALSE Middle East and North Africa 9.56e-05</span></span>
 <span><span class="co">#&gt; 3     3 response civil_liberties 0.8069026 0.6744996 0.9336997 0.6244447    0.6245229    0.6244447   0.6723184             0.8          FALSE Middle East and North Africa 9.56e-05</span></span></code></pre></div>
@@ -497,7 +497,7 @@
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, firm <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type    predicted     conf.low   conf.high        y x firm</span></span>
+<span><span class="co">#&gt;   rowid     type     estimate     conf.low   conf.high        y x firm</span></span>
 <span><span class="co">#&gt; 1     1 response 9.999974e-01 9.012039e-01 1.000000000 0.499515 0    1</span></span>
 <span><span class="co">#&gt; 2     2 response 9.999976e-01 8.946581e-01 1.000000000 0.499515 0    2</span></span>
 <span><span class="co">#&gt; 3     3 response 9.999968e-01 9.120847e-01 1.000000000 0.499515 0    3</span></span>
@@ -507,11 +507,11 @@
 <p>We can average/marginalize/integrate across random effects with the <code>averages</code> function or the <code>by</code> argument:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, firm <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type predicted  conf.low conf.high</span></span>
+<span><span class="co">#&gt;       type  estimate  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 response 0.4538567 0.4395532 0.4683439</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, firm <span class="op">=</span> <span class="va">unique</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type x predicted  conf.low conf.high</span></span>
+<span><span class="co">#&gt;       type x  estimate  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 response 0 0.4538567 0.4395532 0.4683439</span></span>
 <span><span class="co">#&gt; 2 response 1 0.5571714 0.5456459 0.5696210</span></span></code></pre></div>
 <p>We can also draw from the (assumed gaussian) population distribution of random effects, by asking <code><a href="../reference/predictions.html">predictions()</a></code> to make predictions for new “levels” of the random effects. If we then take an average of predictions using <code><a href="../reference/averages.html">averages()</a></code> or <code>by</code>, we will have <a href="https://joshuawiley.com/brmsmargins/articles/mixed-effects-slopes.html#integrating-out-random-effects" class="external-link">“integrated out the random effects”, as described in the <code>brmsmargins</code> package vignette.</a> In the code below, we make predictions for 100 firm identifiers which were not in the original dataset. We also ask <code><a href="../reference/predictions.html">predictions()</a></code> to push forward the <code>allow_new_levels</code> and <code>sample_new_levels</code> arguments to the <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">brms::posterior_epred</a></code> function:</p>
@@ -522,19 +522,19 @@
 <span>    allow_new_levels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type x predicted  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response 0 0.4513299 0.3405276 0.5629114</span></span>
-<span><span class="co">#&gt; 2 response 1 0.5500021 0.4369912 0.6618146</span></span></code></pre></div>
+<span><span class="co">#&gt;       type x  estimate  conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response 0 0.4505606 0.3370759 0.5632856</span></span>
+<span><span class="co">#&gt; 2 response 1 0.5499539 0.4368386 0.6651267</span></span></code></pre></div>
 <p>We can “integrate out” random effects in the other <code>slopes</code> functions too. For instance,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>firm <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">:</span><span class="op">-</span><span class="fl">100</span><span class="op">)</span>,</span>
 <span>    allow_new_levels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term          Contrast  Effect   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1    x mean(1) - mean(0) 0.09781 0.04687 0.1614</span></span>
+<span><span class="co">#&gt; 1    x mean(1) - mean(0) 0.09703 0.04762 0.1644</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  brmsfit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -551,7 +551,7 @@
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09870633 0.09666407 0.04818231 0.1613011          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.09872575 0.09673622 0.04629118 0.1630924          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -573,7 +573,7 @@
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type group  predicted   conf.low  conf.high X idcase depvar  ic.gc  ic.gr  ic.ec  ic.er   ic.hp  oc.gc  oc.gr  oc.ec  oc.er  oc.hp income agehed rooms region    pb.gc    pb.gr    pb.ec    pb.er    pb.hp</span></span>
+<span><span class="co">#&gt;   rowid     type group   estimate   conf.low  conf.high X idcase depvar  ic.gc  ic.gr  ic.ec  ic.er   ic.hp  oc.gc  oc.gr  oc.ec  oc.er  oc.hp income agehed rooms region    pb.gc    pb.gr    pb.ec    pb.er    pb.hp</span></span>
 <span><span class="co">#&gt; 1     1 response    ec 0.06626689 0.04471591 0.09304536 1      1     gc 866.00 962.64 859.90 995.76 1135.50 199.69 151.72 553.34 505.60 237.88      7     25     6 ncostl 4.336722 6.344846 1.554017 1.969462 4.773415</span></span>
 <span><span class="co">#&gt; 2     2 response    ec 0.07681658 0.05896082 0.09740047 2      2     gc 727.93 758.89 796.82 894.69  968.90 168.66 168.66 520.24 486.49 199.19      5     60     5 scostl 4.315961 4.499526 1.531639 1.839072 4.864200</span></span>
 <span><span class="co">#&gt; 3     3 response    ec 0.10300017 0.06181137 0.15849874 3      3     gc 599.48 783.05 719.86 900.11 1048.30 165.58 137.80 439.06 404.74 171.47      4     65     2 ncostl 3.620486 5.682511 1.639548 2.223922 6.113606</span></span>
@@ -663,17 +663,17 @@
 <p>Adjusted predictions for every observation in the original data:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted conf.low conf.high gdpPercap lifeExp year continent</span></span>
-<span><span class="co">#&gt; 1     1 response  142.5456 103.1327  218.8240  779.4453  28.801 1952      Asia</span></span>
-<span><span class="co">#&gt; 2     2 response  168.2657 124.8506  255.8359  820.8530  30.332 1957      Asia</span></span>
-<span><span class="co">#&gt; 3     3 response  201.7414 152.9039  303.6894  853.1007  31.997 1962      Asia</span></span>
-<span><span class="co">#&gt; 4     4 response  251.4996 196.5698  372.8495  836.1971  34.020 1967      Asia</span></span>
-<span><span class="co">#&gt; 5     5 response  312.2482 249.5193  454.2419    0.0000  36.088 1972      Asia</span></span>
-<span><span class="co">#&gt; 6     6 response  397.5390 324.5934  566.6799  786.1134  38.438 1977      Asia</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type estimate conf.low conf.high gdpPercap lifeExp year continent</span></span>
+<span><span class="co">#&gt; 1     1 response 142.5456 103.1327  218.8240  779.4453  28.801 1952      Asia</span></span>
+<span><span class="co">#&gt; 2     2 response 168.2657 124.8506  255.8359  820.8530  30.332 1957      Asia</span></span>
+<span><span class="co">#&gt; 3     3 response 201.7414 152.9039  303.6894  853.1007  31.997 1962      Asia</span></span>
+<span><span class="co">#&gt; 4     4 response 251.4996 196.5698  372.8495  836.1971  34.020 1967      Asia</span></span>
+<span><span class="co">#&gt; 5     5 response 312.2482 249.5193  454.2419    0.0000  36.088 1972      Asia</span></span>
+<span><span class="co">#&gt; 6     6 response 397.5390 324.5934  566.6799  786.1134  38.438 1977      Asia</span></span></code></pre></div>
 <p>Adjusted predictions for the <code>hu</code> parameter:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted  conf.low conf.high gdpPercap lifeExp year continent</span></span>
+<span><span class="co">#&gt;   rowid     type  estimate  conf.low conf.high gdpPercap lifeExp year continent</span></span>
 <span><span class="co">#&gt; 1     1 response 0.5739495 0.4746831 0.6515670  779.4453  28.801 1952      Asia</span></span>
 <span><span class="co">#&gt; 2     2 response 0.5365013 0.4416000 0.6112908  820.8530  30.332 1957      Asia</span></span>
 <span><span class="co">#&gt; 3     3 response 0.4955596 0.4069162 0.5664250  853.1007  31.997 1962      Asia</span></span>
@@ -683,7 +683,7 @@
 <p>Predictions on a different scale:</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"link"</span>, dpar <span class="op">=</span> <span class="st">"hu"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid type   predicted   conf.low   conf.high gdpPercap lifeExp year continent</span></span>
+<span><span class="co">#&gt;   rowid type    estimate   conf.low   conf.high gdpPercap lifeExp year continent</span></span>
 <span><span class="co">#&gt; 1     1 link  0.29798370 -0.1013542  0.62593415  779.4453  28.801 1952      Asia</span></span>
 <span><span class="co">#&gt; 2     2 link  0.14626541 -0.2346709  0.45274118  820.8530  30.332 1957      Asia</span></span>
 <span><span class="co">#&gt; 3     3 link -0.01776198 -0.3767284  0.26727993  853.1007  31.997 1962      Asia</span></span>
@@ -882,9 +882,9 @@
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
 <span><span class="va">rvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posteriordraws.html">posteriordraws</a></span><span class="op">(</span><span class="va">p</span>, shape <span class="op">=</span> <span class="st">"rvar"</span><span class="op">)</span> </span>
 <span><span class="va">rvar</span></span>
-<span><span class="co">#&gt;       type am predicted conf.low conf.high                rvar</span></span>
-<span><span class="co">#&gt; 1 response  0  17.08973 14.80941  19.51200 17.11797 ± 1.167301</span></span>
-<span><span class="co">#&gt; 2 response  1  24.37157 21.62127  27.16224 24.36875 ± 1.401039</span></span>
+<span><span class="co">#&gt;       type am estimate conf.low conf.high                rvar</span></span>
+<span><span class="co">#&gt; 1 response  0 17.10399 14.85819  19.47721 17.10129 ± 1.163609</span></span>
+<span><span class="co">#&gt; 2 response  1 24.34635 21.40365  27.20316 24.34436 ± 1.459841</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">rvar</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">am</span>, xdist <span class="op">=</span> <span class="va">rvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slabinterval.html" class="external-link">stat_slabinterval</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -901,12 +901,12 @@
 <p>Notice that we can compute average contrasts in two different ways, using the <code><a href="../reference/averages.html">averages()</a></code> function or the <code>transform_pre</code> argument:</p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term contrast  comparison   conf.low   conf.high predicted predicted_hi predicted_lo</span></span>
-<span><span class="co">#&gt; 1 response  mpg mean(+1) 0.135474011 0.07871312 0.174722602 0.2029083    0.3718606   0.09989568</span></span>
-<span><span class="co">#&gt; 2 response   hp mean(+1) 0.005987268 0.00288400 0.008860451 0.2029083    0.2085257   0.19744730</span></span>
+<span><span class="co">#&gt;       type term contrast    estimate   conf.low   conf.high</span></span>
+<span><span class="co">#&gt; 1 response   hp       +1 0.005987268 0.00288400 0.008860451</span></span>
+<span><span class="co">#&gt; 2 response  mpg       +1 0.135474011 0.07871312 0.174722602</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term contrast  comparison   conf.low   conf.high predicted predicted_hi predicted_lo</span></span>
+<span><span class="co">#&gt;       type term contrast    estimate   conf.low   conf.high predicted predicted_hi predicted_lo</span></span>
 <span><span class="co">#&gt; 1 response  mpg mean(+1) 0.135474011 0.07871312 0.174722602 0.2029083    0.3718606   0.09989568</span></span>
 <span><span class="co">#&gt; 2 response   hp mean(+1) 0.005987268 0.00288400 0.008860451 0.2029083    0.2085257   0.19744730</span></span></code></pre></div>
 <p>Now, we use the <code>hypothesis</code> argument to compare the first to the second rows of the <code><a href="../reference/comparisons.html">comparisons()</a></code> output:</p>
@@ -915,7 +915,7 @@
 <span>    <span class="va">mod</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"b2 - b1 = 0.2"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type      term comparison  conf.low  conf.high</span></span>
+<span><span class="co">#&gt;       type      term   estimate  conf.low  conf.high</span></span>
 <span><span class="co">#&gt; 1 response b2-b1=0.2 -0.3297902 -0.366603 -0.2748438</span></span></code></pre></div>
 <p>The <code>hypotheses</code> function of the <code>brms</code> package can also perform non-linear hypothesis testing, and it generates some convenient statistics and summaries. This function accepts a D-by-P matrix of draws from the posterior distribution, where D is the number of draws and N is the number of parameters. We can obtain such a matrix using the <code>posteriordraws(x, shape = "DxP")</code>, and we can simply add a couple calls to our chain of operations:</p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
@@ -925,7 +925,7 @@
 <span>    <span class="fu">brms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/brms/man/hypothesis.brmsfit.html" class="external-link">hypothesis</a></span><span class="op">(</span><span class="st">"b2 - b1 &gt; .2"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Hypothesis Tests for class :</span></span>
 <span><span class="co">#&gt;         Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob Star</span></span>
-<span><span class="co">#&gt; 1 (b2-b1)-(.2) &gt; 0    -0.33      0.02    -0.36    -0.28          0         0     </span></span>
+<span><span class="co">#&gt; 1 (b2-b1)-(.2) &gt; 0    -0.07      0.02    -0.12    -0.04          0         0     </span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; 'CI': 90%-CI for one-sided and 95%-CI for two-sided hypotheses.</span></span>
 <span><span class="co">#&gt; '*': For one-sided hypotheses, the posterior probability exceeds 95%;</span></span>

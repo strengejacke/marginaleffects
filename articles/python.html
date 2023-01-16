@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9106</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -203,7 +203,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"custom"</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"marginaleffects_model_classes"</span> <span class="op">=</span> <span class="st">"custom"</span><span class="op">)</span></span></code></pre></div>
-<p>Next, we define a <code>get_predict</code> method for our new custom class. This method must accept three arguments: <code>model</code>, <code>newdata</code>, and <code>...</code>. The <code>get_predict</code> method must return a data frame with one row for each of the rows in <code>newdata</code>, two columns (<code>rowid</code> and <code>predicted</code>), and an attribute called <code>posterior_draws</code> which hosts a matrix of posterior draws with the same number of rows as <code>newdata</code>.</p>
+<p>Next, we define a <code>get_predict</code> method for our new custom class. This method must accept three arguments: <code>model</code>, <code>newdata</code>, and <code>...</code>. The <code>get_predict</code> method must return a data frame with one row for each of the rows in <code>newdata</code>, two columns (<code>rowid</code> and <code>estimate</code>), and an attribute called <code>posterior_draws</code> which hosts a matrix of posterior draws with the same number of rows as <code>newdata</code>.</p>
 <p>The method below uses <code>reticulate</code> to call the <code>predict_mcmc()</code> function that we defined in the Python script above. The <code>predict_mcmc()</code> function accepts a data frame and returns a matrix with the same number of rows.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_predict.custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>

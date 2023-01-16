@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9106</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -188,7 +188,7 @@
 <li>Mandatory arguments: <code>model</code>, <code>newdata</code> (data frame), <code>...</code>
 </li>
 <li>Option arguments: <code>type</code> and other model-specific arguments.</li>
-<li>Returns: A data frame with two columns: a unique <code>rowid</code> and a column of <code>predicted</code> values.</li>
+<li>Returns: A data frame with two columns: a unique <code>rowid</code> and a column of <code>estimate</code> values.</li>
 </ul>
 </li>
 </ol>
@@ -215,7 +215,7 @@
 <span>    <span class="va">Yhat</span> <span class="op">&lt;-</span> <span class="va">newX</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">model</span><span class="op">$</span><span class="va">b</span></span>
 <span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>        rowid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Yhat</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>        predicted <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Yhat</span><span class="op">)</span><span class="op">)</span></span>
+<span>        estimate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Yhat</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>The methods we just defined work as expected:</p>
@@ -231,13 +231,13 @@
 <span><span class="co">#&gt; drat        -5.83603069  4.969385e-03  1.419990359</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/get_predict.html">get_predict</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid predicted</span></span>
-<span><span class="co">#&gt; 1     1  23.41614</span></span>
-<span><span class="co">#&gt; 2     2  23.41614</span></span>
-<span><span class="co">#&gt; 3     3  24.06161</span></span>
-<span><span class="co">#&gt; 4     4  19.56366</span></span>
-<span><span class="co">#&gt; 5     5  16.52639</span></span>
-<span><span class="co">#&gt; 6     6  18.31918</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid estimate</span></span>
+<span><span class="co">#&gt; 1     1 23.41614</span></span>
+<span><span class="co">#&gt; 2     2 23.41614</span></span>
+<span><span class="co">#&gt; 3     3 24.06161</span></span>
+<span><span class="co">#&gt; 4     4 19.56366</span></span>
+<span><span class="co">#&gt; 5     5 16.52639</span></span>
+<span><span class="co">#&gt; 6     6 18.31918</span></span></code></pre></div>
 <p>Now we can use the <code>slopes</code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">mtcars</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"drat"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -251,13 +251,13 @@
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type predicted std.error statistic       p.value conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span><span class="co">#&gt; 1     1 response  23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
-<span><span class="co">#&gt; 2     2 response  23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
-<span><span class="co">#&gt; 3     3 response  24.06161 0.7203817  33.40119 1.317292e-244 22.64969  25.47353 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
-<span><span class="co">#&gt; 4     4 response  19.56366 0.9987782  19.58759  1.973210e-85 17.60609  21.52122 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span><span class="co">#&gt; 5     5 response  16.52639 0.7353921  22.47290 7.642913e-112 15.08505  17.96774 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span><span class="co">#&gt; 6     6 response  18.31918 1.3433197  13.63724  2.404772e-42 15.68632  20.95204 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; 1     1 response 23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response 23.41614 0.6711195  34.89117 1.011973e-266 22.10077  24.73152 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 response 24.06161 0.7203817  33.40119 1.317292e-244 22.64969  25.47353 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 response 19.56366 0.9987782  19.58759  1.973210e-85 17.60609  21.52122 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 response 16.52639 0.7353921  22.47290 7.642913e-112 15.08505  17.96774 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 response 18.31918 1.3433197  13.63724  2.404772e-42 15.68632  20.95204 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
 <p>Note that, for custom model, we typically have to supply values for the <code>newdata</code> and <code>variables</code> arguments explicitly.</p>
 </div>
 </div>
@@ -283,7 +283,7 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">model_custom</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"customclass"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Define a new <code>get_predict.customclass</code> method. We use the default <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> function to obtain predictions. Since this is a multinomial model, <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> returns a matrix of predictions with one column per level of the response variable.</p>
-<p>Our new <code>get_predict.customclass</code> method takes this matrix of predictions, modifies it, and reshapes it to return a data frame with three columns: <code>rowid</code>, <code>group</code>, and <code>predicted</code>:</p>
+<p>Our new <code>get_predict.customclass</code> method takes this matrix of predictions, modifies it, and reshapes it to return a data frame with three columns: <code>rowid</code>, <code>group</code>, and <code>estimate</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_predict.customclass</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">model</span>, <span class="va">newdata</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">newdata</span>, type <span class="op">=</span> <span class="st">"link"</span><span class="op">)</span></span>
@@ -296,7 +296,7 @@
 <span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/melt.data.table.html" class="external-link">melt</a></span><span class="op">(</span></span>
 <span>        <span class="va">out</span>,</span>
 <span>        id.vars <span class="op">=</span> <span class="st">"rowid"</span>,</span>
-<span>        value.name <span class="op">=</span> <span class="st">"predicted"</span>,</span>
+<span>        value.name <span class="op">=</span> <span class="st">"estimate"</span>,</span>
 <span>        variable.name <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Finally, we can call any <code>slopes</code> function and obtain results. Notice that our object of class <code>customclass</code> now produces different results than the default <code>mblogit</code> object:</p>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9106</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9107</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -206,7 +206,7 @@ RMSE
 <span>    <span class="va">mod</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"tx"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term contrast   comparison    std.error statistic    p.value</span></span>
+<span><span class="co">#&gt;   rowid     type term contrast     estimate    std.error statistic    p.value</span></span>
 <span><span class="co">#&gt; 1     1 response   tx SK - tPA 0.0010741928 0.0004966749  2.162768 0.03055900</span></span>
 <span><span class="co">#&gt; 2     2 response   tx SK - tPA 0.0008573104 0.0003799743  2.256233 0.02405605</span></span>
 <span><span class="co">#&gt; 3     3 response   tx SK - tPA 0.0017797796 0.0007784409  2.286339 0.02223446</span></span>
@@ -283,7 +283,7 @@ RMSE
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"tx"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term contrast   comparison    std.error statistic    p.value</span></span>
+<span><span class="co">#&gt;   rowid     type term contrast     estimate    std.error statistic    p.value</span></span>
 <span><span class="co">#&gt; 1     1 response   tx SK - tPA 0.0010741928 0.0004966749  2.162768 0.03055900</span></span>
 <span><span class="co">#&gt; 2     2 response   tx SK - tPA 0.0008573104 0.0003799743  2.256233 0.02405605</span></span>
 <span><span class="co">#&gt; 3     3 response   tx SK - tPA 0.0017797796 0.0007784409  2.286339 0.02223446</span></span>
@@ -323,12 +323,12 @@ RMSE
 <p><img src="logistic_contrasts_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 <p>Lastly, present the entire distribution of unit-level proportion differences and its mean and median.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">comparison</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span>,</span>
 <span>     breaks <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>     main <span class="op">=</span> <span class="st">"Distribution of unit-level contrasts"</span>,</span>
 <span>     xlab <span class="op">=</span> <span class="st">"SK - tPA"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">comparison</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">comparison</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="logistic_contrasts_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
 </div>
 <div class="section level3">
