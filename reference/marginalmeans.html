@@ -22,7 +22,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9111</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,6 +91,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cross <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  hypothesis <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  df <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  wts <span class="op">=</span> <span class="st">"equal"</span>,</span>
 <span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -176,6 +177,10 @@ on the link scale before backtransforming them using the inverse link function.<
 </ul></li>
 <li><p>See the Examples section below and the vignette: https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</p></li>
 </ul></dd>
+
+
+<dt>df</dt>
+<dd><p>Degrees of freedom used to comptute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
 
 
 <dt>wts</dt>
@@ -300,14 +305,13 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type term value cyl estimate std.error conf.low conf.high      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  cyl     4   4 23.11334  1.658224 19.86328  26.36340 3.690579e-44</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  cyl     6   6 20.38477  1.337106 17.76409  23.00545 1.765453e-52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response  cyl     8   8 16.21082  1.072551 14.10866  18.31299 1.304150e-51</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  13.93861</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  15.24544</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  15.11427</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Unable to compute predicted values with this model. You can try to</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   supply a different dataset to the `newdata` argument. If this does not</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   work, you can file a report on the Github Issue Tracker:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   This error was also raised:  variable 'carb' was fitted with type</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   "factor" but type "numeric" was supplied</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># collapse levels of cyl by averaging</span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -316,60 +320,38 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="st">"cyl"</span>,</span></span>
 <span class="r-in"><span>  by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      by estimate std.error conf.low conf.high      p.value statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 &amp; 6 21.74905  1.132084 19.53021  23.96790 2.964293e-82  19.21152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     8 16.21082  1.072551 14.10866  18.31299 1.304150e-51  15.11427</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Unable to compute predicted values with this model. You can try to</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   supply a different dataset to the `newdata` argument. If this does not</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   work, you can file a report on the Github Issue Tracker:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   This error was also raised:  variable 'carb' was fitted with type</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   "factor" but type "numeric" was supplied</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># pairwise differences between collapsed levels</span></span></span>
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="st">"cyl"</span>,</span></span>
 <span class="r-in"><span>  by <span class="op">=</span> <span class="va">by</span>,</span></span>
 <span class="r-in"><span>  hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        term estimate std.error conf.low conf.high      p.value statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4 &amp; 6 - 8 5.538228  1.513052   2.5727  8.503755 0.0002519178  3.660302</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Unable to compute predicted values with this model. You can try to</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   supply a different dataset to the `newdata` argument. If this does not</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   work, you can file a report on the Github Issue Tracker:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   This error was also raised:  variable 'carb' was fitted with type</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   "factor" but type "numeric" was supplied</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># cross</span></span></span>
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"carb"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        type cyl carb estimate std.error  conf.low conf.high       p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  response   4    1 25.81720  1.263909 23.339980  28.29441  9.729029e-93</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  response   4    2 25.58836  1.166714 23.301643  27.87508 1.286605e-106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  response   4    3 25.33929  2.365152 20.703673  29.97490  8.787848e-27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  response   4    4 21.87765  1.901048 18.151659  25.60363  1.199563e-30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  response   4    6 20.29180  3.766424 12.909744  27.67385  7.142425e-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  response   4    8 19.76574  3.814283 12.289884  27.24160  2.194796e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  response   6    1 23.08862  1.765271 19.628756  26.54849  4.320526e-39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  response   6    2 22.85979  1.867465 19.199624  26.51995  1.875206e-34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  response   6    3 22.61071  2.365152 17.975102  27.24633  1.178225e-21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 response   6    4 19.14907  1.338478 16.525705  21.77244  1.990073e-46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 response   6    6 17.56323  3.003716 11.676053  23.45040  5.000145e-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 response   6    8 17.03717  3.481207 10.214129  23.86021  9.878645e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 response   8    1 18.91468  1.942030 15.108373  22.72099  2.042705e-22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 response   8    2 18.68585  1.570513 15.607698  21.76399  1.213213e-32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 response   8    3 18.43677  1.830964 14.848149  22.02540  7.540931e-24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 response   8    4 14.97513  1.195291 12.632406  17.31786  5.217536e-36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 response   8    6 13.38929  3.356162  6.811330  19.96724  6.622284e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 response   8    8 12.86323  3.003716  6.976053  18.75040  1.848561e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  20.426468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  21.931995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  10.713598</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  11.508200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5.387551</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   5.182034</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  13.079362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  12.241080</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9.559942</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 14.306600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  5.847167</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  4.894041</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  9.739643</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 11.897929</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 10.069436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 12.528445</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  3.989464</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18  4.282439</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Unable to compute predicted values with this model. You can try to</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   supply a different dataset to the `newdata` argument. If this does not</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   work, you can file a report on the Github Issue Tracker:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   This error was also raised:  variable 'carb' was fitted with type</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   "factor" but type "numeric" was supplied</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># collapsed cross</span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span></span></span>
@@ -389,31 +371,24 @@ posterior using the function supplied to the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compute and summarize marginal means</span></span></span>
 <span class="r-in"><span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Unable to compute predicted values with this model. You can try to</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   supply a different dataset to the `newdata` argument. If this does not</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   work, you can file a report on the Github Issue Tracker:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   https://github.com/vincentarelbundock/marginaleffects/issues</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   This error was also raised:  variable 'carb' was fitted with type</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   "factor" but type "numeric" was supplied</span>
 <span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Value  Mean Std. Error      z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 carb     1 21.99      1.345 16.350 &lt; 2.22e-16 19.35  24.63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 carb     2 21.48      1.025 20.955 &lt; 2.22e-16 19.47  23.49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 carb     3 20.55      1.780 11.549 &lt; 2.22e-16 17.06  24.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 carb     4 18.82      1.042 18.065 &lt; 2.22e-16 16.77  20.86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 carb     6 18.47      3.019  6.118 9.4743e-10 12.55  24.39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 carb     8 21.62      4.055  5.332 9.6936e-08 13.68  29.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   am FALSE 17.87      1.244 14.366 &lt; 2.22e-16 15.43  20.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   am  TRUE 23.11      0.974 23.724 &lt; 2.22e-16 21.20  25.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am, carb </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in averages(mm):</span> object 'mm' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrast between marginal means (carb2 - carb1), or "is the 1st marginal means equal to the 2nd?"</span></span></span>
 <span class="r-in"><span><span class="co"># see the vignette on "Hypothesis Tests and Custom Contrasts" on the `marginaleffects` website.</span></span></span>
 <span class="r-in"><span><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="st">"b2 = b1"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    term   estimate std.error  conf.low conf.high   p.value  statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 b2=b1 -0.5142619  1.477885 -3.410863   2.38234 0.7278616 -0.3479715</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data.table::setorderv(out, c("term", "value")):</span> some columns are not in the data.table: term,value</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     term   estimate std.error  conf.low conf.high   p.value  statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 custom -0.5142619  1.477885 -3.410863   2.38234 0.7278616 -0.3479715</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data.table::setorderv(out, c("term", "value")):</span> some columns are not in the data.table: term,value</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Multiple custom contrasts</span></span></span>
 <span class="r-in"><span><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
@@ -423,9 +398,7 @@ posterior using the function supplied to the
 <span class="r-in"><span>  ncol <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term   estimate std.error   conf.low conf.high   p.value  statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    A  1.1989451  6.149643 -10.854133  13.25202 0.8454229  0.1949618</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    B -0.5142619  1.477885  -3.410863   2.38234 0.7278616 -0.3479715</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data.table::setorderv(out, c("term", "value")):</span> some columns are not in the data.table: term,value</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

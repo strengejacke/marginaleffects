@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9111</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,12 +62,13 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.1.9001" id="marginaleffects-0819001">marginaleffects 0.8.1.9001<a class="anchor" aria-label="anchor" href="#marginaleffects-0819001"></a></h2>
 <p>Breaking changes:</p>
-<ul><li>The output of all functions includes an <code>estimate</code> column instead of the function-specific <code>predicted</code>, <code>comparisons</code>, <code>dydx</code>.</li>
+<ul><li>The output of all functions includes an <code>estimate</code> column instead of the function-specific <code>predicted</code>, <code>comparisons</code>, <code>dydx</code>. This is only relevant for unit-level estimates, and not to the output of <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, which already returned an <code>estimate</code> column.</li>
 <li>The <code>transform_avg</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> deprecated. Use <code>transform_post</code> instead.</li>
 </ul><p>New models supported:</p>
 <ul><li>
 <code>blme</code> package.</li></ul><p>New features:</p>
 <ul><li>The new <code><a href="../reference/averages.html">averages()</a></code> function is the recommended way to “average over” (marginalize) unit-level estimates for all functions. It is more efficient, flexible, and explicit that <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> or <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>.</li>
+<li>New <code>df</code> argument to set degrees of freedom manually for p and CI.</li>
 <li>
 <code>by</code> argument<ul><li>
 <code>TRUE</code> returns average (marginal) predictions, comparisons, or slopes.</li>

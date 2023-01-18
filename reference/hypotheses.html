@@ -20,7 +20,7 @@ offers some convenience features like shortcuts for robust standard errors."><!-
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9111</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,6 +87,7 @@ offers some convenience features like shortcuts for robust standard errors.</p>
 <span>  FUN <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vcov <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  df <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -137,6 +138,10 @@ offers some convenience features like shortcuts for robust standard errors.</p>
 
 <dt>conf_level</dt>
 <dd><p>numeric value between 0 and 1. Confidence level to use to build a confidence interval.</p></dd>
+
+
+<dt>df</dt>
+<dd><p>Degrees of freedom used to comptute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
 
 
 <dt>...</dt>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9111</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,12 +120,12 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span><span class="co">#&gt; 1     1 response 20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
-<span><span class="co">#&gt; 2     2 response 20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
-<span><span class="co">#&gt; 3     3 response 26.41451 0.9619738  27.45866 5.476301e-166 24.44399  28.38502 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
-<span><span class="co">#&gt; 4     4 response 20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span><span class="co">#&gt; 5     5 response 15.92247 0.9924560  16.04350  6.347069e-58 13.88952  17.95543 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span><span class="co">#&gt; 6     6 response 20.15839 1.2186288  16.54186  1.832792e-61 17.66214  22.65463 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; 2     2 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; 3     3 response 26.41451 0.9619738  27.45866 5.476301e-166 24.52907  28.29994 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; 4     4 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; 5     5 response 15.92247 0.9924560  16.04350  6.347069e-58 13.97729  17.86765 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 6     6 response 20.15839 1.2186288  16.54186  1.832792e-61 17.76992  22.54685 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span></code></pre></div>
 <p>In many cases, this is too limiting, and researchers will want to specify a grid of “typical” values over which to compute adjusted predictions.</p>
 </div>
 <div class="section level2">
@@ -141,12 +141,12 @@
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid rowidcf     type estimate std.error statistic       p.value conf.low conf.high  mpg cyl  hp</span></span>
-<span><span class="co">#&gt; 1     1       1 response 20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 21.0   6 100</span></span>
-<span><span class="co">#&gt; 2     2       2 response 20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 21.0   6 100</span></span>
-<span><span class="co">#&gt; 3     3       3 response 26.24623 0.9856325 26.628826 3.148430e-156 24.22726  28.26521 22.8   4 100</span></span>
-<span><span class="co">#&gt; 4     4       4 response 20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 21.4   6 100</span></span>
-<span><span class="co">#&gt; 5     5       5 response 17.72538 1.8811567  9.422599  4.400597e-21 13.87201  21.57876 18.7   8 100</span></span>
-<span><span class="co">#&gt; 6     6       6 response 20.27858 1.2377512 16.383405  2.512745e-60 17.74316  22.81400 18.1   6 100</span></span>
+<span><span class="co">#&gt; 1     1       1 response 20.27858 1.2377512 16.383405  2.512745e-60 17.85263  22.70453 21.0   6 100</span></span>
+<span><span class="co">#&gt; 2     2       2 response 20.27858 1.2377512 16.383405  2.512745e-60 17.85263  22.70453 21.0   6 100</span></span>
+<span><span class="co">#&gt; 3     3       3 response 26.24623 0.9856325 26.628826 3.148430e-156 24.31443  28.17804 22.8   4 100</span></span>
+<span><span class="co">#&gt; 4     4       4 response 20.27858 1.2377512 16.383405  2.512745e-60 17.85263  22.70453 21.4   6 100</span></span>
+<span><span class="co">#&gt; 5     5       5 response 17.72538 1.8811567  9.422599  4.400597e-21 14.03838  21.41238 18.7   8 100</span></span>
+<span><span class="co">#&gt; 6     6       6 response 20.27858 1.2377512 16.383405  2.512745e-60 17.85263  22.70453 18.1   6 100</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 64</span></span></code></pre></div>
 </div>
@@ -165,24 +165,24 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type estimate std.error statistic      p.value conf.low conf.high      mpg       hp cyl</span></span>
-<span><span class="co">#&gt; 1     1 response 16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248 20.09062 146.6875   8</span></span>
+<span><span class="co">#&gt; 1     1 response 16.60307  1.278754  12.98379 1.512165e-38 14.09676  19.10938 20.09062 146.6875   8</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type estimate std.error statistic      p.value conf.low conf.high      mpg       hp cyl</span></span>
-<span><span class="co">#&gt; 1     1 response 25.12392  1.368888  18.35353 3.093502e-75 22.31988  27.92796 20.09062 146.6875   4</span></span>
-<span><span class="co">#&gt; 2     2 response 19.15627  1.247190  15.35955 3.057119e-53 16.60151  21.71102 20.09062 146.6875   6</span></span>
-<span><span class="co">#&gt; 3     3 response 16.60307  1.278754  12.98379 1.512165e-38 13.98366  19.22248 20.09062 146.6875   8</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response 25.12392  1.368888  18.35353 3.093502e-75 22.44095  27.80689 20.09062 146.6875   4</span></span>
+<span><span class="co">#&gt; 2     2 response 19.15627  1.247190  15.35955 3.057119e-53 16.71182  21.60071 20.09062 146.6875   6</span></span>
+<span><span class="co">#&gt; 3     3 response 16.60307  1.278754  12.98379 1.512165e-38 14.09676  19.10938 20.09062 146.6875   8</span></span></code></pre></div>
 <p>Users can change the summary function used to summarize each type of variables using the <code>FUN_numeric</code>, <code>FUN_factor</code>, and related arguments. For example:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">drat</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">m</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>FUN_factor <span class="op">=</span> <span class="va">unique</span>, FUN_numeric <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type estimate std.error statistic      p.value conf.low conf.high  mpg  hp  drat cyl am</span></span>
-<span><span class="co">#&gt; 1     1 response 21.95333  1.288065  17.04365 3.896507e-65 19.30567  24.60099 19.2 123 3.695   6  1</span></span>
-<span><span class="co">#&gt; 2     2 response 18.18910  1.270927  14.31168 1.849819e-46 15.57667  20.80153 19.2 123 3.695   6  0</span></span>
-<span><span class="co">#&gt; 3     3 response 25.54890  1.322154  19.32369 3.395189e-83 22.83117  28.26663 19.2 123 3.695   4  1</span></span>
-<span><span class="co">#&gt; 4     4 response 21.78467  1.541301  14.13395 2.346178e-45 18.61648  24.95286 19.2 123 3.695   4  0</span></span>
-<span><span class="co">#&gt; 5     5 response 22.61705  2.140950  10.56403 4.374878e-26 18.21627  27.01784 19.2 123 3.695   8  1</span></span>
-<span><span class="co">#&gt; 6     6 response 18.85282  1.734026  10.87228 1.562441e-27 15.28848  22.41716 19.2 123 3.695   8  0</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response 21.95333  1.288065  17.04365 3.896507e-65 19.42877  24.47789 19.2 123 3.695   6  1</span></span>
+<span><span class="co">#&gt; 2     2 response 18.18910  1.270927  14.31168 1.849819e-46 15.69813  20.68007 19.2 123 3.695   6  0</span></span>
+<span><span class="co">#&gt; 3     3 response 25.54890  1.322154  19.32369 3.395189e-83 22.95752  28.14027 19.2 123 3.695   4  1</span></span>
+<span><span class="co">#&gt; 4     4 response 21.78467  1.541301  14.13395 2.346178e-45 18.76377  24.80556 19.2 123 3.695   4  0</span></span>
+<span><span class="co">#&gt; 5     5 response 22.61705  2.140950  10.56403 4.374878e-26 18.42087  26.81324 19.2 123 3.695   8  1</span></span>
+<span><span class="co">#&gt; 6     6 response 18.85282  1.734026  10.87228 1.562441e-27 15.45419  22.25145 19.2 123 3.695   8  0</span></span></code></pre></div>
 <p>The <code>data.frame</code> produced by <code>predictions</code> is “tidy”, which makes it easy to manipulate with other <code>R</code> packages and functions:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span>

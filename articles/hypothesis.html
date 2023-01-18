@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9111</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -254,10 +254,10 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, vs <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p</span></span>
 <span><span class="co">#&gt;   rowid     type estimate std.error statistic       p.value conf.low conf.high      mpg am vs</span></span>
-<span><span class="co">#&gt; 1     1 response 14.59444 0.9261514  15.75816  6.036286e-56 12.70025  16.48864 20.09062  0  0</span></span>
-<span><span class="co">#&gt; 2     2 response 21.52381 1.1300269  19.04717  6.935682e-81 19.21265  23.83497 20.09062  0  1</span></span>
-<span><span class="co">#&gt; 3     3 response 20.66111 1.1830035  17.46496  2.648808e-68 18.24160  23.08063 20.09062  1  0</span></span>
-<span><span class="co">#&gt; 4     4 response 27.59048 1.1300269  24.41577 1.163052e-131 25.27931  29.90164 20.09062  1  1</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response 14.59444 0.9261514  15.75816  6.036286e-56 12.77922  16.40967 20.09062  0  0</span></span>
+<span><span class="co">#&gt; 2     2 response 21.52381 1.1300269  19.04717  6.935682e-81 19.30900  23.73862 20.09062  0  1</span></span>
+<span><span class="co">#&gt; 3     3 response 20.66111 1.1830035  17.46496  2.648808e-68 18.34247  22.97976 20.09062  1  0</span></span>
+<span><span class="co">#&gt; 4     4 response 27.59048 1.1300269  24.41577 1.163052e-131 25.37566  29.80529 20.09062  1  1</span></span></code></pre></div>
 <p>Since there is no <code>term</code> column in the output of the <code>predictions</code> function, we must use parameter identifiers like <code>b1</code>, <code>b2</code>, etc. to determine which estimates we want to compare:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">p</span>, hypothesis <span class="op">=</span> <span class="st">"b1 = b2"</span><span class="op">)</span></span>
@@ -544,12 +544,12 @@
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   1  pre  0.4561646</span></span>
-<span><span class="co">#&gt; 2:  2   0  pre -1.8122747</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre -0.8496633</span></span>
-<span><span class="co">#&gt; 4:  4   1  pre  0.6783164</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre  0.2933913</span></span>
-<span><span class="co">#&gt; 6:  6   0  pre  1.2420542</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:  1   1  pre  0.6706153</span></span>
+<span><span class="co">#&gt; 2:  2   0  pre -0.7186069</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre -0.1159233</span></span>
+<span><span class="co">#&gt; 4:  4   1  pre -1.0361937</span></span>
+<span><span class="co">#&gt; 5:  5   0  pre -0.3427969</span></span>
+<span><span class="co">#&gt; 6:  6   0  pre  0.7946484</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We also compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -558,9 +558,9 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast    estimate  std.error  statistic      p.value   conf.low conf.high   predicted predicted_hi predicted_lo          y time trt</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.03900762 0.07734501 -0.5043328 6.140275e-01 -0.1906011 0.1125858 -0.06394376   -0.1029514  -0.06394376 0.04690488  pre   0</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.30270976 0.07626965  3.9689411 7.219271e-05  0.1532240 0.4521955  0.02230298    0.3250127   0.02230298 0.04690488  pre   1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term   contrast     estimate  std.error   statistic      p.value   conf.low conf.high   predicted predicted_hi predicted_lo          y time trt</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre -0.006490365 0.07495895 -0.08658559 0.9310009212 -0.1534072 0.1404265 -0.03079670  -0.03728707  -0.03079670 0.05994619  pre   0</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre  0.284145362 0.07571232  3.75296063 0.0001747583  0.1357519 0.4325388  0.01376033   0.29790569   0.01376033 0.05994619  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -568,8 +568,8 @@
 <span>    variables <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type          term   estimate std.error statistic     p.value   conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3417174 0.1086246 -3.145855 0.001656018 -0.5546177 -0.128817</span></span></code></pre></div>
+<span><span class="co">#&gt;       type          term   estimate std.error statistic     p.value   conf.low   conf.high</span></span>
+<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.2906357  0.106542 -2.727898 0.006373932 -0.4994542 -0.08181723</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

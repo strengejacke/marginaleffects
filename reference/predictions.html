@@ -30,7 +30,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9108</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9111</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,6 +105,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 <span>  wts <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  hypothesis <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  df <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -206,7 +207,7 @@ levels. See examples section.</p></dd>
 <dt>wts</dt>
 <dd><p>string or numeric: weights to use when computing average
 contrasts or slopes. These weights only affect the averaging in
-<code><a href="averages.html">averages()</a></code>, and not the unit-level estimates themselves.</p><ul><li><p>string: column name of the weights variable in <code>newdata</code>. When supplying a column name to <code>wts</code>, it is recommended to supply the original data (including the weights variable) explicitly to <code>newdata</code>.</p></li>
+<code><a href="averages.html">averages()</a></code> or with the <code>by</code> argument, and not the unit-level estimates themselves.</p><ul><li><p>string: column name of the weights variable in <code>newdata</code>. When supplying a column name to <code>wts</code>, it is recommended to supply the original data (including the weights variable) explicitly to <code>newdata</code>.</p></li>
 <li><p>numeric: vector of length equal to the number of rows in the original data or in <code>newdata</code> (if supplied).</p></li>
 </ul></dd>
 
@@ -231,6 +232,10 @@ contrasts or slopes. These weights only affect the averaging in
 </ul></li>
 <li><p>See the Examples section below and the vignette: https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</p></li>
 </ul></dd>
+
+
+<dt>df</dt>
+<dd><p>Degrees of freedom used to comptute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
 
 
 <dt>...</dt>
@@ -338,12 +343,12 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 26.41451 0.9619738  27.45866 5.476301e-166 24.44399  28.38502</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 20.03819 1.2041405  16.64107  3.512623e-62 17.57162  22.50476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 15.92247 0.9924560  16.04350  6.347069e-58 13.88952  17.95543</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 20.15839 1.2186288  16.54186  1.832792e-61 17.66214  22.65463</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 26.41451 0.9619738  27.45866 5.476301e-166 24.52907  28.29994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 15.92247 0.9924560  16.04350  6.347069e-58 13.97729  17.86765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 20.15839 1.2186288  16.54186  1.832792e-61 17.76992  22.54685</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
@@ -355,8 +360,8 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Adjusted Predictions at User-Specified Values of the Regressors</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span>, cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 26.24623 0.9856325  26.62883 3.148430e-156 24.22726  28.26521</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 25.76546 1.1096486  23.21947 2.895018e-119 23.49245  28.03847</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 26.24623 0.9856325  26.62883 3.148430e-156 24.31443  28.17804</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 25.76546 1.1096486  23.21947 2.895018e-119 23.59059  27.94033</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        mpg  hp cyl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 20.09062 100   4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 20.09062 120   4</span>
@@ -364,12 +369,12 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">drat</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">m</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>FUN_factor <span class="op">=</span> <span class="va">unique</span>, FUN_numeric <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic      p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 21.95333  1.288065  17.04365 3.896507e-65 19.30567  24.60099</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 18.18910  1.270927  14.31168 1.849819e-46 15.57667  20.80153</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 25.54890  1.322154  19.32369 3.395189e-83 22.83117  28.26663</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 21.78467  1.541301  14.13395 2.346178e-45 18.61648  24.95286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 22.61705  2.140950  10.56403 4.374878e-26 18.21627  27.01784</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 18.85282  1.734026  10.87228 1.562441e-27 15.28848  22.41716</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 21.95333  1.288065  17.04365 3.896507e-65 19.42877  24.47789</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 18.18910  1.270927  14.31168 1.849819e-46 15.69813  20.68007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 25.54890  1.322154  19.32369 3.395189e-83 22.95752  28.14027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 21.78467  1.541301  14.13395 2.346178e-45 18.76377  24.80556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 22.61705  2.140950  10.56403 4.374878e-26 18.42087  26.81324</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 18.85282  1.734026  10.87228 1.562441e-27 15.45419  22.25145</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    mpg  hp  drat cyl am</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 19.2 123 3.695   6  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 19.2 123 3.695   6  0</span>
@@ -414,12 +419,12 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 25.38434 0.8176495  31.04550 1.311940e-211 23.71206  27.05662</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 25.38434 0.8176495  31.04550 1.311940e-211 23.71206  27.05662</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 26.38543 0.8495566  31.05789 8.927432e-212 24.64790  28.12297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 20.10726 0.7754954  25.92827 3.197502e-148 18.52119  21.69332</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 16.27955 0.6773841  24.03297 1.258166e-127 14.89414  17.66495</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 20.40169 0.7962179  25.62325 8.401973e-145 18.77325  22.03014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 25.38434 0.8176495  31.04550 1.311940e-211 23.78178  26.98690</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 25.38434 0.8176495  31.04550 1.311940e-211 23.78178  26.98690</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 26.38543 0.8495566  31.05789 8.927432e-212 24.72033  28.05053</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 20.10726 0.7754954  25.92827 3.197502e-148 18.58731  21.62720</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 16.27955 0.6773841  24.03297 1.258166e-127 14.95190  17.60720</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 20.40169 0.7962179  25.62325 8.401973e-145 18.84114  21.96225</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
