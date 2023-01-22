@@ -84,7 +84,7 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 [![status](https://tinyverse.netlify.com/badge/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 --><p>Compute and plot predictions, slopes, marginal means, and comparisons (contrasts, risk ratios, etc.) for over 70 classes of statistical models in R. Conduct linear and non-linear hypothesis tests using the delta method.</p>
-<p>The code on this website was executed using <code>marginaleffects</code> 0.8.1.9112. See the <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">installation section</a> to install the latest CRAN or development version.</p>
+<p>The code on this website was executed using <code>marginaleffects</code> 0.8.1.9113. See the <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">installation section</a> to install the latest CRAN or development version.</p>
 <div class="section level2">
 <h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
 </h2>
@@ -96,7 +96,7 @@
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#estimands-predictions-comparisons-and-slopes">Estimands: Predictions, Comparisons, and Slopes</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#prediction-grid">Prediction Grid</a></li>
 <li><a href="https://vincentarelbundock.github.io/marginaleffects/#averaging">Averaging</a></li>
-<li><a href="https://vincentarelbundock.github.io/marginaleffects/#hypothesis-tests">Hypothesis Tests and Custom Contrasts</a></li>
+<li><a href="https://vincentarelbundock.github.io/marginaleffects/#hypothesis-and-equivalence-tests">Hypothesis Tests, Custom Contrasts, and Equivalence Tests</a></li>
 </ol>
 </li>
 </ul>
@@ -270,7 +270,7 @@
 </tr>
 <tr class="even">
 <td><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a></td>
-<td><a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginalmeans.html"><code>marginalmeans()</code></a></td>
+<td><a href="https://vincentarelbundock.github.io/marginaleffects/reference/marginalmeans.html"><code>marginal_means()</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -309,12 +309,12 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type term contrast    estimate  std.error statistic     p.value    conf.low     conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
-<span><span class="co">#&gt; 1     1 response   hp       +1 -0.03690556 0.01850171 -1.994710 0.046074491 -0.07316824 -0.0006428654  22.48857     22.47012     22.50702 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
+<span><span class="co">#&gt; 1     1 response   hp       +1 -0.03690556 0.01850171 -1.994710 0.046074489 -0.07316824 -0.0006428657  22.48857     22.47012     22.50702 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 2     2 response   hp       +1 -0.02868936 0.01562861 -1.835695 0.066402820 -0.05932088  0.0019421563  20.80186     20.78751     20.81620 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
-<span><span class="co">#&gt; 3     3 response   hp       +1 -0.04657166 0.02258715 -2.061866 0.039220505 -0.09084166 -0.0023016732  25.26465     25.24137     25.28794 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
+<span><span class="co">#&gt; 3     3 response   hp       +1 -0.04657166 0.02258715 -2.061866 0.039220507 -0.09084166 -0.0023016728  25.26465     25.24137     25.28794 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
 <span><span class="co">#&gt; 4     4 response   hp       +1 -0.04227128 0.01328278 -3.182412 0.001460541 -0.06830506 -0.0162375067  20.25549     20.23436     20.27663 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 0.0283</span></span>
 <span><span class="co">#&gt; 5     5 response   hp       +1 -0.03901845 0.01341076 -2.909487 0.003620221 -0.06530307 -0.0127338342  16.99782     16.97831     17.01733 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 0.0283</span></span>
-<span><span class="co">#&gt; 6     6 response   hp       +1 -0.03872931 0.01348887 -2.871204 0.004089118 -0.06516702 -0.0122916003  19.66353     19.64417     19.68290 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 0.0283</span></span></code></pre></div>
+<span><span class="co">#&gt; 6     6 response   hp       +1 -0.03872931 0.01348887 -2.871204 0.004089117 -0.06516702 -0.0122916004  19.66353     19.64417     19.68290 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 0.0283</span></span></code></pre></div>
 <p>The <code><a href="reference/comparisons.html">comparisons()</a></code> function allows customized queries. For example, what happens to the predicted outcome when the <code>hp</code> variable increases from 100 to 120?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -355,11 +355,11 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type term    estimate  std.error statistic     p.value    conf.low     conf.high predicted predicted_hi predicted_lo  mpg cyl disp  hp drat    wt  qsec vs am gear carb    eps</span></span>
-<span><span class="co">#&gt; 1     1 response   hp -0.03690556 0.01850172 -1.994710 0.046074551 -0.07316825 -0.0006428553  22.48857     22.48752     22.48857 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
-<span><span class="co">#&gt; 2     2 response   hp -0.02868936 0.01562861 -1.835695 0.066402771 -0.05932087  0.0019421508  20.80186     20.80105     20.80186 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
+<span><span class="co">#&gt; 1     1 response   hp -0.03690556 0.01850171 -1.994710 0.046074489 -0.07316824 -0.0006428657  22.48857     22.48752     22.48857 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 0.0283</span></span>
+<span><span class="co">#&gt; 2     2 response   hp -0.02868936 0.01562861 -1.835695 0.066402831 -0.05932088  0.0019421575  20.80186     20.80105     20.80186 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 0.0283</span></span>
 <span><span class="co">#&gt; 3     3 response   hp -0.04657166 0.02258715 -2.061866 0.039220507 -0.09084166 -0.0023016728  25.26465     25.26333     25.26465 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 0.0283</span></span>
-<span><span class="co">#&gt; 4     4 response   hp -0.04227128 0.01328278 -3.182412 0.001460541 -0.06830506 -0.0162375066  20.25549     20.25430     20.25549 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 0.0283</span></span>
-<span><span class="co">#&gt; 5     5 response   hp -0.03901845 0.01341076 -2.909487 0.003620221 -0.06530307 -0.0127338342  16.99782     16.99671     16.99782 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 0.0283</span></span>
+<span><span class="co">#&gt; 4     4 response   hp -0.04227128 0.01328278 -3.182412 0.001460541 -0.06830506 -0.0162375067  20.25549     20.25430     20.25549 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 0.0283</span></span>
+<span><span class="co">#&gt; 5     5 response   hp -0.03901845 0.01341076 -2.909487 0.003620221 -0.06530307 -0.0127338341  16.99782     16.99671     16.99782 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 0.0283</span></span>
 <span><span class="co">#&gt; 6     6 response   hp -0.03872931 0.01348887 -2.871204 0.004089117 -0.06516702 -0.0122916004  19.66353     19.66244     19.66353 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 0.0283</span></span></code></pre></div>
 </div>
 </div>
@@ -395,8 +395,8 @@
 <span>  variables <span class="op">=</span> <span class="st">"wt"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type term  estimate std.error statistic    p.value  conf.low  conf.high predicted predicted_hi predicted_lo      mpg       hp      wt am       eps</span></span>
-<span><span class="co">#&gt; 1     1 response   wt -2.676166  1.419297 -1.885558 0.05935449 -5.457937  0.1056037  18.69864     18.69760     18.69864 20.09062 146.6875 3.21725  0 0.0003911</span></span>
-<span><span class="co">#&gt; 2     2 response   wt -5.432464  2.152370 -2.523946 0.01160458 -9.651031 -1.2138976  17.89006     17.88793     17.89006 20.09062 146.6875 3.21725  1 0.0003911</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response   wt -2.676166  1.419297 -1.885558 0.05935455 -5.457937  0.1056043  18.69864     18.69760     18.69864 20.09062 146.6875 3.21725  0 0.0003911</span></span>
+<span><span class="co">#&gt; 2     2 response   wt -5.432464  2.152370 -2.523946 0.01160458 -9.651031 -1.2138974  17.89006     17.88793     17.89006 20.09062 146.6875 3.21725  1 0.0003911</span></span></code></pre></div>
 <p>We can also plot how predictions, comparisons, or slopes change across different values of the predictors using <a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html">three powerful plotting functions:</a></p>
 <ul>
 <li>
@@ -449,14 +449,14 @@
 <span></span>
 <span><span class="fu"><a href="reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term    Contrast Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %    97.5 % cyl</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.03667    0.01048 -3.4996 0.00046588 -0.05721 -0.016134   6</span></span>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.03667    0.01048 -3.4996 0.00046589 -0.05721 -0.016134   6</span></span>
 <span><span class="co">#&gt; 2   hp mean(dY/dX) -0.05301    0.01989 -2.6657 0.00768339 -0.09199 -0.014034   4</span></span>
-<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.02704    0.01738 -1.5553 0.11987297 -0.06110  0.007034   8</span></span>
-<span><span class="co">#&gt; 4   wt mean(dY/dX) -4.32457    1.39608 -3.0977 0.00195057 -7.06083 -1.588306   6</span></span>
+<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.02704    0.01738 -1.5553 0.11987298 -0.06110  0.007034   8</span></span>
+<span><span class="co">#&gt; 4   wt mean(dY/dX) -4.32457    1.39608 -3.0977 0.00195057 -7.06083 -1.588307   6</span></span>
 <span><span class="co">#&gt; 5   wt mean(dY/dX) -6.44404    1.45832 -4.4188 9.9252e-06 -9.30230 -3.585773   4</span></span>
-<span><span class="co">#&gt; 6   wt mean(dY/dX) -1.77819    1.00704 -1.7658 0.07743628 -3.75196  0.195572   8</span></span>
-<span><span class="co">#&gt; 7   am mean(dY/dX) -1.12930    1.60146 -0.7052 0.48070735 -4.26810  2.009513   6</span></span>
-<span><span class="co">#&gt; 8   am mean(dY/dX)  1.27543    2.63009  0.4849 0.62772027 -3.87945  6.430303   4</span></span>
+<span><span class="co">#&gt; 6   wt mean(dY/dX) -1.77819    1.00704 -1.7658 0.07743630 -3.75196  0.195572   8</span></span>
+<span><span class="co">#&gt; 7   am mean(dY/dX) -1.12930    1.60146 -0.7052 0.48070738 -4.26810  2.009513   6</span></span>
+<span><span class="co">#&gt; 8   am mean(dY/dX)  1.27543    2.63008  0.4849 0.62771979 -3.87944  6.430296   4</span></span>
 <span><span class="co">#&gt; 9   am mean(dY/dX) -0.54744    2.77930 -0.1970 0.84385090 -5.99477  4.899891   8</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
@@ -479,9 +479,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>For convenience, the <code>marginaleffects</code> package also includes a <code><a href="reference/marginalmeans.html">marginalmeans()</a></code> function:</p>
+<p>For convenience, the <code>marginaleffects</code> package also includes a <code><a href="reference/marginal_means.html">marginal_means()</a></code> function:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/marginalmeans.html">marginalmeans</a></span><span class="op">(</span><span class="va">mod_cat</span>, variables <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/marginal_means.html">marginal_means</a></span><span class="op">(</span><span class="va">mod_cat</span>, variables <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type term value    am estimate std.error statistic       p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 response   am FALSE FALSE 18.31987 0.7853925  23.32575 2.429619e-120 16.78053  19.85921</span></span>
 <span><span class="co">#&gt; 2 response   am  TRUE  TRUE 22.47772 0.8343346  26.94090 7.291801e-160 20.84246  24.11299</span></span></code></pre></div>
@@ -519,8 +519,8 @@
 <span>  variables <span class="op">=</span> <span class="st">"drat"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsec <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type term  estimate std.error statistic    p.value   conf.low conf.high predicted predicted_hi predicted_lo      mpg     drat qsec      eps</span></span>
-<span><span class="co">#&gt; 1     1 response drat  5.223926  3.791061  1.377959 0.16821604 -2.2064175  12.65427  16.27566     16.27679     16.27566 20.09062 3.596563 14.5 0.000217</span></span>
-<span><span class="co">#&gt; 2     2 response drat 10.241374  5.161440  1.984209 0.04723256  0.1251384  20.35761  25.71863     25.72085     25.71863 20.09062 3.596563 22.9 0.000217</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response drat  5.223926  3.791080  1.377952 0.16821811 -2.2064538  12.65431  16.27566     16.27679     16.27566 20.09062 3.596563 14.5 0.000217</span></span>
+<span><span class="co">#&gt; 2     2 response drat 10.241374  5.161439  1.984209 0.04723254  0.1251396  20.35761  25.71863     25.72085     25.71863 20.09062 3.596563 22.9 0.000217</span></span></code></pre></div>
 <p>Are these two slopes significantly different from one another? To test this, we can use the <code>hypothesis</code> argument:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/slopes.html">slopes</a></span><span class="op">(</span></span>
@@ -528,14 +528,14 @@
 <span>  hypothesis <span class="op">=</span> <span class="st">"b1 = b2"</span>,</span>
 <span>  variables <span class="op">=</span> <span class="st">"drat"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsec <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type  term  estimate std.error  statistic   p.value  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response b1=b2 -5.017448  8.519298 -0.5889509 0.5558942 -21.71497  11.68007</span></span></code></pre></div>
+<span><span class="co">#&gt;       type  term  estimate std.error  statistic   p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response b1=b2 -5.017448  8.519316 -0.5889496 0.5558951  -21.715  11.68011</span></span></code></pre></div>
 <p>Now, imagine that for theoretical (or substantive or clinical) reasons, we only care about slopes larger than 2. We can use the <code><a href="reference/hypotheses.html">hypotheses()</a></code> function to conduct an equivalence test:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Term Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %    p (Inf)  p (Sup)   p (Eq)</span></span>
 <span><span class="co">#&gt; 1 qsec    1.124     0.4331 2.595  0.0094487 0.2752  1.973 2.7403e-13 0.021585 0.021585</span></span>
-<span><span class="co">#&gt; 2 drat    7.224     1.3652 5.292 1.2122e-07 4.5484  9.900 7.0624e-12 0.999935 0.999935</span></span>
+<span><span class="co">#&gt; 2 drat    7.224     1.3652 5.292 1.2122e-07 4.5484  9.900 7.0623e-12 0.999935 0.999935</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>

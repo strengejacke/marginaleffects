@@ -121,7 +121,7 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/deltamethod.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/expect_marginalmeans.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/expect_marginal_means.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/expect_margins.html</loc>
@@ -157,6 +157,9 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/marginal_means.html</loc>
+  </url>
+  <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/marginaleffects.html</loc>
   </url>
   <url>
@@ -176,6 +179,9 @@
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_cme.html</loc>
+  </url>
+  <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/posterior_draws.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/posteriordraws.html</loc>

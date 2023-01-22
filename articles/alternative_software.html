@@ -120,7 +120,7 @@
 </h2>
 <p>The <a href="https://cran.r-project.org/web/packages/emmeans/index.html" class="external-link"><code>emmeans</code> package</a> is developed by Russell V. Lenth and colleagues. <code>emmeans</code> is a truly incredible piece of software, and a trailblazer in the <code>R</code> ecosystem. It is an <em>extremely</em> powerful package whose functionality overlaps <code>marginaleffects</code> to a significant degree: marginal means, contrasts, and slopes. Even if the two packages can compute many of the same quantities, <code>emmeans</code> and <code>marginaleffects</code> have pretty different philosophies with respect to user interface and computation.</p>
 <p>An <code>emmeans</code> analysis typically starts by computing <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">“marginal means”</a> by holding all numeric covariates at their means, and by averaging across a balanced grid of categorical predictors. Then, users can use the <code><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast()</a></code> function to estimate the difference between marginal means.</p>
-<p>The <code>marginaleffects</code> package supplies a <code>marginalmeans</code> function which can also compute marginal means. However, the typical analysis is more squarely centered on predicted/fitted values. This is a useful starting point because, in many cases, analysts will find it easy and intuitive to express their scientific queries in terms of changes in predicted values. For example,</p>
+<p>The <code>marginaleffects</code> package supplies a <code>marginal_means</code> function which can also compute marginal means. However, the typical analysis is more squarely centered on predicted/fitted values. This is a useful starting point because, in many cases, analysts will find it easy and intuitive to express their scientific queries in terms of changes in predicted values. For example,</p>
 <ul>
 <li>How does the average predicted probability of survival differ between treatment and control group?</li>
 <li>What is the difference between the predicted wage of college and high school graduates?</li>
@@ -353,7 +353,7 @@
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true"></a></span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true"></a><span class="co"># 1. means for each level of am at mean wt.</span></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true"></a><span class="kw">emmeans</span>(m, <span class="st">"am"</span>)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true"></a><span class="kw">marginalmeans</span>(m, <span class="dt">variables =</span> <span class="st">"am"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true"></a><span class="kw">marginal_means</span>(m, <span class="dt">variables =</span> <span class="st">"am"</span>)</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true"></a><span class="kw">predictions</span>(m, <span class="dt">newdata =</span> <span class="kw">datagrid</span>(<span class="dt">am =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">1</span>))</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true"></a></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true"></a><span class="co"># 2. means for each level of am at wt = 2.5, 3, 3.5.</span></span>
