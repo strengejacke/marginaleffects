@@ -44,7 +44,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9112</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9113</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -454,8 +454,8 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response gear    4 - 3 0.6666667 0.1174440  5.676462 1.375090e-08</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     1 response gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high     predicted predicted_hi  predicted_lo      am gear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528 -2.355139e-16    0.6666667 -2.355139e-16 0.40625    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148 -2.355139e-16    1.0000000 -2.355139e-16 0.40625    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528 -1.177569e-16    0.6666667 -1.177569e-16 0.40625    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.6930852 1.3069148 -1.177569e-16    1.0000000 -1.177569e-16 0.40625    3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrasts between marginal means</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"marginalmeans"</span><span class="op">)</span></span></span>
@@ -463,8 +463,8 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 response gear    4 - 3 0.6666667 0.1174440  5.676462 1.375090e-08 0.4364806</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 response gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10 0.6930852</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high predicted predicted_hi  predicted_lo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528 0.5555556    0.6666667 -2.355139e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148 0.5555556    1.0000000 -2.355139e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.8968528 0.5555556    0.6666667 -1.177569e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.3069148 0.5555556    1.0000000 -1.177569e-16</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrasts at user-specified values</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span>, gear <span class="op">=</span> <span class="va">tmp</span><span class="op">$</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -476,12 +476,12 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     2 response gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     3 response gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high     predicted predicted_hi  predicted_lo am gear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528  6.666667e-01    0.6666667 -2.355139e-16  0    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4364806 0.8968528 -2.355139e-16    0.6666667 -2.355139e-16  0    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.4364806 0.8968528  1.000000e+00    0.6666667 -2.355139e-16  0    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6930852 1.3069148  6.666667e-01    1.0000000 -2.355139e-16  0    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.6930852 1.3069148 -2.355139e-16    1.0000000 -2.355139e-16  0    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.6930852 1.3069148  1.000000e+00    1.0000000 -2.355139e-16  0    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528  6.666667e-01    0.6666667 -1.177569e-16  0    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4364806 0.8968528 -1.177569e-16    0.6666667 -1.177569e-16  0    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.4364806 0.8968528  1.000000e+00    0.6666667 -1.177569e-16  0    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6930852 1.3069148  6.666667e-01    1.0000000 -1.177569e-16  0    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.6930852 1.3069148 -1.177569e-16    1.0000000 -1.177569e-16  0    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.6930852 1.3069148  1.000000e+00    1.0000000 -1.177569e-16  0    5</span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="va">unique</span>, gear <span class="op">=</span> <span class="va">max</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term contrast  estimate std.error statistic      p.value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response gear    4 - 3 0.6666667 0.1174440  5.676462 1.375090e-08</span>
@@ -489,10 +489,10 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3     1 response gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     2 response gear    5 - 3 1.0000000 0.1565921  6.386020 1.702589e-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    conf.low conf.high predicted predicted_hi  predicted_lo am gear</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528         1    0.6666667 -2.355139e-16  1    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4364806 0.8968528         1    0.6666667 -2.355139e-16  0    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.6930852 1.3069148         1    1.0000000 -2.355139e-16  1    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6930852 1.3069148         1    1.0000000 -2.355139e-16  0    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.4364806 0.8968528         1    0.6666667 -1.177569e-16  1    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.4364806 0.8968528         1    0.6666667 -1.177569e-16  0    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.6930852 1.3069148         1    1.0000000 -1.177569e-16  1    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.6930852 1.3069148         1    1.0000000 -1.177569e-16  0    5</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">drat</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">m</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>FUN_factor <span class="op">=</span> <span class="va">unique</span>, FUN_numeric <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span></span>
