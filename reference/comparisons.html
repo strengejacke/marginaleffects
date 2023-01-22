@@ -10,13 +10,13 @@ default, the comparisons() function thus returns one estimate of the
 comparison for each row of the dataset used to fit a model.
 The newdata argument controls where comparisons are evaluated in the predictor
 space: "at observed values", "at the mean", "at representative values", etc.
-The averages() function or by argument can aggregate
+The avg_comparisons() function or by argument can aggregate
 unit-level estimates into an "average contrast", "average risk ratio", etc.
 See the comparisons vignette and package website for worked examples and case studies:
 https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html
 https://vincentarelbundock.github.io/marginaleffects/
 
-'><title>Comparisons Between Predictions Made for Different Regressor Values — comparisons • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparisons Between Predictions Made for Different Regressor Values — comparisons"><meta property="og:description" content='Predict the outcome variable at different regressor values (e.g., college
+'><title>Comparisons Between Predictions Made for Different Regressor Values — comparisons • marginaleffects</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparisons Between Predictions Made for Different Regressor Values — comparisons"><meta property="og:description" content='Predict the outcome variable at different regressor values (e.g., college
 graduates vs. others), and compare those predictions by computing a difference,
 ratio, or some other function. comparisons() can return many quantities of
 interest, such as contrasts, differences, risk ratios, changes in log odds,
@@ -27,7 +27,7 @@ default, the comparisons() function thus returns one estimate of the
 comparison for each row of the dataset used to fit a model.
 The newdata argument controls where comparisons are evaluated in the predictor
 space: "at observed values", "at the mean", "at representative values", etc.
-The averages() function or by argument can aggregate
+The avg_comparisons() function or by argument can aggregate
 unit-level estimates into an "average contrast", "average risk ratio", etc.
 See the comparisons vignette and package website for worked examples and case studies:
 https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html
@@ -44,7 +44,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9111</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9112</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +106,7 @@ default, the <code>comparisons()</code> function thus returns one estimate of th
 comparison for each row of the dataset used to fit a model.</p>
 <p>The <code>newdata</code> argument controls where comparisons are evaluated in the predictor
 space: "at observed values", "at the mean", "at representative values", etc.</p>
-<p>The <code><a href="averages.html">averages()</a></code> function or <code>by</code> argument can aggregate
+<p>The <code>avg_comparisons()</code> function or <code>by</code> argument can aggregate
 unit-level estimates into an "average contrast", "average risk ratio", etc.</p>
 <p>See the comparisons vignette and package website for worked examples and case studies:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/">https://vincentarelbundock.github.io/marginaleffects/</a></p></li>
@@ -121,6 +121,24 @@ unit-level estimates into an "average contrast", "average risk ratio", etc.</p>
 <span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vcov <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  by <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  transform_pre <span class="op">=</span> <span class="st">"difference"</span>,</span>
+<span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cross <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  wts <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  hypothesis <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  df <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  eps <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">avg_comparisons</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  variables <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  vcov <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  by <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  transform_pre <span class="op">=</span> <span class="st">"difference"</span>,</span>
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -303,6 +321,11 @@ method.</p>
 <li><p>Custom contrasts using arbitrary functions</p></li>
 </ul></div>
     <div class="section level2">
+    <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
+    
+<ul><li><p><code>avg_comparisons()</code>: Average comparisons</p></li>
+</ul></div>
+    <div class="section level2">
     <h2 id="vignettes-and-documentation">Vignettes and documentation<a class="anchor" aria-label="anchor" href="#vignettes-and-documentation"></a></h2>
     
 
@@ -364,8 +387,8 @@ option:</p>
 <p>By default, the center of the posterior distribution in bayesian models is
 identified by the median. Users can use a different summary function by setting a
 global option:</p>
-<p><code>options("marginaleffects_posterior_center" = mean)</code></p>
-<p><code>options("marginaleffects_posterior_center" = median)</code></p>
+<p><code>options("marginaleffects_posterior_center" = "mean")</code></p>
+<p><code>options("marginaleffects_posterior_center" = "median")</code></p>
 <p>When estimates are averaged using the <code>by</code> argument, the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function, or
 the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function, the posterior distribution is marginalized twice over.
 First, we take the average <em>across</em> units but <em>within</em> each iteration of the
@@ -698,7 +721,7 @@ posterior using the function supplied to the
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
