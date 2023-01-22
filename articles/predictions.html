@@ -309,10 +309,9 @@ hp
 <li>Create a new dataset with each of the original regressor values, but fixing some regressors to values of interest.</li>
 <li>Take the average of the predicted values in this new dataset.</li>
 </ol>
-<p>We can obtain AAPs by applying the <code><a href="../reference/averages.html">averages()</a></code> functions to an object produced by the <code><a href="../reference/predictions.html">predictions()</a></code> function:</p>
+<p>We can obtain AAPs by applying the <code>avg_*()</code> functions or <code>by</code> argument:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">avg_predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Estimate Std. Error    z   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1   0.4375    0.04288 10.2 &lt; 2.22e-16 0.3535 0.5215</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -320,7 +319,8 @@ hp
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>This is equivalent to:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.4375</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -371,7 +371,7 @@ hp
 <span><span class="co">#&gt; 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span>
 <span></span>
 <span><span class="co"># average predictions</span></span>
-<span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/predictions.html">avg_predictions</a></span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Group Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt; 1     3   0.4688    0.04043 11.595 &lt; 2.22e-16 0.38952 0.5480</span></span>
 <span><span class="co">#&gt; 2     4   0.3750    0.06142  6.106 1.0231e-09 0.25462 0.4954</span></span>

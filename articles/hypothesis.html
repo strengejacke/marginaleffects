@@ -337,26 +337,27 @@
 <div class="section level3">
 <h3 id="average-contrasts-or-marginal-effects">Average contrasts or marginal effects<a class="anchor" aria-label="anchor" href="#average-contrasts-or-marginal-effects"></a>
 </h3>
-<p>The standard workflow with the <code>marginaleffects</code> package is to first call a function like <code><a href="../reference/slopes.html">slopes()</a></code> or <code><a href="../reference/comparisons.html">comparisons()</a></code> to compute unit-level quantities, and then to call <code><a href="../reference/averages.html">averages()</a></code> to aggregate the unit-level quantities into “Average Marginal Effects” or “Average Contrasts.” We can use the <code>transform_pre</code> argument to emulate the behavior of <code><a href="../reference/averages.html">averages()</a></code>, computing average marginal effects in a single step.</p>
+<p>The standard workflow with the <code>marginaleffects</code> package is to call a function like <code><a href="../reference/predictions.html">predictions()</a></code>, <code><a href="../reference/slopes.html">slopes()</a></code> or <code><a href="../reference/comparisons.html">comparisons()</a></code> to compute unit-level quantities; or one of their cousins <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, or <code><a href="../reference/slopes.html">avg_slopes()</a></code> to aggregate the unit-level quantities into “Average Marginal Effects” or “Average Contrasts.” We can also use the <code>transform_pre</code> argument to emulate the behavior of the <code>avg_*()</code> functions.</p>
 <p>First, note that these three commands produce the same results:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term          Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1   am mean(1) - mean(0)    6.067      1.275 4.759 1.9479e-06 3.568  8.565</span></span>
-<span><span class="co">#&gt; 2   vs mean(1) - mean(0)    6.929      1.262 5.490 4.0146e-08 4.456  9.403</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"vs"</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 6.929365</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"vs"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term Contrast Estimate Std. Error    z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1   vs    1 - 0    6.929      1.262 5.49 4.0146e-08 4.456  9.403</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
+<span>    variables <span class="op">=</span> <span class="st">"vs"</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term          contrast estimate std.error statistic      p.value conf.low conf.high predicted predicted_hi predicted_lo</span></span>
-<span><span class="co">#&gt; 1 response   am mean(1) - mean(0) 6.066667  1.274842  4.758759 1.947871e-06 3.568022  8.565312  20.66111     20.66111     14.59444</span></span>
-<span><span class="co">#&gt; 2 response   vs mean(1) - mean(0) 6.929365  1.262132  5.490208 4.014610e-08 4.455633  9.403098  20.66111     27.59048     20.66111</span></span></code></pre></div>
-<p>Notice that in the last one we did not need to use <code><a href="../reference/averages.html">averages()</a></code> or <code><a href="../reference/averages.html">averages()</a></code>, and yet we still obtained average contrasts. <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">See the transformations section of the Contrasts vignette for more details.</a></p>
-<p>With these results in hand, we can finally conduct a linear hypothesis test between average marginal effects:</p>
+<span><span class="co">#&gt;       type term          contrast estimate std.error statistic     p.value conf.low conf.high predicted predicted_hi predicted_lo</span></span>
+<span><span class="co">#&gt; 1 response   vs mean(1) - mean(0) 6.929365  1.262132  5.490208 4.01461e-08 4.455633  9.403098  20.66111     27.59048     20.66111</span></span></code></pre></div>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">See the transformations section of the Contrasts vignette for more details.</a></p>
+<p>With these results in hand, we can now conduct a linear hypothesis test between average marginal effects:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -577,12 +578,12 @@
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   0  pre -0.3245416</span></span>
-<span><span class="co">#&gt; 2:  2   1  pre -0.3829723</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre -0.7864092</span></span>
-<span><span class="co">#&gt; 4:  4   1  pre -0.4037513</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre -0.5563801</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre  0.9382226</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:  1   0  pre -2.1905632</span></span>
+<span><span class="co">#&gt; 2:  2   0  pre -1.2341724</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre  1.6000348</span></span>
+<span><span class="co">#&gt; 4:  4   0  pre -1.2162220</span></span>
+<span><span class="co">#&gt; 5:  5   0  pre -0.7787764</span></span>
+<span><span class="co">#&gt; 6:  6   1  pre  1.0396605</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We also compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -591,9 +592,9 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast      estimate  std.error    statistic      p.value   conf.low conf.high    predicted predicted_hi predicted_lo         y time trt</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.0001153873 0.07465670 -0.001545572 9.987668e-01 -0.1464398 0.1462091  0.006694806  0.006579419  0.006694806 0.0773854  pre   0</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.3286973162 0.07540704  4.358973883 1.306737e-05  0.1809022 0.4764924 -0.014785710  0.313911606 -0.014785710 0.0773854  pre   1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term   contrast    estimate  std.error  statistic      p.value   conf.low conf.high   predicted predicted_hi predicted_lo          y time trt</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre 0.001319925 0.07467998 0.01767441 9.858986e-01 -0.1450502 0.1476900 0.005124082  0.006444007  0.005124082 0.09941161  pre   0</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre 0.319379547 0.07649434 4.17520510 2.977177e-05  0.1694534 0.4693057 0.037954042  0.357333588  0.037954042 0.09941161  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -602,7 +603,7 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type          term   estimate std.error statistic     p.value   conf.low  conf.high</span></span>
-<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3288127 0.1061124  -3.09872 0.001943584 -0.5367892 -0.1208362</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3180596 0.1069041 -2.975187 0.002928102 -0.5275878 -0.1085315</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="equivalence-non-inferiority-and-non-superiority-tests">Equivalence, non-inferiority, and non-superiority tests<a class="anchor" aria-label="anchor" href="#equivalence-non-inferiority-and-non-superiority-tests"></a>
@@ -674,39 +675,39 @@
 <p>The p value is 0.0013, which suggests that we can reject the hypothesis that the parameter falls outside the equivalence region (or “substantive irrelevance region”).</p>
 </div>
 <div class="section level5">
-<h5 id="example-4-difference-between-slopes">Example 4: Difference between slopes<a class="anchor" aria-label="anchor" href="#example-4-difference-between-slopes"></a>
+<h5 id="example-4-difference-between-comparisons-contrasts">Example 4: Difference between comparisons (contrasts)<a class="anchor" aria-label="anchor" href="#example-4-difference-between-comparisons-contrasts"></a>
 </h5>
-<p>Consider a model with an interaction:</p>
+<p>Consider a model with a multiplicative interaction:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
-<p>The average slope – partial derivative of <code>mpg</code> with respect to <code>hp</code> – differs based on the value of <code>gear</code>:</p>
+<p>The average contrast for a change of 1 unit in <code>hp</code> differs based on the value of <code>gear</code>:</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">int</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 % gear</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.17919    0.03025 -5.923 3.1628e-09 -0.23848 -0.11989    4</span></span>
-<span><span class="co">#&gt; 2   hp mean(dY/dX) -0.05224    0.01456 -3.588 0.00033337 -0.08078 -0.02370    3</span></span>
-<span><span class="co">#&gt; 3   hp mean(dY/dX) -0.05827    0.01263 -4.613 3.9749e-06 -0.08303 -0.03351    5</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">int</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term Contrast Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 % gear</span></span>
+<span><span class="co">#&gt; 1   hp mean(+1) -0.17919    0.03025 -5.923 3.1628e-09 -0.23848 -0.11989    4</span></span>
+<span><span class="co">#&gt; 2   hp mean(+1) -0.05224    0.01456 -3.588 0.00033337 -0.08078 -0.02370    3</span></span>
+<span><span class="co">#&gt; 3   hp mean(+1) -0.05827    0.01263 -4.613 3.9749e-06 -0.08303 -0.03351    5</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>Are these slopes different from one another? Let’s look at the pairwise comparisons between them:</p>
+<p>Are these contrasts different from one another? Let’s look at the pairwise differences between them:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">int</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"gear"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                  Term  Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1 4,hp,mean(dY/dX) - 3,hp,mean(dY/dX) -0.126946    0.03357 -3.7810 0.00015618 -0.19275 -0.06114</span></span>
-<span><span class="co">#&gt; 2 4,hp,mean(dY/dX) - 5,hp,mean(dY/dX) -0.120917    0.03278 -3.6882 0.00022581 -0.18517 -0.05666</span></span>
-<span><span class="co">#&gt; 3 3,hp,mean(dY/dX) - 5,hp,mean(dY/dX)  0.006029    0.01928  0.3128 0.75445658 -0.03175  0.04381</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">int</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"gear"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                            Term  Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt; 1 4,hp,mean(+1) - 3,hp,mean(+1) -0.126946    0.03357 -3.7810 0.00015618 -0.19275 -0.06114</span></span>
+<span><span class="co">#&gt; 2 4,hp,mean(+1) - 5,hp,mean(+1) -0.120917    0.03278 -3.6882 0.00022581 -0.18517 -0.05666</span></span>
+<span><span class="co">#&gt; 3 3,hp,mean(+1) - 5,hp,mean(+1)  0.006029    0.01928  0.3128 0.75445655 -0.03175  0.04381</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>We consider that these pairwise comparisons are “equivalent to zero” when they fall in the [-.1, .1] interval:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">int</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"gear"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">int</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"gear"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                  Term  Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %   97.5 %    p (Inf)    p (Sup)</span></span>
-<span><span class="co">#&gt; 1 4,hp,mean(dY/dX) - 3,hp,mean(dY/dX) -0.126946    0.03357 -3.7810 0.00015618 -0.19275 -0.06114    0.78889 6.9242e-12</span></span>
-<span><span class="co">#&gt; 2 4,hp,mean(dY/dX) - 5,hp,mean(dY/dX) -0.120917    0.03278 -3.6882 0.00022581 -0.18517 -0.05666    0.73827 8.0036e-12</span></span>
-<span><span class="co">#&gt; 3 3,hp,mean(dY/dX) - 5,hp,mean(dY/dX)  0.006029    0.01928  0.3128 0.75445658 -0.03175  0.04381 1.8936e-08 5.4416e-07</span></span>
+<span><span class="co">#&gt;                            Term  Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %   97.5 %    p (Inf)    p (Sup)</span></span>
+<span><span class="co">#&gt; 1 4,hp,mean(+1) - 3,hp,mean(+1) -0.126946    0.03357 -3.7810 0.00015618 -0.19275 -0.06114    0.78889 6.9242e-12</span></span>
+<span><span class="co">#&gt; 2 4,hp,mean(+1) - 5,hp,mean(+1) -0.120917    0.03278 -3.6882 0.00022581 -0.18517 -0.05666    0.73827 8.0037e-12</span></span>
+<span><span class="co">#&gt; 3 3,hp,mean(+1) - 5,hp,mean(+1)  0.006029    0.01928  0.3128 0.75445655 -0.03175  0.04381 1.8936e-08 5.4416e-07</span></span>
 <span><span class="co">#&gt;       p (Eq)</span></span>
 <span><span class="co">#&gt; 1    0.78889</span></span>
 <span><span class="co">#&gt; 2    0.73827</span></span>
@@ -714,44 +715,13 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>The <code>p (Eq.)</code> column shows that the difference between the average slope when <code>gear</code> is 3 and <code>gear</code> is 5 can be said to be equivalent to the specified interval. However, there are good reasons to think that the other two pairwise comparisons may fall outside the interval.</p>
+<p>The <code>p (Eq.)</code> column shows that the difference between the average contrasts when <code>gear</code> is 3 and <code>gear</code> is 5 can be said to be equivalent to the specified interval. However, there are good reasons to think that the other two pairwise comparisons may fall outside the interval.</p>
 </div>
 <div class="section level5">
-<h5 id="example-5-comparisons-with-the-hypothesis-argument">Example 5: <code>comparisons()</code> with the <code>hypothesis</code> argument<a class="anchor" aria-label="anchor" href="#example-5-comparisons-with-the-hypothesis-argument"></a>
-</h5>
-<p>Now consider average contrast between levels of the <code>gear</code> variable:</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term Contrast Estimate Std. Error     z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1 gear    4 - 3    2.635      1.552 1.698   0.089486 -0.4063  5.676</span></span>
-<span><span class="co">#&gt; 2 gear    5 - 3    6.575      1.643 4.002 6.2689e-05  3.3552  9.794</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  lm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>We can compare those contrasts using the <code>hypothesis</code> argument, giving us a sort of “difference in differences”:</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"gear"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                Term Estimate Std. Error      z Pr(&gt;|z|)  2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1 (4 - 3) - (5 - 3)    -3.94      2.047 -1.924   0.0543 -7.953 0.07273</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  lm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>Now, we test if this difference in differences falls in the a region of practical significance (or “equivalence region”) between -8 and 8:</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"gear"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                Term Estimate Std. Error      z Pr(&gt;|z|)  2.5 %  97.5 %  p (Inf)   p (Sup)   p (Eq)</span></span>
-<span><span class="co">#&gt; 1 (4 - 3) - (5 - 3)    -3.94      2.047 -1.924   0.0543 -7.953 0.07273 0.023676 2.738e-09 0.023676</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  lm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
-<p>The p value gives us reason to believe that the quantity of interest does not fall outside the specified interval.</p>
-</div>
-<div class="section level5">
-<h5 id="example-6-marginal-means-and-emmeans">Example 6: Marginal means and <code>emmeans</code><a class="anchor" aria-label="anchor" href="#example-6-marginal-means-and-emmeans"></a>
+<h5 id="example-5-marginal-means-and-emmeans">Example 5: Marginal means and <code>emmeans</code><a class="anchor" aria-label="anchor" href="#example-5-marginal-means-and-emmeans"></a>
 </h5>
 <p>This final example shows the equivalence between results produced by the <code>emmeans</code> package and the <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> function:</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">conc</span><span class="op">)</span> <span class="op">~</span> <span class="va">source</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">percent</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">pigs</span><span class="op">)</span></span>
@@ -791,10 +761,10 @@
 <span><span class="co">#&gt; 3      1.765248     -6.648469</span></span></code></pre></div>
 </div>
 <div class="section level5">
-<h5 id="example-7-t-test">Example 7: t-test<a class="anchor" aria-label="anchor" href="#example-7-t-test"></a>
+<h5 id="example-6-t-test">Example 6: t-test<a class="anchor" aria-label="anchor" href="#example-6-t-test"></a>
 </h5>
 <p>Now we show that the results produced by <code><a href="../reference/hypotheses.html">hypotheses()</a></code> are identical to the results produced by the <code>equivalence</code> package in the case of a simple t-test:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">equivalence</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1024</span><span class="op">)</span></span>

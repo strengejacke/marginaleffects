@@ -113,21 +113,14 @@
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group Term    Contrast   Estimate Std. Error        z   Pr(&gt;|z|)     2.5 %</span></span>
-<span><span class="co">#&gt; 1     3   hp mean(dY/dX) -3.438e-05   0.002253 -0.01526 0.98782440 -0.004450</span></span>
-<span><span class="co">#&gt; 2     3  mpg mean(dY/dX) -7.131e-02   0.026441 -2.69703 0.00699606 -0.123134</span></span>
-<span><span class="co">#&gt; 3     4   hp mean(dY/dX) -4.667e-03   0.002199 -2.12294 0.03375920 -0.008976</span></span>
-<span><span class="co">#&gt; 4     4  mpg mean(dY/dX)  1.591e-02   0.020003  0.79525 0.42646997 -0.023298</span></span>
-<span><span class="co">#&gt; 5     5   hp mean(dY/dX)  4.702e-03   0.001304  3.60439 0.00031289  0.002145</span></span>
-<span><span class="co">#&gt; 6     5  mpg mean(dY/dX)  5.540e-02   0.016469  3.36416 0.00076776  0.023126</span></span>
-<span><span class="co">#&gt;       97.5 %</span></span>
-<span><span class="co">#&gt; 1  0.0043815</span></span>
-<span><span class="co">#&gt; 2 -0.0194886</span></span>
-<span><span class="co">#&gt; 3 -0.0003583</span></span>
-<span><span class="co">#&gt; 4  0.0551125</span></span>
-<span><span class="co">#&gt; 5  0.0072584</span></span>
-<span><span class="co">#&gt; 6  0.0876827</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Group Term   Estimate Std. Error        z   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt; 1     3   hp -3.438e-05   0.002253 -0.01526 0.98782440 -0.004450  0.0043815</span></span>
+<span><span class="co">#&gt; 2     3  mpg -7.131e-02   0.026441 -2.69703 0.00699606 -0.123134 -0.0194886</span></span>
+<span><span class="co">#&gt; 3     4   hp -4.667e-03   0.002199 -2.12294 0.03375920 -0.008976 -0.0003583</span></span>
+<span><span class="co">#&gt; 4     4  mpg  1.591e-02   0.020003  0.79525 0.42646997 -0.023298  0.0551125</span></span>
+<span><span class="co">#&gt; 5     5   hp  4.702e-03   0.001304  3.60439 0.00031289  0.002145  0.0072584</span></span>
+<span><span class="co">#&gt; 6     5  mpg  5.540e-02   0.016469  3.36416 0.00076776  0.023126  0.0876827</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  multinom </span></span>
 <span><span class="co">#&gt; Prediction type:  probs</span></span></code></pre></div>
@@ -172,25 +165,16 @@
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mlogit/man/mlogit.html" class="external-link">mlogit</a></span><span class="op">(</span><span class="va">choice</span> <span class="op">~</span> <span class="va">wait</span> <span class="op">+</span> <span class="va">gcost</span> <span class="op">|</span> <span class="va">income</span> <span class="op">+</span> <span class="va">size</span>, <span class="va">TravelMode</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group   Term    Contrast   Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %</span></span>
-<span><span class="co">#&gt; 1   air income mean(dY/dX)  0.0027855   0.001218  2.2876   0.022159  0.0003990</span></span>
-<span><span class="co">#&gt; 2   bus income mean(dY/dX) -0.0003721   0.001103 -0.3374   0.735811 -0.0025337</span></span>
-<span><span class="co">#&gt; 3   car income mean(dY/dX)  0.0033731   0.001373  2.4559   0.014052  0.0006812</span></span>
-<span><span class="co">#&gt; 4 train income mean(dY/dX) -0.0057865   0.001319 -4.3861 1.1540e-05 -0.0083723</span></span>
-<span><span class="co">#&gt; 5   air   size mean(dY/dX) -0.1264647   0.028918 -4.3732 1.2245e-05 -0.1831434</span></span>
-<span><span class="co">#&gt; 6   bus   size mean(dY/dX)  0.0113450   0.025867  0.4386   0.660962 -0.0393539</span></span>
-<span><span class="co">#&gt; 7   car   size mean(dY/dX)  0.0458798   0.024755  1.8534   0.063830 -0.0026388</span></span>
-<span><span class="co">#&gt; 8 train   size mean(dY/dX)  0.0692398   0.024785  2.7936   0.005212  0.0206624</span></span>
-<span><span class="co">#&gt;      97.5 %</span></span>
-<span><span class="co">#&gt; 1  0.005172</span></span>
-<span><span class="co">#&gt; 2  0.001790</span></span>
-<span><span class="co">#&gt; 3  0.006065</span></span>
-<span><span class="co">#&gt; 4 -0.003201</span></span>
-<span><span class="co">#&gt; 5 -0.069786</span></span>
-<span><span class="co">#&gt; 6  0.062044</span></span>
-<span><span class="co">#&gt; 7  0.094398</span></span>
-<span><span class="co">#&gt; 8  0.117817</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Group   Term   Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %    97.5 %</span></span>
+<span><span class="co">#&gt; 1   air income  0.0027855   0.001218  2.2876   0.022159  0.0003990  0.005172</span></span>
+<span><span class="co">#&gt; 2   bus income -0.0003721   0.001103 -0.3374   0.735811 -0.0025337  0.001790</span></span>
+<span><span class="co">#&gt; 3   car income  0.0033731   0.001373  2.4559   0.014052  0.0006812  0.006065</span></span>
+<span><span class="co">#&gt; 4 train income -0.0057865   0.001319 -4.3861 1.1540e-05 -0.0083723 -0.003201</span></span>
+<span><span class="co">#&gt; 5   air   size -0.1264647   0.028918 -4.3732 1.2245e-05 -0.1831434 -0.069786</span></span>
+<span><span class="co">#&gt; 6   bus   size  0.0113450   0.025867  0.4386   0.660962 -0.0393539  0.062044</span></span>
+<span><span class="co">#&gt; 7   car   size  0.0458798   0.024755  1.8534   0.063830 -0.0026388  0.094398</span></span>
+<span><span class="co">#&gt; 8 train   size  0.0692398   0.024785  2.7936   0.005212  0.0206624  0.117817</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  mlogit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -209,25 +193,16 @@
 <span><span class="co">#&gt; 3 34.58929 110.8798 34.54762 1.742857</span></span>
 <span><span class="co">#&gt; 4 34.58929 110.8798 34.54762 1.742857</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group   Term    Contrast   Estimate Std. Error      z  Pr(&gt;|z|)      2.5 %</span></span>
-<span><span class="co">#&gt; 1   air income mean(dY/dX)  6.656e-03  2.426e-03  2.743 0.0060816  1.901e-03</span></span>
-<span><span class="co">#&gt; 2   bus income mean(dY/dX) -1.141e-03  9.454e-04 -1.207 0.2273591 -2.994e-03</span></span>
-<span><span class="co">#&gt; 3   car income mean(dY/dX)  6.480e-06  2.032e-05  0.319 0.7497346 -3.334e-05</span></span>
-<span><span class="co">#&gt; 4 train income mean(dY/dX) -5.521e-03  1.910e-03 -2.890 0.0038527 -9.265e-03</span></span>
-<span><span class="co">#&gt; 5   air   size mean(dY/dX) -1.694e-01  5.877e-02 -2.883 0.0039386 -2.846e-01</span></span>
-<span><span class="co">#&gt; 6   bus   size mean(dY/dX)  4.672e-02  2.723e-02  1.716 0.0862434 -6.656e-03</span></span>
-<span><span class="co">#&gt; 7   car   size mean(dY/dX)  1.358e-03  8.808e-04  1.542 0.1230361 -3.680e-04</span></span>
-<span><span class="co">#&gt; 8 train   size mean(dY/dX)  1.214e-01  4.447e-02  2.729 0.0063528  3.420e-02</span></span>
-<span><span class="co">#&gt;       97.5 %</span></span>
-<span><span class="co">#&gt; 1  0.0114108</span></span>
-<span><span class="co">#&gt; 2  0.0007117</span></span>
-<span><span class="co">#&gt; 3  0.0000463</span></span>
-<span><span class="co">#&gt; 4 -0.0017767</span></span>
-<span><span class="co">#&gt; 5 -0.0542485</span></span>
-<span><span class="co">#&gt; 6  0.1000991</span></span>
-<span><span class="co">#&gt; 7  0.0030845</span></span>
-<span><span class="co">#&gt; 8  0.2085119</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Group   Term   Estimate Std. Error      z  Pr(&gt;|z|)      2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt; 1   air income  6.656e-03  2.426e-03  2.743 0.0060816  1.901e-03  0.0114108</span></span>
+<span><span class="co">#&gt; 2   bus income -1.141e-03  9.454e-04 -1.207 0.2273591 -2.994e-03  0.0007117</span></span>
+<span><span class="co">#&gt; 3   car income  6.480e-06  2.032e-05  0.319 0.7497346 -3.334e-05  0.0000463</span></span>
+<span><span class="co">#&gt; 4 train income -5.521e-03  1.910e-03 -2.890 0.0038527 -9.265e-03 -0.0017767</span></span>
+<span><span class="co">#&gt; 5   air   size -1.694e-01  5.877e-02 -2.883 0.0039386 -2.846e-01 -0.0542485</span></span>
+<span><span class="co">#&gt; 6   bus   size  4.672e-02  2.723e-02  1.716 0.0862434 -6.656e-03  0.1000991</span></span>
+<span><span class="co">#&gt; 7   car   size  1.358e-03  8.808e-04  1.542 0.1230361 -3.680e-04  0.0030845</span></span>
+<span><span class="co">#&gt; 8 train   size  1.214e-01  4.447e-02  2.729 0.0063528  3.420e-02  0.2085119</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  mlogit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -245,25 +220,16 @@
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> bus    41.7 115.    34.5  1.74</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> car     0    95.4   34.5  1.74</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group   Term    Contrast   Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %</span></span>
-<span><span class="co">#&gt; 1   air income mean(dY/dX)  0.0060149   0.002332  2.5793  0.0098996  0.0014443</span></span>
-<span><span class="co">#&gt; 2   bus income mean(dY/dX) -0.0007128   0.001461 -0.4878  0.6256800 -0.0035768</span></span>
-<span><span class="co">#&gt; 3   car income mean(dY/dX)  0.0054450   0.002288  2.3800  0.0173140  0.0009609</span></span>
-<span><span class="co">#&gt; 4 train income mean(dY/dX) -0.0107471   0.002563 -4.1925 2.7592e-05 -0.0157713</span></span>
-<span><span class="co">#&gt; 5   air   size mean(dY/dX) -0.2329273   0.056622 -4.1137 3.8936e-05 -0.3439050</span></span>
-<span><span class="co">#&gt; 6   bus   size mean(dY/dX)  0.0204397   0.034364  0.5948  0.5519797 -0.0469129</span></span>
-<span><span class="co">#&gt; 7   car   size mean(dY/dX)  0.0678200   0.041226  1.6451  0.0999517 -0.0129810</span></span>
-<span><span class="co">#&gt; 8 train   size mean(dY/dX)  0.1446676   0.047752  3.0295  0.0024493  0.0510747</span></span>
-<span><span class="co">#&gt;      97.5 %</span></span>
-<span><span class="co">#&gt; 1  0.010586</span></span>
-<span><span class="co">#&gt; 2  0.002151</span></span>
-<span><span class="co">#&gt; 3  0.009929</span></span>
-<span><span class="co">#&gt; 4 -0.005723</span></span>
-<span><span class="co">#&gt; 5 -0.121950</span></span>
-<span><span class="co">#&gt; 6  0.087792</span></span>
-<span><span class="co">#&gt; 7  0.148621</span></span>
-<span><span class="co">#&gt; 8  0.238261</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Group   Term   Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %    97.5 %</span></span>
+<span><span class="co">#&gt; 1   air income  0.0060149   0.002332  2.5793  0.0098996  0.0014443  0.010586</span></span>
+<span><span class="co">#&gt; 2   bus income -0.0007128   0.001461 -0.4878  0.6256800 -0.0035768  0.002151</span></span>
+<span><span class="co">#&gt; 3   car income  0.0054450   0.002288  2.3800  0.0173140  0.0009609  0.009929</span></span>
+<span><span class="co">#&gt; 4 train income -0.0107471   0.002563 -4.1925 2.7592e-05 -0.0157713 -0.005723</span></span>
+<span><span class="co">#&gt; 5   air   size -0.2329273   0.056622 -4.1137 3.8936e-05 -0.3439050 -0.121950</span></span>
+<span><span class="co">#&gt; 6   bus   size  0.0204397   0.034364  0.5948  0.5519797 -0.0469129  0.087792</span></span>
+<span><span class="co">#&gt; 7   car   size  0.0678200   0.041226  1.6451  0.0999517 -0.0129810  0.148621</span></span>
+<span><span class="co">#&gt; 8 train   size  0.1446676   0.047752  3.0295  0.0024493  0.0510747  0.238261</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  mlogit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -291,25 +257,16 @@
 <span><span class="co">#&gt; 15          1     no   35    48    486   111     35    2   bus</span></span>
 <span><span class="co">#&gt; 16          1     no   35    48    486    30     35    2   car</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Group   Term    Contrast   Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %</span></span>
-<span><span class="co">#&gt; 1   air income mean(dY/dX)  8.240e-03  2.463e-03  3.3454 0.00082164  0.0034123</span></span>
-<span><span class="co">#&gt; 2   bus income mean(dY/dX) -1.328e-03  1.304e-03 -1.0183 0.30853207 -0.0038827</span></span>
-<span><span class="co">#&gt; 3   car income mean(dY/dX)  2.659e-05  4.321e-05  0.6154 0.53832121 -0.0000581</span></span>
-<span><span class="co">#&gt; 4 train income mean(dY/dX) -6.939e-03  1.860e-03 -3.7298 0.00019166 -0.0105848</span></span>
-<span><span class="co">#&gt; 5   air   size mean(dY/dX) -2.124e-01  6.027e-02 -3.5247 0.00042400 -0.3305707</span></span>
-<span><span class="co">#&gt; 6   bus   size mean(dY/dX)  6.062e-02  3.791e-02  1.5993 0.10974996 -0.0136709</span></span>
-<span><span class="co">#&gt; 7   car   size mean(dY/dX)  2.378e-03  1.571e-03  1.5130 0.13028300 -0.0007024</span></span>
-<span><span class="co">#&gt; 8 train   size mean(dY/dX)  1.494e-01  4.286e-02  3.4870 0.00048852  0.0654413</span></span>
-<span><span class="co">#&gt;       97.5 %</span></span>
-<span><span class="co">#&gt; 1  0.0130668</span></span>
-<span><span class="co">#&gt; 2  0.0012276</span></span>
-<span><span class="co">#&gt; 3  0.0001113</span></span>
-<span><span class="co">#&gt; 4 -0.0032924</span></span>
-<span><span class="co">#&gt; 5 -0.0943084</span></span>
-<span><span class="co">#&gt; 6  0.1349205</span></span>
-<span><span class="co">#&gt; 7  0.0054575</span></span>
-<span><span class="co">#&gt; 8  0.2334331</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">nd</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Group   Term   Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt; 1   air income  8.240e-03  2.463e-03  3.3454 0.00082164  0.0034123  0.0130668</span></span>
+<span><span class="co">#&gt; 2   bus income -1.328e-03  1.304e-03 -1.0183 0.30853207 -0.0038827  0.0012276</span></span>
+<span><span class="co">#&gt; 3   car income  2.659e-05  4.321e-05  0.6154 0.53832121 -0.0000581  0.0001113</span></span>
+<span><span class="co">#&gt; 4 train income -6.939e-03  1.860e-03 -3.7298 0.00019166 -0.0105848 -0.0032924</span></span>
+<span><span class="co">#&gt; 5   air   size -2.124e-01  6.027e-02 -3.5247 0.00042400 -0.3305707 -0.0943084</span></span>
+<span><span class="co">#&gt; 6   bus   size  6.062e-02  3.791e-02  1.5993 0.10974996 -0.0136709  0.1349205</span></span>
+<span><span class="co">#&gt; 7   car   size  2.378e-03  1.571e-03  1.5130 0.13028300 -0.0007024  0.0054575</span></span>
+<span><span class="co">#&gt; 8 train   size  1.494e-01  4.286e-02  3.4870 0.00048852  0.0654413  0.2334331</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  mlogit </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>

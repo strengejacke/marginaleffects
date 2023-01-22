@@ -148,10 +148,9 @@
 </h3>
 <p>These simple commands do everything we need to apply the parametric g-formula:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Term          Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">## 1 qsmk mean(1) - mean(0)    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   Term Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">## 1 qsmk    1 - 0    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Model type:  glm </span></span>
 <span><span class="co">## Prediction type:  response</span></span></code></pre>
@@ -226,10 +225,9 @@
 <code><a href="../reference/comparisons.html">comparisons()</a></code> automatically produces estimates of uncertainty.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">std</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Term          Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">## 1 qsmk mean(1) - mean(0)    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">std</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   Term Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">## 1 qsmk    1 - 0    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Model type:  glm </span></span>
 <span><span class="co">## Prediction type:  response</span></span></code></pre>
@@ -288,12 +286,12 @@
 <span>    check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">bootstrap</span></span></code></pre></div>
 <pre><code><span><span class="co">##                            estimate std.error conf.low conf.high</span></span>
-<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4802835 2.576036  4.458713</span></span></code></pre>
+<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4898805 2.557226  4.477522</span></span></code></pre>
 <p>The results are close to those that we obtained with <code><a href="../reference/comparisons.html">comparisons()</a></code>, but the confidence interval differs slightly because of the difference between bootstrapping and the delta method.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Term          Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">## 1 qsmk mean(1) - mean(0)    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   Term Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">## 1 qsmk    1 - 0    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Model type:  glm </span></span>
 <span><span class="co">## Prediction type:  response</span></span></code></pre>

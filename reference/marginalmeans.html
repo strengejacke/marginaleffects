@@ -180,7 +180,7 @@ on the link scale before backtransforming them using the inverse link function.<
 
 
 <dt>df</dt>
-<dd><p>Degrees of freedom used to comptute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
+<dd><p>Degrees of freedom used to compute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
 
 
 <dt>wts</dt>
@@ -393,21 +393,25 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">am</span> <span class="op">+</span> <span class="va">carb</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compute and summarize marginal means</span></span></span>
-<span class="r-in"><span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">mm</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Value  Mean Std. Error      z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 carb     1 21.99      1.345 16.350 &lt; 2.22e-16 19.35  24.63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 carb     2 21.48      1.025 20.955 &lt; 2.22e-16 19.47  23.49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 carb     3 20.55      1.780 11.549 &lt; 2.22e-16 17.06  24.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 carb     4 18.82      1.042 18.065 &lt; 2.22e-16 16.77  20.86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 carb     6 18.47      3.019  6.118 9.4743e-10 12.55  24.39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 carb     8 21.62      4.055  5.332 9.6936e-08 13.68  29.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   am FALSE 17.87      1.244 14.366 &lt; 2.22e-16 15.43  20.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   am  TRUE 23.11      0.974 23.724 &lt; 2.22e-16 21.20  25.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am, carb </span>
+<span class="r-in"><span><span class="fu">marginalmeans</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type term value estimate std.error statistic       p.value conf.low</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response carb     1 21.99084 1.3449858 16.350238  4.332854e-60 19.35471</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response carb     2 21.47658 1.0249035 20.954731  1.698845e-97 19.46780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response carb     3 20.55258 1.7795791 11.549126  7.457511e-31 17.06467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 response carb     4 18.81535 1.0415402 18.064933  6.019468e-73 16.77397</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 response carb     6 18.47146 3.0191868  6.118024  9.474270e-10 12.55396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 response carb     8 21.62292 4.0550250  5.332377  9.693562e-08 13.67522</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7 response   am FALSE 17.87040 1.2439568 14.365776  8.485108e-47 15.43229</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8 response   am  TRUE 23.10617 0.9739524 23.724129 2.032675e-124 21.19726</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   conf.high</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  24.62696</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  23.48535</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  24.04049</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  20.85674</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  24.38895</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  29.57062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  20.30852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  25.01508</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrast between marginal means (carb2 - carb1), or "is the 1st marginal means equal to the 2nd?"</span></span></span>
 <span class="r-in"><span><span class="co"># see the vignette on "Hypothesis Tests and Custom Contrasts" on the `marginaleffects` website.</span></span></span>

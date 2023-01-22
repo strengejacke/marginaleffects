@@ -62,31 +62,41 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.1.9001" id="marginaleffects-0819001">marginaleffects 0.8.1.9001<a class="anchor" aria-label="anchor" href="#marginaleffects-0819001"></a></h2>
 <p>Breaking changes:</p>
-<ul><li>The output of all functions includes an <code>estimate</code> column instead of the function-specific <code>predicted</code>, <code>comparisons</code>, <code>dydx</code>. This is only relevant for unit-level estimates, and not to the output of <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>, which already returned an <code>estimate</code> column.</li>
+<ul><li>All functions return an <code>estimate</code> column instead of the function-specific <code>predicted</code>, <code>comparisons</code>, <code>dydx</code>, etc. This change only affects unit-level estimates, and not average estimates, which already used the <code>estimate</code> column name.</li>
 <li>The <code>transform_avg</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> deprecated. Use <code>transform_post</code> instead.</li>
 </ul><p>New models supported:</p>
 <ul><li>
 <code>blme</code> package.</li></ul><p>New features:</p>
-<ul><li>New functions: <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="../reference/slopes.html">avg_slopes()</a></code>
+<ul><li>New convenience functions: <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="../reference/slopes.html">avg_slopes()</a></code>
 </li>
 <li>Equivalence, non-inferiority, and non-superiority tests with the <code><a href="../reference/hypotheses.html">hypotheses()</a></code> function and <code>equivalence</code> argument.</li>
 <li>New <code>df</code> argument to set degrees of freedom manually for p and CI.</li>
 <li>
 <code>by</code> argument<ul><li>
 <code>TRUE</code> returns average (marginal) predictions, comparisons, or slopes.</li>
-<li>Now supports bayesian models.</li>
+<li>Supports bayesian models.</li>
 </ul></li>
 <li>
 <code>hypothesis</code> argument<ul><li>Numeric value sets the null used in calculating Z and p.</li>
 <li>Example: <code>comparisons(mod, transform_pre = "ratio", hypothesis = 1)</code>
 </li>
 </ul></li>
-<li>All arguments from the main functions are now available through <code><a href="../reference/averages.html">averages()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, or <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>: <code>conf_level</code>, <code>transform_post</code>, etc. Feeding an argument to <code><a href="../reference/averages.html">averages()</a></code> will k</li>
+<li>All arguments from the main functions are now available through <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>: <code>conf_level</code>, <code>transform_post</code>, etc.</li>
 <li>Bayesian posterior distribution summaries can be customized using global options:<ul><li><code>options("marginaleffects_posterior_interval" = "eti")</code></li>
 <li><code>options("marginaleffects_posterior_interval" = "hdi")</code></li>
 <li><code>options("marginaleffects_posterior_center" = median)</code></li>
 <li><code>options("marginaleffects_posterior_center" = mean)</code></li>
 </ul></li>
+</ul><p>Renamed functions (backward-compatibility is maintained):</p>
+<ul><li>
+<code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> -&gt; <code><a href="../reference/slopes.html">slopes()</a></code>
+</li>
+<li>
+<code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> -&gt; <code>posterior_draws()</code>
+</li>
+<li>
+<code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> -&gt; <code>marginal_means()</code>
+</li>
 </ul><p>Bug fixes:</p>
 <ul><li>Incorrect results: In 0.8.1, <code>plot_c*()</code> the <code>threenum</code> and <code>minmax</code> labels did not correspond to the correct numeric values.</li>
 <li>Fix corner case for slopes when the dataset includes infinite values.</li>
@@ -103,7 +113,7 @@
 <li>
 <code><a href="../reference/plot_cme.html">plot_cme()</a></code> and <code><a href="../reference/plot_cco.html">plot_cco()</a></code> accept lists with user-specified values for the regressors, and can display nice labels for shortcut string-functions like “threenum” or “quartile”.</li>
 <li>
-<code>posteriordraws</code>: new <code>shape</code> argument to return MCMC draws in various formats, including the new <code>rvar</code> structure from the <code>posterior</code> package.</li>
+<code>posterior_draws</code>: new <code>shape</code> argument to return MCMC draws in various formats, including the new <code>rvar</code> structure from the <code>posterior</code> package.</li>
 <li>
 <code>transform_avg</code> function gets printed in <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code> output.</li>
 <li>
@@ -382,7 +392,7 @@
 <ul><li>
 <code>datagrid</code> function supersedes <code>typical</code> and <code>counterfactual</code> with the <code>grid.type</code> argument. The <code>typical</code> and <code>counterfactual</code> functions will remain available and exported, but their use is not encouraged.</li>
 <li>
-<code>posteriordraws</code> function can be applied to a <code>predictions</code> or a <code>marginaleffects</code> object to extract draws from the posterior distribution.</li>
+<code>posterior_draws</code> function can be applied to a <code>predictions</code> or a <code>marginaleffects</code> object to extract draws from the posterior distribution.</li>
 <li>
 <code>marginalmeans</code> standard errors are now computed using the delta method.</li>
 <li>

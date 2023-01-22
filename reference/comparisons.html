@@ -259,7 +259,7 @@ the <code>marginaleffects:::type_dictionary</code> dataframe.</p></dd>
 <dt>wts</dt>
 <dd><p>string or numeric: weights to use when computing average
 contrasts or slopes. These weights only affect the averaging in
-<code><a href="averages.html">averages()</a></code> or with the <code>by</code> argument, and not the unit-level estimates themselves.</p><ul><li><p>string: column name of the weights variable in <code>newdata</code>. When supplying a column name to <code>wts</code>, it is recommended to supply the original data (including the weights variable) explicitly to <code>newdata</code>.</p></li>
+<code>avg_*()</code> or with the <code>by</code> argument, and not the unit-level estimates themselves.</p><ul><li><p>string: column name of the weights variable in <code>newdata</code>. When supplying a column name to <code>wts</code>, it is recommended to supply the original data (including the weights variable) explicitly to <code>newdata</code>.</p></li>
 <li><p>numeric: vector of length equal to the number of rows in the original data or in <code>newdata</code> (if supplied).</p></li>
 </ul></dd>
 
@@ -283,7 +283,7 @@ contrasts or slopes. These weights only affect the averaging in
 
 
 <dt>df</dt>
-<dd><p>Degrees of freedom used to comptute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
+<dd><p>Degrees of freedom used to compute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
 
 
 <dt>eps</dt>
@@ -557,63 +557,181 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">dat</span><span class="op">$</span><span class="va">new_hp</span> <span class="op">&lt;-</span> <span class="fl">49</span> <span class="op">*</span> <span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="va">modlog</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">new_hp</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fdiff</span> <span class="op">&lt;-</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">modlog</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>new_hp <span class="op">=</span> <span class="va">fdiff</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sanitize_model(model = model, newdata = newdata, wts = wts, vcov = vcov,     calling_function = "comparisons", ...):</span> object 'modlog' not found</span>
+<span class="r-in"><span><span class="fu">avg_comparisons</span><span class="op">(</span><span class="va">modlog</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>new_hp <span class="op">=</span> <span class="va">fdiff</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Term Contrast Estimate Std. Error      z  Pr(&gt;|z|)  2.5 %  97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 new_hp   custom   -1.974     0.7105 -2.778 0.0054696 -3.366 -0.5812</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjusted Risk Ratio: see the contrasts vignette</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span>, transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">avg_comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"lnratioavg"</span>, transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Estimate   Pr(&gt;|z|) 2.5 % 97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg mean(+1)    1.135 2.3808e-10 1.091   1.18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Post-transformation:  .Primitive("exp") </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Post-transformation:  transform_post </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjusted Risk Ratio: Manual specification of the `transform_pre`</span></span></span>
-<span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span>, transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">avg_comparisons</span><span class="op">(</span></span></span>
+<span class="r-in"><span>     <span class="va">mod</span>,</span></span>
+<span class="r-in"><span>     transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>     transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Estimate   Pr(&gt;|z|) 2.5 % 97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  mpg       +1    1.135 2.3808e-10 1.091   1.18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  glm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Pre-transformation:  function(hi, lo) log(mean(hi)/mean(lo)) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Post-transformation:  .Primitive("exp") </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pre-transformation:  transform_pre </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Post-transformation:  transform_post </span>
 <span class="r-in"><span><span class="co"># cross contrasts</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"gear"</span><span class="op">)</span>, cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">avg_comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"gear"</span><span class="op">)</span>, cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
-<span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 cyl              gear Estimate Std. Error       z Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 mean(6) - mean(4) mean(4) - mean(3)  -0.6306      3.405 -0.1852  0.85307</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 mean(6) - mean(4) mean(5) - mean(3)   2.6778      4.617  0.5800  0.56193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 mean(8) - mean(4) mean(4) - mean(3)   3.3475      6.427  0.5208  0.60249</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 mean(8) - mean(4) mean(5) - mean(3)   5.5250      5.868  0.9416  0.34642</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -7.303  6.042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -6.372 11.727</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -9.250 15.945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       cyl  gear Estimate Std. Error       z Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96  8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97  6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98  6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99  8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101 6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102 6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103 8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105 6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106 6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107 8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109 6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110 6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111 8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113 6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114 6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115 8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117 6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118 6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119 8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121 6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122 6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123 8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125 6 - 4 4 - 3  -0.6306      3.405 -0.1852  0.85307 -7.303  6.042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126 6 - 4 5 - 3   2.6778      4.617  0.5800  0.56193 -6.372 11.727</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127 8 - 4 4 - 3   3.3475      6.427  0.5208  0.60249 -9.250 15.945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128 8 - 4 5 - 3   5.5250      5.868  0.9416  0.34642 -5.976 17.026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># variable-specific contrasts</span></span></span>
-<span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>gear <span class="op">=</span> <span class="st">"sequential"</span>, hp <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">avg_comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>gear <span class="op">=</span> <span class="st">"sequential"</span>, hp <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
-<span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Model matrix is rank deficient. Some variance-covariance parameters are</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   missing.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term          Contrast Estimate Std. Error       z Pr(&gt;|z|)  2.5 %  97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear mean(4) - mean(3)   3.4095      2.587  1.3177 0.187591 -1.662  8.4806</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear mean(5) - mean(4)   2.6277      2.747  0.9566 0.338744 -2.756  8.0113</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp         mean(+10)  -0.5741      0.225 -2.5518 0.010718 -1.015 -0.1331</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Estimate Std. Error       z Pr(&gt;|z|)  2.5 %  97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 gear    4 - 3   3.4095      2.587  1.3177 0.187591 -1.662  8.4806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gear    5 - 4   2.6277      2.747  0.9566 0.338744 -2.756  8.0113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp      +10  -0.5741      0.225 -2.5518 0.010718 -1.015 -0.1331</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -678,8 +796,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 -4.8765600  4.28789112</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"vs"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">avg_comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"vs"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Estimate Std. Error      z  Pr(&gt;|z|)    2.5 %    97.5 % vs am</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(+1) -0.03685    0.01240 -2.971 0.0029676 -0.06116 -0.012540  0  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp mean(+1) -0.11115    0.04634 -2.399 0.0164473 -0.20197 -0.020336  1  1</span>

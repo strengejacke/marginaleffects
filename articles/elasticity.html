@@ -112,34 +112,34 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.03177    0.00903 -3.519 0.00043365 -0.04947 -0.01408</span></span>
-<span><span class="co">#&gt; 2   wt mean(dY/dX) -3.87783    0.63273 -6.129 8.8603e-10 -5.11797 -2.63770</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt; 1   hp -0.03177    0.00903 -3.519 0.00043365 -0.04947 -0.01408</span></span>
+<span><span class="co">#&gt; 2   wt -3.87783    0.63273 -6.129 8.8603e-10 -5.11797 -2.63770</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eyex"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp mean(eY/eX)  -0.2855    0.08533 -3.345 0.00082157 -0.4527 -0.1182</span></span>
-<span><span class="co">#&gt; 2   wt mean(eY/eX)  -0.7464    0.14190 -5.260 1.4436e-07 -1.0245 -0.4682</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eyex"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt; 1   hp    eY/eX  -0.2855    0.08533 -3.345 0.00082157 -0.4527 -0.1182</span></span>
+<span><span class="co">#&gt; 2   wt    eY/eX  -0.7464    0.14190 -5.260 1.4436e-07 -1.0245 -0.4682</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eydx"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast  Estimate Std. Error      z   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp mean(eY/dX) -0.001734  0.0005007 -3.463 0.00053334 -0.002715 -0.0007528</span></span>
-<span><span class="co">#&gt; 2   wt mean(eY/dX) -0.211647  0.0378683 -5.589 2.2834e-08 -0.285868 -0.1374268</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eydx"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term Contrast  Estimate Std. Error      z   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt; 1   hp    eY/dX -0.001734  0.0005007 -3.463 0.00053334 -0.002715 -0.0007528</span></span>
+<span><span class="co">#&gt; 2   wt    eY/dX -0.211647  0.0378683 -5.589 2.2834e-08 -0.285868 -0.1374268</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"dyex"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term    Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/eX)   -4.661      1.325 -3.519 0.00043365  -7.257 -2.065</span></span>
-<span><span class="co">#&gt; 2   wt mean(dY/eX)  -12.476      2.036 -6.129 8.8603e-10 -16.466 -8.486</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"dyex"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Term Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt; 1   hp    dY/eX   -4.661      1.325 -3.519 0.00043365  -7.257 -2.065</span></span>
+<span><span class="co">#&gt; 2   wt    dY/eX  -12.476      2.036 -6.129 8.8603e-10 -16.466 -8.486</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>

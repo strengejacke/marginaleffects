@@ -223,7 +223,7 @@ levels. See examples section.</p></dd>
 <dt>wts</dt>
 <dd><p>string or numeric: weights to use when computing average
 contrasts or slopes. These weights only affect the averaging in
-<code><a href="averages.html">averages()</a></code> or with the <code>by</code> argument, and not the unit-level estimates themselves.</p><ul><li><p>string: column name of the weights variable in <code>newdata</code>. When supplying a column name to <code>wts</code>, it is recommended to supply the original data (including the weights variable) explicitly to <code>newdata</code>.</p></li>
+<code>avg_*()</code> or with the <code>by</code> argument, and not the unit-level estimates themselves.</p><ul><li><p>string: column name of the weights variable in <code>newdata</code>. When supplying a column name to <code>wts</code>, it is recommended to supply the original data (including the weights variable) explicitly to <code>newdata</code>.</p></li>
 <li><p>numeric: vector of length equal to the number of rows in the original data or in <code>newdata</code> (if supplied).</p></li>
 </ul></dd>
 
@@ -251,7 +251,7 @@ contrasts or slopes. These weights only affect the averaging in
 
 
 <dt>df</dt>
-<dd><p>Degrees of freedom used to comptute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
+<dd><p>Degrees of freedom used to compute p values and confidence intervals. A single numeric value between 1 and <code>Inf</code>. When <code>df</code> is <code>Inf</code>, the normal distribution is used. When <code>df</code> is finite, the <code>t</code> distribution is used. See <a href="https://easystats.github.io/insight/reference/get_df.html" class="external-link">insight::get_df</a> for a convenient function to extract degrees of freedom. Ex: <code>slopes(model, df = insight::get_df(model))</code></p></dd>
 
 
 <dt>...</dt>
@@ -416,8 +416,7 @@ posterior using the function supplied to the
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">avg_predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    20.09     0.4844 41.47 &lt; 2.22e-16 19.14  21.04</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -536,9 +535,14 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># average predictions</span></span></span>
-<span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="averages.html">averages</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>restarting interrupted promise evaluation</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sanity_dots(model = model, ...):</span> object 'nom' not found</span>
+<span class="r-in"><span><span class="fu">avg_predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Group Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     3   0.4688    0.04043 11.595 &lt; 2.22e-16 0.38952 0.5480</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     4   0.3750    0.06142  6.106 1.0231e-09 0.25462 0.4954</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     5   0.1562    0.04624  3.379  0.0007279 0.06561 0.2469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  multinom </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  probs </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span><span class="op">)</span>,</span></span>
