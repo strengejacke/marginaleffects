@@ -337,14 +337,14 @@ hp
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    by <span class="op">=</span> <span class="st">"am"</span>,</span>
-<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagridcf</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type am  estimate  std.error statistic      p.value  conf.low conf.high</span></span>
 <span><span class="co">#&gt; 1 response  0 0.5261185 0.03302867 15.929147 3.977479e-57 0.4613835 0.5908535</span></span>
 <span><span class="co">#&gt; 2 response  1 0.3301815 0.06461896  5.109669 3.227235e-07 0.2035307 0.4568324</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
-<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagridcf.html">datagridcf</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagridcf</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>AAP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
@@ -367,7 +367,7 @@ hp
 <span><span class="co">#&gt; 2     2 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
 <span><span class="co">#&gt; 3     3 probs     3 9.347603e-08 6.911938e-06   0.01352385 0.98920986 -1.345367e-05 1.364063e-05 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
 <span><span class="co">#&gt; 4     4 probs     3 4.044657e-01 1.965452e-01   2.05787667 0.03960197  1.924426e-02 7.896871e-01 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span><span class="co">#&gt; 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562753 0.00000000  9.975289e-01 1.002414e+00 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt; 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562752 0.00000000  9.975289e-01 1.002414e+00 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
 <span><span class="co">#&gt; 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span>
 <span></span>
 <span><span class="co"># average predictions</span></span>
