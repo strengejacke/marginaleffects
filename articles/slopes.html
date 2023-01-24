@@ -134,10 +134,10 @@
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type           term contrast   estimate   std.error statistic      p.value   conf.low  conf.high  predicted predicted_hi predicted_lo X species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g    sex year large_penguin     eps</span></span>
-<span><span class="co">#&gt; 1     1 response bill_length_mm    dY/dX 0.01763035 0.007841310  2.248393 2.455115e-02 0.00226166 0.03299903 0.05123266   0.05128115   0.05123266 1  Adelie Torgersen           39.1          18.7               181        3750   male 2007             0 0.00275</span></span>
-<span><span class="co">#&gt; 2     2 response bill_length_mm    dY/dX 0.03586004 0.011923232  3.007577 2.633393e-03 0.01249093 0.05922915 0.11125087   0.11134949   0.11125087 2  Adelie Torgersen           39.5          17.4               186        3800 female 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 1     1 response bill_length_mm    dY/dX 0.01763035 0.007841310  2.248393 2.455116e-02 0.00226166 0.03299903 0.05123266   0.05128115   0.05123266 1  Adelie Torgersen           39.1          18.7               181        3750   male 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 2     2 response bill_length_mm    dY/dX 0.03586004 0.011923232  3.007577 2.633393e-03 0.01249093 0.05922914 0.11125087   0.11134949   0.11125087 2  Adelie Torgersen           39.5          17.4               186        3800 female 2007             0 0.00275</span></span>
 <span><span class="co">#&gt; 3     3 response bill_length_mm    dY/dX 0.08444404 0.021123004  3.997729 6.395319e-05 0.04304371 0.12584437 0.36919834   0.36943056   0.36919834 3  Adelie Torgersen           40.3          18.0               195        3250 female 2007             0 0.00275</span></span>
-<span><span class="co">#&gt; 4     4 response bill_length_mm    dY/dX 0.03472711 0.006508684  5.335504 9.527945e-08 0.02197033 0.04748390 0.10725326   0.10734876   0.10725326 5  Adelie Torgersen           36.7          19.3               193        3450 female 2007             0 0.00275</span></span>
+<span><span class="co">#&gt; 4     4 response bill_length_mm    dY/dX 0.03472711 0.006508685  5.335504 9.527951e-08 0.02197033 0.04748390 0.10725326   0.10734876   0.10725326 5  Adelie Torgersen           36.7          19.3               193        3450 female 2007             0 0.00275</span></span>
 <span><span class="co">#&gt; 5     5 response bill_length_mm    dY/dX 0.05089119 0.013414434  3.793763 1.483813e-04 0.02459938 0.07718299 0.16882994   0.16896989   0.16882994 6  Adelie Torgersen           39.3          20.6               190        3650   male 2007             0 0.00275</span></span>
 <span><span class="co">#&gt; 6     6 response bill_length_mm    dY/dX 0.01651544 0.007256548  2.275937 2.284981e-02 0.00229287 0.03073802 0.04782069   0.04786611   0.04782069 7  Adelie Torgersen           38.9          17.8               181        3625 female 2007             0 0.00275</span></span></code></pre></div>
 </div>
@@ -177,7 +177,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type              term                       contrast    estimate   std.error  statistic      p.value     conf.low   conf.high</span></span>
 <span><span class="co">#&gt; 1 response    bill_length_mm                    mean(dY/dX)  0.02757371 0.005783687  4.7674971 1.865287e-06  0.016237894  0.03890953</span></span>
-<span><span class="co">#&gt; 2 response flipper_length_mm                    mean(dY/dX)  0.01058283 0.002357239  4.4895006 7.139036e-06  0.005962722  0.01520293</span></span>
+<span><span class="co">#&gt; 2 response flipper_length_mm                    mean(dY/dX)  0.01058283 0.002357239  4.4895005 7.139036e-06  0.005962722  0.01520293</span></span>
 <span><span class="co">#&gt; 3 response           species mean(Chinstrap) - mean(Adelie) -0.41479008 0.056899735 -7.2898420 3.103188e-13 -0.526311511 -0.30326865</span></span>
 <span><span class="co">#&gt; 4 response           species    mean(Gentoo) - mean(Adelie)  0.06169819 0.106855875  0.5773963 5.636718e-01 -0.147735476  0.27113186</span></span>
 <span></span>
@@ -196,7 +196,7 @@
 <span>  variables <span class="op">=</span> <span class="st">"bill_length_mm"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             Term    Contrast Estimate Std. Error     z   Pr(&gt;|z|)     2.5 %  97.5 %   species</span></span>
 <span><span class="co">#&gt; 1 bill_length_mm mean(dY/dX) 0.043540   0.008828 4.932 8.1365e-07  0.026237 0.06084    Adelie</span></span>
-<span><span class="co">#&gt; 2 bill_length_mm mean(dY/dX) 0.002872   0.002846 1.009 0.31299361 -0.002707 0.00845    Gentoo</span></span>
+<span><span class="co">#&gt; 2 bill_length_mm mean(dY/dX) 0.002872   0.002846 1.009 0.31299360 -0.002707 0.00845    Gentoo</span></span>
 <span><span class="co">#&gt; 3 bill_length_mm mean(dY/dX) 0.036801   0.009801 3.755 0.00017337  0.017592 0.05601 Chinstrap</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  glm </span></span>
@@ -238,10 +238,10 @@
 <span>    flipper_length_mm <span class="op">=</span> <span class="fl">180</span>,</span>
 <span>    species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type              term           contrast    estimate   std.error statistic      p.value     conf.low   conf.high predicted predicted_hi predicted_lo large_penguin bill_length_mm flipper_length_mm species     eps</span></span>
-<span><span class="co">#&gt; 1     1 response    bill_length_mm              dY/dX  0.06069179 0.033264242  1.824536 6.807114e-02 -0.004504922  0.12588851 0.2125242   0.21269115    0.2125242     0.4853801       43.92193               180  Adelie 0.00275</span></span>
+<span><span class="co">#&gt; 1     1 response    bill_length_mm              dY/dX  0.06069179 0.033264242  1.824536 6.807114e-02 -0.004504923  0.12588851 0.2125242   0.21269115    0.2125242     0.4853801       43.92193               180  Adelie 0.00275</span></span>
 <span><span class="co">#&gt; 2     2 response    bill_length_mm              dY/dX  0.08467378 0.040399763  2.095898 3.609126e-02  0.005491694  0.16385586 0.3716454   0.37187821    0.3716454     0.4853801       43.92193               180  Gentoo 0.00275</span></span>
-<span><span class="co">#&gt; 3     1 response flipper_length_mm              dY/dX  0.02329304 0.005497946  4.236681 2.268485e-05  0.012517266  0.03406882 0.2125242   0.21266168    0.2125242     0.4853801       43.92193               180  Adelie 0.00590</span></span>
-<span><span class="co">#&gt; 4     2 response flipper_length_mm              dY/dX  0.03249805 0.008609937  3.774482 1.603404e-04  0.015622887  0.04937322 0.3716454   0.37183710    0.3716454     0.4853801       43.92193               180  Gentoo 0.00590</span></span>
+<span><span class="co">#&gt; 3     1 response flipper_length_mm              dY/dX  0.02329304 0.005497946  4.236681 2.268483e-05  0.012517266  0.03406882 0.2125242   0.21266168    0.2125242     0.4853801       43.92193               180  Adelie 0.00590</span></span>
+<span><span class="co">#&gt; 4     2 response flipper_length_mm              dY/dX  0.03249805 0.008609938  3.774482 1.603406e-04  0.015622885  0.04937322 0.3716454   0.37183710    0.3716454     0.4853801       43.92193               180  Gentoo 0.00590</span></span>
 <span><span class="co">#&gt; 5     1 response           species Chinstrap - Adelie -0.21105002 0.103178237 -2.045490 4.080661e-02 -0.413275648 -0.00882439 0.2125242   0.00147423    0.2125242     0.4853801       43.92193               180  Adelie      NA</span></span>
 <span><span class="co">#&gt; 6     2 response           species Chinstrap - Adelie -0.21105002 0.103178237 -2.045490 4.080661e-02 -0.413275648 -0.00882439 0.3716454   0.00147423    0.2125242     0.4853801       43.92193               180  Gentoo      NA</span></span>
 <span><span class="co">#&gt; 7     1 response           species    Gentoo - Adelie  0.15912111 0.303473386  0.524333 6.000470e-01 -0.435675798  0.75391802 0.2125242   0.37164536    0.2125242     0.4853801       43.92193               180  Adelie      NA</span></span>
@@ -330,11 +330,11 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>truth <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="va">truth</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    estimate truth</span></span>
-<span><span class="co">#&gt; 1 -6.987146    -7</span></span>
-<span><span class="co">#&gt; 2 -2.992334    -3</span></span>
-<span><span class="co">#&gt; 3  1.002478     1</span></span>
-<span><span class="co">#&gt; 4  4.997290     5</span></span>
-<span><span class="co">#&gt; 5  8.992102     9</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 -7.002501    -7</span></span>
+<span><span class="co">#&gt; 2 -3.001226    -3</span></span>
+<span><span class="co">#&gt; 3  1.000049     1</span></span>
+<span><span class="co">#&gt; 4  5.001325     5</span></span>
+<span><span class="co">#&gt; 5  9.002600     9</span></span></code></pre></div>
 <p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>

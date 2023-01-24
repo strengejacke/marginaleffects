@@ -243,7 +243,7 @@
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
 <span><span class="co">#&gt;   rowid     type term estimate std.error statistic      p.value conf.low conf.high predicted predicted_hi predicted_lo      mpg      am     vs   eps</span></span>
-<span><span class="co">#&gt; 1     1 response   am 6.066667  1.274842  4.758759 1.947864e-06 3.568022  8.565311  20.09062     20.09123     20.09062 20.09062 0.40625 0.4375 1e-04</span></span>
+<span><span class="co">#&gt; 1     1 response   am 6.066667  1.274842  4.758758 1.947875e-06 3.568022  8.565312  20.09062     20.09123     20.09062 20.09062 0.40625 0.4375 1e-04</span></span>
 <span><span class="co">#&gt; 2     1 response   vs 6.929365  1.262132  5.490207 4.014620e-08 4.455632  9.403098  20.09062     20.09132     20.09062 20.09062 0.40625 0.4375 1e-04</span></span></code></pre></div>
 <p>Is the marginal effect of <code>am</code> different from the marginal effect of <code>vs</code>? To answer this question we can run a linear hypothesis test using the <code>hypotheses</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -263,8 +263,8 @@
 <span>    <span class="va">mod</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"am = vs"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type  term   estimate std.error  statistic   p.value  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response am=vs -0.8626984  1.939056 -0.4449063 0.6563874 -4.663179  2.937782</span></span></code></pre></div>
+<span><span class="co">#&gt;       type  term   estimate std.error  statistic   p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response am=vs -0.8626984  1.939057 -0.4449063 0.6563875 -4.66318  2.937783</span></span></code></pre></div>
 <p>The <code>hypotheses</code> string can include any valid <code>R</code> expression, so we can run some silly non-linear tests:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span></span>
@@ -272,7 +272,7 @@
 <span>    newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"exp(am) - 2 * vs = -400"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type              term estimate std.error statistic   p.value  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response exp(am)-2*vs=-400 817.3821   550.222   1.48555 0.1373983 -261.0332  1895.797</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response exp(am)-2*vs=-400 817.3821  550.2221  1.485549 0.1373984 -261.0335  1895.798</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="adjusted-predictions">Adjusted Predictions<a class="anchor" aria-label="anchor" href="#adjusted-predictions"></a>
@@ -372,8 +372,8 @@
 <span>    hypothesis <span class="op">=</span> <span class="st">"am = vs"</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"am"</span>, <span class="st">"vs"</span><span class="op">)</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"dydxavg"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type  term   estimate std.error  statistic   p.value  conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 response am=vs -0.8626984  1.939056 -0.4449063 0.6563875 -4.663179  2.937782</span></span></code></pre></div>
+<span><span class="co">#&gt;       type  term   estimate std.error  statistic   p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt; 1 response am=vs -0.8626984  1.939057 -0.4449062 0.6563875 -4.66318  2.937783</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -577,13 +577,13 @@
 <span>    variable.name <span class="op">=</span> <span class="st">"time"</span>,</span>
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    id trt time           y</span></span>
-<span><span class="co">#&gt; 1:  1   0  pre  0.51335856</span></span>
-<span><span class="co">#&gt; 2:  2   1  pre -0.61334180</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre  0.37512868</span></span>
-<span><span class="co">#&gt; 4:  4   0  pre -0.95447949</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre  0.07370652</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre  1.47110273</span></span></code></pre></div>
+<span><span class="co">#&gt;    id trt time          y</span></span>
+<span><span class="co">#&gt; 1:  1   0  pre -0.5453406</span></span>
+<span><span class="co">#&gt; 2:  2   0  pre -1.5550409</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre  1.3842320</span></span>
+<span><span class="co">#&gt; 4:  4   1  pre  1.7902214</span></span>
+<span><span class="co">#&gt; 5:  5   0  pre -0.3201162</span></span>
+<span><span class="co">#&gt; 6:  6   0  pre  1.4825141</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between the time and the treatment indicators. We also compute contrasts at the mean for each treatment level:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">did_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">time</span> <span class="op">*</span> <span class="va">trt</span>, data <span class="op">=</span> <span class="va">did</span><span class="op">)</span></span>
@@ -592,9 +592,9 @@
 <span>    <span class="va">did_model</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type term   contrast    estimate  std.error statistic      p.value   conf.low  conf.high   predicted predicted_hi predicted_lo          y time trt</span></span>
-<span><span class="co">#&gt; 1     1 response time post - pre -0.07654262 0.07816732 -0.979215 3.274737e-01 -0.2297478 0.07666252  0.08405002  0.007507398   0.08405002 0.09999228  pre   0</span></span>
-<span><span class="co">#&gt; 2     2 response time post - pre  0.36904430 0.07879518  4.683590 2.818941e-06  0.2146086 0.52348002 -0.02944188  0.339602420  -0.02944188 0.09999228  pre   1</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid     type term   contrast    estimate  std.error  statistic      p.value   conf.low  conf.high    predicted predicted_hi predicted_lo          y time trt</span></span>
+<span><span class="co">#&gt; 1     1 response time post - pre -0.05587523 0.07558701 -0.7392174 4.597750e-01 -0.2040230 0.09227258 -0.091870777    -0.147746 -0.091870777 0.01891366  pre   0</span></span>
+<span><span class="co">#&gt; 2     2 response time post - pre  0.32101743 0.07696004  4.1712220 3.029705e-05  0.1701785 0.47185634  0.002212524     0.323230  0.002212524 0.01891366  pre   1</span></span></code></pre></div>
 <p>Finally, we compute pairwise differences between contrasts. This is the Diff-in-Diff estimate:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
@@ -603,7 +603,7 @@
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;       type          term   estimate std.error statistic      p.value   conf.low  conf.high</span></span>
-<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.4455869 0.1109901 -4.014653 5.953327e-05 -0.6631236 -0.2280502</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 response Row 1 - Row 2 -0.3768927 0.1078714 -3.493906 0.0004760079 -0.5883168 -0.1654686</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="equivalence-non-inferiority-and-non-superiority-tests">Equivalence, non-inferiority, and non-superiority tests<a class="anchor" aria-label="anchor" href="#equivalence-non-inferiority-and-non-superiority-tests"></a>
@@ -629,8 +629,8 @@
 <p>Now we specify an equivalence interval (or “region”) for predictions between 17 and 18:</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">p</span>, equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fl">18</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %  mpg  hp gear   p (Inf) p (Sup) p (Eq)</span></span>
-<span><span class="co">#&gt; 1    19.66      1.004 19.59 &lt; 2.22e-16 17.69  21.63 19.2 123    3 0.0040372  0.9508 0.9508</span></span>
+<span><span class="co">#&gt;   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %  mpg  hp gear     p (Inf)   p (Sup)    p (Eq)</span></span>
+<span><span class="co">#&gt; 1    19.66      1.004 19.59 &lt; 2.22e-16 17.69  21.63 19.2 123    3 0.004037228 0.9508009 0.9508009</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -653,8 +653,8 @@
 <p>We can test if this parameter is likely to fall in the [5,7] interval by:</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span>, <span class="op">]</span></span>
-<span><span class="co">#&gt;   Term Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 % p (Inf) p (Sup)  p (Eq)</span></span>
-<span><span class="co">#&gt; 4   b4    6.575      1.643 4.002 6.2689e-05 3.355  9.794 0.16887 0.39787 0.39787</span></span>
+<span><span class="co">#&gt;   Term Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %   p (Inf)   p (Sup)    p (Eq)</span></span>
+<span><span class="co">#&gt; 4   b4    6.575      1.643 4.002 6.2689e-05 3.355  9.794 0.1688669 0.3978688 0.3978688</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:</span></span></code></pre></div>
@@ -667,8 +667,8 @@
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %   p (Inf)    p (Sup)    p (Eq)</span></span>
-<span><span class="co">#&gt; 1   hp -0.06685    0.01105 -6.052 1.4269e-09 -0.0885 -0.0452 0.0013467 &lt; 2.22e-16 0.0013467</span></span>
+<span><span class="co">#&gt;   Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %     p (Inf)      p (Sup)      p (Eq)</span></span>
+<span><span class="co">#&gt; 1   hp -0.06685    0.01105 -6.052 1.4269e-09 -0.0885 -0.0452 0.001346659 7.442518e-52 0.001346659</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -704,14 +704,14 @@
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">int</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"gear"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                            Term  Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %   97.5 %    p (Inf)    p (Sup)</span></span>
-<span><span class="co">#&gt; 1 4,hp,mean(+1) - 3,hp,mean(+1) -0.126946    0.03357 -3.7810 0.00015618 -0.19275 -0.06114    0.78889 6.9242e-12</span></span>
-<span><span class="co">#&gt; 2 4,hp,mean(+1) - 5,hp,mean(+1) -0.120917    0.03278 -3.6882 0.00022581 -0.18517 -0.05666    0.73827 8.0037e-12</span></span>
-<span><span class="co">#&gt; 3 3,hp,mean(+1) - 5,hp,mean(+1)  0.006029    0.01928  0.3128 0.75445655 -0.03175  0.04381 1.8936e-08 5.4416e-07</span></span>
-<span><span class="co">#&gt;       p (Eq)</span></span>
-<span><span class="co">#&gt; 1    0.78889</span></span>
-<span><span class="co">#&gt; 2    0.73827</span></span>
-<span><span class="co">#&gt; 3 5.4416e-07</span></span>
+<span><span class="co">#&gt;                            Term  Estimate Std. Error       z   Pr(&gt;|z|)    2.5 %   97.5 %      p (Inf)      p (Sup)</span></span>
+<span><span class="co">#&gt; 1 4,hp,mean(+1) - 3,hp,mean(+1) -0.126946    0.03357 -3.7810 0.00015618 -0.19275 -0.06114 7.888916e-01 6.924196e-12</span></span>
+<span><span class="co">#&gt; 2 4,hp,mean(+1) - 5,hp,mean(+1) -0.120917    0.03278 -3.6882 0.00022581 -0.18517 -0.05666 7.382704e-01 8.003657e-12</span></span>
+<span><span class="co">#&gt; 3 3,hp,mean(+1) - 5,hp,mean(+1)  0.006029    0.01928  0.3128 0.75445655 -0.03175  0.04381 1.893635e-08 5.441588e-07</span></span>
+<span><span class="co">#&gt;         p (Eq)</span></span>
+<span><span class="co">#&gt; 1 7.888916e-01</span></span>
+<span><span class="co">#&gt; 2 7.382704e-01</span></span>
+<span><span class="co">#&gt; 3 5.441588e-07</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
@@ -751,7 +751,14 @@
 <span>    variables <span class="op">=</span> <span class="st">"source"</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1.25</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1.25</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<span><span class="co">#&gt;          term   estimate  std.error statistic      p.value   conf.low   conf.high p.value.equiv p.value.noninf</span></span>
+<span><span class="co">#&gt; 1  fish - soy -0.2727678 0.05293450 -5.152931 2.564458e-07 -0.3765176 -0.16901813    0.82574055     0.82574055</span></span>
+<span><span class="co">#&gt; 2 fish - skim -0.4022777 0.05415929 -7.427677 1.105217e-13 -0.5084279 -0.29612742    0.99952941     0.99952941</span></span>
+<span><span class="co">#&gt; 3  soy - skim -0.1295098 0.05304280 -2.441610 1.462192e-02 -0.2334718 -0.02554786    0.03876101     0.03876101</span></span>
+<span><span class="co">#&gt;   p.value.nonsup statistic.noninf statistic.nonsup</span></span>
+<span><span class="co">#&gt; 1   3.682126e-21        -0.937466        -9.368397</span></span>
+<span><span class="co">#&gt; 2   3.786224e-31        -3.307542       -11.547811</span></span>
+<span><span class="co">#&gt; 3   1.480788e-11         1.765248        -6.648469</span></span></code></pre></div>
 </div>
 <div class="section level5">
 <h5 id="example-6-t-test">Example 6: t-test<a class="anchor" aria-label="anchor" href="#example-6-t-test"></a>
@@ -794,8 +801,8 @@
 <span></span>
 <span><span class="co"># test with {marginaleffects} package</span></span>
 <span><span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, df <span class="op">=</span> <span class="va">e</span><span class="op">$</span><span class="va">parameter</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span>,<span class="op">]</span></span>
-<span><span class="co">#&gt;   Term Estimate Std. Error     z Pr(&gt;|z|)  2.5 % 97.5 %       df    p (Inf)    p (Sup)     p (Eq)</span></span>
-<span><span class="co">#&gt; 2   b2   0.1064     0.5484 0.194  0.84839 -1.048   1.26 17.60746 2.9736e-13 4.2485e-13 4.2485e-13</span></span>
+<span><span class="co">#&gt;   Term Estimate Std. Error     z Pr(&gt;|z|)  2.5 % 97.5 %       df      p (Inf)      p (Sup)       p (Eq)</span></span>
+<span><span class="co">#&gt; 2   b2   0.1064     0.5484 0.194  0.84839 -1.048   1.26 17.60746 2.973612e-13 4.248528e-13 4.248528e-13</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model type:  lm </span></span>
 <span><span class="co">#&gt; Prediction type:</span></span></code></pre></div>

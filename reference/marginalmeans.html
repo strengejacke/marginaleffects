@@ -268,7 +268,7 @@ global option:</p>
 <p><code>options("marginaleffects_posterior_center" = "mean")</code></p>
 <p><code>options("marginaleffects_posterior_center" = "median")</code></p>
 <p>When estimates are averaged using the <code>by</code> argument, the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> function, or
-the <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code> function, the posterior distribution is marginalized twice over.
+the <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> function, the posterior distribution is marginalized twice over.
 First, we take the average <em>across</em> units but <em>within</em> each iteration of the
 MCMC chain, according to what the user requested in <code>by</code> argument or
 <code>tidy()/summary()</code> functions. Then, we identify the center of the resulting
