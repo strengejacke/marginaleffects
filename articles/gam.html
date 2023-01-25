@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9113</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9114</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,22 +147,22 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 75600    12</span></span>
+<span><span class="co">#&gt; [1] 75600    14</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type   estimate std.error statistic      p.value    conf.low</span></span>
 <span><span class="co">#&gt; 1     1 response -1.8738546 0.1992173 -9.406085 5.149621e-21 -2.26431957</span></span>
 <span><span class="co">#&gt; 2     2 response -1.3462927 0.1817494 -7.407413 1.287873e-13 -1.70252064</span></span>
-<span><span class="co">#&gt; 3     3 response -0.8191262 0.1671242 -4.901304 9.520267e-07 -1.14668881</span></span>
+<span><span class="co">#&gt; 3     3 response -0.8191262 0.1671242 -4.901304 9.520266e-07 -1.14668881</span></span>
 <span><span class="co">#&gt; 4     4 response -0.2929805 0.1560516 -1.877459 6.045522e-02 -0.59884099</span></span>
 <span><span class="co">#&gt; 5     5 response  0.2312910 0.1489156  1.553168 1.203830e-01 -0.06058298</span></span>
 <span><span class="co">#&gt; 6     6 response  0.7526640 0.1455161  5.172377 2.311341e-07  0.46745317</span></span>
-<span><span class="co">#&gt;     conf.high         Y  Group      Time Subject</span></span>
-<span><span class="co">#&gt; 1 -1.48338968 0.7554469 Adults   0.00000     a01</span></span>
-<span><span class="co">#&gt; 2 -0.99006473 2.7834759 Adults  20.20202     a01</span></span>
-<span><span class="co">#&gt; 3 -0.49156368 1.9696963 Adults  40.40404     a01</span></span>
-<span><span class="co">#&gt; 4  0.01287995 0.6814298 Adults  60.60606     a01</span></span>
-<span><span class="co">#&gt; 5  0.52316491 1.6939195 Adults  80.80808     a01</span></span>
-<span><span class="co">#&gt; 6  1.03787477 2.3651969 Adults 101.01010     a01</span></span></code></pre></div>
+<span><span class="co">#&gt;     conf.high  Group      Time Trial Condition Subject         Y</span></span>
+<span><span class="co">#&gt; 1 -1.48338968 Adults   0.00000   -10        -1     a01 0.7554469</span></span>
+<span><span class="co">#&gt; 2 -0.99006473 Adults  20.20202   -10        -1     a01 2.7834759</span></span>
+<span><span class="co">#&gt; 3 -0.49156368 Adults  40.40404   -10        -1     a01 1.9696963</span></span>
+<span><span class="co">#&gt; 4  0.01287995 Adults  60.60606   -10        -1     a01 0.6814298</span></span>
+<span><span class="co">#&gt; 5  0.52316491 Adults  80.80808   -10        -1     a01 1.6939195</span></span>
+<span><span class="co">#&gt; 6  1.03787477 Adults 101.01010   -10        -1     a01 2.3651969</span></span></code></pre></div>
 <p>We can easily plot adjusted predictions for different values of a regressor using the <code><a href="../reference/plot_cap.html">plot_cap()</a></code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">model</span>, condition <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span></code></pre></div>
@@ -176,26 +176,26 @@
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">model</span>, variables <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   rowid     type term   estimate   std.error statistic       p.value   conf.low</span></span>
-<span><span class="co">#&gt; 1     1 response Time 0.02611718 0.001367279  19.10158  2.449658e-81 0.02343737</span></span>
-<span><span class="co">#&gt; 2     2 response Time 0.02610850 0.001360254  19.19384  4.167026e-82 0.02344245</span></span>
-<span><span class="co">#&gt; 3     3 response Time 0.02607541 0.001334433  19.54044  4.975241e-85 0.02345997</span></span>
-<span><span class="co">#&gt; 4     4 response Time 0.02600520 0.001282381  20.27884  1.977388e-91 0.02349178</span></span>
-<span><span class="co">#&gt; 5     5 response Time 0.02588800 0.001201131  21.55302 4.960033e-103 0.02353382</span></span>
-<span><span class="co">#&gt; 6     6 response Time 0.02571676 0.001092275  23.54421 1.438981e-122 0.02357594</span></span>
-<span><span class="co">#&gt;    conf.high  predicted predicted_hi predicted_lo         Y  Group      Time</span></span>
-<span><span class="co">#&gt; 1 0.02879700 -1.8738546   -1.8686312   -1.8738546 0.7554469 Adults   0.00000</span></span>
-<span><span class="co">#&gt; 2 0.02877454 -1.3462927   -1.3410710   -1.3462927 2.7834759 Adults  20.20202</span></span>
-<span><span class="co">#&gt; 3 0.02869086 -0.8191262   -0.8139112   -0.8191262 1.9696963 Adults  40.40404</span></span>
-<span><span class="co">#&gt; 4 0.02851862 -0.2929805   -0.2877795   -0.2929805 0.6814298 Adults  60.60606</span></span>
-<span><span class="co">#&gt; 5 0.02824217  0.2312910    0.2364686    0.2312910 1.6939195 Adults  80.80808</span></span>
-<span><span class="co">#&gt; 6 0.02785758  0.7526640    0.7578073    0.7526640 2.3651969 Adults 101.01010</span></span>
-<span><span class="co">#&gt;   Subject eps</span></span>
-<span><span class="co">#&gt; 1     a01 0.2</span></span>
-<span><span class="co">#&gt; 2     a01 0.2</span></span>
-<span><span class="co">#&gt; 3     a01 0.2</span></span>
-<span><span class="co">#&gt; 4     a01 0.2</span></span>
-<span><span class="co">#&gt; 5     a01 0.2</span></span>
-<span><span class="co">#&gt; 6     a01 0.2</span></span></code></pre></div>
+<span><span class="co">#&gt; 1     1 response Time 0.02611718 0.001367279  19.10158  2.449639e-81 0.02343737</span></span>
+<span><span class="co">#&gt; 2     2 response Time 0.02610850 0.001360254  19.19384  4.167004e-82 0.02344245</span></span>
+<span><span class="co">#&gt; 3     3 response Time 0.02607541 0.001334434  19.54044  4.975407e-85 0.02345997</span></span>
+<span><span class="co">#&gt; 4     4 response Time 0.02600520 0.001282381  20.27884  1.977498e-91 0.02349178</span></span>
+<span><span class="co">#&gt; 5     5 response Time 0.02588800 0.001201131  21.55302 4.959944e-103 0.02353382</span></span>
+<span><span class="co">#&gt; 6     6 response Time 0.02571676 0.001092275  23.54421 1.438972e-122 0.02357594</span></span>
+<span><span class="co">#&gt;    conf.high  predicted predicted_hi predicted_lo  Group      Time Trial</span></span>
+<span><span class="co">#&gt; 1 0.02879700 -1.8738546   -1.8686312   -1.8738546 Adults   0.00000   -10</span></span>
+<span><span class="co">#&gt; 2 0.02877454 -1.3462927   -1.3410710   -1.3462927 Adults  20.20202   -10</span></span>
+<span><span class="co">#&gt; 3 0.02869086 -0.8191262   -0.8139112   -0.8191262 Adults  40.40404   -10</span></span>
+<span><span class="co">#&gt; 4 0.02851862 -0.2929805   -0.2877795   -0.2929805 Adults  60.60606   -10</span></span>
+<span><span class="co">#&gt; 5 0.02824217  0.2312910    0.2364686    0.2312910 Adults  80.80808   -10</span></span>
+<span><span class="co">#&gt; 6 0.02785758  0.7526640    0.7578073    0.7526640 Adults 101.01010   -10</span></span>
+<span><span class="co">#&gt;   Condition Subject         Y eps</span></span>
+<span><span class="co">#&gt; 1        -1     a01 0.7554469 0.2</span></span>
+<span><span class="co">#&gt; 2        -1     a01 2.7834759 0.2</span></span>
+<span><span class="co">#&gt; 3        -1     a01 1.9696963 0.2</span></span>
+<span><span class="co">#&gt; 4        -1     a01 0.6814298 0.2</span></span>
+<span><span class="co">#&gt; 5        -1     a01 1.6939195 0.2</span></span>
+<span><span class="co">#&gt; 6        -1     a01 2.3651969 0.2</span></span></code></pre></div>
 <p>We can plot marginal effects for different values of a regressor using the <code><a href="../reference/plot_cme.html">plot_cme()</a></code> function. This next plot shows the slope of the prediction equation, that is, the slope of the previous plot, at every value of the <code>Time</code> variable.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">model</span>, effect <span class="op">=</span> <span class="st">"Time"</span>, condition <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span></code></pre></div>
