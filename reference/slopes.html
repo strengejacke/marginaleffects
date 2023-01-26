@@ -30,7 +30,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9115</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9117</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -347,13 +347,13 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu">slopes</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term  Estimate Std. Error      z Pr(&gt;|z|)      2.5 %    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp 0.0069832  0.0058794 1.1877  0.23493 -0.0045401 0.0185066</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp 0.0164041  0.0133881 1.2253  0.22047 -0.0098360 0.0426442</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp 0.0028285  0.0037507 0.7541  0.45078 -0.0045227 0.0101796</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   hp 0.0019349  0.0024509 0.7895  0.42985 -0.0028688 0.0067385</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   hp 0.0029929  0.0033775 0.8861  0.37556 -0.0036269 0.0096127</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   hp 0.0001476  0.0003453 0.4276  0.66893 -0.0005291 0.0008244</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term  Estimate Std. Error      z Pr(&gt;|z|)      2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0069832  0.0058794 1.1877  0.23493 -0.0045401 0.0185066</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0164041  0.0133881 1.2253  0.22047 -0.0098360 0.0426442</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0028285  0.0037507 0.7541  0.45078 -0.0045227 0.0101796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0019349  0.0024509 0.7895  0.42985 -0.0028688 0.0067385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0029929  0.0033775 0.8861  0.37556 -0.0036269 0.0096127</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0001476  0.0003453 0.4276  0.66893 -0.0005291 0.0008244</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb, eps </span>
@@ -362,9 +362,9 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Average Marginal Effect (AME)</span></span></span>
 <span class="r-in"><span><span class="fu">avg_slopes</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term  Estimate Std. Error      z   Pr(&gt;|z|)     2.5 %    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp  0.002653   0.001939  1.368    0.17121 -0.001147  0.006452</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   wt -0.435783   0.102063 -4.270 1.9568e-05 -0.635822 -0.235744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term  Estimate Std. Error      z   Pr(&gt;|z|)     2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp  0.002653   0.001939  1.368    0.17121 -0.001147  0.006452</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    wt -0.435783   0.102063 -4.270 1.9568e-05 -0.635822 -0.235744</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
@@ -374,9 +374,9 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Marginal Effect at the Mean (MEM)</span></span></span>
 <span class="r-in"><span><span class="fu">slopes</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term  Estimate Std. Error      z Pr(&gt;|z|)     2.5 %  97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp  0.008527    0.00785  1.086  0.27736 -0.006858 0.02391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   wt -1.744527    1.58631 -1.100  0.27144 -4.853630 1.36458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term  Estimate Std. Error      z Pr(&gt;|z|)     2.5 %  97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp  0.008527    0.00785  1.086  0.27736 -0.006858 0.02391</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    wt -1.744527    1.58631 -1.100  0.27144 -4.853630 1.36458</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, am, hp, wt, eps </span>
@@ -386,11 +386,11 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Variables not explicitly included in `datagrid()` are held at their means</span></span></span>
 <span class="r-in"><span><span class="fu">slopes</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term  Estimate Std. Error       z Pr(&gt;|z|)     2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp  0.001167   0.001754  0.6651  0.50599 -0.002271 0.004605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp  0.001895   0.002416  0.7845  0.43276 -0.002840 0.006631</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   wt -0.194678   0.307228 -0.6337  0.52630 -0.796833 0.407478</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   wt -0.331536   0.436074 -0.7603  0.44709 -1.186226 0.523154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term  Estimate Std. Error       z Pr(&gt;|z|)     2.5 %   97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp  0.001167   0.001754  0.6651  0.50599 -0.002271 0.004605</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp  0.001895   0.002416  0.7845  0.43276 -0.002840 0.006631</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    wt -0.194678   0.307228 -0.6337  0.52630 -0.796833 0.407478</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    wt -0.331536   0.436074 -0.7603  0.44709 -1.186226 0.523154</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, am, wt, hp, eps </span>
@@ -403,10 +403,10 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">avg_slopes</span><span class="op">(</span><span class="va">mod2</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term    Contrast Estimate Std. Error       z  Pr(&gt;|z|)    2.5 %   97.5 % cyl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp mean(dY/dX) -0.05226    0.02041 -2.5608 0.0104442 -0.09225 -0.01226   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp mean(dY/dX) -0.09173    0.03533 -2.5964 0.0094216 -0.16098 -0.02248   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp mean(dY/dX) -0.01278    0.01434 -0.8912 0.3727993 -0.04089  0.01533   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term    Contrast Estimate Std. Error       z  Pr(&gt;|z|)    2.5 %   97.5 % cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(dY/dX) -0.05226    0.02041 -2.5608 0.0104442 -0.09225 -0.01226   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(dY/dX) -0.09173    0.03533 -2.5964 0.0094216 -0.16098 -0.02248   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(dY/dX) -0.01278    0.01434 -0.8912 0.3727993 -0.04089  0.01533   8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, cyl, predicted, predicted_hi, predicted_lo </span>
@@ -421,13 +421,13 @@ posterior using the function supplied to the
 <span class="r-in"><span>              grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term  Estimate Std. Error      z Pr(&gt;|z|)      2.5 %    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp 0.0120345  0.0099872 1.2050  0.22820 -0.0075399 0.0316090</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp 0.0141605  0.0108084 1.3101  0.19015 -0.0070235 0.0353446</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp 0.0015642  0.0022025 0.7102  0.47758 -0.0027526 0.0058810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   hp 0.0011906  0.0017805 0.6687  0.50367 -0.0022990 0.0046803</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   hp 0.0001455  0.0003411 0.4265  0.66971 -0.0005230 0.0008140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   hp 0.0001201  0.0002911 0.4127  0.67985 -0.0004504 0.0006907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term  Estimate Std. Error      z Pr(&gt;|z|)      2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0120345  0.0099872 1.2050  0.22820 -0.0075399 0.0316090</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0141605  0.0108084 1.3101  0.19015 -0.0070235 0.0353446</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0015642  0.0022025 0.7102  0.47758 -0.0027526 0.0058810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0011906  0.0017805 0.6687  0.50367 -0.0022990 0.0046803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0001455  0.0003411 0.4265  0.66971 -0.0005230 0.0008140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0001201  0.0002911 0.4127  0.67985 -0.0004504 0.0006907</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, rowidcf, predicted, predicted_hi, predicted_lo, am, wt, hp, eps </span>
@@ -437,13 +437,13 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu">slopes</span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="fu">sandwich</span><span class="fu">::</span><span class="fu"><a href="https://sandwich.R-Forge.R-project.org/reference/vcovHC.html" class="external-link">vcovHC</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Term  Estimate Std. Error      z Pr(&gt;|z|)      2.5 %    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp 0.0069832  0.0091871 0.7601  0.44719 -0.0110232 0.0249897</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp 0.0164041  0.0134025 1.2240  0.22097 -0.0098642 0.0426725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp 0.0028285  0.0049129 0.5757  0.56481 -0.0068008 0.0124577</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   hp 0.0019349  0.0018435 1.0496  0.29392 -0.0016783 0.0055481</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   hp 0.0029929  0.0027827 1.0755  0.28213 -0.0024611 0.0084468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   hp 0.0001476  0.0002545 0.5800  0.56188 -0.0003512 0.0006465</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term  Estimate Std. Error      z Pr(&gt;|z|)      2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0069832  0.0091871 0.7601  0.44719 -0.0110232 0.0249897</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0164041  0.0134025 1.2240  0.22097 -0.0098642 0.0426725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0028285  0.0049129 0.5757  0.56481 -0.0068008 0.0124577</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0019349  0.0018435 1.0496  0.29392 -0.0016783 0.0055481</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0029929  0.0027827 1.0755  0.28213 -0.0024611 0.0084468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp 0.0001476  0.0002545 0.5800  0.56188 -0.0003512 0.0006465</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb, eps </span>
@@ -457,8 +457,8 @@ posterior using the function supplied to the
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="st">"mean"</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="st">"wt = drat"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Term Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 wt=drat   -6.225      1.052 -5.919 3.2399e-09 -8.287 -4.164</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Term Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  wt=drat   -6.225      1.052 -5.919 3.2399e-09 -8.287 -4.164</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
@@ -470,8 +470,8 @@ posterior using the function supplied to the
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="st">"mean"</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="st">"b1 - b2 = 0"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Term Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 b1-b2=0   -6.225      1.052 -5.919 3.2399e-09 -8.287 -4.164</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Term Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  b1-b2=0   -6.225      1.052 -5.919 3.2399e-09 -8.287 -4.164</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
@@ -483,8 +483,8 @@ posterior using the function supplied to the
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="st">"mean"</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Term Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 custom   -6.225      1.052 -5.919 3.2399e-09 -8.287 -4.164</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Term Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  custom   -6.225      1.052 -5.919 3.2399e-09 -8.287 -4.164</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
@@ -501,9 +501,9 @@ posterior using the function supplied to the
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="st">"mean"</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         Term Estimate Std. Error       z   Pr(&gt;|z|)   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Contrast A   -6.225      1.052 -5.9190 3.2399e-09  -8.287 -4.164</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Contrast B   -5.238      5.624 -0.9315    0.35162 -16.261  5.784</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Term Estimate Std. Error       z   Pr(&gt;|z|)   2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Contrast A   -6.225      1.052 -5.9190 3.2399e-09  -8.287 -4.164</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Contrast B   -5.238      5.624 -0.9315    0.35162 -16.261  5.784</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
