@@ -84,7 +84,7 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 [![status](https://tinyverse.netlify.com/badge/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 --><p>Compute and plot predictions, slopes, marginal means, and comparisons (contrasts, risk ratios, etc.) for over 70 classes of statistical models in R. Conduct linear and non-linear hypothesis tests using the delta method.</p>
-<p>The code on this website was executed using <code>marginaleffects</code> 0.8.1.9118. See the <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">installation section</a> to install the latest CRAN or development version.</p>
+<p>The code on this website was executed using <code>marginaleffects</code> 0.8.1.9119. See the <a href="https://vincentarelbundock.github.io/marginaleffects/#installation">installation section</a> to install the latest CRAN or development version.</p>
 <div class="section level2">
 <h2 id="table-of-contents">Table of contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
 </h2>
@@ -483,7 +483,7 @@
 <h2 id="averaging">Averaging<a class="anchor" aria-label="anchor" href="#averaging"></a>
 </h2>
 <p>Since predictions, comparisons, and slopes are conditional quantities, they can be a bit unwieldy. Often, it can be useful to report a one-number summary instead of one estimate per observation. Instead of presenting “conditional” estimates, some methodologists recommend reporting “marginal” estimates, that is, an average of unit-level estimates.</p>
-<p>(This use of the word “marginal” as “averaging” should not be confused with the term “marginal effect” which, in the econometrics tradition, correspond to a partial derivative, or the effect of a “small/marginal” change.)</p>
+<p>(This use of the word “marginal” as “averaging” should not be confused with the term “marginal effect” which, in the econometrics tradition, corresponds to a partial derivative, or the effect of a “small/marginal” change.)</p>
 <p>To marginalize (average over) our unit-level estimates, we can use the <code>by</code> argument or the one of the convenience functions: <code><a href="reference/predictions.html">avg_predictions()</a></code>, <code><a href="reference/comparisons.html">avg_comparisons()</a></code>, or <code><a href="reference/slopes.html">avg_slopes()</a></code>. For example, both of these commands give us the same result: the average predicted outcome in the <code>mtcars</code> dataset:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/predictions.html">avg_predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
@@ -578,9 +578,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  </span></span>
 <span><span class="co">#&gt; Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>We can ask the same question but refer to parameters by position, with indices <code>b1</code>, <code>b2</code>, <code>b3</code>, etc. and get a nicer printout by using <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>:</p>
+<p>We can ask the same question but refer to parameters by position, with indices <code>b1</code>, <code>b2</code>, <code>b3</code>, etc.:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, <span class="st">"b3 = 2 * b2"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, <span class="st">"b3 = 2 * b2"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;         Term Estimate Std. Error       z Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt;  b3 = 2 * b2   -1.389      10.78 -0.1289  0.89744 -22.51  19.73</span></span>
