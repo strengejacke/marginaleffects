@@ -30,7 +30,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9117</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -376,9 +376,9 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Adjusted Predictions at User-Specified Values of the Regressors</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span>, cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     26.25     0.9856 26.63 &lt; 2.22e-16 24.31  28.18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     25.77     1.1096 23.22 &lt; 2.22e-16 23.59  27.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %  hp cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     26.25     0.9856 26.63 &lt; 2.22e-16 24.31  28.18 100   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     25.77     1.1096 23.22 &lt; 2.22e-16 23.59  27.94 120   4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, hp, cyl </span>

@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9117</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,8 +120,8 @@
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3rd"</span>, <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>Age <span class="op">=</span> <span class="fl">25</span>, SexCode <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;    Term  Contrast Estimate Std. Error    z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  PClass 1st - 3rd   0.3918    0.07491 5.23 1.6947e-07 0.245 0.5386</span></span>
+<span><span class="co">#&gt;    Term  Contrast Estimate Std. Error    z   Pr(&gt;|z|) 2.5 % 97.5 % Age SexCode</span></span>
+<span><span class="co">#&gt;  PClass 1st - 3rd   0.3918    0.07491 5.23 1.6947e-07 0.245 0.5386  25       0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Survived, PClass, Age, SexCode</span></span></code></pre></div>
@@ -132,11 +132,11 @@
 <span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3rd"</span>, <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>Age <span class="op">=</span> <span class="va">range</span>, SexCode <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;    Term  Contrast Estimate Std. Error     z   Pr(&gt;|z|)    2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  PClass 1st - 3rd  0.44260    0.14818 2.987 0.00281726  0.15218 0.7330</span></span>
-<span><span class="co">#&gt;  PClass 1st - 3rd  0.47018    0.13297 3.536 0.00040642  0.20956 0.7308</span></span>
-<span><span class="co">#&gt;  PClass 1st - 3rd  0.07107    0.04533 1.568 0.11690206 -0.01777 0.1599</span></span>
-<span><span class="co">#&gt;  PClass 1st - 3rd  0.52411    0.20599 2.544 0.01094812  0.12038 0.9278</span></span>
+<span><span class="co">#&gt;    Term  Contrast Estimate Std. Error     z   Pr(&gt;|z|)    2.5 % 97.5 %   Age SexCode</span></span>
+<span><span class="co">#&gt;  PClass 1st - 3rd  0.44260    0.14818 2.987 0.00281726  0.15218 0.7330  0.17       0</span></span>
+<span><span class="co">#&gt;  PClass 1st - 3rd  0.47018    0.13297 3.536 0.00040642  0.20956 0.7308  0.17       1</span></span>
+<span><span class="co">#&gt;  PClass 1st - 3rd  0.07107    0.04533 1.568 0.11690206 -0.01777 0.1599 71.00       0</span></span>
+<span><span class="co">#&gt;  PClass 1st - 3rd  0.52411    0.20599 2.544 0.01094812  0.12038 0.9278 71.00       1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Survived, PClass, Age, SexCode</span></span></code></pre></div>
@@ -612,9 +612,9 @@
 <span>  variables <span class="op">=</span> <span class="st">"SexCode"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>PClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1st"</span>, <span class="st">"3rd"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Term Contrast Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  SexCode    1 - 0   0.4828    0.06308 7.653 1.9593e-14 0.3591 0.6064</span></span>
-<span><span class="co">#&gt;  SexCode    1 - 0   0.3351    0.06343 5.283 1.2703e-07 0.2108 0.4594</span></span>
+<span><span class="co">#&gt;     Term Contrast Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 % PClass</span></span>
+<span><span class="co">#&gt;  SexCode    1 - 0   0.4828    0.06308 7.653 1.9593e-14 0.3591 0.6064    1st</span></span>
+<span><span class="co">#&gt;  SexCode    1 - 0   0.3351    0.06343 5.283 1.2703e-07 0.2108 0.4594    3rd</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Survived, SexCode, Age, PClass, eps</span></span></code></pre></div>
@@ -639,11 +639,11 @@
 <span>  variables <span class="op">=</span> <span class="st">"SexCode"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>PClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1st"</span>, <span class="st">"3rd"</span><span class="op">)</span>, Age <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Term Contrast Estimate Std. Error       z Pr(&gt;|z|)    2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  SexCode    1 - 0  0.10807     0.1224  0.8827 0.377423 -0.13190 0.3480</span></span>
-<span><span class="co">#&gt;  SexCode    1 - 0  0.87952     0.0570 15.4293  &lt; 2e-16  0.76780 0.9912</span></span>
-<span><span class="co">#&gt;  SexCode    1 - 0  0.08049     0.1570  0.5127 0.608149 -0.22721 0.3882</span></span>
-<span><span class="co">#&gt;  SexCode    1 - 0  0.42648     0.2031  2.1002 0.035714  0.02847 0.8245</span></span>
+<span><span class="co">#&gt;     Term Contrast Estimate Std. Error       z Pr(&gt;|z|)    2.5 % 97.5 % PClass   Age</span></span>
+<span><span class="co">#&gt;  SexCode    1 - 0  0.10807     0.1224  0.8827 0.377423 -0.13190 0.3480    1st  0.17</span></span>
+<span><span class="co">#&gt;  SexCode    1 - 0  0.87952     0.0570 15.4293  &lt; 2e-16  0.76780 0.9912    1st 71.00</span></span>
+<span><span class="co">#&gt;  SexCode    1 - 0  0.08049     0.1570  0.5127 0.608149 -0.22721 0.3882    3rd  0.17</span></span>
+<span><span class="co">#&gt;  SexCode    1 - 0  0.42648     0.2031  2.1002 0.035714  0.02847 0.8245    3rd 71.00</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Survived, SexCode, PClass, Age, eps</span></span></code></pre></div>
@@ -897,10 +897,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate  2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt;   -0.8175 -1.034 -0.6043</span></span>
-<span><span class="co">#&gt;   -2.8055 -3.063 -2.5551</span></span>
-<span><span class="co">#&gt;   -4.7902 -5.338 -4.2746</span></span>
+<span><span class="co">#&gt;  Estimate  2.5 %  97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;   -0.8175 -1.034 -0.6043      40</span></span>
+<span><span class="co">#&gt;   -2.8055 -3.063 -2.5551      60</span></span>
+<span><span class="co">#&gt;   -4.7902 -5.338 -4.2746      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap0, lifeExp</span></span></code></pre></div>
@@ -909,10 +909,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate    2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt;  0.306297 0.262313 0.35335</span></span>
-<span><span class="co">#&gt;  0.057028 0.044664 0.07209</span></span>
-<span><span class="co">#&gt;  0.008242 0.004783 0.01373</span></span>
+<span><span class="co">#&gt;  Estimate    2.5 %  97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;  0.306297 0.262313 0.35335      40</span></span>
+<span><span class="co">#&gt;  0.057028 0.044664 0.07209      60</span></span>
+<span><span class="co">#&gt;  0.008242 0.004783 0.01373      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap0, lifeExp</span></span></code></pre></div>
@@ -921,10 +921,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Term Estimate   2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;  lifeExp -0.09931 -0.1158 -0.08366</span></span>
-<span><span class="co">#&gt;  lifeExp -0.09931 -0.1158 -0.08366</span></span>
-<span><span class="co">#&gt;  lifeExp -0.09931 -0.1158 -0.08366</span></span>
+<span><span class="co">#&gt;     Term Estimate   2.5 %   97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;  lifeExp -0.09931 -0.1158 -0.08366      40</span></span>
+<span><span class="co">#&gt;  lifeExp -0.09931 -0.1158 -0.08366      60</span></span>
+<span><span class="co">#&gt;  lifeExp -0.09931 -0.1158 -0.08366      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, gdpPercap0, lifeExp, eps</span></span>
@@ -932,10 +932,10 @@
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Term   Estimate     2.5 %     97.5 %</span></span>
-<span><span class="co">#&gt;  lifeExp -0.0210777 -0.025913 -0.0165879</span></span>
-<span><span class="co">#&gt;  lifeExp -0.0053208 -0.006149 -0.0045609</span></span>
-<span><span class="co">#&gt;  lifeExp -0.0008119 -0.001154 -0.0005429</span></span>
+<span><span class="co">#&gt;     Term   Estimate     2.5 %     97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;  lifeExp -0.0210777 -0.025913 -0.0165879      40</span></span>
+<span><span class="co">#&gt;  lifeExp -0.0053208 -0.006149 -0.0045609      60</span></span>
+<span><span class="co">#&gt;  lifeExp -0.0008119 -0.001154 -0.0005429      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, gdpPercap0, lifeExp, eps</span></span></code></pre></div>
@@ -944,20 +944,20 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     6.612 6.542  6.686</span></span>
-<span><span class="co">#&gt;     8.184 8.146  8.221</span></span>
-<span><span class="co">#&gt;     9.754 9.687  9.821</span></span>
+<span><span class="co">#&gt;  Estimate 2.5 % 97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;     6.612 6.542  6.686      40</span></span>
+<span><span class="co">#&gt;     8.184 8.146  8.221      60</span></span>
+<span><span class="co">#&gt;     9.754 9.687  9.821      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap0, lifeExp</span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"response"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     6.612 6.542  6.686</span></span>
-<span><span class="co">#&gt;     8.184 8.146  8.221</span></span>
-<span><span class="co">#&gt;     9.754 9.687  9.821</span></span>
+<span><span class="co">#&gt;  Estimate 2.5 % 97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;     6.612 6.542  6.686      40</span></span>
+<span><span class="co">#&gt;     8.184 8.146  8.221      60</span></span>
+<span><span class="co">#&gt;     9.754 9.687  9.821      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap0, lifeExp</span></span></code></pre></div>
@@ -967,10 +967,10 @@
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>            transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate   2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt;     744.3   693.8   800.9</span></span>
-<span><span class="co">#&gt;    3581.4  3449.4  3717.8</span></span>
-<span><span class="co">#&gt;   17214.6 16110.2 18410.3</span></span>
+<span><span class="co">#&gt;  Estimate   2.5 %  97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;     744.3   693.8   800.9      40</span></span>
+<span><span class="co">#&gt;    3581.4  3449.4  3717.8      60</span></span>
+<span><span class="co">#&gt;   17214.6 16110.2 18410.3      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
@@ -1022,10 +1022,10 @@
 <span>  transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">lo</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">eps</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="va">eps</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Term Contrast Estimate   2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt;  lifeExp   +0.001    58.39   55.85   61.02</span></span>
-<span><span class="co">#&gt;  lifeExp   +0.001   280.89  266.58  295.51</span></span>
-<span><span class="co">#&gt;  lifeExp   +0.001  1349.41 1222.59 1490.38</span></span>
+<span><span class="co">#&gt;     Term Contrast Estimate   2.5 %  97.5 % lifeExp</span></span>
+<span><span class="co">#&gt;  lifeExp   +0.001    58.39   55.85   61.02      40</span></span>
+<span><span class="co">#&gt;  lifeExp   +0.001   280.89  266.58  295.51      60</span></span>
+<span><span class="co">#&gt;  lifeExp   +0.001  1349.41 1222.59 1490.38      80</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Pre-transformation:  function(hi, lo) ((exp(hi) - exp(lo))/exp(eps))/eps </span></span>

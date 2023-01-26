@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9117</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -212,11 +212,11 @@
 <span>        woman <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>        passengerClass <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;            Term  Contrast   Estimate     2.5 %    97.5 %</span></span>
-<span><span class="co">#&gt;           woman     dY/dX  0.1562784  0.111359  0.208756</span></span>
-<span><span class="co">#&gt;             age     dY/dX -0.0002383 -0.001355  0.000871</span></span>
-<span><span class="co">#&gt;  passengerClass 2nd - 1st -0.1574416 -0.223275 -0.102890</span></span>
-<span><span class="co">#&gt;  passengerClass 3rd - 1st -0.3653764 -0.438319 -0.294769</span></span>
+<span><span class="co">#&gt;            Term  Contrast   Estimate     2.5 %    97.5 % woman passengerClass</span></span>
+<span><span class="co">#&gt;           woman     dY/dX  0.1562784  0.111359  0.208756     1            1st</span></span>
+<span><span class="co">#&gt;             age     dY/dX -0.0002383 -0.001355  0.000871     1            1st</span></span>
+<span><span class="co">#&gt;  passengerClass 2nd - 1st -0.1574416 -0.223275 -0.102890     1            1st</span></span>
+<span><span class="co">#&gt;  passengerClass 3rd - 1st -0.3653764 -0.438319 -0.294769     1            1st</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, survived, age, woman, passengerClass, eps</span></span></code></pre></div>
@@ -317,9 +317,9 @@
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;             Term     Contrast Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   party_autonomy TRUE - FALSE   0.2517 0.1663 0.3356</span></span>
-<span><span class="co">#&gt;  civil_liberties        dY/dX   0.8160 0.6214 1.0066</span></span>
+<span><span class="co">#&gt;             Term     Contrast Estimate  2.5 % 97.5 % civil_liberties                       region</span></span>
+<span><span class="co">#&gt;   party_autonomy TRUE - FALSE   0.2517 0.1663 0.3356             0.5 Middle East and North Africa</span></span>
+<span><span class="co">#&gt;  civil_liberties        dY/dX   0.8160 0.6214 1.0066             0.5 Middle East and North Africa</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, media_index, party_autonomy, civil_liberties, region, eps</span></span></code></pre></div>
@@ -365,10 +365,10 @@
 <span>    variables <span class="op">=</span> <span class="st">"civil_liberties"</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;             Term Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  civil_liberties   0.4900 0.3609 0.6388</span></span>
-<span><span class="co">#&gt;  civil_liberties   0.8071 0.6122 0.9927</span></span>
-<span><span class="co">#&gt;  civil_liberties   0.8069 0.6745 0.9337</span></span>
+<span><span class="co">#&gt;             Term Estimate  2.5 % 97.5 % civil_liberties party_autonomy                       region</span></span>
+<span><span class="co">#&gt;  civil_liberties   0.4900 0.3609 0.6388             0.2          FALSE Middle East and North Africa</span></span>
+<span><span class="co">#&gt;  civil_liberties   0.8071 0.6122 0.9927             0.5          FALSE Middle East and North Africa</span></span>
+<span><span class="co">#&gt;  civil_liberties   0.8069 0.6745 0.9337             0.8          FALSE Middle East and North Africa</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, media_index, civil_liberties, party_autonomy, region, eps</span></span></code></pre></div>
@@ -534,13 +534,13 @@
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, firm <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   Estimate     2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;  1.000e+00 9.012e-01 1.000000</span></span>
-<span><span class="co">#&gt;  1.000e+00 8.947e-01 1.000000</span></span>
-<span><span class="co">#&gt;  1.000e+00 9.121e-01 1.000000</span></span>
-<span><span class="co">#&gt;  1.000e+00 7.971e-01 1.000000</span></span>
-<span><span class="co">#&gt;  1.000e+00 9.090e-01 1.000000</span></span>
-<span><span class="co">#&gt;  4.899e-08 8.418e-21 0.001898</span></span>
+<span><span class="co">#&gt;   Estimate     2.5 %   97.5 % x firm</span></span>
+<span><span class="co">#&gt;  1.000e+00 9.012e-01 1.000000 0    1</span></span>
+<span><span class="co">#&gt;  1.000e+00 8.947e-01 1.000000 0    2</span></span>
+<span><span class="co">#&gt;  1.000e+00 9.121e-01 1.000000 0    3</span></span>
+<span><span class="co">#&gt;  1.000e+00 7.971e-01 1.000000 0    4</span></span>
+<span><span class="co">#&gt;  1.000e+00 9.090e-01 1.000000 0    5</span></span>
+<span><span class="co">#&gt;  4.899e-08 8.418e-21 0.001898 0    6</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, y, x, firm</span></span></code></pre></div>
@@ -572,8 +572,8 @@
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4530 0.3417 0.5632</span></span>
-<span><span class="co">#&gt;  1   0.5525 0.4411 0.6639</span></span>
+<span><span class="co">#&gt;  0   0.4547 0.3409 0.5663</span></span>
+<span><span class="co">#&gt;  1   0.5525 0.4393 0.6673</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -586,7 +586,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09625 0.04703 0.1646</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09665 0.04803 0.1618</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -602,8 +602,8 @@
 <span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           M       Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.0988003 0.0962493 0.04785854 0.1638107          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
+<span><span class="co">#&gt; 1 0.09872269 0.09612409 0.04801529 0.1604943          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -682,7 +682,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">cmdstanr</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/cmdstanr/" class="external-link">cmdstanr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -969,8 +969,8 @@
 <span><span class="va">rvar</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  am Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   0    17.12  14.9  19.54</span></span>
-<span><span class="co">#&gt;   1    24.36  21.6  27.15</span></span>
+<span><span class="co">#&gt;   0    17.09 14.86  19.38</span></span>
+<span><span class="co">#&gt;   1    24.34 21.53  27.08</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, am, estimate, conf.low, conf.high, rvar</span></span>

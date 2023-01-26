@@ -26,7 +26,7 @@ Warning #2: For hypothesis tests on objects produced by the marginaleffects pack
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9117</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -350,10 +350,10 @@ arguments.</p></dd>
 <span class="r-in"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">hypotheses</span><span class="op">(</span><span class="va">mfx</span>, equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %    p (Inf)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp -0.06685    0.01105 -6.052 1.4269e-09 -0.0885 -0.0452 0.00134666</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       p (Sup)     p (Eq)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7.442542e-52 0.00134666</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %     p (Inf)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp -0.06685    0.01105 -6.052 1.4269e-09 -0.0885 -0.0452 0.001346659</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       p (Sup)      p (Eq)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7.442518e-52 0.001346659</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, statistic.noninf, statistic.nonsup, p.value.noninf, p.value.nonsup, p.value.equiv </span>
