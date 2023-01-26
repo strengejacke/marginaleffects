@@ -30,7 +30,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9114</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9115</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,7 +97,7 @@ https://vincentarelbundock.github.io/marginaleffects/
 <span>  vcov <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  by <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  byfun <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  wts <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -302,7 +302,7 @@ the bounds of a binary response variables.</p>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal Means</a></p></li>
-<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests and Custom Contrasts</a></p></li>
+<li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests, Equivalence Tests, and Custom Contrasts</a></p></li>
 </ul><p>Case studies:</p><ul><li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/brms.html">Bayesian Analyses with <code>brms</code></a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html">Causal Inference with the g-Formula</a></p></li>
 <li><p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/elasticity.html">Elasticity</a></p></li>
@@ -360,46 +360,44 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 26.41451 0.9619738  27.45866 5.476301e-166 24.52907  28.29994</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 20.03819 1.2041405  16.64107  3.512623e-62 17.67812  22.39826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 15.92247 0.9924560  16.04350  6.347069e-58 13.97729  17.86765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 20.15839 1.2186288  16.54186  1.832792e-61 17.76992  22.54685</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    20.04     1.2041 16.64 &lt; 2.22e-16 17.68  22.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    20.04     1.2041 16.64 &lt; 2.22e-16 17.68  22.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    26.41     0.9620 27.46 &lt; 2.22e-16 24.53  28.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    20.04     1.2041 16.64 &lt; 2.22e-16 17.68  22.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    15.92     0.9925 16.04 &lt; 2.22e-16 13.98  17.87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    20.16     1.2186 16.54 &lt; 2.22e-16 17.77  22.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjusted Predictions at User-Specified Values of the Regressors</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">120</span><span class="op">)</span>, cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 26.24623 0.9856325  26.62883 3.148430e-156 24.31443  28.17804</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 25.76546 1.1096486  23.21947 2.895018e-119 23.59059  27.94033</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        mpg  hp cyl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 20.09062 100   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 20.09062 120   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    26.25     0.9856 26.63 &lt; 2.22e-16 24.31  28.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    25.77     1.1096 23.22 &lt; 2.22e-16 23.59  27.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, hp, cyl </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">drat</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">m</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>FUN_factor <span class="op">=</span> <span class="va">unique</span>, FUN_numeric <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic      p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 21.95333  1.288065  17.04365 3.896507e-65 19.42877  24.47789</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 18.18910  1.270927  14.31168 1.849819e-46 15.69813  20.68007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 25.54890  1.322154  19.32369 3.395189e-83 22.95752  28.14027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 21.78467  1.541301  14.13395 2.346178e-45 18.76377  24.80556</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 22.61705  2.140950  10.56403 4.374878e-26 18.42087  26.81324</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 18.85282  1.734026  10.87228 1.562441e-27 15.45419  22.25145</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg  hp  drat cyl am</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 19.2 123 3.695   6  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 19.2 123 3.695   6  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 19.2 123 3.695   4  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 19.2 123 3.695   4  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 19.2 123 3.695   8  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 19.2 123 3.695   8  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    21.95      1.288 17.04 &lt; 2.22e-16 19.43  24.48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    18.19      1.271 14.31 &lt; 2.22e-16 15.70  20.68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    25.55      1.322 19.32 &lt; 2.22e-16 22.96  28.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    21.78      1.541 14.13 &lt; 2.22e-16 18.76  24.81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    22.62      2.141 10.56 &lt; 2.22e-16 18.42  26.81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    18.85      1.734 10.87 &lt; 2.22e-16 15.45  22.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, hp, drat, cyl, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Average Adjusted Predictions (AAP)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
@@ -414,16 +412,23 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">avg_predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    20.09     0.4844 41.47 &lt; 2.22e-16 19.14  21.04</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  lm </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type am estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  1 24.39231 0.7600565  32.09275 5.564392e-226 22.90262  25.88199</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  0 17.14737 0.6286961  27.27449 8.515145e-164 15.91515  18.37959</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   am Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1    24.39     0.7601 32.09 &lt; 2.22e-16 22.90  25.88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0    17.15     0.6287 27.27 &lt; 2.22e-16 15.92  18.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, am, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Conditional Adjusted Predictions</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span></span>
@@ -435,20 +440,18 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response 25.38434 0.8176495  31.04550 1.311940e-211 23.78178  26.98690</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response 25.38434 0.8176495  31.04550 1.311940e-211 23.78178  26.98690</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response 26.38543 0.8495566  31.05789 8.927432e-212 24.72033  28.05053</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response 20.10726 0.7754954  25.92827 3.197502e-148 18.58731  21.62720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response 16.27955 0.6773841  24.03297 1.258166e-127 14.95190  17.60720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 response 20.40169 0.7962179  25.62325 8.401973e-145 18.84114  21.96225</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    25.38     0.8176 31.05 &lt; 2.22e-16 23.78  26.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    25.38     0.8176 31.05 &lt; 2.22e-16 23.78  26.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    26.39     0.8496 31.06 &lt; 2.22e-16 24.72  28.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    20.11     0.7755 25.93 &lt; 2.22e-16 18.59  21.63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    16.28     0.6774 24.03 &lt; 2.22e-16 14.95  17.61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    20.40     0.7962 25.62 &lt; 2.22e-16 18.84  21.96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 32</span>
 <span class="r-in"><span></span></span>
@@ -466,24 +469,39 @@ posterior using the function supplied to the
 <span class="r-in"><span>    <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>wt <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="st">"b1 = b2"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type  term estimate std.error statistic      p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response b1=b2  4.78289 0.7970353  6.000851 1.962855e-09  3.22073  6.345051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Term Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 b1=b2    4.783      0.797 6.001 1.9629e-09 3.221  6.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># same hypothesis test using row indices</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>wt <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="st">"b1 - b2 = 0"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type    term estimate std.error statistic      p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response b1-b2=0  4.78289 0.7970353  6.000851 1.962855e-09  3.22073  6.345051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Term Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 b1-b2=0    4.783      0.797 6.001 1.9629e-09 3.221  6.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># same hypothesis test using numeric vector of weights</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>wt <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type   term estimate std.error statistic      p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response custom  4.78289 0.7970353  6.000851 1.962855e-09  3.22073  6.345051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Term Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 custom    4.783      0.797 6.001 1.9629e-09 3.221  6.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># two custom contrasts using a matrix of weights</span></span></span>
 <span class="r-in"><span><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
@@ -494,61 +512,73 @@ posterior using the function supplied to the
 <span class="r-in"><span>    <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>    newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>wt <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type   term  estimate std.error statistic       p.value  conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response custom   4.78289 0.7970353  6.000851  1.962855e-09   3.22073</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response custom 115.21432 3.6474827 31.587352 5.507899e-219 108.06539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6.345051</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 122.363255</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 custom    4.783      0.797  6.001 1.9629e-09   3.221   6.345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 custom  115.214      3.647 31.587 &lt; 2.22e-16 108.065 122.363</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># `by` argument</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"am"</span>, <span class="st">"vs"</span><span class="op">)</span><span class="op">)</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type am vs estimate std.error statistic       p.value conf.low conf.high</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 response  1  0 19.75000 1.1187729  17.65327  9.603187e-70 17.55725  21.94275</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 response  1  1 28.37143 1.0357825  27.39130 3.481693e-165 26.34133  30.40152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 response  0  1 20.74286 1.0357825  20.02627  3.251286e-89 18.71276  22.77295</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 response  0  0 15.05000 0.7910919  19.02434  1.072330e-80 13.49949  16.60051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   am vs Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1  0    19.75     1.1188 17.65 &lt; 2.22e-16 17.56  21.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  1  1    28.37     1.0358 27.39 &lt; 2.22e-16 26.34  30.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0  1    20.74     1.0358 20.03 &lt; 2.22e-16 18.71  22.77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0  0    15.05     0.7911 19.02 &lt; 2.22e-16 13.50  16.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, am, vs, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">nom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">am</span> <span class="op">*</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># first 5 raw predictions</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid  type group     estimate    std.error    statistic    p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 probs     3 3.623918e-05 2.002490e-03   0.01809706 0.98556142</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 probs     3 9.347603e-08 6.911938e-06   0.01352385 0.98920986</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 probs     3 4.044657e-01 1.965452e-01   2.05787667 0.03960197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 probs     3 9.999714e-01 1.246217e-03 802.40562753 0.00000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 probs     3 5.183336e-01 2.898025e-01   1.78857550 0.07368321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        conf.low    conf.high  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -3.888569e-03 3.961047e-03 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -1.345367e-05 1.364063e-05 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.924426e-02 7.896871e-01 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  9.975289e-01 1.002414e+00 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 -4.966881e-02 1.086336e+00 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Group  Estimate Std. Error         z Pr(&gt;|z|)      2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     3 3.624e-05  2.002e-03   0.01810 0.985561 -3.889e-03 3.961e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     3 3.624e-05  2.002e-03   0.01810 0.985561 -3.889e-03 3.961e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 9.348e-08  6.912e-06   0.01352 0.989210 -1.345e-05 1.364e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     3 4.045e-01  1.965e-01   2.05788 0.039602  1.924e-02 7.897e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     3 1.000e+00  1.246e-03 802.40563  &lt; 2e-16  9.975e-01 1.002e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     3 5.183e-01  2.898e-01   1.78858 0.073683 -4.967e-02 1.086e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  probs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, group, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># average predictions</span></span></span>
 <span class="r-in"><span><span class="fu">avg_predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Group Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     3   0.4688    0.04043 11.595 &lt; 2.22e-16 0.38952 0.5480</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     4   0.3750    0.06142  6.106 1.0231e-09 0.25462 0.4954</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3     5   0.1562    0.04624  3.379  0.0007279 0.06561 0.2469</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model type:  multinom </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  probs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, group, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"3,4"</span>, <span class="st">"3,4"</span>, <span class="st">"5"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">nom</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    type  estimate  std.error statistic      p.value   conf.low conf.high  by</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs 0.4218766 0.02312133 18.246210 2.217708e-74 0.37655960 0.4671935 3,4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs 0.1562469 0.04624265  3.378848 7.279037e-04 0.06561294 0.2468808   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %  By</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.4219    0.02312 18.246 &lt; 2.22e-16 0.37656 0.4672 3,4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.1562    0.04624  3.379  0.0007279 0.06561 0.2469   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  probs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, estimate, std.error, statistic, p.value, conf.low, conf.high, by </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># sum of predicted probabilities for combined response levels</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
@@ -556,9 +586,14 @@ posterior using the function supplied to the
 <span class="r-in"><span>    by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4,6"</span>, <span class="st">"4,6"</span>, <span class="st">"8"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">predictions</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span>, byfun <span class="op">=</span> <span class="va">sum</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    type   estimate std.error statistic      p.value   conf.low conf.high  by</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 probs 0.91584335 0.1218077 7.5187647 5.529622e-14  0.6771047 1.1545820 4,6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 probs 0.08415665 0.1218077 0.6908977 4.896298e-01 -0.1545820 0.3228953   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %  By</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.91584     0.1218 7.5188 5.5296e-14  0.6771 1.1546 4,6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.08416     0.1218 0.6909    0.48963 -0.1546 0.3229   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  probs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, estimate, std.error, statistic, p.value, conf.low, conf.high, by </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

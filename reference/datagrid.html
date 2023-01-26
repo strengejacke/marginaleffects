@@ -18,7 +18,7 @@ datagridcf() generates "counter-factual" data frames, by replicating the entire 
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9114</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9115</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -183,12 +183,14 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
 <span class="r-in"><span><span class="co"># in `slopes()` or `predictions()` we do not need to specify the</span></span></span>
 <span class="r-in"><span><span class="co">#`model` or `newdata` arguments.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu">datagrid</span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term    estimate std.error statistic      p.value    conf.low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp -0.06822828 0.0101193 -6.742389 1.558038e-11 -0.08806175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp -0.06822828 0.0101193 -6.742389 1.558038e-11 -0.08806175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     conf.high predicted predicted_hi predicted_lo      mpg  hp    eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.04839481  23.27603     23.27410     23.27603 20.09062 100 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.04839481  22.59375     22.59182     22.59375 20.09062 110 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Estimate Std. Error      z  Pr(&gt;|z|)    2.5 %   97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, eps </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># datagrid accepts functions</span></span></span>
 <span class="r-in"><span><span class="fu">datagrid</span><span class="op">(</span>hp <span class="op">=</span> <span class="va">range</span>, cyl <span class="op">=</span> <span class="va">unique</span>, newdata <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
@@ -207,24 +209,17 @@ the <code><a href="https://easystats.github.io/insight/reference/get_data.html" 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5   4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6   8</span>
 <span class="r-in"><span><span class="fu"><a href="comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu">datagrid</span><span class="op">(</span>hp <span class="op">=</span> <span class="va">fivenum</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rowid     type term contrast    estimate std.error statistic      p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558037e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 response   hp       +1 -0.06822828 0.0101193 -6.742389 1.558038e-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      conf.low   conf.high predicted predicted_hi predicted_lo      mpg  hp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08806175 -0.04839481 26.550990    26.516876    26.585104 20.09062  52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 -0.08806175 -0.04839481 23.548946    23.514832    23.583060 20.09062  96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 -0.08806175 -0.04839481 21.706782    21.672668    21.740896 20.09062 123</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 -0.08806175 -0.04839481 17.817770    17.783656    17.851885 20.09062 180</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -0.08806175 -0.04839481  7.242387     7.208273     7.276502 20.09062 335</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.0283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.0283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term Contrast Estimate Std. Error      z  Pr(&gt;|z|)    2.5 %   97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   hp       +1 -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   hp       +1 -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   hp       +1 -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   hp       +1 -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   hp       +1 -0.06823    0.01012 -6.742 1.558e-11 -0.08806 -0.04839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, eps </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The full dataset is duplicated with each observation given counterfactual</span></span></span>
 <span class="r-in"><span><span class="co"># values of 100 and 110 for the `hp` variable. The original `mtcars` includes</span></span></span>

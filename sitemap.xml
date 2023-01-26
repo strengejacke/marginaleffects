@@ -97,6 +97,9 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/news/index.html</loc>
   </url>
   <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/averages.html</loc>
+  </url>
+  <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/cjdt.html</loc>
   </url>
   <url>
@@ -182,6 +185,9 @@
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/predictions.html</loc>
+  </url>
+  <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/print.marginaleffects.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/reexports.html</loc>

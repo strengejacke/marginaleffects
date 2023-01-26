@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9114</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9115</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,9 +126,9 @@
 <code class="sourceCode R"><span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_reg</span><span class="op">)</span></span>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term    contrast    estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.06543082 0.01137001 -5.754683 4321.325 9.281013e-09</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.06514483 0.01154373 -5.643308 4678.108 1.766524e-08</span></span></code></pre></div>
 <p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
@@ -181,7 +181,7 @@ hp
 (0.010)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
+(0.012)
 </td>
 </tr>
 <tr>
@@ -299,12 +299,13 @@ RMSE
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       type term          contrast   estimate std.error statistic      p.value</span></span>
-<span><span class="co">#&gt; 1 response  cyl mean(6) - mean(4)  -7.811111  1.671348 -4.673540 2.960519e-06</span></span>
-<span><span class="co">#&gt; 2 response  cyl mean(8) - mean(4) -11.882906  1.375107 -8.641441 5.550854e-18</span></span>
-<span><span class="co">#&gt;    conf.low conf.high</span></span>
-<span><span class="co">#&gt; 1 -11.08689 -4.535330</span></span>
-<span><span class="co">#&gt; 2 -14.57807 -9.187746</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
+<span><span class="co">#&gt;   type     term  contrast       estim…¹ std.e…² stati…³  p.value conf.…⁴ conf.…⁵</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> response cyl   mean(6) - mea…   -<span style="color: #BB0000;">7.81</span>    1.67   -<span style="color: #BB0000;">4.67</span> 2.96<span style="color: #949494;">e</span><span style="color: #BB0000;">- 6</span>   -<span style="color: #BB0000;">11.1</span>   -<span style="color: #BB0000;">4.54</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> response cyl   mean(8) - mea…  -<span style="color: #BB0000;">11.9</span>     1.38   -<span style="color: #BB0000;">8.64</span> 5.55<span style="color: #949494;">e</span><span style="color: #BB0000;">-18</span>   -<span style="color: #BB0000;">14.6</span>   -<span style="color: #BB0000;">9.19</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​conf.low, ⁵​conf.high</span></span></span></code></pre></div>
 <p>This poses problems because the <code><a href="https://amices.org/mice/reference/pool.html" class="external-link">mice::pool</a></code> function merges estimates based <em>only</em> on the <code>term</code> column. This means that our original procedure will erroneously combine different contrast levels. For example:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
@@ -315,10 +316,10 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_reg</span><span class="op">)</span></span>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term          contrast   estimate std.error statistic        df      p.value</span></span>
-<span><span class="co">#&gt; 1  cyl mean(6) - mean(4)  -6.937792  1.785808 -3.884961  840.6037 1.103897e-04</span></span>
-<span><span class="co">#&gt; 2  cyl mean(8) - mean(4) -11.323149  1.472682 -7.688796 1084.3127 3.318703e-14</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   term          contrast   estimate std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1  cyl mean(6) - mean(4)  -7.243377  1.719390 -4.212759 1255.705 2.702928e-05</span></span>
+<span><span class="co">#&gt; 2  cyl mean(8) - mean(4) -11.501948  1.403584 -8.194697 2563.810 3.920485e-16</span></span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
@@ -339,13 +340,13 @@ RMSE
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_reg</span><span class="op">)</span></span>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                    term          contrast   estimate std.error statistic</span></span>
-<span><span class="co">#&gt; 1 cyl mean(6) - mean(4) mean(6) - mean(4)  -6.937792  1.785808 -3.884961</span></span>
-<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) mean(8) - mean(4) -11.323149  1.472682 -7.688796</span></span>
-<span><span class="co">#&gt;          df      p.value</span></span>
-<span><span class="co">#&gt; 1  840.6037 1.103897e-04</span></span>
-<span><span class="co">#&gt; 2 1084.3127 3.318703e-14</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 cyl mean(6) - mean(4) mean(6) - mean(4)  -7.243377  1.719390 -4.212759</span></span>
+<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) mean(8) - mean(4) -11.501948  1.403584 -8.194697</span></span>
+<span><span class="co">#&gt;         df      p.value</span></span>
+<span><span class="co">#&gt; 1 1255.705 2.702928e-05</span></span>
+<span><span class="co">#&gt; 2 2563.810 3.920485e-16</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -362,9 +363,9 @@ RMSE
 <code class="sourceCode R"><span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_logistic</span><span class="op">)</span></span>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    contrast   estimate  std.error statistic      df      p.value</span></span>
-<span><span class="co">#&gt; 1  mpg mean(dY/dX) 0.05091971 0.01130247  4.505186 264.437 9.961699e-06</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   term    contrast   estimate  std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1  mpg mean(dY/dX) 0.04825431 0.01044264  4.620893 315.3014 5.577017e-06</span></span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
@@ -404,7 +405,7 @@ mpg
 0.046
 </td>
 <td style="text-align:center;">
-0.051
+0.048
 </td>
 </tr>
 <tr>
@@ -417,7 +418,7 @@ mpg
 (0.009)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
+(0.010)
 </td>
 </tr>
 <tr>
@@ -529,7 +530,7 @@ RMSE
 <code class="sourceCode R"><span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice2</span>, <span class="va">fit_mlm</span><span class="op">)</span></span>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term    contrast estimate std.error statistic       df      p.value</span></span>
 <span><span class="co">#&gt; 1 Days mean(dY/dX) 10.25971  1.563251  6.563063 172.3149 5.950207e-10</span></span></code></pre></div>
 <p>Like the previous models, we can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
