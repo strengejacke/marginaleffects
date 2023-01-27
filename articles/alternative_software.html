@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9120</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,7 +145,7 @@
 <li>Easier to compute marginal effects (slopes) for custom grids and continuous regressors.</li>
 <li>Easier to implement causal inference strategies like the parametric g-formula and regression adjustement in experiments (see vignettes).</li>
 <li>Allows the computation of arbitrary quantities of interest via user-supplied functions and automatic delta method inference.</li>
-<li>Common plots are easy with the <code><a href="../reference/plot_cap.html">plot_cap()</a></code>, <code><a href="../reference/plot_cco.html">plot_cco()</a></code>, and <code><a href="../reference/plot_cme.html">plot_cme()</a></code> functions.</li>
+<li>Common plots are easy with the <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code>, <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code>, and <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> functions.</li>
 </ul>
 <p>To be fair, many of the <code>marginaleffects</code> advantages listed above come down to subjective preferences over user interface. Readers are thus encouraged to try both packages to see which interface they prefer.</p>
 <p>AFAICT, the main advantages of <code>emmeans</code> over <code>marginaleffects</code> are:</p>
@@ -388,7 +388,7 @@
 <span id="cb11-33"><a href="#cb11-33" aria-hidden="true"></a></span>
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true"></a><span class="co"># 4. graphical version of 2.</span></span>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true"></a><span class="kw">emmip</span>(m, am <span class="op">~</span><span class="st"> </span>wt, <span class="dt">at =</span> <span class="kw">list</span>(<span class="dt">wt =</span> <span class="kw">c</span>(<span class="fl">2.5</span>, <span class="dv">3</span>, <span class="fl">3.5</span>)), <span class="dt">CIs =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true"></a><span class="kw">plot_cap</span>(m, <span class="dt">condition =</span> <span class="kw">c</span>(<span class="st">"wt"</span>, <span class="st">"am"</span>))</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true"></a><span class="kw">plot_predictions</span>(m, <span class="dt">condition =</span> <span class="kw">c</span>(<span class="st">"wt"</span>, <span class="st">"am"</span>))</span>
 <span id="cb11-37"><a href="#cb11-37" aria-hidden="true"></a></span>
 <span id="cb11-38"><a href="#cb11-38" aria-hidden="true"></a><span class="co"># 5. compare levels of am at specific values of wt.</span></span>
 <span id="cb11-39"><a href="#cb11-39" aria-hidden="true"></a><span class="co"># this is a bit ugly because the emmeans defaults for pairs() are silly.</span></span>
@@ -409,16 +409,16 @@
 <span id="cb11-54"><a href="#cb11-54" aria-hidden="true"></a></span>
 <span id="cb11-55"><a href="#cb11-55" aria-hidden="true"></a><span class="co"># Since `wt` is numeric, the default is to plot it as a continuous variable on</span></span>
 <span id="cb11-56"><a href="#cb11-56" aria-hidden="true"></a><span class="co"># the x-axis.  But not that this is the **exact same info** as in the emmeans plot.</span></span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true"></a><span class="kw">plot_cco</span>(m, <span class="dt">effect =</span> <span class="st">"am"</span>, <span class="dt">condition =</span> <span class="st">"wt"</span>)</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true"></a><span class="kw">plot_comparisons</span>(m, <span class="dt">effect =</span> <span class="st">"am"</span>, <span class="dt">condition =</span> <span class="st">"wt"</span>)</span>
 <span id="cb11-58"><a href="#cb11-58" aria-hidden="true"></a></span>
 <span id="cb11-59"><a href="#cb11-59" aria-hidden="true"></a><span class="co"># You of course customize everything, set draw=FALSE, and feed the raw data to feed to ggplot2</span></span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">plot_cco</span>(</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">plot_comparisons</span>(</span>
 <span id="cb11-61"><a href="#cb11-61" aria-hidden="true"></a>  m,</span>
 <span id="cb11-62"><a href="#cb11-62" aria-hidden="true"></a>  <span class="dt">effect =</span> <span class="st">"am"</span>,</span>
 <span id="cb11-63"><a href="#cb11-63" aria-hidden="true"></a>  <span class="dt">condition =</span> <span class="kw">list</span>(<span class="dt">wt =</span> <span class="kw">c</span>(<span class="fl">2.5</span>, <span class="dv">3</span>, <span class="fl">3.5</span>)),</span>
 <span id="cb11-64"><a href="#cb11-64" aria-hidden="true"></a>  <span class="dt">draw =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb11-65"><a href="#cb11-65" aria-hidden="true"></a></span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true"></a><span class="kw">ggplot</span>(p, <span class="kw">aes</span>(<span class="dt">y =</span> condition1, <span class="dt">x =</span> comparison, <span class="dt">xmin =</span> conf.low, <span class="dt">xmax =</span> conf.high)) <span class="op">+</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true"></a><span class="kw">ggplot</span>(p, <span class="kw">aes</span>(<span class="dt">y =</span> wt, <span class="dt">x =</span> comparison, <span class="dt">xmin =</span> conf.low, <span class="dt">xmax =</span> conf.high)) <span class="op">+</span></span>
 <span id="cb11-67"><a href="#cb11-67" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_pointrange</span>()</span>
 <span id="cb11-68"><a href="#cb11-68" aria-hidden="true"></a></span>
 <span id="cb11-69"><a href="#cb11-69" aria-hidden="true"></a><span class="co"># 7. slope of wt for each level of am</span></span>
@@ -465,12 +465,12 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">mar</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb   fitted se.fitted   dydx_cyl    dydx_hp   dydx_wt Var_dydx_cyl  Var_dydx_hp Var_dydx_wt X_weights X_at_number</span></span>
-<span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 22.82043 0.6876212 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 22.01285 0.6056817 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 25.96040 0.7349593 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 20.93608 0.5800910 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 17.16780 0.8322986 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 20.25036 0.6638322 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 22.82043 0.6876212 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 22.01285 0.6056817 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 25.96040 0.7349593 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 20.93608 0.5800910 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 17.16780 0.8322986 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 20.25036 0.6638322 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -493,12 +493,12 @@
 <code class="sourceCode R"><span><span class="va">mar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">prediction</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/prediction/man/mean_or_mode.html" class="external-link">mean_or_mode</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span>, unit_ses <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">mar</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        mpg    cyl     disp       hp     drat      wt     qsec     vs      am   gear   carb   fitted se.fitted   dydx_cyl    dydx_hp   dydx_wt Var_dydx_cyl  Var_dydx_hp Var_dydx_wt SE_dydx_cyl SE_dydx_hp SE_dydx_wt X_weights X_at_number</span></span>
-<span><span class="co">#&gt; 1 20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125 20.09062 0.4439832 -0.9416168 -0.0180381 -3.166973    0.3035013 0.0001410453     0.54846   0.5509096 0.01187625  0.7405808        NA           1</span></span>
+<span><span class="co">#&gt; 1 20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125 20.09062 0.4439832 -0.9416168 -0.0180381 -3.166973    0.3035082 0.0001410457     0.54846   0.5509157 0.01187627  0.7405808        NA           1</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
-<span><span class="co">#&gt;   cyl -0.94162    0.55092 -1.709   0.087417 -2.02139  0.138159</span></span>
+<span><span class="co">#&gt;   cyl -0.94162    0.55092 -1.709   0.087417 -2.02139  0.138160</span></span>
 <span><span class="co">#&gt;    hp -0.01804    0.01188 -1.519   0.128803 -0.04132  0.005239</span></span>
 <span><span class="co">#&gt;    wt -3.16697    0.74058 -4.276 1.8997e-05 -4.61847 -1.715471</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -704,7 +704,7 @@ hp           |
 <span><span class="va">J_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">J</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="va">J_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">J_mean</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.03486650 0.03882203 0.01251382</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.03486650 0.03882204 0.01251382</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -1061,14 +1061,14 @@ Expression   : Linear prediction, predict()
 <li>
 <code>marginaleffects</code> supports 30+ more model types than <code>effects</code>.</li>
 <li>
-<code>effects</code> focuses on the computation of <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">“adjusted predictions.”</a> The plots it produces are roughly equivalent to the ones produced by the <code>plot_cap</code> and <code>predictions</code> functions in <code>marginaleffects</code>.</li>
+<code>effects</code> focuses on the computation of <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">“adjusted predictions.”</a> The plots it produces are roughly equivalent to the ones produced by the <code>plot_predictions</code> and <code>predictions</code> functions in <code>marginaleffects</code>.</li>
 <li>
 <code>effects</code> does not appear support marginal effects (slopes), marginal means, or contrasts</li>
 <li>
 <code>effects</code> uses Base graphics whereas <code>marginaleffects</code> uses <code>ggplot2</code>
 </li>
 <li>
-<code>effects</code> includes <em>a lot</em> of very powerful options to customize plots. In contrast, <code>marginaleffects</code> produces objects which can be customized by chaining <code>ggplot2</code> functions. Users can also call <code>plot_cap(model, draw=FALSE)</code> to create a prediction grid, and then work the raw data directly to create the plot they need</li>
+<code>effects</code> includes <em>a lot</em> of very powerful options to customize plots. In contrast, <code>marginaleffects</code> produces objects which can be customized by chaining <code>ggplot2</code> functions. Users can also call <code>plot_predictions(model, draw=FALSE)</code> to create a prediction grid, and then work the raw data directly to create the plot they need</li>
 </ul>
 <p><code>effects</code> offers several options which are not currently available in <code>marginaleffects</code>, including:</p>
 <ul>

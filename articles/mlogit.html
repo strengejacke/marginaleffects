@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9120</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,15 +129,15 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"group"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"group"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="mlogit_files/figure-html/unnamed-chunk-4-1.png" width="100%"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"mpg"</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"mpg"</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span><span class="op">)</span></span></code></pre></div>
 <p><img src="mlogit_files/figure-html/unnamed-chunk-4-2.png" width="100%"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="../reference/plot_cco.html">plot_cco</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="../reference/plot_comparisons.html">plot_comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    condition <span class="op">=</span> <span class="st">"group"</span>,</span>
@@ -269,7 +269,7 @@
 <span><span class="co">#&gt;    car income  2.659e-05  4.321e-05  0.6154 0.53832121 -0.0000581  0.0001113</span></span>
 <span><span class="co">#&gt;  train income -6.939e-03  1.860e-03 -3.7298 0.00019166 -0.0105848 -0.0032924</span></span>
 <span><span class="co">#&gt;    air   size -2.124e-01  6.027e-02 -3.5247 0.00042400 -0.3305707 -0.0943084</span></span>
-<span><span class="co">#&gt;    bus   size  6.062e-02  3.791e-02  1.5993 0.10974995 -0.0136709  0.1349205</span></span>
+<span><span class="co">#&gt;    bus   size  6.062e-02  3.791e-02  1.5993 0.10974996 -0.0136709  0.1349205</span></span>
 <span><span class="co">#&gt;    car   size  2.378e-03  1.571e-03  1.5130 0.13028300 -0.0007024  0.0054575</span></span>
 <span><span class="co">#&gt;  train   size  1.494e-01  4.286e-02  3.4870 0.00048852  0.0654413  0.2334331</span></span>
 <span><span class="co">#&gt; </span></span>

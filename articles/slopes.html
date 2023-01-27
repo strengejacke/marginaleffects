@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9120</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,10 +135,10 @@
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;            Term Contrast Estimate Std. Error     z   Pr(&gt;|z|)    2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt;  bill_length_mm    dY/dX  0.01763   0.007841 2.248 0.02455116 0.002262 0.03300</span></span>
+<span><span class="co">#&gt;  bill_length_mm    dY/dX  0.01763   0.007841 2.248 0.02455115 0.002262 0.03300</span></span>
 <span><span class="co">#&gt;  bill_length_mm    dY/dX  0.03586   0.011923 3.008 0.00263339 0.012491 0.05923</span></span>
 <span><span class="co">#&gt;  bill_length_mm    dY/dX  0.08444   0.021123 3.998 6.3953e-05 0.043044 0.12584</span></span>
-<span><span class="co">#&gt;  bill_length_mm    dY/dX  0.03473   0.006509 5.336 9.5280e-08 0.021970 0.04748</span></span>
+<span><span class="co">#&gt;  bill_length_mm    dY/dX  0.03473   0.006509 5.336 9.5279e-08 0.021970 0.04748</span></span>
 <span><span class="co">#&gt;  bill_length_mm    dY/dX  0.05089   0.013414 3.794 0.00014838 0.024599 0.07718</span></span>
 <span><span class="co">#&gt;  bill_length_mm    dY/dX  0.01652   0.007257 2.276 0.02284981 0.002293 0.03074</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -157,7 +157,7 @@
 <li>Counterfactual Marginal Effects</li>
 <li>Conditional Marginal Effects</li>
 </ul>
-<p>The rest of this vignette defines each of those quantities and explains how to use the <code><a href="../reference/slopes.html">slopes()</a></code> and <code><a href="../reference/plot_cme.html">plot_cme()</a></code> functions to compute them. The main differences between these quantities pertain to (a) the regressor values at which we estimate marginal effects, and (b) the way in which unit-level marginal effects are aggregated.</p>
+<p>The rest of this vignette defines each of those quantities and explains how to use the <code><a href="../reference/slopes.html">slopes()</a></code> and <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> functions to compute them. The main differences between these quantities pertain to (a) the regressor values at which we estimate marginal effects, and (b) the way in which unit-level marginal effects are aggregated.</p>
 <p>Heiss drew this exceedingly helpful graph which summarizes the information in the rest of this vignette:</p>
 <p><img src="https://user-images.githubusercontent.com/987057/169581274-f0d2beb6-0146-453e-91ca-a320c6ef7144.png" width="100%"></p>
 </div>
@@ -206,7 +206,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;            Term    Contrast Estimate Std. Error     z   Pr(&gt;|z|)     2.5 %  97.5 %   species</span></span>
 <span><span class="co">#&gt;  bill_length_mm mean(dY/dX) 0.043540   0.008828 4.932 8.1365e-07  0.026237 0.06084    Adelie</span></span>
-<span><span class="co">#&gt;  bill_length_mm mean(dY/dX) 0.002872   0.002846 1.009 0.31299360 -0.002707 0.00845    Gentoo</span></span>
+<span><span class="co">#&gt;  bill_length_mm mean(dY/dX) 0.002872   0.002846 1.009 0.31299361 -0.002707 0.00845    Gentoo</span></span>
 <span><span class="co">#&gt;  bill_length_mm mean(dY/dX) 0.036801   0.009801 3.755 0.00017337  0.017592 0.05601 Chinstrap</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
@@ -313,16 +313,16 @@
 <div class="section level2">
 <h2 id="conditional-marginal-effects-plot">Conditional Marginal Effects (Plot)<a class="anchor" aria-label="anchor" href="#conditional-marginal-effects-plot"></a>
 </h2>
-<p>The <code>plot_cme</code> function can be used to draw “Conditional Marginal Effects.” This is useful when a model includes interaction terms and we want to plot how the marginal effect of a variable changes as the value of a “condition” (or “moderator”) variable changes:</p>
+<p>The <code>plot_slopes</code> function can be used to draw “Conditional Marginal Effects.” This is useful when a model includes interaction terms and we want to plot how the marginal effect of a variable changes as the value of a “condition” (or “moderator”) variable changes:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="slopes_files/figure-html/unnamed-chunk-17-1.png" width="60%"></p>
 <p>The marginal effects in the plot above were computed with values of all regressors – except the <code>effect</code> and the <code>condition</code> – held at their means or modes, depending on variable type.</p>
-<p>Since <code><a href="../reference/plot_cme.html">plot_cme()</a></code> produces a <code>ggplot2</code> object, it is easy to customize. For example:</p>
+<p>Since <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> produces a <code>ggplot2</code> object, it is easy to customize. For example:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span> <span class="op">+</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"hp"</span>, condition <span class="op">=</span> <span class="st">"wt"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="slopes_files/figure-html/unnamed-chunk-18-1.png" width="576"></p>
@@ -349,21 +349,21 @@
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="va">truth</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Estimate</span></span>
-<span><span class="co">#&gt;    -6.998</span></span>
-<span><span class="co">#&gt;    -2.997</span></span>
-<span><span class="co">#&gt;     1.004</span></span>
-<span><span class="co">#&gt;     5.005</span></span>
-<span><span class="co">#&gt;     9.007</span></span>
+<span><span class="co">#&gt;    -7.004</span></span>
+<span><span class="co">#&gt;    -3.001</span></span>
+<span><span class="co">#&gt;     1.001</span></span>
+<span><span class="co">#&gt;     5.004</span></span>
+<span><span class="co">#&gt;     9.006</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  </span></span>
 <span><span class="co">#&gt; Columns: estimate, truth</span></span></code></pre></div>
-<p>We can plot conditional adjusted predictions with <code>plot_cap</code> function:</p>
+<p>We can plot conditional adjusted predictions with <code>plot_predictions</code> function:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="slopes_files/figure-html/unnamed-chunk-20-1.png" width="576"></p>
-<p>We can plot conditional marginal effects with the <code>plot_cme</code> function (see section below):</p>
+<p>We can plot conditional marginal effects with the <code>plot_slopes</code> function (see section below):</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"x"</span>, condition <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="slopes_files/figure-html/unnamed-chunk-21-1.png" width="576"></p>
 <p>Again, the conclusion is the same. When <span class="math inline">\(x&lt;0\)</span>, an increase in <span class="math inline">\(x\)</span> is associated with an increase in <span class="math inline">\(y\)</span>. When <span class="math inline">\(x=0\)</span>, the marginal effect is equal to 0. When <span class="math inline">\(x&gt;0\)</span>, an increase in <span class="math inline">\(x\)</span> is associated with a decrease in <span class="math inline">\(y\)</span>.</p>
 </div>

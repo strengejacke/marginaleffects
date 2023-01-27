@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9120</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -485,11 +485,11 @@ Marginal means by am
 <p>The <code>marginaleffects</code> package offers several functions to plot how some quantities vary as a function of others:</p>
 <ul>
 <li>
-<code>plot_cap</code>: Conditional adjusted predictions – how does the predicted outcome change as a function of regressors?</li>
+<code>plot_predictions</code>: Conditional adjusted predictions – how does the predicted outcome change as a function of regressors?</li>
 <li>
-<code>plot_cco</code>: Conditional comparisons – how do contrasts change as a function of regressors?</li>
+<code>plot_comparisons</code>: Conditional comparisons – how do contrasts change as a function of regressors?</li>
 <li>
-<code>plot_cme</code>: Conditional marginal effects – how does the slope change as a function of regressors?</li>
+<code>plot_slopes</code>: Conditional marginal effects – how does the slope change as a function of regressors?</li>
 </ul>
 <p>There is no analogous function for marginal means. However, it is very easy to achieve a similar effect using the <code><a href="../reference/predictions.html">predictions()</a></code> function, its <code>by</code> argument, and standard plotting functions. In the example below, we take these steps:</p>
 <ol style="list-style-type: decimal">

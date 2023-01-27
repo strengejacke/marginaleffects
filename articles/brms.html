@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9119</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9120</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,9 +141,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, X, survived, sex, age, passengerClass, woman</span></span></code></pre></div>
-<p>To visualize the relationship between the outcome and one of the regressors, we can plot conditional adjusted predictions with the <code>plot_cap</code> function:</p>
+<p>To visualize the relationship between the outcome and one of the regressors, we can plot conditional adjusted predictions with the <code>plot_predictions</code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
 <p>Compute adjusted predictions for some user-specified values of the regressors, using the <code>newdata</code> argument and the <code>datagrid</code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -222,7 +222,7 @@
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, survived, age, woman, passengerClass, eps</span></span></code></pre></div>
 <p>Compute and plot conditional marginal effects:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"woman"</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"woman"</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-14-1.png" width="100%"></p>
 <p>The <code>posterior_draws</code> produces a dataset with <code>drawid</code> and <code>draw</code> columns:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -333,7 +333,7 @@
 <p><img src="brms_files/figure-html/unnamed-chunk-23-1.png" width="100%"></p>
 <p>Plot marginal effects, conditional on a regressor:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span><span class="va">mod</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>         effect <span class="op">=</span> <span class="st">"civil_liberties"</span>,</span>
 <span>         condition <span class="op">=</span> <span class="st">"party_autonomy"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-24-1.png" width="100%"></p>
@@ -572,8 +572,8 @@
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4513 0.3429 0.5664</span></span>
-<span><span class="co">#&gt;  1   0.5516 0.4348 0.6631</span></span>
+<span><span class="co">#&gt;  0   0.4521 0.3435 0.5651</span></span>
+<span><span class="co">#&gt;  1   0.5521 0.4377 0.6628</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -586,7 +586,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09704 0.04841  0.161</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09687 0.04759 0.1621</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -603,7 +603,7 @@
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09850414 0.09631087 0.04741133 0.1596559          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.09934025 0.09697745 0.04882948 0.1635554          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -646,9 +646,9 @@
 <span>         y <span class="op">=</span> <span class="st">"Density"</span>,</span>
 <span>         fill <span class="op">=</span> <span class="st">"Heating system"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-46-1.png" width="100%"></p>
-<p>Use the <code>plot_cap</code> function to plot conditional adjusted predictions for each level of the outcome variable <code>gear</code>, conditional on the value of the <code>mpg</code> regressor:</p>
+<p>Use the <code>plot_predictions</code> function to plot conditional adjusted predictions for each level of the outcome variable <code>gear</code>, conditional on the value of the <code>mpg</code> regressor:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"oc.gc"</span><span class="op">)</span> <span class="op">+</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"oc.gc"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Predicted probability"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-47-1.png" width="100%"></p>
@@ -682,7 +682,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/cmdstanr/" class="external-link">cmdstanr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">cmdstanr</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -760,11 +760,11 @@
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap, lifeExp, year, continent</span></span></code></pre></div>
 <p>Plot adjusted predictions as a function of <code>lifeExp</code>:</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"mu"</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    dpar <span class="op">=</span> <span class="st">"hu"</span>,</span>
 <span>    condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -772,7 +772,7 @@
 <p><img src="brms_files/figure-html/unnamed-chunk-54-1.png" width="100%"></p>
 <p>Predictions with more than one condition and the <code>re_formula</code> argument from <code>brms</code>:</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cap.html">plot_cap</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    re_formula <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lifeExp"</span>, <span class="st">"continent"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -891,13 +891,13 @@
 <span><span class="co">#&gt; Columns: type, term, estimate, conf.low, conf.high</span></span></code></pre></div>
 <p>Plot Conditional Marginal Effects</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    effect <span class="op">=</span> <span class="st">"lifeExp"</span>,</span>
 <span>    condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"mu"</span><span class="op">)</span> <span class="op">+</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/plot_cme.html">plot_cme</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    dpar <span class="op">=</span> <span class="st">"hu"</span>,</span>
 <span>    effect <span class="op">=</span> <span class="st">"lifeExp"</span>,</span>
@@ -969,8 +969,8 @@
 <span><span class="va">rvar</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  am Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   0    17.10 14.98  19.33</span></span>
-<span><span class="co">#&gt;   1    24.41 21.67  27.14</span></span>
+<span><span class="co">#&gt;   0    17.09 14.77  19.34</span></span>
+<span><span class="co">#&gt;   1    24.35 21.57  27.12</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, am, estimate, conf.low, conf.high, rvar</span></span>

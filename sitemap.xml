@@ -166,16 +166,16 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/meffects.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_avg.html</loc>
-  </url>
-  <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_cap.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_cco.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_comparisons.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_cme.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_predictions.html</loc>
+  </url>
+  <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/reference/plot_slopes.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/reference/posterior_draws.html</loc>
