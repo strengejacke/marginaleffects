@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9120</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9122</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -189,10 +189,110 @@
 <span><span class="co">#&gt; [1] 0.4665151</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="robust-standard-errors">Robust standard errors<a class="anchor" aria-label="anchor" href="#robust-standard-errors"></a>
+</h2>
+<p>All the functions in the <code>marginaleffects</code> package can compute robust standard errors on the fly for any model type supported by <a href="https://sandwich.r-forge.r-project.org/" class="external-link">the <code>sandwich</code> package.</a> The <code>vcov</code> argument supports string shortcuts like <code>"HC3"</code>, a one-sided formula to request clustered standard errors, variance-covariance matrices, or functions which return such matrices. Here are a few examples.</p>
+<p>Adjusted predictions with classical or heteroskedasticity-robust standard errors:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;     22.59     0.7773 29.07 &lt; 2.22e-16 21.07  24.12</span></span>
+<span><span class="co">#&gt;     22.59     0.7773 29.07 &lt; 2.22e-16 21.07  24.12</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span>
+<span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="st">"HC3"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;     22.59      0.863 26.18 &lt; 2.22e-16  20.9  24.29</span></span>
+<span><span class="co">#&gt;     22.59      0.863 26.18 &lt; 2.22e-16  20.9  24.29</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span></code></pre></div>
+<p>Marginal effects with cluster-robust standard errors:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt;    hp -0.06823    0.01868 -3.653 0.00025909 -0.1048 -0.03162</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
+<p>Comparing adjusted predictions with classical and robust standard errors:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span>, vcov <span class="op">=</span> <span class="st">"HC3"</span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div>
+<p><img src="uncertainty_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
+</div>
+<div class="section level2">
+<h2 id="simulation-based-inference">Simulation-based inference<a class="anchor" aria-label="anchor" href="#simulation-based-inference"></a>
+</h2>
+<p><code>marginaleffects</code> offers an <em>experimental</em> <code>inferences</code> function to conduct simulation-based inference following the strategy proposed by Krinsky &amp; Robb (1986):</p>
+<ol style="list-style-type: decimal">
+<li>Draw <code>iter</code> sets of simulated coefficients from a multivariate normal distribution with mean equal to the original model’s estimated coefficients and variance equal to the model’s variance-covariance matrix (classical, “HC3”, or other).</li>
+<li>Use the <code>iter</code> sets of coefficients to compute <code>iter</code> sets of estimands: predictions, comparisons, or slopes.</li>
+<li>Take quantiles of the resulting distribution of estimands to obtain a confidence interval and the standard deviation of simulated estimates to estimate the standard error.</li>
+</ol>
+<p>Here are a few examples:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Estimate Std. Error     2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;  7.836e-01     0.2011 2.692e-01 0.9732</span></span>
+<span><span class="co">#&gt;  7.836e-01     0.1687 3.537e-01 0.9628</span></span>
+<span><span class="co">#&gt;  8.983e-01     0.1459 4.474e-01 0.9896</span></span>
+<span><span class="co">#&gt;  8.742e-01     0.2182 2.194e-01 0.9961</span></span>
+<span><span class="co">#&gt;  1.307e-02     0.1949 7.772e-05 0.7696</span></span>
+<span><span class="co">#&gt; --- 22 rows omitted. See ?avg_predictions and ?print.marginaleffects --- </span></span>
+<span><span class="co">#&gt;  3.828e-01     0.2939 1.796e-02 0.9555</span></span>
+<span><span class="co">#&gt;  1.211e-06     0.1256 4.108e-12 0.3768</span></span>
+<span><span class="co">#&gt;  6.887e-03     0.1580 3.430e-05 0.6333</span></span>
+<span><span class="co">#&gt;  8.071e-11     0.1562 2.220e-16 0.6899</span></span>
+<span><span class="co">#&gt;  7.953e-01     0.1718 3.552e-01 0.9655 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span>
+<span></span>
+<span><span class="va">mod</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span>vcov <span class="op">=</span> <span class="op">~</span><span class="va">gear</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error    2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt;  gear    4 - 3 -0.040454   0.054401 -0.09097 0.130660</span></span>
+<span><span class="co">#&gt;  gear    5 - 3 -0.182993   0.261857 -0.48636 0.325206</span></span>
+<span><span class="co">#&gt;    hp    dY/dX -0.004762   0.004451 -0.01158 0.005102</span></span>
+<span><span class="co">#&gt;    wt    dY/dX  0.016483   0.306082 -0.62666 0.655099</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, conf.low, conf.high</span></span></code></pre></div>
+<p>Since simulation based inference generates <code>iter</code> estimates of the quantities of interest, we can treat them similarly to draws from the posterior distribution in bayesian models. For example, we can extract draws using the <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> function, and plot their distributions using packages like<code>ggplot2</code> and <code>ggdist</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span>variables <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="st">"rvar"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">contrast</span>, xdist <span class="op">=</span> <span class="va">rvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slabinterval.html" class="external-link">stat_slabinterval</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="uncertainty_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
+</div>
+<div class="section level2">
 <h2 id="bootstrap">Bootstrap<a class="anchor" aria-label="anchor" href="#bootstrap"></a>
 </h2>
 <p>It is easy to use the bootstrap as an alternative strategy to compute standard errors and confidence intervals. Several <code>R</code> packages can help us achieve this, including the long-established <code>boot</code> package:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">boot</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -230,7 +330,7 @@
 <span><span class="co">#&gt; Calculations and Intervals on Original Scale</span></span></code></pre></div>
 <p>Note that, in the code above, we set <code>vcov=FALSE</code> to avoid computation of delta method standard errors and speed things up.</p>
 <p>Compare to the delta method standard errors:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -241,55 +341,10 @@
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="robust-standard-errors">Robust standard errors<a class="anchor" aria-label="anchor" href="#robust-standard-errors"></a>
-</h2>
-<p>All the functions in the <code>marginaleffects</code> package can compute robust standard errors on the fly for any model type supported by <a href="https://sandwich.r-forge.r-project.org/" class="external-link">the <code>sandwich</code> package.</a> The <code>vcov</code> argument supports string shortcuts like <code>"HC3"</code>, a one-sided formula to request clustered standard errors, variance-covariance matrices, or functions which return such matrices. Here are a few examples.</p>
-<p>Adjusted predictions with classical or heteroskedasticity-robust standard errors:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     22.59     0.7773 29.07 &lt; 2.22e-16 21.07  24.12</span></span>
-<span><span class="co">#&gt;     22.59     0.7773 29.07 &lt; 2.22e-16 21.07  24.12</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span>
-<span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="st">"HC3"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     22.59      0.863 26.18 &lt; 2.22e-16  20.9  24.29</span></span>
-<span><span class="co">#&gt;     22.59      0.863 26.18 &lt; 2.22e-16  20.9  24.29</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span></code></pre></div>
-<p>Marginal effects with cluster-robust standard errors:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;    hp -0.06823    0.01868 -3.653 0.00025909 -0.1048 -0.03162</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Comparing adjusted predictions with classical and robust standard errors:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span>
-<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span>, vcov <span class="op">=</span> <span class="st">"HC3"</span><span class="op">)</span></span>
-<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div>
-<p><img src="uncertainty_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
-</div>
-<div class="section level2">
 <h2 id="mixed-effects-models-satterthwaite-and-kenward-roger-corrections">Mixed effects models: Satterthwaite and Kenward-Roger corrections<a class="anchor" aria-label="anchor" href="#mixed-effects-models-satterthwaite-and-kenward-roger-corrections"></a>
 </h2>
 <p>For linear mixed effects models we can apply the Satterthwaite and Kenward-Roger corrections in the same way as above:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
@@ -299,7 +354,7 @@
 <span><span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">am</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
 <p>Marginal effects at the mean with classical standard errors and z-statistic:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term     Contrast Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
@@ -309,7 +364,7 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, am, cyl, eps</span></span></code></pre></div>
 <p>Marginal effects at the mean with Kenward-Roger adjusted variance-covariance and degrees of freedom:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>                vcov <span class="op">=</span> <span class="st">"kenward-roger"</span><span class="op">)</span></span>
@@ -321,48 +376,50 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, df, predicted, predicted_hi, predicted_lo, mpg, hp, am, cyl, eps</span></span></code></pre></div>
 <p>We can use the same option in any of the package’s core functions, including:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span>, vcov <span class="op">=</span> <span class="st">"satterthwaite"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="uncertainty_files/figure-html/unnamed-chunk-13-1.png" width="100%"></p>
+<p><img src="uncertainty_files/figure-html/unnamed-chunk-15-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="bayesian-estimates-and-credible-intervals">Bayesian estimates and credible intervals<a class="anchor" aria-label="anchor" href="#bayesian-estimates-and-credible-intervals"></a>
 </h2>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/reference/brms.html">See the <code>brms</code> vignette</a> for a discussion of bayesian estimates and credible intervals.</p>
-</div>
-<div class="section level2">
-<h2 id="uncertainty-around-unit-level-or-average-estimates">Uncertainty around unit-level or average estimates<a class="anchor" aria-label="anchor" href="#uncertainty-around-unit-level-or-average-estimates"></a>
-</h2>
-<p>Note that it is normal to observe that confidence intervals around average estimates tend to be tighter than those around unit-level estimates:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">qsec</span>, <span class="va">mtcars</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># On average CIs around unit-level estimates are:</span></span>
-<span><span class="va">pre1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">pre1</span><span class="op">$</span><span class="va">conf.high</span> <span class="op">-</span> <span class="va">pre1</span><span class="op">$</span><span class="va">conf.low</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 3.835647</span></span>
-<span></span>
-<span><span class="co"># The CI of the average estimate is:</span></span>
-<span><span class="va">pre2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">pre2</span><span class="op">$</span><span class="va">conf.high</span> <span class="op">-</span> <span class="va">pre2</span><span class="op">$</span><span class="va">conf.low</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 2.035368</span></span>
-<span></span>
-<span><span class="co"># On average CIs around unit-level estimates are:</span></span>
-<span><span class="va">cmp1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp1</span><span class="op">$</span><span class="va">conf.high</span> <span class="op">-</span> <span class="va">cmp1</span><span class="op">$</span><span class="va">conf.low</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.05572727</span></span>
-<span></span>
-<span><span class="co"># The CI of the average estimate is:</span></span>
-<span><span class="va">cmp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span><span class="op">)</span></span>
-<span><span class="va">cmp2</span><span class="op">$</span><span class="va">conf.high</span> <span class="op">-</span> <span class="va">cmp2</span><span class="op">$</span><span class="va">conf.low</span></span>
-<span><span class="co">#&gt; [1] 0.0492053</span></span></code></pre></div>
 <!--
+# Uncertainty around unit-level or average estimates
+
+Note that it is normal to observe that confidence intervals around average estimates tend to be tighter than those around unit-level estimates:
+
+
+```r
+library(marginaleffects)
+mod <- lm(mpg ~ hp * qsec, mtcars)
+
+# On average CIs around unit-level estimates are:
+pre1 <- predictions(mod)
+as.numeric(mean(pre1$conf.high - pre1$conf.low))
+#> [1] 3.835647
+
+# The CI of the average estimate is:
+pre2 <- tidy(predictions(mod))
+as.numeric(pre2$conf.high - pre2$conf.low)
+#> [1] 2.035368
+
+# On average CIs around unit-level estimates are:
+cmp1 <- comparisons(mod, variables = "hp")
+mean(cmp1$conf.high - cmp1$conf.low)
+#> [1] 0.05572727
+
+# The CI of the average estimate is:
+cmp2 <- comparisons(mod, variables = "hp", transform_pre = "differenceavg")
+cmp2$conf.high - cmp2$conf.low
+#> [1] 0.0492053
+```
+
 Relevant?
 https://en.wikipedia.org/wiki/Jensen%27s_inequality
 https://math.stackexchange.com/questions/34009/is-the-variance-of-a-convex-function-a-convex-function/34021#34021?newreg=698ab30a481945878307935ac5d6b629
--->
-<!--
+
+
 NO LONGER RELEVANT WITH THE AVERAGE() + RECALL() REFACTOR SINCE WE COMPUTE SEs DIRECTLY ON THE MARGINS W
 
 ## Standard Error of the Average Marginal Effect or Contrast

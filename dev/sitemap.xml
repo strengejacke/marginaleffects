@@ -139,6 +139,9 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/inferences.html</loc>
+  </url>
+  <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/marginal_means.html</loc>
   </url>
   <url>
@@ -184,7 +187,7 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/reexports.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/sanity_model_specific.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/sanitize_model_specific.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/set_coef.html</loc>
