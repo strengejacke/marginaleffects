@@ -69,7 +69,8 @@
 
 
 
-<script src="comparisons_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Comparisons</h1>
             
@@ -80,16 +81,29 @@
 
     
     
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">In another vignette</a>, we introduced the “marginal effect” as a partial derivative. Since derivatives are only properly defined for continuous variables, we cannot use them to interpret the effects of changes in categorical variables. For this, we turn to <em>contrasts</em> between <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions.</a> In the context of this package, a “Contrast” is defined as:</p>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">In
+another vignette</a>, we introduced the “marginal effect” as a partial
+derivative. Since derivatives are only properly defined for continuous
+variables, we cannot use them to interpret the effects of changes in
+categorical variables. For this, we turn to <em>contrasts</em> between
+<a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted
+predictions.</a> In the context of this package, a “Contrast” is defined
+as:</p>
 <blockquote>
-<p>A difference, ratio, or function of adjusted predictions, calculated for meaningfully different predictor values (e.g., College graduates vs. Others).</p>
+<p>A difference, ratio, or function of adjusted predictions, calculated
+for meaningfully different predictor values (e.g., College graduates
+vs. Others).</p>
 </blockquote>
-<p>The <code><a href="../reference/slopes.html">slopes()</a></code> function automatically calculates contrasts instead of derivatives for factor, logical, or character variables.</p>
-<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function gives users more powerful features to compute different contrasts, such as differences, risk ratios, linear combinations, and transformations.</p>
+<p>The <code><a href="../reference/slopes.html">slopes()</a></code> function automatically calculates contrasts
+instead of derivatives for factor, logical, or character variables.</p>
+<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function gives users more powerful
+features to compute different contrasts, such as differences, risk
+ratios, linear combinations, and transformations.</p>
 <div class="section level2">
 <h2 id="simple-example-titanic">Simple example: Titanic<a class="anchor" aria-label="anchor" href="#simple-example-titanic"></a>
 </h2>
-<p>Consider a logistic regression model estimated using the Titanic mortality data:</p>
+<p>Consider a logistic regression model estimated using the Titanic
+mortality data:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -98,13 +112,25 @@
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Survived</span> <span class="op">~</span> <span class="va">PClass</span> <span class="op">*</span> <span class="va">SexCode</span> <span class="op">*</span> <span class="va">Age</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></code></pre></div>
 <p>The question that interests us is:</p>
 <blockquote>
-<p>How does the probability of survival (outcome) change if a passenger travels in 1st class vs. 3rd class?</p>
+<p>How does the probability of survival (outcome) change if a passenger
+travels in 1st class vs. 3rd class?</p>
 </blockquote>
-<p>The answer to that question is not straightforward because, in non-linear models with interactions, the effect of a change in one variable depends on the values of all the other covariates in the model. Therefore, we need to refine the question:</p>
+<p>The answer to that question is not straightforward because, in
+non-linear models with interactions, the effect of a change in one
+variable depends on the values of all the other covariates in the model.
+Therefore, we need to refine the question:</p>
 <blockquote>
-<p>How does the probability of survival (outcome) change if a 25 year old man travels in 1st class vs. 3rd class?</p>
+<p>How does the probability of survival (outcome) change if a 25 year
+old man travels in 1st class vs. 3rd class?</p>
 </blockquote>
-<p>Here, the <em>estimand</em> is the difference in probabilities for <code>PClass="1st"</code> and <code>PClass="3rd"</code>, and this estimand is conditional on the values of the covariates <code>Age=25</code> and <code>SexCode=1</code>. In the <code><a href="../reference/comparisons.html">comparisons()</a></code> function, the <code>variables</code> argument determines the scientific query (estimand or comparison), and the <code>newdata</code> argument determines <em>where</em> we estimate this query (conditional on what covariate values). For example:</p>
+<p>Here, the <em>estimand</em> is the difference in probabilities for
+<code>PClass="1st"</code> and <code>PClass="3rd"</code>, and this
+estimand is conditional on the values of the covariates
+<code>Age=25</code> and <code>SexCode=1</code>. In the
+<code><a href="../reference/comparisons.html">comparisons()</a></code> function, the <code>variables</code> argument
+determines the scientific query (estimand or comparison), and the
+<code>newdata</code> argument determines <em>where</em> we estimate this
+query (conditional on what covariate values). For example:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -116,7 +142,11 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Survived, PClass, Age, SexCode</span></span></code></pre></div>
-<p>We can compute the same contrast for different “kinds” of individuals, by changing the <code><a href="../reference/datagrid.html">datagrid()</a></code> call. This function accepts functions or vectors. Here, we compute the contrast between the probabilities of survival in 1st and 3rd class for the oldest men and women passengers:</p>
+<p>We can compute the same contrast for different “kinds” of
+individuals, by changing the <code><a href="../reference/datagrid.html">datagrid()</a></code> call. This function
+accepts functions or vectors. Here, we compute the contrast between the
+probabilities of survival in 1st and 3rd class for the oldest men and
+women passengers:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -131,7 +161,13 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Survived, PClass, Age, SexCode</span></span></code></pre></div>
-<p>If we do <em>not</em> specify the <code>newdata</code> argument, then <code><a href="../reference/comparisons.html">comparisons()</a></code> will calculate the contrast for every single combination of covariate values in the original data. This means that we will obtain a data frame of results with the same number of rows as the original data. This makes sense, because in non-linear models or in models with interactions, each individual can have a different contrast:</p>
+<p>If we do <em>not</em> specify the <code>newdata</code> argument, then
+<code><a href="../reference/comparisons.html">comparisons()</a></code> will calculate the contrast for every single
+combination of covariate values in the original data. This means that we
+will obtain a data frame of results with the same number of rows as the
+original data. This makes sense, because in non-linear models or in
+models with interactions, each individual can have a different
+contrast:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -144,7 +180,10 @@
 <span><span class="co"># number of observations in the model</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/nobs.html" class="external-link">nobs</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 756</span></span></code></pre></div>
-<p>A big dataset of contrasts like this one can be unwieldy. A common strategy is to summarize the unit-level contrasts by taking their average. This can be achieved using the <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> function or the <code>by</code> argument:</p>
+<p>A big dataset of contrasts like this one can be unwieldy. A common
+strategy is to summarize the unit-level contrasts by taking their
+average. This can be achieved using the <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>
+function or the <code>by</code> argument:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"PClass"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -174,8 +213,11 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, PClass, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre></div>
-<p>Note that average contrasts often have a nice interpretation in a causal inference context, as the outcome of parametric g-formula estimation. See this vignette: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html" class="uri">https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html</a></p>
-<p>The rest of this vignette highlights some of the other features of the very flexible and powerful <code><a href="../reference/comparisons.html">comparisons()</a></code> function.</p>
+<p>Note that average contrasts often have a nice interpretation in a
+causal inference context, as the outcome of parametric g-formula
+estimation. See this vignette: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html" class="uri">https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html</a></p>
+<p>The rest of this vignette highlights some of the other features of
+the very flexible and powerful <code><a href="../reference/comparisons.html">comparisons()</a></code> function.</p>
 </div>
 <div class="section level2">
 <h2 id="predictor-types">Predictor types<a class="anchor" aria-label="anchor" href="#predictor-types"></a>
@@ -190,7 +232,12 @@
 <span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, <span class="va">tmp</span><span class="op">)</span></span></code></pre></div>
-<p>The <code>comparisons</code> function automatically computes contrasts for each level of the categorical variables, relative to the baseline category (<code>FALSE</code> for logicals, and the reference level for factors), while holding all other values at their observed values. The <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> does the same, but then marginalizes by taking the average of unit-level estimates:</p>
+<p>The <code>comparisons</code> function automatically computes
+contrasts for each level of the categorical variables, relative to the
+baseline category (<code>FALSE</code> for logicals, and the reference
+level for factors), while holding all other values at their observed
+values. The <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> does the same, but then
+marginalizes by taking the average of unit-level estimates:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="va">cmp</span></span>
@@ -202,8 +249,14 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>The summary printed above says that moving from the reference category <code>4</code> to the level <code>6</code> on the <code>cyl</code> factor variable is associated with a change of -6.156 in the adjusted prediction. Similarly, the contrast from <code>FALSE</code> to <code>TRUE</code> on the <code>am</code> variable is equal to 2.560.</p>
-<p>We can obtain different contrasts by using the <code><a href="../reference/comparisons.html">comparisons()</a></code> function. For example:</p>
+<p>The summary printed above says that moving from the reference
+category <code>4</code> to the level <code>6</code> on the
+<code>cyl</code> factor variable is associated with a change of -6.156
+in the adjusted prediction. Similarly, the contrast from
+<code>FALSE</code> to <code>TRUE</code> on the <code>am</code> variable
+is equal to 2.560.</p>
+<p>We can obtain different contrasts by using the
+<code><a href="../reference/comparisons.html">comparisons()</a></code> function. For example:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"sequential"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -232,7 +285,8 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>For comparison, this code produces the same results using the <code>emmeans</code> package:</p>
+<p>For comparison, this code produces the same results using the
+<code>emmeans</code> package:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
 <span><span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
@@ -251,7 +305,8 @@
 <span><span class="co">#&gt;  TRUE - FALSE     2.56 1.3 28   1.973  0.0585</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Results are averaged over the levels of: cyl</span></span></code></pre></div>
-<p>Note that these commands also work on for other types of models, such as GLMs, on different scales:</p>
+<p>Note that these commands also work on for other types of models, such
+as GLMs, on different scales:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_logit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
 <span></span>
@@ -259,7 +314,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate Std. Error         z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt;  gear    4 - 3   0.6667  1.361e-01     4.899 9.6296e-07   0.4 0.9334</span></span>
-<span><span class="co">#&gt;  gear    5 - 3   1.0000  1.071e-05 93335.530 &lt; 2.22e-16   1.0 1.0000</span></span>
+<span><span class="co">#&gt;  gear    5 - 3   1.0000  1.071e-05 93335.529 &lt; 2.22e-16   1.0 1.0000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
@@ -276,12 +331,23 @@
 <div class="section level3">
 <h3 id="character-predictors">Character predictors<a class="anchor" aria-label="anchor" href="#character-predictors"></a>
 </h3>
-<p>All functions of the <code>marginaleffects</code> package attempt to treat character predictors as factor predictors. However, using factors instead of characters when modeling is <em>strongly</em> encouraged, because they are much safer and faster. This is because factors hold useful information about the full list of levels, which makes them easier to track and handle internally by <code>marginaleffects</code>. Users are strongly encouraged to convert their character variables to factor before fitting their models and using <code>slopes</code> functions.</p>
+<p>All functions of the <code>marginaleffects</code> package attempt to
+treat character predictors as factor predictors. However, using factors
+instead of characters when modeling is <em>strongly</em> encouraged,
+because they are much safer and faster. This is because factors hold
+useful information about the full list of levels, which makes them
+easier to track and handle internally by <code>marginaleffects</code>.
+Users are strongly encouraged to convert their character variables to
+factor before fitting their models and using <code>slopes</code>
+functions.</p>
 </div>
 <div class="section level3">
 <h3 id="numeric-predictors">Numeric predictors<a class="anchor" aria-label="anchor" href="#numeric-predictors"></a>
 </h3>
-<p>We can also compute contrasts for differences in numeric variables. For example, we can see what happens to the adjusted predictions when we increment the <code>hp</code> variable by 1 unit (default) or by 5 units:</p>
+<p>We can also compute contrasts for differences in numeric variables.
+For example, we can see what happens to the adjusted predictions when we
+increment the <code>hp</code> variable by 1 unit (default) or by 5
+units:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
@@ -300,7 +366,8 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Compare adjusted predictions for a change in the regressor between two arbitrary values:</p>
+<p>Compare adjusted predictions for a change in the regressor between
+two arbitrary values:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -309,7 +376,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Compare adjusted predictions when the regressor changes across the interquartile range, across one or two standard deviations about its mean, or from across its full range:</p>
+<p>Compare adjusted predictions when the regressor changes across the
+interquartile range, across one or two standard deviations about its
+mean, or from across its full range:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"iqr"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -347,11 +416,15 @@
 <div class="section level2">
 <h2 id="interactions">Interactions<a class="anchor" aria-label="anchor" href="#interactions"></a>
 </h2>
-<p>In some contexts we would like to know what happens when two (or more) predictors change at the same time. In the <code>marginaleffects</code> package terminology, this is an “interaction between contrasts.”</p>
+<p>In some contexts we would like to know what happens when two (or
+more) predictors change at the same time. In the
+<code>marginaleffects</code> package terminology, this is an
+“interaction between contrasts.”</p>
 <p>For example, consider a model with two factor variables:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
-<p>What happens if <code>am</code> increases by 1 unit and <code>cyl</code> changes from a baseline reference to another level?</p>
+<p>What happens if <code>am</code> increases by 1 unit and
+<code>cyl</code> changes from a baseline reference to another level?</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -362,7 +435,12 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>When the <code>variables</code> argument is used and the model formula includes interactions, the “cross-contrasts” will automatically be displayed. You can also force <code><a href="../reference/comparisons.html">comparisons()</a></code> to do it by setting <code>interactions=TRUE</code> and using the <code>variables</code> argument to specify which variables should be manipulated simultaneously.</p>
+<p>When the <code>variables</code> argument is used and the model
+formula includes interactions, the “cross-contrasts” will automatically
+be displayed. You can also force <code><a href="../reference/comparisons.html">comparisons()</a></code> to do it by
+setting <code>interactions=TRUE</code> and using the
+<code>variables</code> argument to specify which variables should be
+manipulated simultaneously.</p>
 </div>
 <div class="section level2">
 <h2 id="quantities-of-interest">Quantities of interest<a class="anchor" aria-label="anchor" href="#quantities-of-interest"></a>
@@ -374,12 +452,20 @@
 <li>Contrast at the Mean</li>
 <li>Contrast Between Marginal Means</li>
 </ol>
-<p>The ideas discussed in this section focus on contrasts, but they carry over directly to analogous types of marginal effects.</p>
+<p>The ideas discussed in this section focus on contrasts, but they
+carry over directly to analogous types of marginal effects.</p>
 <div class="section level3">
 <h3 id="unit-level-contrasts">Unit-level contrasts<a class="anchor" aria-label="anchor" href="#unit-level-contrasts"></a>
 </h3>
-<p>In models with interactions or non-linear components (e.g., link function), the value of a contrast or marginal effect can depend on the value of all the predictors in the model. As a result, contrasts and marginal effects are fundamentally <em>unit-level</em> quantities. The effect of a 1 unit increase in <span class="math inline">\(X\)</span> can be different for Mary or John. Every row of a dataset has a different contrast and marginal effect.</p>
-<p>The <code>mtcars</code> dataset has 32 rows, so the <code><a href="../reference/comparisons.html">comparisons()</a></code> function produces 32 contrast estimates:</p>
+<p>In models with interactions or non-linear components (e.g., link
+function), the value of a contrast or marginal effect can depend on the
+value of all the predictors in the model. As a result, contrasts and
+marginal effects are fundamentally <em>unit-level</em> quantities. The
+effect of a 1 unit increase in <span class="math inline">\(X\)</span>
+can be different for Mary or John. Every row of a dataset has a
+different contrast and marginal effect.</p>
+<p>The <code>mtcars</code> dataset has 32 rows, so the
+<code><a href="../reference/comparisons.html">comparisons()</a></code> function produces 32 contrast estimates:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="va">mpg</span>, family <span class="op">=</span> <span class="va">binomial</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
@@ -390,7 +476,14 @@
 <div class="section level3">
 <h3 id="average-contrasts">Average contrasts<a class="anchor" aria-label="anchor" href="#average-contrasts"></a>
 </h3>
-<p>By default, the <code><a href="../reference/slopes.html">slopes()</a></code> and <code><a href="../reference/comparisons.html">comparisons()</a></code> functions compute marginal effects and contrasts for every row of the original dataset. These unit-level estimates can be of great interest, as discussed in <a href="https://vincentarelbundock.github.io/marginaleffects/articles/logistic_comparisons.html">another vignette</a>. Nevertheless, one may want to focus on one-number summaries: the <code>avg_*()</code> functions or the <code>by</code> argument compute the “Average Marginal Effect” or “Average Contrast,” by taking the mean of all the unit-level estimates.</p>
+<p>By default, the <code><a href="../reference/slopes.html">slopes()</a></code> and <code><a href="../reference/comparisons.html">comparisons()</a></code>
+functions compute marginal effects and contrasts for every row of the
+original dataset. These unit-level estimates can be of great interest,
+as discussed in <a href="https://vincentarelbundock.github.io/marginaleffects/articles/logistic_comparisons.html">another
+vignette</a>. Nevertheless, one may want to focus on one-number
+summaries: the <code>avg_*()</code> functions or the <code>by</code>
+argument compute the “Average Marginal Effect” or “Average Contrast,” by
+taking the mean of all the unit-level estimates.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"mpg"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -411,7 +504,8 @@
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.06080995</span></span></code></pre></div>
-<p>We could also show the full distribution of contrasts across our dataset with a histogram:</p>
+<p>We could also show the full distribution of contrasts across our
+dataset with a histogram:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -422,13 +516,20 @@
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">contrast</span>, scale <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Distribution of unit-level contrasts"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="comparisons_files/figure-html/unnamed-chunk-20-1.png" width="576"></p>
-<p>This graph display the effect of a change of 1 unit in the <code>mpg</code> variable, for each individual in the observed data.</p>
+<p>This graph display the effect of a change of 1 unit in the
+<code>mpg</code> variable, for each individual in the observed data.</p>
 </div>
 <div class="section level3">
 <h3 id="contrasts-at-the-mean">Contrasts at the mean<a class="anchor" aria-label="anchor" href="#contrasts-at-the-mean"></a>
 </h3>
-<p>An alternative which used to be very common but has now fallen into a bit of disfavor is to compute “Contrasts at the mean.” The idea is to create a “synthetic” or “hypothetical” individual (row of the dataset) whose characteristics are completely average. Then, we compute and report the contrast for this specific hypothetical individual.</p>
-<p>This can be achieved by setting <code>newdata="mean"</code> or to <code>newdata=datagrid()</code>, both of which fix variables to their means or modes:</p>
+<p>An alternative which used to be very common but has now fallen into a
+bit of disfavor is to compute “Contrasts at the mean.” The idea is to
+create a “synthetic” or “hypothetical” individual (row of the dataset)
+whose characteristics are completely average. Then, we compute and
+report the contrast for this specific hypothetical individual.</p>
+<p>This can be achieved by setting <code>newdata="mean"</code> or to
+<code>newdata=datagrid()</code>, both of which fix variables to their
+means or modes:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"mpg"</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -437,28 +538,64 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, gear, mpg, eps</span></span></code></pre></div>
-<p>Contrasts at the mean can differ substantially from average contrasts.</p>
-<p>The advantage of this approach is that it is very cheap and fast computationally. The disadvantage is that the interpretation is somewhat ambiguous. Often times, there simply does not exist an individual who is perfectly average across all dimensions of the dataset. It is also not clear why the analyst should be particularly interested in the contrast for this one, synthetic, perfectly average individual.</p>
+<p>Contrasts at the mean can differ substantially from average
+contrasts.</p>
+<p>The advantage of this approach is that it is very cheap and fast
+computationally. The disadvantage is that the interpretation is somewhat
+ambiguous. Often times, there simply does not exist an individual who is
+perfectly average across all dimensions of the dataset. It is also not
+clear why the analyst should be particularly interested in the contrast
+for this one, synthetic, perfectly average individual.</p>
 </div>
 <div class="section level3">
 <h3 id="contrasts-between-marginal-means">Contrasts between marginal means<a class="anchor" aria-label="anchor" href="#contrasts-between-marginal-means"></a>
 </h3>
-<p>Yet another type of contrast is the “Contrast between marginal means.” This type of contrast is closely related to the “Contrast at the mean”, with a few wrinkles. It is the default approach used by the <code>emmeans</code> package for <code>R</code>.</p>
+<p>Yet another type of contrast is the “Contrast between marginal
+means.” This type of contrast is closely related to the “Contrast at the
+mean”, with a few wrinkles. It is the default approach used by the
+<code>emmeans</code> package for <code>R</code>.</p>
 <p>Roughly speaking, the procedure is as follows:</p>
 <ol style="list-style-type: decimal">
-<li>Create a prediction grid with one cell for each combination of categorical predictors in the model, and all numeric variables held at their means.</li>
+<li>Create a prediction grid with one cell for each combination of
+categorical predictors in the model, and all numeric variables held at
+their means.</li>
 <li>Make adjusted predictions in each cell of the prediction grid.</li>
-<li>Take the average of those predictions (marginal means) for each combination of <code>btype</code> (focal variable) and <code>resp</code> (group <code>by</code> variable).</li>
-<li>Compute pairwise differences (contrasts) in marginal means across different levels of the focal variable <code>btype</code>.</li>
+<li>Take the average of those predictions (marginal means) for each
+combination of <code>btype</code> (focal variable) and <code>resp</code>
+(group <code>by</code> variable).</li>
+<li>Compute pairwise differences (contrasts) in marginal means across
+different levels of the focal variable <code>btype</code>.</li>
 </ol>
-<p>The contrast obtained through this approach has two critical characteristics:</p>
+<p>The contrast obtained through this approach has two critical
+characteristics:</p>
 <ol style="list-style-type: lower-alpha">
-<li>It is the contrast for a synthetic individual with perfectly average qualities on every (numeric) predictor.</li>
-<li>It is a weighted average of unit-level contrasts, where weights assume a perfectly balanced dataset across every categorical predictor.</li>
+<li>It is the contrast for a synthetic individual with perfectly average
+qualities on every (numeric) predictor.</li>
+<li>It is a weighted average of unit-level contrasts, where weights
+assume a perfectly balanced dataset across every categorical
+predictor.</li>
 </ol>
-<p>With respect to (a), the analyst should ask themselves: Is my quantity of interest the contrast for a perfectly average hypothetical individual? With respect to (b), the analyst should ask themselves: Is my quantity of interest the contrast in a model estimated using (potentially) unbalanced data, but interpreted <em>as if</em> the data were perfectly balanced?</p>
-<p>For example, imagine that one of the control variables in your model is a variable measuring educational attainment in 4 categories: No high school, High school, Some college, Completed college. The contrast between marginal is a weighted average of contrasts estimated in the 4 cells, and each of those contrasts will be weighted equally in the overall estimate. If the population of interest is highly unbalanced in the educational categories, then the estimate computed in this way will not be most useful.</p>
-<p>If the contrasts between marginal means is really the quantity of interest, it is easy to use the <code><a href="../reference/comparisons.html">comparisons()</a></code> to estimate contrasts between marginal means. The <code>newdata</code> determines the values of the predictors at which we want to compute contrasts. We can set <code>newdata="marginalmeans"</code> to emulate the <code>emmeans</code> behavior. For example, here we compute contrasts in a model with an interaction:</p>
+<p>With respect to (a), the analyst should ask themselves: Is my
+quantity of interest the contrast for a perfectly average hypothetical
+individual? With respect to (b), the analyst should ask themselves: Is
+my quantity of interest the contrast in a model estimated using
+(potentially) unbalanced data, but interpreted <em>as if</em> the data
+were perfectly balanced?</p>
+<p>For example, imagine that one of the control variables in your model
+is a variable measuring educational attainment in 4 categories: No high
+school, High school, Some college, Completed college. The contrast
+between marginal is a weighted average of contrasts estimated in the 4
+cells, and each of those contrasts will be weighted equally in the
+overall estimate. If the population of interest is highly unbalanced in
+the educational categories, then the estimate computed in this way will
+not be most useful.</p>
+<p>If the contrasts between marginal means is really the quantity of
+interest, it is easy to use the <code><a href="../reference/comparisons.html">comparisons()</a></code> to estimate
+contrasts between marginal means. The <code>newdata</code> determines
+the values of the predictors at which we want to compute contrasts. We
+can set <code>newdata="marginalmeans"</code> to emulate the
+<code>emmeans</code> behavior. For example, here we compute contrasts in
+a model with an interaction:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/palmerpenguins/penguins.csv"</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">bill_length_mm</span> <span class="op">~</span> <span class="va">species</span> <span class="op">*</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">island</span> <span class="op">+</span> <span class="va">body_mass_g</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
@@ -494,20 +631,39 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Results are averaged over the levels of: sex </span></span>
 <span><span class="co">#&gt; P value adjustment: dunnettx method for 8 tests</span></span></code></pre></div>
-<p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html#emmeans"><code>emmeans</code> section of the Alternative Software vignette</a> shows further examples.</p>
-<p>The <a href="https://CRAN.R-project.org/package=emmeans/vignettes/basics.html" class="external-link">excellent vignette of the <code>emmeans</code> package</a> discuss the same issues in a slightly different (and more positive) way:</p>
+<p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html#emmeans"><code>emmeans</code>
+section of the Alternative Software vignette</a> shows further
+examples.</p>
+<p>The <a href="https://CRAN.R-project.org/package=emmeans/vignettes/basics.html" class="external-link">excellent
+vignette of the <code>emmeans</code> package</a> discuss the same issues
+in a slightly different (and more positive) way:</p>
 <blockquote>
-<p>The point is that the marginal means of cell.means give equal weight to each cell. In many situations (especially with experimental data), that is a much fairer way to compute marginal means, in that they are not biased by imbalances in the data. We are, in a sense, estimating what the marginal means would be, had the experiment been balanced. Estimated marginal means (EMMs) serve that need.</p>
+<p>The point is that the marginal means of cell.means give equal weight
+to each cell. In many situations (especially with experimental data),
+that is a much fairer way to compute marginal means, in that they are
+not biased by imbalances in the data. We are, in a sense, estimating
+what the marginal means would be, had the experiment been balanced.
+Estimated marginal means (EMMs) serve that need.</p>
 </blockquote>
 <blockquote>
-<p>All this said, there are certainly situations where equal weighting is not appropriate. Suppose, for example, we have data on sales of a product given different packaging and features. The data could be unbalanced because customers are more attracted to some combinations than others. If our goal is to understand scientifically what packaging and features are inherently more profitable, then equally weighted EMMs may be appropriate; but if our goal is to predict or maximize profit, the ordinary marginal means provide better estimates of what we can expect in the marketplace.</p>
+<p>All this said, there are certainly situations where equal weighting
+is not appropriate. Suppose, for example, we have data on sales of a
+product given different packaging and features. The data could be
+unbalanced because customers are more attracted to some combinations
+than others. If our goal is to understand scientifically what packaging
+and features are inherently more profitable, then equally weighted EMMs
+may be appropriate; but if our goal is to predict or maximize profit,
+the ordinary marginal means provide better estimates of what we can
+expect in the marketplace.</p>
 </blockquote>
 </div>
 </div>
 <div class="section level2">
 <h2 id="conditional-contrasts">Conditional contrasts<a class="anchor" aria-label="anchor" href="#conditional-contrasts"></a>
 </h2>
-<p>Consider a model with an interaction term. What happens to the dependent variable when the <code>hp</code> variable increases by 10 units?</p>
+<p>Consider a model with an interaction term. What happens to the
+dependent variable when the <code>hp</code> variable increases by 10
+units?</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -522,33 +678,58 @@
 <div class="section level2">
 <h2 id="transformations">Transformations<a class="anchor" aria-label="anchor" href="#transformations"></a>
 </h2>
-<p>So far we have focused on simple differences between adjusted predictions. Now, we show how to use ratios, back transformations, and arbitrary functions to estimate a slew of quantities of interest. Powerful transformations and custom contrasts are made possible by using three arguments which act at different stages of the computation process:</p>
+<p>So far we have focused on simple differences between adjusted
+predictions. Now, we show how to use ratios, back transformations, and
+arbitrary functions to estimate a slew of quantities of interest.
+Powerful transformations and custom contrasts are made possible by using
+three arguments which act at different stages of the computation
+process:</p>
 <ul>
 <li><code>transform_pre</code></li>
 <li><code>transform_post</code></li>
 </ul>
-<p>Consider the case of a model with a single predictor <span class="math inline">\(x\)</span>. To compute average contrasts, we proceed as follows:</p>
+<p>Consider the case of a model with a single predictor <span class="math inline">\(x\)</span>. To compute average contrasts, we
+proceed as follows:</p>
 <ol style="list-style-type: decimal">
-<li>Compute adjusted predictions for each row of the dataset for the observed values <span class="math inline">\(x\)</span>: <span class="math inline">\(\hat{y}_x\)</span>
+<li>Compute adjusted predictions for each row of the dataset for the
+observed values <span class="math inline">\(x\)</span>: <span class="math inline">\(\hat{y}_x\)</span>
 </li>
-<li>Compute adjusted predictions for each row of the dataset for the observed values <span class="math inline">\(x + 1\)</span>: <span class="math inline">\(\hat{y}_{x+1}\)</span>
-</li>
-<li>
-<code>transform_pre</code>: Compute unit-level contrasts by taking the difference between (or some other function of) adjusted predictions: <span class="math inline">\(\hat{y}_{x+1} - \hat{y}_x\)</span>
-</li>
-<li>Compute the average contrast by taking the mean of unit-level contrasts: <span class="math inline">\(1/N \sum_{i=1}^N \hat{y}_{x+1} - \hat{y}_x\)</span>
+<li>Compute adjusted predictions for each row of the dataset for the
+observed values <span class="math inline">\(x + 1\)</span>: <span class="math inline">\(\hat{y}_{x+1}\)</span>
 </li>
 <li>
-<code>transform_post</code>: Transform the average contrast or return them as-is.</li>
+<code>transform_pre</code>: Compute unit-level contrasts by taking
+the difference between (or some other function of) adjusted predictions:
+<span class="math inline">\(\hat{y}_{x+1} - \hat{y}_x\)</span>
+</li>
+<li>Compute the average contrast by taking the mean of unit-level
+contrasts: <span class="math inline">\(1/N \sum_{i=1}^N \hat{y}_{x+1} -
+\hat{y}_x\)</span>
+</li>
+<li>
+<code>transform_post</code>: Transform the average contrast or
+return them as-is.</li>
 </ol>
-<p>The <code>transform_pre</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function determines how adjusted predictions are combined to create a contrast. By default, we take a simple difference between predictions with <code>hi</code> value of <span class="math inline">\(x\)</span>, and predictions with a <code>lo</code> value of <span class="math inline">\(x\)</span>: <code>function(hi, lo) hi-lo</code>.</p>
-<p>The <code>transform_post</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function applies a custom transformation to the unit-level contrasts.</p>
-<p>The <code>transform_post</code> argument applies a custom transformation to the final quantity, as would be returned if we evaluated the same call without <code>transform_post</code>.</p>
+<p>The <code>transform_pre</code> argument of the
+<code><a href="../reference/comparisons.html">comparisons()</a></code> function determines how adjusted predictions
+are combined to create a contrast. By default, we take a simple
+difference between predictions with <code>hi</code> value of <span class="math inline">\(x\)</span>, and predictions with a <code>lo</code>
+value of <span class="math inline">\(x\)</span>:
+<code>function(hi, lo) hi-lo</code>.</p>
+<p>The <code>transform_post</code> argument of the
+<code><a href="../reference/comparisons.html">comparisons()</a></code> function applies a custom transformation to
+the unit-level contrasts.</p>
+<p>The <code>transform_post</code> argument applies a custom
+transformation to the final quantity, as would be returned if we
+evaluated the same call without <code>transform_post</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="differences">Differences<a class="anchor" aria-label="anchor" href="#differences"></a>
 </h2>
-<p>The default contrast calculate by the <code><a href="../reference/comparisons.html">comparisons()</a></code> function is a (untransformed) difference between two adjusted predictions. For instance, to estimate the effect of a change of 1 unit, we do:</p>
+<p>The default contrast calculate by the <code><a href="../reference/comparisons.html">comparisons()</a></code>
+function is a (untransformed) difference between two adjusted
+predictions. For instance, to estimate the effect of a change of 1 unit,
+we do:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -570,7 +751,8 @@
 <span><span class="co"># average contrasts</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.05540227</span></span></code></pre></div>
-<p>We can use the <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> function , or the <code>by</code> argument to obtain the same results:</p>
+<p>We can use the <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> function , or the
+<code>by</code> argument to obtain the same results:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -596,7 +778,9 @@
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Stat2Data/Titanic.csv"</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">Survived</span> <span class="op">~</span> <span class="va">PClass</span> <span class="op">*</span> <span class="va">SexCode</span> <span class="op">*</span> <span class="va">Age</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></code></pre></div>
-<p>In this case, a contrast is a difference between predicted probabilities. We can compute that contrast for different types of individuals:</p>
+<p>In this case, a contrast is a difference between predicted
+probabilities. We can compute that contrast for different types of
+individuals:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">titanic</span>,</span>
@@ -609,8 +793,17 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Survived, SexCode, Age, PClass, eps</span></span></code></pre></div>
-<p>One we can notice above, is that the gap in predicted probabilities of survival between men and women is larger in 1st class than in 3rd class. Being a woman matters more for your chances of survival if you travel in first class. Is the difference between those contrasts (diff-in-diff) statistically significant?</p>
-<p>To answer this question, we can compute a difference-in-difference using the <code>hypothesis</code> argument (<a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">see the Hypothesis vignette for details</a>). For example, using <code>b1</code> and <code>b2</code> to refer to the contrasts in the first and second rows of the output above, we can test if the difference between the two quantities is different from 0:</p>
+<p>One we can notice above, is that the gap in predicted probabilities
+of survival between men and women is larger in 1st class than in 3rd
+class. Being a woman matters more for your chances of survival if you
+travel in first class. Is the difference between those contrasts
+(diff-in-diff) statistically significant?</p>
+<p>To answer this question, we can compute a difference-in-difference
+using the <code>hypothesis</code> argument (<a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">see
+the Hypothesis vignette for details</a>). For example, using
+<code>b1</code> and <code>b2</code> to refer to the contrasts in the
+first and second rows of the output above, we can test if the difference
+between the two quantities is different from 0:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">titanic</span>,</span>
@@ -655,7 +848,13 @@
 <div class="section level2">
 <h2 id="ratios">Ratios<a class="anchor" aria-label="anchor" href="#ratios"></a>
 </h2>
-<p>Instead of taking simple differences between adjusted predictions, it can sometimes be useful to compute ratios or other functions of predictions. For example, <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X1301300304" class="external-link">the <code>adjrr</code> function the <code>Stata</code> software package</a> can compute “adjusted risk ratios”, which are ratios of adjusted predictions. To do this in <code>R</code>, we use the <code>transform_pre</code> argument:</p>
+<p>Instead of taking simple differences between adjusted predictions, it
+can sometimes be useful to compute ratios or other functions of
+predictions. For example, <a href="https://journals.sagepub.com/doi/pdf/10.1177/1536867X1301300304" class="external-link">the
+<code>adjrr</code> function the <code>Stata</code> software package</a>
+can compute “adjusted risk ratios”, which are ratios of adjusted
+predictions. To do this in <code>R</code>, we use the
+<code>transform_pre</code> argument:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -664,8 +863,16 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>This result is the average adjusted risk ratio, that is, the adjusted predictions when the <code>mpg</code> are incremented by 1, divided by the adjusted predictions when <code>mpg</code> is at its original value.</p>
-<p>The <code>transform_pre</code> accepts different values for common types of contrasts: ‘difference’, ‘ratio’, ‘lnratio’, ‘ratioavg’, ‘lnratioavg’, ‘lnoravg’, ‘differenceavg’. These strings are shortcuts for functions that accept two vectors of adjusted predictions and returns a single vector of contrasts. For example, these two commands yield identical results:</p>
+<p>This result is the average adjusted risk ratio, that is, the adjusted
+predictions when the <code>mpg</code> are incremented by 1, divided by
+the adjusted predictions when <code>mpg</code> is at its original
+value.</p>
+<p>The <code>transform_pre</code> accepts different values for common
+types of contrasts: ‘difference’, ‘ratio’, ‘lnratio’, ‘ratioavg’,
+‘lnratioavg’, ‘lnoravg’, ‘differenceavg’. These strings are shortcuts
+for functions that accept two vectors of adjusted predictions and
+returns a single vector of contrasts. For example, these two commands
+yield identical results:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -683,7 +890,8 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Pre-transformation:  transform_pre </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>This mechanism is powerful, because it lets users create fully customized contrasts. Here is a non-sensical example:</p>
+<p>This mechanism is powerful, because it lets users create fully
+customized contrasts. Here is a non-sensical example:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">hi</span>, <span class="va">lo</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">hi</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">lo</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -693,7 +901,11 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Pre-transformation:  transform_pre </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>The same arguments work in the plotting function <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code> as well, which allows us to plot various custom contrasts. Here is a comparison of Adjusted Risk Ratio and Adjusted Risk Difference in a model of the probability of survival aboard the Titanic:</p>
+<p>The same arguments work in the plotting function
+<code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code> as well, which allows us to plot various
+custom contrasts. Here is a comparison of Adjusted Risk Ratio and
+Adjusted Risk Difference in a model of the probability of survival
+aboard the Titanic:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
@@ -730,12 +942,20 @@
 <span></span>
 <span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div>
 <p><img src="comparisons_files/figure-html/unnamed-chunk-35-1.png" width="576"></p>
-<p>By default, the standard errors around contrasts are computed using the delta method on the scale determined by the <code>type</code> argument (e.g., “link” or “response”). Some analysts may prefer to proceed differently. For example, in <code>Stata</code>, the <code>adjrr</code> computes adjusted risk ratios (ARR) in two steps:</p>
+<p>By default, the standard errors around contrasts are computed using
+the delta method on the scale determined by the <code>type</code>
+argument (e.g., “link” or “response”). Some analysts may prefer to
+proceed differently. For example, in <code>Stata</code>, the
+<code>adjrr</code> computes adjusted risk ratios (ARR) in two steps:</p>
 <ol style="list-style-type: decimal">
-<li>Compute the natural log of the ratio between the mean of adjusted predictions with <span class="math inline">\(x+1\)</span> and the mean of adjusted predictions with <span class="math inline">\(x\)</span>.</li>
+<li>Compute the natural log of the ratio between the mean of adjusted
+predictions with <span class="math inline">\(x+1\)</span> and the mean
+of adjusted predictions with <span class="math inline">\(x\)</span>.</li>
 <li>Exponentiate the estimate and confidence interval bounds.</li>
 </ol>
-<p>Step 1 is easy to achieve with the <code>transform_pre</code> argument described above. Step 2 can be achieved with the <code>transform_post</code> argument:</p>
+<p>Step 1 is easy to achieve with the <code>transform_pre</code>
+argument described above. Step 2 can be achieved with the
+<code>transform_post</code> argument:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -749,7 +969,9 @@
 <span><span class="co">#&gt; Pre-transformation:  transform_pre </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Note that equivalent results can be obtained using shortcut strings in the <code>transform_pre</code> argument: “ratio”, “lnratio”, “lnratioavg”.</p>
+<p>Note that equivalent results can be obtained using shortcut strings
+in the <code>transform_pre</code> argument: “ratio”, “lnratio”,
+“lnratioavg”.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -762,7 +984,9 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Post-transformation:  exp </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre></div>
-<p>All the same arguments apply to the plotting functions of the <code>marginaleffects</code> package as well. For example we can plot the Adjusted Risk Ratio in a model with a quadratic term:</p>
+<p>All the same arguments apply to the plotting functions of the
+<code>marginaleffects</code> package as well. For example we can plot
+the Adjusted Risk Ratio in a model with a quadratic term:</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -779,7 +1003,11 @@
 <div class="section level2">
 <h2 id="forward-backward-centered-and-custom-differences">Forward, Backward, Centered, and Custom Differences<a class="anchor" aria-label="anchor" href="#forward-backward-centered-and-custom-differences"></a>
 </h2>
-<p>By default, the <code><a href="../reference/comparisons.html">comparisons()</a></code> function computes a “centered” difference. For example, if we ask <code><a href="../reference/comparisons.html">comparisons()</a></code> to estimate the effect of a 10-unit change in predictor <code>x</code> on outcome <code>y</code>, <code><a href="../reference/comparisons.html">comparisons()</a></code> will compare the predicted values with <code>x-5</code> and <code>x+5</code>.</p>
+<p>By default, the <code><a href="../reference/comparisons.html">comparisons()</a></code> function computes a
+“centered” difference. For example, if we ask <code><a href="../reference/comparisons.html">comparisons()</a></code>
+to estimate the effect of a 10-unit change in predictor <code>x</code>
+on outcome <code>y</code>, <code><a href="../reference/comparisons.html">comparisons()</a></code> will compare the
+predicted values with <code>x-5</code> and <code>x+5</code>.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">new_hp</span> <span class="op">&lt;-</span> <span class="fl">49</span> <span class="op">*</span> <span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">hp</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span>
@@ -794,7 +1022,11 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Since version 0.7.2 of <code>marginaleffects</code>, we can supply arbitrary functions to create custom differences. These functions must accept a vector of values for the predictor of interest, and return a data frame with the same number of rows as the length, and two columns with the values to compare. For example, we can do:</p>
+<p>Since version 0.7.2 of <code>marginaleffects</code>, we can supply
+arbitrary functions to create custom differences. These functions must
+accept a vector of values for the predictor of interest, and return a
+data frame with the same number of rows as the length, and two columns
+with the values to compare. For example, we can do:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">forward_diff</span> <span class="op">&lt;-</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">backward_diff</span> <span class="op">&lt;-</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fl">10</span>, <span class="va">x</span><span class="op">)</span></span>
@@ -829,18 +1061,30 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Notice that the last “centered” difference gives the same results as the default <code><a href="../reference/comparisons.html">comparisons()</a></code> call.</p>
+<p>Notice that the last “centered” difference gives the same results as
+the default <code><a href="../reference/comparisons.html">comparisons()</a></code> call.</p>
 </div>
 <div class="section level2">
 <h2 id="lognormal-hurdle-model">Lognormal hurdle model<a class="anchor" aria-label="anchor" href="#lognormal-hurdle-model"></a>
 </h2>
-<p>With hurdle models, we can fit two separate models simultaneously:</p>
+<p>With hurdle models, we can fit two separate models
+simultaneously:</p>
 <ol style="list-style-type: decimal">
 <li>A model that predicts if the outcome is zero or not zero</li>
-<li>If the outcome is not zero, a model that predicts what the value of the outcome is</li>
+<li>If the outcome is not zero, a model that predicts what the value of
+the outcome is</li>
 </ol>
-<p>We can calculate predictions and marginal effects for each of these hurdle model processes, but doing so requires some variable transformation since the stages of these models use different link functions.</p>
-<p>The <code><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal()</a></code> family in <code>brms</code> uses logistic regression (with a logit link) for the hurdle part of the model and lognormal regression (where the outcome is logged before getting used in the model) for the non-hurdled part. Let’s look at an example of predicting GDP per capita (which is distributed exponentially) using life expectancy. We’ll add some artificial zeros so that we can work with a hurdle stage of the model.</p>
+<p>We can calculate predictions and marginal effects for each of these
+hurdle model processes, but doing so requires some variable
+transformation since the stages of these models use different link
+functions.</p>
+<p>The <code><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal()</a></code> family in <code>brms</code> uses
+logistic regression (with a logit link) for the hurdle part of the model
+and lognormal regression (where the outcome is logged before getting
+used in the model) for the non-hurdled part. Let’s look at an example of
+predicting GDP per capita (which is distributed exponentially) using
+life expectancy. We’ll add some artificial zeros so that we can work
+with a hurdle stage of the model.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -851,7 +1095,7 @@
 <span></span>
 <span><span class="co"># Build some 0s into the GDP column</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
-<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op">|&gt;</span> </span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="co"># Make a bunch of GDP values 0</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,</span>
@@ -865,7 +1109,13 @@
 <span>  data <span class="op">=</span> <span class="va">gapminder</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">hurdle_lognormal</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  chains <span class="op">=</span> <span class="fl">4</span>, cores <span class="op">=</span> <span class="fl">4</span>, seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span></code></pre></div>
-<p>We have two different sets of coefficients here for the two different processes. The hurdle part (<code>hu</code>) uses a logit link, and the non-hurdle part (<code>mu</code>) uses an identity link. However, that’s a slight misnomer—a true identity link would show the coefficients on a non-logged dollar value scale. Because we’re using a <code>lognormal</code> family, GDP per capita is pre-logged, so the “original” identity scale is actually logged dollars.</p>
+<p>We have two different sets of coefficients here for the two different
+processes. The hurdle part (<code>hu</code>) uses a logit link, and the
+non-hurdle part (<code>mu</code>) uses an identity link. However, that’s
+a slight misnomer—a true identity link would show the coefficients on a
+non-logged dollar value scale. Because we’re using a
+<code>lognormal</code> family, GDP per capita is pre-logged, so the
+“original” identity scale is actually logged dollars.</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt;  Family: hurdle_lognormal </span></span>
@@ -883,7 +1133,8 @@
 <span><span class="co">#&gt; lifeExp          0.08      0.00     0.08     0.08 1.00     5112     3202</span></span>
 <span><span class="co">#&gt; hu_lifeExp      -0.10      0.01    -0.12    -0.08 1.00     2385     2652</span></span>
 <span><span class="co">#&gt; ...</span></span></code></pre>
-<p>We can get predictions for the <code>hu</code> part of the model on the link (logit) scale:</p>
+<p>We can get predictions for the <code>hu</code> part of the model on
+the link (logit) scale:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -907,7 +1158,8 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap0, lifeExp</span></span></code></pre></div>
-<p>We can also get slopes for the <code>hu</code> part of the model on the link (logit) or response (percentage point) scales:</p>
+<p>We can also get slopes for the <code>hu</code> part of the model on
+the link (logit) or response (percentage point) scales:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"hu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>                newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -930,7 +1182,10 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, gdpPercap0, lifeExp, eps</span></span></code></pre></div>
-<p>Working with the <code>mu</code> part of the model is trickier. Switching between <code>type = "link"</code> and <code>type = "response"</code> doesn’t change anything, since the outcome is pre-logged:</p>
+<p>Working with the <code>mu</code> part of the model is trickier.
+Switching between <code>type = "link"</code> and
+<code>type = "response"</code> doesn’t change anything, since the
+outcome is pre-logged:</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, type <span class="op">=</span> <span class="st">"link"</span>,</span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -952,7 +1207,12 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap0, lifeExp</span></span></code></pre></div>
-<p>For <strong>predictions</strong>, we need to exponentiate the results to scale them back up to dollar amounts. We can do this by post-processing the results (e.g. with <code>dplyr::mutate(predicted = exp(predicted))</code>), or we can use the <code>transform_post</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> to pass the results to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> after getting calculated:</p>
+<p>For <strong>predictions</strong>, we need to exponentiate the results
+to scale them back up to dollar amounts. We can do this by
+post-processing the results (e.g. with
+<code>dplyr::mutate(predicted = exp(predicted))</code>), or we can use
+the <code>transform_post</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code>
+to pass the results to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> after getting calculated:</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, dpar <span class="op">=</span> <span class="st">"mu"</span>, </span>
 <span>            newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -966,7 +1226,8 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, gdpPercap0, lifeExp</span></span></code></pre></div>
-<p>We can pass <code>transform_post = exp</code> to <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> too:</p>
+<p>We can pass <code>transform_post = exp</code> to
+<code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> too:</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -998,7 +1259,15 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"mu"</span>,</span>
 <span>       subtitle <span class="op">=</span> <span class="st">"Dollar-scale predictions"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="comparisons_files/figure-html/plot-hurdle-parts-1.png" width="768"></p>
-<p>For <strong>marginal effects</strong>, we need to transform the predictions <em>before</em> calculating the instantaneous slopes. We also can’t use the <code><a href="../reference/slopes.html">slopes()</a></code> function directly—we need to use <code><a href="../reference/comparisons.html">comparisons()</a></code> and compute the numerical derivative ourselves (i.e. predict <code>gdpPercap</code> at <code>lifeExp</code> of 40 and 40.001 and calculate the slope between those predictions). We can use the <code>transform_pre</code> argument to pass the pair of predicted values to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> before calculating the slopes:</p>
+<p>For <strong>marginal effects</strong>, we need to transform the
+predictions <em>before</em> calculating the instantaneous slopes. We
+also can’t use the <code><a href="../reference/slopes.html">slopes()</a></code> function directly—we need to
+use <code><a href="../reference/comparisons.html">comparisons()</a></code> and compute the numerical derivative
+ourselves (i.e. predict <code>gdpPercap</code> at <code>lifeExp</code>
+of 40 and 40.001 and calculate the slope between those predictions). We
+can use the <code>transform_pre</code> argument to pass the pair of
+predicted values to <code><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp()</a></code> before calculating the
+slopes:</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step size of the numerical derivative</span></span>
 <span><span class="va">eps</span> <span class="op">&lt;-</span> <span class="fl">0.001</span></span>
@@ -1021,7 +1290,8 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Pre-transformation:  function(hi, lo) ((exp(hi) - exp(lo))/exp(eps))/eps </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, gdpPercap0, lifeExp, eps</span></span></code></pre></div>
-<p>We can visually confirm that these are the instantaneous slopes at each of these levels of life expectancy:</p>
+<p>We can visually confirm that these are the instantaneous slopes at
+each of these levels of life expectancy:</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">predictions_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
