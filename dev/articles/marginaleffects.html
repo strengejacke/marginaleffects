@@ -121,9 +121,6 @@
 </ol>
 <p>On this website and in this package, we reserve the expression “marginal effect” to mean a “slope” or “partial derivative”.</p>
 <p>The <code>marginaleffects</code> package includes functions to estimate, average, plot, and summarize all of the estimands described above. The objects produced by <code>marginaleffects</code> are “tidy”: they produce simple data frames in “long” format. They are also “standards-compliant” and work seamlessly with standard functions like <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and <code><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance()</a></code>, as well with <a href="https://vincentarelbundock.github.io/marginaleffects/">external packages like <code>modelsummary</code></a> or <code>ggplot2</code>.</p>
-<div class="section level3">
-<h3 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
-</h3>
 <p>We now apply <code>marginaleffects</code> functions to compute each of the estimands described above. First, we fit a linear regression model with multiplicative interactions:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
@@ -255,7 +252,6 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb, eps</span></span></code></pre></div>
-</div>
 </div>
 <div class="section level2">
 <h2 id="grid">Grid<a class="anchor" aria-label="anchor" href="#grid"></a>
