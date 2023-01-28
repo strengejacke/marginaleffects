@@ -23,7 +23,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
@@ -37,19 +37,16 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
+  <a class="nav-link" href="../articles/marginaleffects.html">Get started</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
+  <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/index.html">Articles</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis tests</a>
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -58,14 +55,8 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/">
-    <span class="fab fa fab fa-github"></span>
+  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -78,8 +69,7 @@
 
 
 
-
-<div class="row">
+<script src="elasticity_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Elasticity</h1>
             
@@ -90,24 +80,13 @@
 
     
     
-<p>The content of this vignette requires version 0.7.0 of the
-<code>marginaleffects</code> package.</p>
-<p>In some contexts, it is useful to interpret the results of a
-regression model in terms of elasticity or semi-elasticity. One strategy
-to achieve that is to estimate a log-log or a semilog model, where the
-left and/or right-hand side variables are logged. Another approach is to
-note that <span class="math inline">\(\frac{\partial ln(x)}{\partial
-x}=\frac{1}{x}\)</span>, and to post-process the marginal effects to
-transform them into elasticities or semi-elasticities.</p>
+<p>The content of this vignette requires version 0.7.0 of the <code>marginaleffects</code> package.</p>
+<p>In some contexts, it is useful to interpret the results of a regression model in terms of elasticity or semi-elasticity. One strategy to achieve that is to estimate a log-log or a semilog model, where the left and/or right-hand side variables are logged. Another approach is to note that <span class="math inline">\(\frac{\partial ln(x)}{\partial x}=\frac{1}{x}\)</span>, and to post-process the marginal effects to transform them into elasticities or semi-elasticities.</p>
 <p>For example, say we estimate a linear model of this form:</p>
-<p><span class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2
-+ \varepsilon\]</span></p>
-<p>Let <span class="math inline">\(\hat{y}\)</span> be the adjusted
-prediction made by the model for some combination of covariates <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>. The slope with respect to <span class="math inline">\(x_1\)</span> (or “marginal effect”) is:</p>
-<p><span class="math display">\[\frac{\partial \hat{y}}{\partial
-x_1}\]</span></p>
-<p>We can estimate the “eyex”, “eydx”, and “dyex” (semi-)elasticities
-with respect to <span class="math inline">\(x_1\)</span> as follows:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon\]</span></p>
+<p>Let <span class="math inline">\(\hat{y}\)</span> be the adjusted prediction made by the model for some combination of covariates <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>. The slope with respect to <span class="math inline">\(x_1\)</span> (or “marginal effect”) is:</p>
+<p><span class="math display">\[\frac{\partial \hat{y}}{\partial x_1}\]</span></p>
+<p>We can estimate the “eyex”, “eydx”, and “dyex” (semi-)elasticities with respect to <span class="math inline">\(x_1\)</span> as follows:</p>
 <p><span class="math display">\[
 \eta_1=\frac{\partial \hat{y}}{\partial x_1}\cdot \frac{x_1}{\hat{y}}\\
 \eta_2=\frac{\partial \hat{y}}{\partial x_1}\cdot \frac{1}{\hat{y}} \\
@@ -115,20 +94,12 @@ with respect to <span class="math inline">\(x_1\)</span> as follows:</p>
 \]</span></p>
 <p>with interpretations roughly as follows:</p>
 <ol style="list-style-type: decimal">
-<li>A percentage point increase in <span class="math inline">\(x_1\)</span> is associated to a <span class="math inline">\(\eta_1\)</span> percentage points increase in
-<span class="math inline">\(y\)</span>.</li>
-<li>A unit increase in <span class="math inline">\(x_1\)</span> is
-associated to a <span class="math inline">\(\eta_2\)</span> percentage
-points increase in <span class="math inline">\(y\)</span>.</li>
+<li>A percentage point increase in <span class="math inline">\(x_1\)</span> is associated to a <span class="math inline">\(\eta_1\)</span> percentage points increase in <span class="math inline">\(y\)</span>.</li>
+<li>A unit increase in <span class="math inline">\(x_1\)</span> is associated to a <span class="math inline">\(\eta_2\)</span> percentage points increase in <span class="math inline">\(y\)</span>.</li>
 <li>A percentage point increase in <span class="math inline">\(x_1\)</span> is associated to a <span class="math inline">\(\eta_3\)</span> units increase in <span class="math inline">\(y\)</span>.</li>
 </ol>
-<p>For further intuition, consider the ratio of change in <span class="math inline">\(y\)</span> to change in <span class="math inline">\(x\)</span>: <span class="math inline">\(\frac{\Delta y}{\Delta x}\)</span>. We can turn
-this ratio into a ratio between <em>relative</em> changes by dividing
-both the numerator and the denominator: <span class="math inline">\(\frac{\frac{\Delta y}{y}}{\frac{\Delta
-x}{x}}\)</span>. This is of course linked to the expression for the
-<span class="math inline">\(\eta_1\)</span> elasticity above.</p>
-<p>With the <code>marginaleffects</code> package, these quantities are
-easy to compute:</p>
+<p>For further intuition, consider the ratio of change in <span class="math inline">\(y\)</span> to change in <span class="math inline">\(x\)</span>: <span class="math inline">\(\frac{\Delta y}{\Delta x}\)</span>. We can turn this ratio into a ratio between <em>relative</em> changes by dividing both the numerator and the denominator: <span class="math inline">\(\frac{\frac{\Delta y}{y}}{\frac{\Delta x}{x}}\)</span>. This is of course linked to the expression for the <span class="math inline">\(\eta_1\)</span> elasticity above.</p>
+<p>With the <code>marginaleffects</code> package, these quantities are easy to compute:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>

@@ -10,10 +10,7 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/brms.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/contrasts.html</loc>
-  </url>
-  <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/documentation.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/comparisons.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/elasticity.html</loc>
@@ -40,19 +37,22 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/links.html</loc>
+  </url>
+  <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/lme4.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/logistic_contrasts.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/logit.html</loc>
+  </url>
+  <url>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/marginaleffects.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/marginalmeans.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/mlogit.html</loc>
-  </url>
-  <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/modelsummary.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/multiple_imputation.html</loc>
@@ -70,19 +70,16 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/python.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/sandwich.html</loc>
-  </url>
-  <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/slopes.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/supported_models.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/toc.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/tables.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/toc_external.html</loc>
+    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/articles/uncertainty.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/authors.html</loc>
@@ -94,16 +91,10 @@
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/news/index.html</loc>
   </url>
   <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/cjdt.html</loc>
-  </url>
-  <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/comparisons.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/complete_levels.html</loc>
-  </url>
-  <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/counterfactual.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/datagrid.html</loc>
@@ -140,9 +131,6 @@
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/get_vcov.html</loc>
-  </url>
-  <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/hush.html</loc>
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/hypotheses.html</loc>
@@ -203,8 +191,5 @@
   </url>
   <url>
     <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/slopes.html</loc>
-  </url>
-  <url>
-    <loc>https://vincentarelbundock.github.io/marginaleffects/dev/reference/typical.html</loc>
   </url>
 </urlset>

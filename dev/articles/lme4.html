@@ -23,7 +23,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
@@ -37,19 +37,16 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
+  <a class="nav-link" href="../articles/marginaleffects.html">Get started</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
+  <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/index.html">Articles</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis tests</a>
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -58,14 +55,8 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/">
-    <span class="fab fa fab fa-github"></span>
+  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -78,8 +69,7 @@
 
 
 
-
-<div class="row">
+<script src="lme4_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Mixed effects models with lme4</h1>
             
@@ -90,10 +80,7 @@
 
     
     
-<p>This vignette replicates some of the analyses in this excellent blog
-post by Solomon Kurz: <a href="https://solomonkurz.netlify.app/post/2021-12-16-use-emmeans-to-include-95-cis-around-your-lme4-based-fitted-lines/" class="external-link">Use
-<code>emmeans()</code> to include 95% CIs around your
-<code>lme4</code>-based fitted lines</a></p>
+<p>This vignette replicates some of the analyses in this excellent blog post by Solomon Kurz: <a href="https://solomonkurz.netlify.app/post/2021-12-16-use-emmeans-to-include-95-cis-around-your-lme4-based-fitted-lines/" class="external-link">Use <code>emmeans()</code> to include 95% CIs around your <code>lme4</code>-based fitted lines</a></p>
 <p>Load libraries and fit two models of chick weights:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
@@ -133,8 +120,7 @@ post by Solomon Kurz: <a href="https://solomonkurz.netlify.app/post/2021-12-16-u
 <span></span>
 <span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code></pre></div>
 <p><img src="lme4_files/figure-html/unnamed-chunk-3-1.png" width="100%"></p>
-<p>Predictions for each chick, in the 4 counterfactual worlds with
-different values for the <code>Diet</code> variable:</p>
+<p>Predictions for each chick, in the 4 counterfactual worlds with different values for the <code>Diet</code> variable:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span>
 <span></span>
@@ -147,10 +133,7 @@ different values for the <code>Diet</code> variable:</p>
 <div class="section level2">
 <h2 id="population-level-predictions">Population-level predictions<a class="anchor" aria-label="anchor" href="#population-level-predictions"></a>
 </h2>
-<p>To make population-level predictions, we set the <code>Chick</code>
-variable to <code>NA</code>, and set <code>include_ranom=FALSE</code>.
-This last argument is offered by the <code><a href="https://easystats.github.io/insight/reference/get_predicted.html" class="external-link">insight::get_predicted</a></code>
-function which is used behind the scenes to compute predictions:</p>
+<p>To make population-level predictions, we set the <code>Chick</code> variable to <code>NA</code>, and set <code>include_ranom=FALSE</code>. This last argument is offered by the <code><a href="https://easystats.github.io/insight/reference/get_predicted.html" class="external-link">insight::get_predicted</a></code> function which is used behind the scenes to compute predictions:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">fit2</span>,</span>

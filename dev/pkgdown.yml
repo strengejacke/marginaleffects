@@ -1,11 +1,10 @@
-pandoc: 2.19.2
+pandoc: 2.9.2.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   alternative_software: alternative_software.html
   brms: brms.html
-  contrasts: contrasts.html
-  documentation: documentation.html
+  comparisons: comparisons.html
   elasticity: elasticity.html
   experiments: experiments.html
   extensions: extensions.html
@@ -13,22 +12,22 @@ articles:
   gam: gam.html
   gformula: gformula.html
   hypothesis: hypothesis.html
+  links: links.html
   lme4: lme4.html
-  logistic_contrasts: logistic_contrasts.html
+  logit: logit.html
+  marginaleffects: marginaleffects.html
   marginalmeans: marginalmeans.html
   mlogit: mlogit.html
-  modelsummary: modelsummary.html
   multiple_imputation: multiple_imputation.html
   performance: performance.html
   plot: plot.html
   predictions: predictions.html
   python: python.html
-  sandwich: sandwich.html
   slopes: slopes.html
   supported_models: supported_models.html
-  toc: toc.html
-  toc_external: toc_external.html
-last_built: 2023-01-28T13:53Z
+  tables: tables.html
+  uncertainty: uncertainty.html
+last_built: 2023-01-28T20:33Z
 urls:
   reference: https://vincentarelbundock.github.io/marginaleffects/reference
   article: https://vincentarelbundock.github.io/marginaleffects/articles
