@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1.9120</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,19 +19,19 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Comparisons</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis tests</a>
+  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -60,74 +60,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.1.9001" id="marginaleffects-0819001">marginaleffects 0.8.1.9001<a class="anchor" aria-label="anchor" href="#marginaleffects-0819001"></a></h2>
-<p>Breaking changes:</p>
-<ul><li>All functions return an <code>estimate</code> column instead of the function-specific <code>predicted</code>, <code>comparisons</code>, <code>dydx</code>, etc. This change only affects unit-level estimates, and not average estimates, which already used the <code>estimate</code> column name.</li>
-<li>The <code>transform_avg</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> deprecated. Use <code>transform_post</code> instead.</li>
-<li>
-<code>plot_*()</code> now return the actual variable names supplied to the <code>condition</code> argument, rather than the opaque “condition1”, “condition2”, etc.</li>
-</ul><p>New models supported:</p>
-<ul><li>
-<code>blme</code> package.</li></ul><p>New features:</p>
-<ul><li>New functions: <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="../reference/slopes.html">avg_slopes()</a></code>
-</li>
-<li>Equivalence, non-inferiority, and non-superiority tests with the <code><a href="../reference/hypotheses.html">hypotheses()</a></code> function and <code>equivalence</code> argument.</li>
-<li>New <code>df</code> argument to set degrees of freedom manually for p and CI.</li>
-<li>Pretty <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> for all objects.</li>
-<li>
-<code>by</code> argument<ul><li>
-<code>TRUE</code> returns average (marginal) predictions, comparisons, or slopes.</li>
-<li>Supports bayesian models.</li>
-</ul></li>
-<li>
-<code>hypothesis</code> argument<ul><li>Numeric value sets the null used in calculating Z and p.</li>
-<li>Example: <code>comparisons(mod, transform_pre = "ratio", hypothesis = 1)</code>
-</li>
-</ul></li>
-<li>All arguments from the main functions are now available through <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>: <code>conf_level</code>, <code>transform_post</code>, etc.</li>
-<li>Bayesian posterior distribution summaries can be customized using global options:<ul><li><code>options("marginaleffects_posterior_interval" = "eti")</code></li>
-<li><code>options("marginaleffects_posterior_interval" = "hdi")</code></li>
-<li><code>options("marginaleffects_posterior_center" = median)</code></li>
-<li><code>options("marginaleffects_posterior_center" = mean)</code></li>
-</ul></li>
-</ul><p>Renamed functions (backward-compatibility is maintained):</p>
-<ul><li>
-<code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> -&gt; <code><a href="../reference/slopes.html">slopes()</a></code>
-</li>
-<li>
-<code><a href="../reference/posteriordraws.html">posteriordraws()</a></code> -&gt; <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code>
-</li>
-<li>
-<code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> -&gt; <code><a href="../reference/marginal_means.html">marginal_means()</a></code>
-</li>
-<li>
-<code><a href="../reference/plot_cap.html">plot_cap()</a></code> -&gt; <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code>
-</li>
-<li>
-<code><a href="../reference/plot_cme.html">plot_cme()</a></code> -&gt; <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code>
-</li>
-<li>
-<code><a href="../reference/plot_cco.html">plot_cco()</a></code> -&gt; <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code>
-</li>
-</ul><p>Bug fixes:</p>
-<ul><li>Incorrect results: In 0.8.1, <code>plot_c*()</code> the <code>threenum</code> and <code>minmax</code> labels did not correspond to the correct numeric values.</li>
-<li>Fix corner case for slopes when the dataset includes infinite values.</li>
-<li>
-<code>mlogit</code> error with factors.</li>
-<li>The <code>vcov</code> argument accepts functions for most models.</li>
-</ul><p>Other:</p>
-<ul><li>Removed major performance bottleneck for <code><a href="../reference/slopes.html">slopes()</a></code>
-</li></ul></div>
-    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.1" id="marginaleffects-081">marginaleffects 0.8.1<a class="anchor" aria-label="anchor" href="#marginaleffects-081"></a></h2><p class="text-muted">CRAN release: 2022-11-23</p>
 <ul><li>
 <code><a href="../reference/deltamethod.html">deltamethod()</a></code> can run hypothesis tests on objects produced by the <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, <code><a href="../reference/predictions.html">predictions()</a></code>, and <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> functions. This feature relies on <code><a href="https://rdrr.io/r/base/match.call.html" class="external-link">match.call()</a></code>, which means it may not always work when used programmatically, inside functions and nested environments. It is generally safer and more efficient to use the <code>hypothesis</code> argument.</li>
 <li>
 <code><a href="../reference/plot_cme.html">plot_cme()</a></code> and <code><a href="../reference/plot_cco.html">plot_cco()</a></code> accept lists with user-specified values for the regressors, and can display nice labels for shortcut string-functions like “threenum” or “quartile”.</li>
 <li>
-<code>posterior_draws</code>: new <code>shape</code> argument to return MCMC draws in various formats, including the new <code>rvar</code> structure from the <code>posterior</code> package.</li>
+<code>posteriordraws</code>: new <code>shape</code> argument to return MCMC draws in various formats, including the new <code>rvar</code> structure from the <code>posterior</code> package.</li>
 <li>
-<code>transform_avg</code> function gets printed in <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code> output.</li>
+<code>transform_avg</code> function gets printed in <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> output.</li>
 <li>
 <code>transform_post</code> and <code>transform_avg</code> support string shortcuts: “exp” and “ln”</li>
 <li>Added support for <code>mlm</code> models from <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>. Thanks to Noah Greifer.</li>
@@ -157,7 +98,7 @@
 <li>Extending marginal effects</li>
 <li>Integrating out random effects in bayesian models</li>
 </ul><p>Bug fixes and minor improvements:</p>
-<ul><li>The default value of <code>conf_level</code> in <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> is now <code>NULL</code>, which inherits the <code>conf_level</code> value in the original <code>comparisons</code>/<code>marginaleffects</code>/<code>predictions</code> calls.</li>
+<ul><li>The default value of <code>conf_level</code> in <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> is now <code>NULL</code>, which inherits the <code>conf_level</code> value in the original <code>comparisons</code>/<code>marginaleffects</code>/<code>predictions</code> calls.</li>
 <li>Fix typo in function names for missing “lnratioavgwts”</li>
 <li>Interactions with <code><a href="https://lrberge.github.io/fixest/reference/i.html" class="external-link">fixest::i()</a></code> are parsed properly as categorical variables</li>
 <li>For <code>betareg</code> objects, inference can now be done on all coefficients using <code><a href="../reference/deltamethod.html">deltamethod()</a></code>. previously only the location coefficients were available.</li>
@@ -185,7 +126,7 @@
 <li>
 <code>wts</code> argument is respected in <code>by</code> argument and with <code>*avg</code> shortcuts in the <code>transform_pre</code> argument.</li>
 <li>
-<code>tidy.predictions()</code> and <code>tidy.marginalmeans()</code> get a new <code>transform_avg</code> argument.</li>
+<code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> and <code><a href="../reference/tidy.marginalmeans.html">tidy.marginalmeans()</a></code> get a new <code>transform_avg</code> argument.</li>
 <li>New vignettes:<ul><li>Unit-level contrasts in logistic regressions. Thanks to <a href="https://github.com/arthur-albuquerque" class="external-link">@arthur-albuquerque</a>.</li>
 <li>Python Numpy models in <code>marginaleffects</code>. Thanks to <a href="https://github.com/timpipeseek" class="external-link">@timpipeseek</a>.</li>
 <li>Bootstrap example in standard errors vignette.</li>
@@ -195,7 +136,7 @@
 <h2 class="pkg-version" data-toc-text="0.7.0" id="marginaleffects-070">marginaleffects 0.7.0<a class="anchor" aria-label="anchor" href="#marginaleffects-070"></a></h2><p class="text-muted">CRAN release: 2022-08-06</p>
 <p>Breaking changes:</p>
 <ul><li>
-<code>by</code> is deprecated in <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>. Use the same <code>by</code> argument in the main functions instead: <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, <code><a href="../reference/predictions.html">predictions()</a></code>
+<code>by</code> is deprecated in <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>. Use the same <code>by</code> argument in the main functions instead: <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>, <code><a href="../reference/predictions.html">predictions()</a></code>
 </li>
 <li>Character vectors are no longer supported in the <code>variables</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function. Use <code>newdata="fivenum"</code> or “grid”, “mean”, or “median” instead.</li>
 </ul><p>Critical bug fix:</p>
@@ -212,7 +153,7 @@
 <li>
 <code><a href="../reference/datagrid.html">datagrid()</a></code> accepts functions: <code>datagrid(newdata = mtcars, hp = range, mpg = fivenum, wt = sd)</code>
 </li>
-<li>New <code><a href="../reference/datagrid.html">datagridcf()</a></code> function to create counterfactual datasets. This is a shortcut to the <code><a href="../reference/datagrid.html">datagrid()</a></code> function with default to <code>grid_type = "counterfactual"</code>
+<li>New <code><a href="../reference/datagridcf.html">datagridcf()</a></code> function to create counterfactual datasets. This is a shortcut to the <code><a href="../reference/datagrid.html">datagrid()</a></code> function with default to <code>grid_type = "counterfactual"</code>
 </li>
 <li>New <code>by</code> arguments in <code><a href="../reference/predictions.html">predictions()</a></code>, <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code>
 </li>
@@ -242,7 +183,7 @@
 <code>transform_post</code> in <code><a href="../reference/predictions.html">predictions()</a></code>
 </li>
 <li>
-<code>wts</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> only affects average predictions in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>.</li>
+<code>wts</code> argument in <code><a href="../reference/predictions.html">predictions()</a></code> only affects average predictions in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> or <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>.</li>
 </ul><p>New or improved vignettes:</p>
 <ul><li>Hypothesis Tests and Custom Contrasts using the Delta Method: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html" class="uri">https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html</a>
 </li>
@@ -252,10 +193,10 @@
 </ul><p>Deprecated or renamed arguments:</p>
 <ul><li>
 <code>contrast_factor</code> and <code>contrast_numeric</code> arguments are deprecated in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Use a named list in the <code>variables</code> argument instead. Backward compatibility is maintained.</li>
-<li>The <code>transform_post</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code> is renamed to <code>transform_avg</code> to disambiguate against the argument of the same name in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Backward compatibility is preserved.</li>
+<li>The <code>transform_post</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> is renamed to <code>transform_avg</code> to disambiguate against the argument of the same name in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Backward compatibility is preserved.</li>
 </ul><p>Misc:</p>
 <ul><li>
-<code>tidy.predictions()</code> computes standard errors using the delta method for average predictions</li>
+<code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> computes standard errors using the delta method for average predictions</li>
 <li>Support <code>gam</code> models with matrix columns.</li>
 <li>
 <code>eps</code> in <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> is now “adaptive” by default: it equals 0.0001 multiplied the range of the predictor variable</li>
@@ -263,7 +204,7 @@
 <code><a href="../reference/comparisons.html">comparisons()</a></code> now supports “log of marginal odds ratio” in the <code>transform_pre</code> argument. Thanks to Noah Greifer.</li>
 <li>New <code>transform_pre</code> shortcuts: dydx, expdydx</li>
 <li>
-<code>tidy.predictions()</code> computes standard errors and confidence intervals for linear models or GLM on the link scale.</li>
+<code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> computes standard errors and confidence intervals for linear models or GLM on the link scale.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="marginaleffects-050">marginaleffects 0.5.0<a class="anchor" aria-label="anchor" href="#marginaleffects-050"></a></h2><p class="text-muted">CRAN release: 2022-05-17</p>
@@ -281,11 +222,11 @@
 <ul><li>
 <code>interaction</code> argument in <code><a href="../reference/comparisons.html">comparisons()</a></code> to compute interactions between contrasts (cross-contrasts).</li>
 <li>
-<code>by</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code> computes group-average marginal effects and comparisons.</li>
+<code>by</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> computes group-average marginal effects and comparisons.</li>
 <li>
 <code>transform_pre</code> argument can define custom contrasts between adjusted predictions (e.g., log adjusted risk ratios). Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>.</li>
 <li>
-<code>transform_post</code> argument allows back transformation before returning the final results. Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>, <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>.</li>
+<code>transform_post</code> argument allows back transformation before returning the final results. Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>.</li>
 <li>The <code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function accepts a named list to specify variable-specific contrast types.</li>
 <li>Robust standard errors with the <code>vcov</code> argument. This requires version 0.17.1 of the <code>insight</code> package.<ul><li>
 <code>sandwich</code> package shortcuts: <code>vcov = "HC3"</code>, <code>"HC2"</code>, <code>"NeweyWest"</code>, and more.</li>
@@ -366,7 +307,7 @@
 </ul><p>Misc:</p>
 <ul><li>Support <code><a href="https://easystats.github.io/modelbased/reference/visualisation_matrix.html" class="external-link">modelbased::visualisation_matrix</a></code> in <code>newdata</code> without having to specify <code>x</code> explicitly.</li>
 <li>
-<code>tidy.predictions()</code> and <code>summary.predictions()</code> methods.</li>
+<code><a href="../reference/tidy.predictions.html">tidy.predictions()</a></code> and <code><a href="../reference/summary.predictions.html">summary.predictions()</a></code> methods.</li>
 <li>Documentation improvements.</li>
 <li>CRAN test fixes</li>
 </ul></div>
@@ -404,7 +345,7 @@
 <ul><li>
 <code>datagrid</code> function supersedes <code>typical</code> and <code>counterfactual</code> with the <code>grid.type</code> argument. The <code>typical</code> and <code>counterfactual</code> functions will remain available and exported, but their use is not encouraged.</li>
 <li>
-<code>posterior_draws</code> function can be applied to a <code>predictions</code> or a <code>marginaleffects</code> object to extract draws from the posterior distribution.</li>
+<code>posteriordraws</code> function can be applied to a <code>predictions</code> or a <code>marginaleffects</code> object to extract draws from the posterior distribution.</li>
 <li>
 <code>marginalmeans</code> standard errors are now computed using the delta method.</li>
 <li>
