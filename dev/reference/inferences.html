@@ -113,9 +113,9 @@ Apply this function to a model object to change the inferential strategy used to
 <span class="r-in"><span>        <span class="fu"><a href="predictions.html">avg_predictions</a></span><span class="op">(</span>by <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  gear Estimate Std. Error   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3   0.2030     0.1557 0.07046 0.7762</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4   0.7966     0.1154 0.52286 0.9420</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5   0.2066     0.1299 0.02866 0.5393</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3   0.2022     0.1538 0.07417 0.7634</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4   0.7931     0.1166 0.48274 0.9445</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5   0.2135     0.1309 0.03458 0.5602</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, gear, estimate, std.error, conf.low, conf.high </span>
@@ -125,13 +125,13 @@ Apply this function to a model object to change the inferential strategy used to
 <span class="r-in"><span>        <span class="fu"><a href="slopes.html">slopes</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast   Estimate Std. Error    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0100675   0.010224 -0.03619 0.001709</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0114467   0.009895 -0.03560 0.001911</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0038871   0.008041 -0.02820 0.003229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0061715   0.007761 -0.02795 0.001994</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0008858   0.003782 -0.01348 0.001419</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0043096   0.006779 -0.02346 0.001380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast   Estimate Std. Error    2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0091195   0.010031 -0.03491 0.0012889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0106273   0.009523 -0.03358 0.0012339</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0037059   0.008115 -0.02804 0.0025639</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0067763   0.007519 -0.02682 0.0008921</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0008534   0.003502 -0.01171 0.0011195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0049370   0.006791 -0.02317 0.0010450</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, contrast, estimate, std.error, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, hp, wt, gear, eps </span>
@@ -142,10 +142,10 @@ Apply this function to a model object to change the inferential strategy used to
 <span class="r-in"><span>        <span class="fu"><a href="posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="st">"rvar"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast  Estimate Std. Error    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3 -0.045421    0.15159 -0.27175 0.358849</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3 -0.176870    0.23273 -0.56728 0.323859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.004604    0.00311 -0.01032 0.002272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    wt    dY/dX  0.017205    0.17559 -0.34012 0.348031</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3 -0.035126     0.1442 -0.24786 0.326803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3 -0.176318     0.2307 -0.54161 0.353115</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.004462     0.0030 -0.01065 0.001938</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    wt    dY/dX  0.018325     0.1789 -0.32781 0.398963</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, contrast, estimate, std.error, conf.low, conf.high, rvar </span>
