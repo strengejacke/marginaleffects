@@ -3,6 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   alternative_software: alternative_software.html
+  bootstrap: bootstrap.html
   brms: brms.html
   comparisons: comparisons.html
   elasticity: elasticity.html
@@ -27,7 +28,7 @@ articles:
   supported_models: supported_models.html
   tables: tables.html
   uncertainty: uncertainty.html
-last_built: 2023-01-29T02:38Z
+last_built: 2023-01-30T02:42Z
 urls:
   reference: https://vincentarelbundock.github.io/marginaleffects/reference
   article: https://vincentarelbundock.github.io/marginaleffects/articles

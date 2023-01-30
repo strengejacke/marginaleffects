@@ -71,9 +71,9 @@ datagridcf() generates "counter-factual" data frames, by replicating the entire 
 <span>  model <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  grid_type <span class="op">=</span> <span class="st">"typical"</span>,</span>
-<span>  FUN_character <span class="op">=</span> <span class="va">Mode</span>,</span>
-<span>  FUN_factor <span class="op">=</span> <span class="va">Mode</span>,</span>
-<span>  FUN_logical <span class="op">=</span> <span class="va">Mode</span>,</span>
+<span>  FUN_character <span class="op">=</span> <span class="va">get_mode</span>,</span>
+<span>  FUN_factor <span class="op">=</span> <span class="va">get_mode</span>,</span>
+<span>  FUN_logical <span class="op">=</span> <span class="va">get_mode</span>,</span>
 <span>  FUN_numeric <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  FUN_integer <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  FUN_other <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>

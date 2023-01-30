@@ -330,17 +330,17 @@ to estimate the standard error.</li>
 <span><span class="va">mod</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   Estimate Std. Error     2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  7.836e-01     0.1976 2.461e-01 0.9709</span></span>
-<span><span class="co">#&gt;  7.836e-01     0.1680 3.164e-01 0.9617</span></span>
-<span><span class="co">#&gt;  8.983e-01     0.1378 4.966e-01 0.9887</span></span>
-<span><span class="co">#&gt;  8.742e-01     0.2206 1.891e-01 0.9956</span></span>
-<span><span class="co">#&gt;  1.307e-02     0.1865 6.458e-05 0.7103</span></span>
+<span><span class="co">#&gt;  7.836e-01     0.2011 2.692e-01 0.9732</span></span>
+<span><span class="co">#&gt;  7.836e-01     0.1687 3.537e-01 0.9628</span></span>
+<span><span class="co">#&gt;  8.983e-01     0.1459 4.474e-01 0.9896</span></span>
+<span><span class="co">#&gt;  8.742e-01     0.2182 2.194e-01 0.9961</span></span>
+<span><span class="co">#&gt;  1.307e-02     0.1949 7.772e-05 0.7696</span></span>
 <span><span class="co">#&gt; --- 22 rows omitted. See ?avg_predictions and ?print.marginaleffects --- </span></span>
-<span><span class="co">#&gt;  3.828e-01     0.3023 1.737e-02 0.9621</span></span>
-<span><span class="co">#&gt;  1.211e-06     0.1190 8.932e-13 0.3162</span></span>
-<span><span class="co">#&gt;  6.887e-03     0.1601 2.756e-05 0.6606</span></span>
-<span><span class="co">#&gt;  8.071e-11     0.1417 2.220e-16 0.3141</span></span>
-<span><span class="co">#&gt;  7.953e-01     0.1703 3.103e-01 0.9649 </span></span>
+<span><span class="co">#&gt;  3.828e-01     0.2939 1.796e-02 0.9555</span></span>
+<span><span class="co">#&gt;  1.211e-06     0.1256 4.108e-12 0.3768</span></span>
+<span><span class="co">#&gt;  6.887e-03     0.1580 3.430e-05 0.6333</span></span>
+<span><span class="co">#&gt;  8.071e-11     0.1562 2.220e-16 0.6899</span></span>
+<span><span class="co">#&gt;  7.953e-01     0.1718 3.552e-01 0.9655 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, conf.low, conf.high, vs, hp, wt, gear</span></span>
@@ -351,7 +351,7 @@ to estimate the standard error.</li>
 <span><span class="co">#&gt;  gear    4 - 3 -0.040453   0.054402 -0.09097 0.130651</span></span>
 <span><span class="co">#&gt;  gear    5 - 3 -0.182995   0.261857 -0.48634 0.325185</span></span>
 <span><span class="co">#&gt;    hp    dY/dX -0.004762   0.004451 -0.01158 0.005102</span></span>
-<span><span class="co">#&gt;    wt    dY/dX  0.016483   0.306082 -0.62666 0.655081</span></span>
+<span><span class="co">#&gt;    wt    dY/dX  0.016483   0.306082 -0.62666 0.655082</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, conf.low, conf.high</span></span></code></pre></div>
@@ -447,7 +447,7 @@ z-statistic:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term     Contrast Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;    hp        dY/dX -0.05184    0.01146 -4.523 6.1032e-06 -0.07431 -0.02938</span></span>
+<span><span class="co">#&gt;    hp        dY/dX -0.05184    0.01146 -4.523 6.1031e-06 -0.07431 -0.02938</span></span>
 <span><span class="co">#&gt;    am TRUE - FALSE  4.66614    1.13426  4.114 3.8914e-05  2.44304  6.88924</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>

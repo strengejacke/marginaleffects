@@ -224,7 +224,7 @@ there are 3 predictors in the model and our data has 32 rows, we obtain
 <span><span class="co">##    am    1 - 0  2.106353    2.28920  0.9201 0.35750670  -2.38040  6.5931031</span></span>
 <span><span class="co">##    am    1 - 0  0.895066    1.64419  0.5444 0.58617945  -2.32749  4.1176203</span></span>
 <span><span class="co">##    am    1 - 0  4.027219    3.24024  1.2429 0.21391295  -2.32353 10.3779686</span></span>
-<span><span class="co">##    am    1 - 0 -0.236915    1.58642 -0.1493 0.88128621  -3.34625  2.8724165 </span></span>
+<span><span class="co">##    am    1 - 0 -0.236915    1.58642 -0.1493 0.88128622  -3.34625  2.8724165 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
@@ -298,17 +298,17 @@ predictors. Once again, we obtain a data frame with 96 rows:</p>
 <code class="sourceCode R"><span><span class="va">mfx</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Term  Estimate Std. Error       z   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
-<span><span class="co">##    hp -0.036906    0.01850 -1.9947 0.04607452  -0.07317 -0.0006429</span></span>
-<span><span class="co">##    hp -0.028689    0.01563 -1.8357 0.06640280  -0.05932  0.0019422</span></span>
-<span><span class="co">##    hp -0.046572    0.02259 -2.0619 0.03922050  -0.09084 -0.0023017</span></span>
+<span><span class="co">##    hp -0.036906    0.01850 -1.9947 0.04607449  -0.07317 -0.0006429</span></span>
+<span><span class="co">##    hp -0.028689    0.01563 -1.8357 0.06640282  -0.05932  0.0019422</span></span>
+<span><span class="co">##    hp -0.046572    0.02259 -2.0619 0.03922051  -0.09084 -0.0023017</span></span>
 <span><span class="co">##    hp -0.042271    0.01328 -3.1824 0.00146054  -0.06831 -0.0162375</span></span>
 <span><span class="co">##    hp -0.039018    0.01341 -2.9095 0.00362022  -0.06530 -0.0127338</span></span>
 <span><span class="co">## --- 86 rows omitted. See ?avg_slopes and ?print.marginaleffects --- </span></span>
-<span><span class="co">##    am  4.080730    3.93510  1.0370 0.29973270  -3.63193 11.7933918</span></span>
-<span><span class="co">##    am  2.106353    2.28920  0.9201 0.35750667  -2.38040  6.5931028</span></span>
-<span><span class="co">##    am  0.895066    1.64419  0.5444 0.58617945  -2.32749  4.1176203</span></span>
-<span><span class="co">##    am  4.027219    3.24024  1.2429 0.21391281  -2.32353 10.3779667</span></span>
-<span><span class="co">##    am -0.236915    1.58643 -0.1493 0.88128648  -3.34625  2.8724234 </span></span>
+<span><span class="co">##    am  4.080730    3.93509  1.0370 0.29973145  -3.63191 11.7933719</span></span>
+<span><span class="co">##    am  2.106353    2.28920  0.9201 0.35750674  -2.38040  6.5931035</span></span>
+<span><span class="co">##    am  0.895066    1.64419  0.5444 0.58617947  -2.32749  4.1176205</span></span>
+<span><span class="co">##    am  4.027219    3.24024  1.2429 0.21391291  -2.32353 10.3779680</span></span>
+<span><span class="co">##    am -0.236915    1.58642 -0.1493 0.88128623  -3.34625  2.8724169 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
@@ -373,7 +373,7 @@ is equal to 0 and 1, while other predictors are held at their means:</p>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Term Estimate Std. Error      z Pr(&gt;|z|)  2.5 %  97.5 % am</span></span>
-<span><span class="co">##    wt   -2.676      1.419 -1.886 0.059354 -5.458  0.1056  0</span></span>
+<span><span class="co">##    wt   -2.676      1.419 -1.886 0.059355 -5.458  0.1056  0</span></span>
 <span><span class="co">##    wt   -5.432      2.152 -2.524 0.011605 -9.651 -1.2139  1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
@@ -560,8 +560,8 @@ reasons, we only care about slopes larger than 2. We can use the
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Term Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %      p (Inf)    p (Sup)     p (Eq)</span></span>
-<span><span class="co">##  qsec    1.124     0.4331 2.595  0.0094487 0.2752  1.973 2.740294e-13 0.02158503 0.02158503</span></span>
-<span><span class="co">##  drat    7.224     1.3652 5.292 1.2122e-07 4.5484  9.900 7.062352e-12 0.99993505 0.99993505</span></span>
+<span><span class="co">##  qsec    1.124     0.4331 2.595  0.0094487 0.2752  1.973 2.740290e-13 0.02158503 0.02158503</span></span>
+<span><span class="co">##  drat    7.224     1.3652 5.292 1.2122e-07 4.5484  9.900 7.062316e-12 0.99993505 0.99993505</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, statistic.noninf, statistic.nonsup, p.value.noninf, p.value.nonsup, p.value.equiv</span></span></code></pre>
