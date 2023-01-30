@@ -12,7 +12,7 @@ Apply this function to a marginaleffects object to change the inferential method
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9124</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9125</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,11 @@ Apply this function to a marginaleffects object to change the inferential method
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>method</dt>
+    <dl><dt>x</dt>
+<dd><p>Object produced by one of the core <code>marginaleffects</code> functions.</p></dd>
+
+
+<dt>method</dt>
 <dd><p>String</p><ul><li><p>"delta": delta method standard errors</p></li>
 <li><p>"boot" package</p></li>
 <li><p>"rsample" package</p></li>
@@ -74,7 +78,7 @@ Apply this function to a marginaleffects object to change the inferential method
 
 
 <dt>R</dt>
-<dd><p>Number of simulations.</p></dd>
+<dd><p>Number of resamples or simulations.</p></dd>
 
 
 <dt>conf_type</dt>
@@ -123,9 +127,9 @@ Apply this function to a marginaleffects object to change the inferential method
 <span class="r-in"><span>  <span class="fu">inferences</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  gear Estimate Std. Error   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3   0.2040     0.1519 0.07698 0.7693</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4   0.7891     0.1122 0.50123 0.9456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5   0.2117     0.1263 0.03296 0.5263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3   0.2046     0.1473 0.07688 0.7311</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4   0.7990     0.1068 0.52895 0.9457</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5   0.2086     0.1307 0.03025 0.5298</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, gear, estimate, std.error, conf.low, conf.high </span>
@@ -136,12 +140,12 @@ Apply this function to a marginaleffects object to change the inferential method
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast   Estimate Std. Error    2.5 %    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0096474   0.009960 -0.03452 0.0015872</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0109611   0.009608 -0.03358 0.0016469</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0039168   0.008052 -0.02887 0.0029245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0064776   0.007758 -0.02785 0.0003701</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0008806   0.003521 -0.01259 0.0002286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0047741   0.007185 -0.02501 0.0001868</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0094771   0.009793 -0.03388 0.0015549</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0109824   0.009507 -0.03338 0.0013991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0037661   0.007819 -0.02875 0.0032870</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0065744   0.007688 -0.02699 0.0005228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0008436   0.003440 -0.01175 0.0014589</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0048947   0.006742 -0.02326 0.0014744</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, contrast, estimate, std.error, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, hp, wt, gear, eps </span>
@@ -152,10 +156,10 @@ Apply this function to a marginaleffects object to change the inferential method
 <span class="r-in"><span>  <span class="fu"><a href="posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="st">"rvar"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast  Estimate Std. Error    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3 -0.047306   0.152234 -0.26388 0.361251</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3 -0.172306   0.227247 -0.56383 0.313200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.004473   0.003094 -0.01022 0.001965</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    wt    dY/dX  0.021699   0.180262 -0.34500 0.380469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3 -0.047409   0.142258 -0.26591 0.310390</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3 -0.189475   0.222863 -0.54054 0.314682</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.004726   0.002983 -0.01041 0.001737</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    wt    dY/dX  0.021338   0.172524 -0.30233 0.375942</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, contrast, estimate, std.error, conf.low, conf.high, rvar </span>
