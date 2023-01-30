@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9122</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9123</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,8 +137,8 @@ can pool and get a summary.</p>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    contrast    estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.06615917 0.01124382 -5.884049 11289.93 4.117185e-09</span></span></code></pre></div>
+<span><span class="co">#&gt;   term    contrast    estimate std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.06521147 0.0117733 -5.538928 3605.475 3.260938e-08</span></span></code></pre></div>
 <p>We can compare this with what the model would have looked like
 without any missing data. The estimates are very similar (within one
 standard error) and the p-value for the imputed models is slightly
@@ -181,7 +181,7 @@ hp
 −0.068
 </td>
 <td style="text-align:center;">
-−0.066
+−0.065
 </td>
 </tr>
 <tr>
@@ -194,7 +194,7 @@ hp
 (0.010)
 </td>
 <td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
+(0.012)
 </td>
 </tr>
 <tr>
@@ -338,8 +338,8 @@ different contrast levels. For example:</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   term          contrast   estimate std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  cyl mean(6) - mean(4)  -7.114156  1.692316 -4.203798 3558.244 2.689291e-05</span></span>
-<span><span class="co">#&gt; 2  cyl mean(8) - mean(4) -11.548084  1.433017 -8.058581 1816.406 1.384654e-15</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  cyl mean(6) - mean(4)  -6.834675  1.853718 -3.687009  745.268 2.433762e-04</span></span>
+<span><span class="co">#&gt; 2  cyl mean(8) - mean(4) -11.408604  1.491181 -7.650717 1970.648 3.105601e-14</span></span></code></pre></div>
 <p>One hack to work around this limitation is to assign a custom class
 to the object and to create a custom <code>tidy</code> method that
 combines the <code>term</code> and <code>contrast</code> columns:</p>
@@ -364,11 +364,11 @@ combines the <code>term</code> and <code>contrast</code> columns:</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                    term          contrast   estimate std.error statistic</span></span>
-<span><span class="co">#&gt; 1 cyl mean(6) - mean(4) mean(6) - mean(4)  -7.114156  1.692316 -4.203798</span></span>
-<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) mean(8) - mean(4) -11.548084  1.433017 -8.058581</span></span>
+<span><span class="co">#&gt; 1 cyl mean(6) - mean(4) mean(6) - mean(4)  -6.834675  1.853718 -3.687009</span></span>
+<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) mean(8) - mean(4) -11.408604  1.491181 -7.650717</span></span>
 <span><span class="co">#&gt;         df      p.value</span></span>
-<span><span class="co">#&gt; 1 3558.244 2.689291e-05</span></span>
-<span><span class="co">#&gt; 2 1816.406 1.384654e-15</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  745.268 2.433762e-04</span></span>
+<span><span class="co">#&gt; 2 1970.648 3.105601e-14</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
@@ -391,8 +391,8 @@ can pool and get a summary.</p>
 <span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    contrast   estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  mpg mean(dY/dX) 0.04925259 0.01021411  4.822014 693.9892 1.747529e-06</span></span></code></pre></div>
+<span><span class="co">#&gt;   term    contrast   estimate   std.error statistic       df      p.value</span></span>
+<span><span class="co">#&gt; 1  mpg mean(dY/dX) 0.05066175 0.009916848  5.108655 1278.969 3.737065e-07</span></span></code></pre></div>
 <p>Again, we can compare this with what the model would have looked like
 without any missing data. The estimates, again, are very similar (within
 one standard error) and the p-value for the imputed models is slightly
@@ -435,7 +435,7 @@ mpg
 0.046
 </td>
 <td style="text-align:center;">
-0.049
+0.051
 </td>
 </tr>
 <tr>
