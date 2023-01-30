@@ -12,7 +12,7 @@ Apply this function to a marginaleffects object to change the inferential method
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9123</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9124</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,9 +123,9 @@ Apply this function to a marginaleffects object to change the inferential method
 <span class="r-in"><span>  <span class="fu">inferences</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  gear Estimate Std. Error   2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3   0.2034     0.1428 0.06843 0.7132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4   0.8042     0.1087 0.53280 0.9483</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5   0.2154     0.1317 0.02917 0.5413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     3   0.2040     0.1519 0.07698 0.7693</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     4   0.7891     0.1122 0.50123 0.9456</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     5   0.2117     0.1263 0.03296 0.5263</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, gear, estimate, std.error, conf.low, conf.high </span>
@@ -135,13 +135,13 @@ Apply this function to a marginaleffects object to change the inferential method
 <span class="r-in"><span>  <span class="fu">inferences</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast   Estimate Std. Error    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0092847   0.009617 -0.03188 0.002016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0101796   0.009477 -0.03294 0.001988</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0036018   0.007944 -0.02838 0.003497</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0063074   0.007611 -0.02659 0.001783</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0009818   0.003513 -0.01276 0.001114</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0046144   0.006798 -0.02416 0.001230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast   Estimate Std. Error    2.5 %    97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0096474   0.009960 -0.03452 0.0015872</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0109611   0.009608 -0.03358 0.0016469</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0039168   0.008052 -0.02887 0.0029245</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0064776   0.007758 -0.02785 0.0003701</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0008806   0.003521 -0.01259 0.0002286</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.0047741   0.007185 -0.02501 0.0001868</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, contrast, estimate, std.error, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, hp, wt, gear, eps </span>
@@ -152,10 +152,10 @@ Apply this function to a marginaleffects object to change the inferential method
 <span class="r-in"><span>  <span class="fu"><a href="posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="st">"rvar"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast  Estimate Std. Error    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3 -0.041585   0.140151 -0.23418 0.313176</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3 -0.166696   0.226582 -0.53638 0.324603</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.004766   0.002912 -0.01003 0.001302</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    wt    dY/dX  0.020825   0.168394 -0.34077 0.349151</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3 -0.047306   0.152234 -0.26388 0.361251</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3 -0.172306   0.227247 -0.56383 0.313200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp    dY/dX -0.004473   0.003094 -0.01022 0.001965</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    wt    dY/dX  0.021699   0.180262 -0.34500 0.380469</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, contrast, estimate, std.error, conf.low, conf.high, rvar </span>
