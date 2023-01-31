@@ -287,7 +287,7 @@
 <span>    <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"prediction"</span>, newdata <span class="op">=</span> <span class="va">nd</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></code></pre></div>
 <p>Extract posterior draws and plot them:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pred</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">draw</span>, fill <span class="op">=</span> <span class="va">party_autonomy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -563,8 +563,8 @@
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4520 0.3407 0.5666</span></span>
-<span><span class="co">#&gt;  1   0.5517 0.4352 0.6619</span></span>
+<span><span class="co">#&gt;  0   0.4529 0.3363 0.5674</span></span>
+<span><span class="co">#&gt;  1   0.5516 0.4349 0.6679</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -577,7 +577,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09703 0.04792 0.1631</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09637 0.04888 0.1606</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -590,11 +590,11 @@
 <span>  at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  CI <span class="op">=</span> <span class="fl">.95</span>,</span>
 <span>  CIType <span class="op">=</span> <span class="st">"ETI"</span>,</span>
-<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            M       Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09883596 0.0965934 0.04767689 0.1635245          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
+<span><span class="co">#&gt; 1 0.09892505 0.09709336 0.04701129 0.1626381          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -949,8 +949,8 @@
 <span><span class="va">rvar</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  am Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   0    17.13 14.90  19.30</span></span>
-<span><span class="co">#&gt;   1    24.34 21.69  27.03</span></span>
+<span><span class="co">#&gt;   0    17.09 14.85  19.38</span></span>
+<span><span class="co">#&gt;   1    24.38 21.62  27.08</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, am, estimate, conf.low, conf.high, rvar</span></span>

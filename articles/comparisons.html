@@ -885,7 +885,7 @@
 <span>  chains <span class="op">=</span> <span class="fl">4</span>, cores <span class="op">=</span> <span class="fl">4</span>, seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span></code></pre></div>
 <p>We have two different sets of coefficients here for the two different processes. The hurdle part (<code>hu</code>) uses a logit link, and the non-hurdle part (<code>mu</code>) uses an identity link. However, that’s a slight misnomer—a true identity link would show the coefficients on a non-logged dollar value scale. Because we’re using a <code>lognormal</code> family, GDP per capita is pre-logged, so the “original” identity scale is actually logged dollars.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt;  Family: hurdle_lognormal </span></span>
 <span><span class="co">#&gt;   Links: mu = identity; sigma = identity; hu = logit </span></span>
 <span><span class="co">#&gt; Formula: gdpPercap0 ~ lifeExp </span></span>
