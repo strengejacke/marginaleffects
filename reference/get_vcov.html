@@ -6,11 +6,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,32 +19,23 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="../articles/marginaleffects.html">Get started</a>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
-</li>
-      </ul><form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
-
-      <ul class="navbar-nav"><li class="active nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
+  <a class="nav-link" href="../articles/index.html">Articles</a>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/">
-    <span class="fab fa fab fa-github"></span>
+      </ul><form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
+
+      <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -56,7 +47,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Get a named variance-covariance matrix from a model object (internal function)</h1>
-      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/get_vcov.R" class="external-link"><code>R/get_vcov.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_afex.R" class="external-link"><code>R/methods_afex.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_aod.R" class="external-link"><code>R/methods_aod.R</code></a>, and 6 more</small>
+      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/get_vcov.R" class="external-link"><code>R/get_vcov.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_afex.R" class="external-link"><code>R/methods_afex.R</code></a>, <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/methods_aod.R" class="external-link"><code>R/methods_aod.R</code></a>, and 7 more</small>
       <div class="d-none name"><code>get_vcov.Rd</code></div>
     </div>
 
@@ -86,8 +77,11 @@
 <span><span class="co"># S3 method for gamlss</span></span>
 <span><span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># S3 method for mhurdle</span></span>
+<span><span class="co"># S3 method for inferences_simulation</span></span>
 <span><span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for mhurdle</span></span>
+<span><span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, vcov <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for orm</span></span>
 <span><span class="fu">get_vcov</span><span class="op">(</span><span class="va">model</span>, vcov <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>

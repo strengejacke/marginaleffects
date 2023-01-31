@@ -22,11 +22,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +36,16 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="../articles/marginaleffects.html">Get started</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/index.html">Articles</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -57,14 +54,8 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/">
-    <span class="fab fa fab fa-github"></span>
+  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -112,37 +103,41 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term   Effect Std. Error z value   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp -0.03177    0.00903  -3.519 0.00043365 -0.04947 -0.01408</span></span>
-<span><span class="co">#&gt; 2   wt -3.87783    0.63273  -6.129 8.8603e-10 -5.11797 -2.63770</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  lm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span><span class="co">#&gt;  Term Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt;    hp -0.03177    0.00903 -3.519 0.00043365 -0.04947 -0.01408</span></span>
+<span><span class="co">#&gt;    wt -3.87783    0.63273 -6.129 8.8603e-10 -5.11797 -2.63770</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eyex"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term Contrast  Effect Std. Error z value   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp    eY/eX -0.2855    0.08533  -3.345 0.00082157 -0.4527 -0.1182</span></span>
-<span><span class="co">#&gt; 2   wt    eY/eX -0.7464    0.14190  -5.260 1.4436e-07 -1.0245 -0.4682</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eyex"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  lm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span><span class="co">#&gt;  Term Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt;    hp    eY/eX  -0.2855    0.08533 -3.345 0.00082157 -0.4527 -0.1182</span></span>
+<span><span class="co">#&gt;    wt    eY/eX  -0.7464    0.14190 -5.260 1.4436e-07 -1.0245 -0.4682</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eydx"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term Contrast    Effect Std. Error z value   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp    eY/dX -0.001734  0.0005007  -3.463 0.00053334 -0.002715 -0.0007528</span></span>
-<span><span class="co">#&gt; 2   wt    eY/dX -0.211647  0.0378683  -5.589 2.2834e-08 -0.285868 -0.1374268</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"eydx"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  lm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span>
+<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error      z   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt;    hp    eY/dX -0.001734  0.0005007 -3.463 0.00053334 -0.002715 -0.0007528</span></span>
+<span><span class="co">#&gt;    wt    eY/dX -0.211647  0.0378683 -5.589 2.2834e-08 -0.285868 -0.1374268</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"dyex"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Term Contrast  Effect Std. Error z value   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt; 1   hp    dY/eX  -4.661      1.325  -3.519 0.00043365  -7.257 -2.065</span></span>
-<span><span class="co">#&gt; 2   wt    dY/eX -12.476      2.036  -6.129 8.8603e-10 -16.466 -8.486</span></span>
+<span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, slope <span class="op">=</span> <span class="st">"dyex"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model type:  lm </span></span>
-<span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
+<span><span class="co">#&gt;  Term Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;    hp    dY/eX   -4.661      1.325 -3.519 0.00043365  -7.257 -2.065</span></span>
+<span><span class="co">#&gt;    wt    dY/eX  -12.476      2.036 -6.129 8.8603e-10 -16.466 -8.486</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
   </main>
 </div>
 

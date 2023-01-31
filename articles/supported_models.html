@@ -22,11 +22,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +36,16 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="../articles/marginaleffects.html">Get started</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/index.html">Articles</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -57,14 +54,8 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/">
-    <span class="fab fa fab fa-github"></span>
+  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -92,12 +83,12 @@
 <div class="section level2">
 <h2 id="adjusted-predictions-and-marginal-means">Adjusted predictions and marginal means<a class="anchor" aria-label="anchor" href="#adjusted-predictions-and-marginal-means"></a>
 </h2>
-<p>Under the hood, <code>marginaleffects</code>’s <code>predictions</code> and <code>marginalmeans</code> functions use the <code>insight</code> package to retrieve adjusted predictions from a wide variety of models. Currently, <code>insight</code> <a href="https://easystats.github.io/insight/#list-of-supported-models-by-class" class="external-link">supports very many model types</a>, and most should work out-of-the-box with the <code>predictions</code> function. If you run into problems, do not hesitate to <a href="https://github.com/vincentarelbundock/marginaleffects/issues" class="external-link">report them on Github or via email.</a></p>
+<p>Under the hood, <code>marginaleffects</code>’s <code>predictions</code> and <code>marginal_means</code> functions use the <code>insight</code> package to retrieve adjusted predictions from a wide variety of models. Currently, <code>insight</code> <a href="https://easystats.github.io/insight/#list-of-supported-models-by-class" class="external-link">supports very many model types</a>, and most should work out-of-the-box with the <code>predictions</code> function. If you run into problems, do not hesitate to <a href="https://github.com/vincentarelbundock/marginaleffects/issues" class="external-link">report them on Github or via email.</a></p>
 </div>
 <div class="section level2">
 <h2 id="marginal-effects-and-contrasts">Marginal effects and contrasts<a class="anchor" aria-label="anchor" href="#marginal-effects-and-contrasts"></a>
 </h2>
-<p>This table shows the list of 73 model types for which the <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> function can compute slopes and contrasts. There are three main alternative software packages to compute such slopes (1) <code>Stata</code>’s <code>margins</code> command, (2) <code>R</code>’s <code><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins::margins</a></code> function, and (3) <code>R</code>’s <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> function. The <a href="https://github.com/vincentarelbundock/marginaleffects/tree/main/tests/testthat" class="external-link">test suite hosted on Github</a> compares the numerical equivalence of results produced by <code>marginaleffects</code> to those produced by all 3 alternative software packages:</p>
+<p>This table shows the list of 73 model types for which the <code><a href="../reference/slopes.html">slopes()</a></code> function can compute slopes and contrasts. There are three main alternative software packages to compute such slopes (1) <code>Stata</code>’s <code>margins</code> command, (2) <code>R</code>’s <code><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins::margins</a></code> function, and (3) <code>R</code>’s <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> function. The <a href="https://github.com/vincentarelbundock/marginaleffects/tree/main/tests/testthat" class="external-link">test suite hosted on Github</a> compares the numerical equivalence of results produced by <code>marginaleffects</code> to those produced by all 3 alternative software packages:</p>
 <ul>
 <li>✓: a green check means that the results of at least one model are equal to a reasonable tolerance.</li>
 <li>✖: a red cross means that the results are <em>not</em> identical; extra caution is warranted.</li>

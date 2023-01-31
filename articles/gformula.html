@@ -22,11 +22,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +36,16 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="../articles/marginaleffects.html">Get started</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/index.html">Articles</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -57,14 +54,8 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/">
-    <span class="fab fa fab fa-github"></span>
+  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +82,7 @@
 <p>This vignette has 3 goals:</p>
 <ol style="list-style-type: decimal">
 <li>Give a <em>concise</em> introduction to the idea of “Parametric g-Formula”</li>
-<li>Highlight the equivalence between one form of g-estimation and the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html#average-contrasts">“Average Contrasts”</a> computed by <code>marginaleffects</code>
+<li>Highlight the equivalence between one form of g-estimation and the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/comparisons.html#average-contrasts">“Average Contrasts”</a> computed by <code>marginaleffects</code>
 </li>
 <li>Show how to obtain estimates, standard errors, and confidence intervals via the Parametric g-Formula, using a single line of <code>marginaleffects</code> code. This is convenient because, typically, analysts have to construct counterfactual datasets manually and must bootstrap their estimates.</li>
 </ol>
@@ -121,7 +112,7 @@
 <li>Use the model from Step 1 to compute adjusted predictions in the two counterfactual datasets from Steps 2 and 3.</li>
 <li>The quantity of interest is the difference between the means of adjusted predictions in the two counterfactual datasets.</li>
 </ol>
-<p>This is equivalent to computing an <a href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html#average-contrasts">“Average Contrast”</a>, in which the value of <span class="math inline">\(X\)</span> moves from 0 to 1. Thanks to this equivalence, we can apply the parametric g-formula method using a single line of code in <code>marginaleffects</code>, and obtain delta method standard errors automatically.</p>
+<p>This is equivalent to computing an <a href="https://vincentarelbundock.github.io/marginaleffects/articles/comparisons.html#average-contrasts">“Average Contrast”</a>, in which the value of <span class="math inline">\(X\)</span> moves from 0 to 1. Thanks to this equivalence, we can apply the parametric g-formula method using a single line of code in <code>marginaleffects</code>, and obtain delta method standard errors automatically.</p>
 </div>
 <div class="section level2">
 <h2 id="example-with-real-world-data">Example with real-world data<a class="anchor" aria-label="anchor" href="#example-with-real-world-data"></a>
@@ -148,13 +139,13 @@
 </h3>
 <p>These simple commands do everything we need to apply the parametric g-formula:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">##  Term Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">##  qsmk    1 - 0    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## Model type:  glm </span></span>
-<span><span class="co">## Prediction type:  response</span></span></code></pre>
+<span><span class="co">## Prediction type:  response </span></span>
+<span><span class="co">## Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
 <p>The rest of the vignette walks through the process in a bit more detail and compares to replication code from Hernán and Robins.</p>
 </div>
 <div class="section level3">
@@ -164,15 +155,15 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># average predicted outcome in the original data</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">p</span><span class="op">$</span><span class="va">predicted</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">p</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 2.6383</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># average predicted outcome in the two counterfactual datasets</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, grid_type <span class="op">=</span> <span class="st">"counterfactual"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">predicted</span> <span class="op">~</span> <span class="va">qsmk</span>, data <span class="op">=</span> <span class="va">p</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   qsmk predicted</span></span>
-<span><span class="co">## 1    0  1.756213</span></span>
-<span><span class="co">## 2    1  5.273587</span></span></code></pre>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">estimate</span> <span class="op">~</span> <span class="va">qsmk</span>, data <span class="op">=</span> <span class="va">p</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   qsmk estimate</span></span>
+<span><span class="co">## 1    0 1.756213</span></span>
+<span><span class="co">## 2    1 5.273587</span></span></code></pre>
 <p>In the <code>R</code> code that accompanies their book, Hernán and Robins compute the same quantities manually, as follows:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a dataset with 3 copies of each subject</span></span>
@@ -226,13 +217,13 @@
 <code><a href="../reference/comparisons.html">comparisons()</a></code> automatically produces estimates of uncertainty.</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">std</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">std</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">##  Term Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">##  qsmk    1 - 0    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## Model type:  glm </span></span>
-<span><span class="co">## Prediction type:  response</span></span></code></pre>
+<span><span class="co">## Prediction type:  response </span></span>
+<span><span class="co">## Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
 <p>Under the hood, <code><a href="../reference/comparisons.html">comparisons()</a></code> did exactly what we described in the g-formula steps above:</p>
 <p>We can obtain the same result by manually computing the quantities, using the replication code from Hernán and Robins:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -288,15 +279,16 @@
 <span>    check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">bootstrap</span></span></code></pre></div>
 <pre><code><span><span class="co">##                            estimate std.error conf.low conf.high</span></span>
-<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4869229 2.563023  4.471726</span></span></code></pre>
+<span><span class="co">## 1 Treatment - No Treatment 3.517374 0.4837689 2.569205  4.465544</span></span></code></pre>
 <p>The results are close to those that we obtained with <code><a href="../reference/comparisons.html">comparisons()</a></code>, but the confidence interval differs slightly because of the difference between bootstrapping and the delta method.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   Term Contrast Effect Std. Error z value   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">## 1 qsmk    1 - 0  3.517     0.4403   7.989 1.3613e-15 2.654   4.38</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">fit</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>qsmk <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">##  Term Contrast Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
+<span><span class="co">##  qsmk    1 - 0    3.517     0.4403 7.989 1.3613e-15 2.654   4.38</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## Model type:  glm </span></span>
-<span><span class="co">## Prediction type:  response</span></span></code></pre>
+<span><span class="co">## Prediction type:  response </span></span>
+<span><span class="co">## Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

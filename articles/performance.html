@@ -22,11 +22,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,19 +36,16 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Adjusted predictions</a>
+  <a class="nav-link" href="../articles/marginaleffects.html">Get started</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">Marginal effects</a>
+  <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/index.html">Articles</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/contrasts.html">Contrasts</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal means</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests</a>
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -57,14 +54,8 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/">
-    <span class="fab fa fab fa-github"></span>
+  <a class="external-link nav-link" href="https://github.com/vincentarelbundock/marginaleffects/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -93,7 +84,7 @@
 </h2>
 <p>Some options:</p>
 <ol style="list-style-type: decimal">
-<li>Compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html#marginal-effect-at-user-specified-values">marginal effects and contrasts at the mean (or other representative value)</a> instead of all observed rows of the original dataset: Use the <code>newdata</code> argument and the <code><a href="../reference/datagrid.html">datagrid()</a></code> function.</li>
+<li>Compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html#marginal-effect-at-user-specified-values">marginal effects and contrasts at the mean (or other representative value)</a> instead of all observed rows of the original dataset: Use the <code>newdata</code> argument and the <code><a href="../reference/datagrid.html">datagrid()</a></code> function.</li>
 <li>Compute marginal effects for a subset of variables, paying special attention to exclude factor variables which can be particularly costly to process: Use the <code>variables</code> argument.</li>
 <li>Do not compute standard errors: Use the <code>vcov = FALSE</code> argument.</li>
 </ol>
@@ -108,33 +99,33 @@
 <span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
 <span>    <span class="co"># marginal effects at the mean; no standard error</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>,</span>
 <span>    <span class="co"># marginal effects at the mean</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    <span class="co"># 1 variable; no standard error</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,</span>
 <span>    <span class="co"># 1 variable</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"X3"</span><span class="op">)</span>,</span>
 <span>    <span class="co"># 26 variables; no standard error</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>    <span class="co"># 26 variables</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>,</span>
 <span>    iterations <span class="op">=</span> <span class="fl">1</span>, check <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#   &lt;bch:expr&gt;                                               &lt;bch:tm&gt; &lt;bch:byt&gt;</span></span>
-<span><span class="co"># 1 marginaleffects(mod, vcov = FALSE, newdata = "mean") 141.04ms  233.94MB</span></span>
-<span><span class="co"># 2 marginaleffects(mod, newdata = "mean")               276.61ms  236.18MB</span></span>
-<span><span class="co"># 3 marginaleffects(mod, vcov = FALSE, variables = "X3")     193.81ms  385.33MB</span></span>
-<span><span class="co"># 4 marginaleffects(mod, variables = "X3")                      2.85s    3.14GB</span></span>
-<span><span class="co"># 5 marginaleffects(mod, vcov = FALSE)                          4.32s    7.62GB</span></span>
-<span><span class="co"># 6 marginaleffects(mod)                                        1.15m   76.55GB</span></span></code></pre></div>
+<span><span class="co"># 1 slopes(mod, vcov = FALSE, newdata = "mean") 141.04ms  233.94MB</span></span>
+<span><span class="co"># 2 slopes(mod, newdata = "mean")               276.61ms  236.18MB</span></span>
+<span><span class="co"># 3 slopes(mod, vcov = FALSE, variables = "X3")     193.81ms  385.33MB</span></span>
+<span><span class="co"># 4 slopes(mod, variables = "X3")                      2.85s    3.14GB</span></span>
+<span><span class="co"># 5 slopes(mod, vcov = FALSE)                          4.32s    7.62GB</span></span>
+<span><span class="co"># 6 slopes(mod)                                        1.15m   76.55GB</span></span></code></pre></div>
 <p>The benchmarks above were conducted using the development version of <code>marginaleffects</code> on 2022-04-15.</p>
 </div>
 <div class="section level2">
 <h2 id="speed-comparison">Speed comparison<a class="anchor" aria-label="anchor" href="#speed-comparison"></a>
 </h2>
-<p>The <code>marginaleffects</code> functions are relatively fast. This simulation was conducted using the development version of the package on 2022-04-04:</p>
+<p>The <code>slopes</code> functions are relatively fast. This simulation was conducted using the development version of the package on 2022-04-04:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/margins" class="external-link">margins</a></span><span class="op">)</span></span>
 <span></span>
@@ -149,25 +140,25 @@
 <p><code>marginaleffects</code> is about 6x faster than <code>margins</code> when unit-level standard errors are <em>not</em> computed:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, unit_ses <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>    check <span class="op">=</span> <span class="cn">FALSE</span>, relative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co">#   expression                        median mem_alloc</span></span>
 <span><span class="co">#   &lt;bch:expr&gt;                          &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co"># 1 marginaleffects(mod, vcov = FALSE)   1         1</span></span>
+<span><span class="co"># 1 slopes(mod, vcov = FALSE)   1         1</span></span>
 <span><span class="co"># 2 margins(mod, unit_ses = FALSE)       6.15      4.17</span></span></code></pre></div>
 <p><code>marginaleffects</code> can be nearly 600x times faster than <code>margins</code> when unit-level standard errors are computed:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="http://bench.r-lib.org/reference/mark.html" class="external-link">mark</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="../reference/marginaleffects.html">marginaleffects</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, vcov <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, unit_ses <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>    check <span class="op">=</span> <span class="cn">FALSE</span>, relative <span class="op">=</span> <span class="cn">TRUE</span>, iterations <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">results</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co">#   expression                        median mem_alloc</span></span>
-<span><span class="co"># 1 marginaleffects(mod, vcov = TRUE)     1        1</span></span>
+<span><span class="co"># 1 slopes(mod, vcov = TRUE)     1        1</span></span>
 <span><span class="co"># 2 margins(mod, unit_ses = TRUE)       581.      20.5</span></span></code></pre></div>
 <p>Models estimated on larger datasets (&gt; 1000 observations) can be difficult to process using the <code>margins</code> package, because of memory and time constraints. In contrast, <code>marginaleffects</code> can work well on much larger datasets.</p>
 <p>In some cases, <code>marginaleffects</code> will be considerably slower than packages like <code>emmeans</code> or <code>modmarg</code>. This is because these packages make extensive use of hard-coded analytical derivatives, or reimplement their own fast prediction functions.</p>
