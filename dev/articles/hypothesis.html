@@ -788,12 +788,12 @@ periods:</p>
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   0  pre  0.7823838</span></span>
-<span><span class="co">#&gt; 2:  2   0  pre  0.9453747</span></span>
-<span><span class="co">#&gt; 3:  3   1  pre  0.5762488</span></span>
-<span><span class="co">#&gt; 4:  4   0  pre  1.7297604</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre  0.4189971</span></span>
-<span><span class="co">#&gt; 6:  6   1  pre -0.9097758</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:  1   1  pre  0.3780913</span></span>
+<span><span class="co">#&gt; 2:  2   0  pre -1.1979470</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre -0.4545588</span></span>
+<span><span class="co">#&gt; 4:  4   0  pre  2.2223777</span></span>
+<span><span class="co">#&gt; 5:  5   0  pre  0.2925690</span></span>
+<span><span class="co">#&gt; 6:  6   1  pre  0.1547631</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between
 the time and the treatment indicators. We also compute contrasts at the
 mean for each treatment level:</p>
@@ -805,9 +805,9 @@ mean for each treatment level:</p>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term   Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 % 97.5 % trt</span></span>
-<span><span class="co">#&gt;  time post - pre  0.01397    0.07943 0.1759 0.86035708 -0.1417 0.1697   0</span></span>
-<span><span class="co">#&gt;  time post - pre  0.29140    0.07555 3.8567 0.00011491  0.1433 0.4395   1</span></span>
+<span><span class="co">#&gt;  Term   Contrast Estimate Std. Error      z Pr(&gt;|z|)    2.5 % 97.5 % trt</span></span>
+<span><span class="co">#&gt;  time post - pre  0.02898    0.08222 0.3524 0.724521 -0.13217 0.1901   0</span></span>
+<span><span class="co">#&gt;  time post - pre  0.17803    0.07805 2.2810 0.022546  0.02506 0.3310   1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, y, time, trt</span></span></code></pre></div>
@@ -820,8 +820,8 @@ the Diff-in-Diff estimate:</p>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;           Term Estimate Std. Error      z Pr(&gt;|z|)   2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;  Row 1 - Row 2  -0.2774     0.1096 -2.531 0.011387 -0.4923 -0.06256</span></span>
+<span><span class="co">#&gt;           Term Estimate Std. Error      z Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt;  Row 1 - Row 2  -0.1491     0.1134 -1.315  0.18856 -0.3712 0.07313</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
