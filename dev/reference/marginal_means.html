@@ -22,7 +22,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9125</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -266,8 +266,16 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Elements of the `variables` argument were not found as column names in</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   the data used to fit the model: cyl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Value  Mean Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   cyl     4 23.11      1.658 13.94 &lt; 2.22e-16 19.86  26.36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   cyl     6 20.38      1.337 15.25 &lt; 2.22e-16 17.76  23.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   cyl     8 16.21      1.073 15.11 &lt; 2.22e-16 14.11  18.31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: cyl, carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, value, cyl, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># collapse levels of cyl by averaging</span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -276,39 +284,59 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="st">"cyl"</span>,</span></span>
 <span class="r-in"><span>  by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> The `by` argument must be either:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   1. Character vector in which each element is part of: X, Name, PClass,</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   Age, Sex, Survived, SexCode</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   2. A data frame with a `by` column of labels, and in which all other</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   columns are elements of: X, Name, PClass, Age, Sex, Survived, SexCode</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   It can sometimes be useful to supply a data frame explicitly to the</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   `newdata` argument in order to be able to group by different columns.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     By  Mean Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4 &amp; 6 21.75      1.132 19.21 &lt; 2.22e-16 19.53  23.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      8 16.21      1.073 15.11 &lt; 2.22e-16 14.11  18.31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: cyl, carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: by, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># pairwise differences between collapsed levels</span></span></span>
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="st">"cyl"</span>,</span></span>
 <span class="r-in"><span>  by <span class="op">=</span> <span class="va">by</span>,</span></span>
 <span class="r-in"><span>  hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> The `by` argument must be either:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   1. Character vector in which each element is part of: X, Name, PClass,</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   Age, Sex, Survived, SexCode</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   2. A data frame with a `by` column of labels, and in which all other</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   columns are elements of: X, Name, PClass, Age, Sex, Survived, SexCode</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   It can sometimes be useful to supply a data frame explicitly to the</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   `newdata` argument in order to be able to group by different columns.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Term  Mean Std. Error    z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4 &amp; 6 - 8 5.538      1.513 3.66 0.00025192 2.573  8.504</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: cyl, carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># cross</span></span></span>
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span><span class="va">mod</span>,</span></span>
 <span class="r-in"><span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cyl"</span>, <span class="st">"carb"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Elements of the `variables` argument were not found as column names in</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   the data used to fit the model: cyl, carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Mean Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  25.82      1.264 20.426 &lt; 2.22e-16 23.340  28.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  25.59      1.167 21.932 &lt; 2.22e-16 23.302  27.88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  25.34      2.365 10.714 &lt; 2.22e-16 20.704  29.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  21.88      1.901 11.508 &lt; 2.22e-16 18.152  25.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  20.29      3.766  5.388 7.1424e-08 12.910  27.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  19.77      3.814  5.182 2.1948e-07 12.290  27.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  23.09      1.765 13.079 &lt; 2.22e-16 19.629  26.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  22.86      1.867 12.241 &lt; 2.22e-16 19.200  26.52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  22.61      2.365  9.560 &lt; 2.22e-16 17.975  27.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  19.15      1.338 14.307 &lt; 2.22e-16 16.526  21.77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  17.56      3.004  5.847 5.0001e-09 11.676  23.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  17.04      3.481  4.894 9.8786e-07 10.214  23.86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  18.91      1.942  9.740 &lt; 2.22e-16 15.108  22.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  18.69      1.571 11.898 &lt; 2.22e-16 15.608  21.76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  18.44      1.831 10.069 &lt; 2.22e-16 14.848  22.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  14.98      1.195 12.528 &lt; 2.22e-16 12.632  17.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  13.39      3.356  3.989 6.6223e-05  6.811  19.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  12.86      3.004  4.282 1.8486e-05  6.976  18.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, cyl, carb, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># collapsed cross</span></span></span>
 <span class="r-in"><span><span class="va">by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span></span></span>
@@ -328,22 +356,44 @@ posterior using the function supplied to the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compute and summarize marginal means</span></span></span>
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> No logical, factor, or character variable was found in the dataset used</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   to fit the `model` object. This error is often raised when users convert</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   variables to factor in the model formula (e.g., `lm(y ~ factor(x)`). If</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   this is the case, you may consider converting variables in the dataset</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   before fitting the model.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Value  Mean Std. Error      z   Pr(&gt;|z|) 2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  carb     1 21.99      1.345 16.350 &lt; 2.22e-16 19.35  24.63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  carb     2 21.48      1.025 20.955 &lt; 2.22e-16 19.47  23.49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  carb     3 20.55      1.780 11.549 &lt; 2.22e-16 17.06  24.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  carb     4 18.82      1.042 18.065 &lt; 2.22e-16 16.77  20.86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  carb     6 18.47      3.019  6.118 9.4743e-10 12.55  24.39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  carb     8 21.62      4.055  5.332 9.6936e-08 13.68  29.57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    am FALSE 17.87      1.244 14.366 &lt; 2.22e-16 15.43  20.31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    am  TRUE 23.11      0.974 23.724 &lt; 2.22e-16 21.20  25.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am, carb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, value, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Contrast between marginal means (carb2 - carb1), or "is the 1st marginal means equal to the 2nd?"</span></span></span>
 <span class="r-in"><span><span class="co"># see the vignette on "Hypothesis Tests and Custom Contrasts" on the `marginaleffects` website.</span></span></span>
 <span class="r-in"><span><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="st">"b2 = b1"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Elements of the `variables` argument were not found as column names in</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   the data used to fit the model: carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Term    Mean Std. Error      z Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  b2=b1 -0.5143      1.478 -0.348  0.72786 -3.411  2.382</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Elements of the `variables` argument were not found as column names in</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   the data used to fit the model: carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Term    Mean Std. Error      z Pr(&gt;|z|)  2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  custom -0.5143      1.478 -0.348  0.72786 -3.411  2.382</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Multiple custom contrasts</span></span></span>
 <span class="r-in"><span><span class="va">lc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
@@ -353,8 +403,15 @@ posterior using the function supplied to the
 <span class="r-in"><span>  ncol <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">marginal_means</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"carb"</span>, hypothesis <span class="op">=</span> <span class="va">lc</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Elements of the `variables` argument were not found as column names in</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span>   the data used to fit the model: carb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term    Mean Std. Error      z Pr(&gt;|z|)   2.5 % 97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     A  1.1989      6.150  0.195  0.84542 -10.854 13.252</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     B -0.5143      1.478 -0.348  0.72786  -3.411  2.382</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
