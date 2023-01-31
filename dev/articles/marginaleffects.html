@@ -69,8 +69,7 @@
 
 
 
-
-<div class="row">
+<script src="marginaleffects_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Get Started</h1>
             
@@ -97,82 +96,37 @@
 <div class="section level2">
 <h2 id="estimands-predictions-comparisons-and-slopes">Estimands: Predictions, Comparisons, and Slopes<a class="anchor" aria-label="anchor" href="#estimands-predictions-comparisons-and-slopes"></a>
 </h2>
-<p>The <code>marginaleffects</code> package allows <code>R</code> users
-to compute and plot three principal quantities of interest: (1)
-predictions, (2) comparisons, and (3) slopes. In addition, the package
-includes a convenience function to compute a fourth estimand, “marginal
-means”, which is a special case of averaged predictions.
-<code>marginaleffects</code> can also average (or “marginalize”)
-unit-level (or “conditional”) estimates of all those quantities, and
-conduct hypothesis tests on them.</p>
+<p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot three principal quantities of interest: (1) predictions, (2) comparisons, and (3) slopes. In addition, the package includes a convenience function to compute a fourth estimand, “marginal means”, which is a special case of averaged predictions. <code>marginaleffects</code> can also average (or “marginalize”) unit-level (or “conditional”) estimates of all those quantities, and conduct hypothesis tests on them.</p>
 <p><a href="articles/predictions.html"><em>Predictions</em>:</a></p>
 <blockquote>
-<p>The outcome predicted by a fitted model on a specified scale for a
-given combination of values of the predictor variables, such as their
-observed values, their means, or factor levels. a.k.a. Fitted values,
-adjusted predictions. <code><a href="../reference/predictions.html">predictions()</a></code>,
-<code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code>.</p>
+<p>The outcome predicted by a fitted model on a specified scale for a given combination of values of the predictor variables, such as their observed values, their means, or factor levels. a.k.a. Fitted values, adjusted predictions. <code><a href="../reference/predictions.html">predictions()</a></code>, <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code>.</p>
 </blockquote>
 <p><a href="articles/comparisons.html"><em>Comparisons</em>:</a></p>
 <blockquote>
-<p>Compare the predictions made by a model for different regressor
-values (e.g., college graduates vs. others): contrasts, differences,
-risk ratios, odds, etc. <code><a href="../reference/comparisons.html">comparisons()</a></code>,
-<code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code>.</p>
+<p>Compare the predictions made by a model for different regressor values (e.g., college graduates vs. others): contrasts, differences, risk ratios, odds, etc. <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code>.</p>
 </blockquote>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html"><em>Slopes</em>:</a></p>
 <blockquote>
-<p>Partial derivative of the regression equation with respect to a
-regressor of interest. a.k.a. Marginal effects, trends.
-<code><a href="../reference/slopes.html">slopes()</a></code>, <code><a href="../reference/slopes.html">avg_slopes()</a></code>,
-<code><a href="../reference/plot_slopes.html">plot_slopes()</a></code>.</p>
+<p>Partial derivative of the regression equation with respect to a regressor of interest. a.k.a. Marginal effects, trends. <code><a href="../reference/slopes.html">slopes()</a></code>, <code><a href="../reference/slopes.html">avg_slopes()</a></code>, <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code>.</p>
 </blockquote>
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html"><em>Marginal
-Means</em>:</a></p>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html"><em>Marginal Means</em>:</a></p>
 <blockquote>
-<p>Predictions of a model, averaged across a “reference grid” of
-categorical predictors. <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>.</p>
+<p>Predictions of a model, averaged across a “reference grid” of categorical predictors. <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>.</p>
 </blockquote>
-<p>Predictions, comparisons, and slopes are fundamentally unit-level (or
-“conditional”) quantities. Except in the simplest linear case, estimates
-will typically vary based on the values of all the regressors in a
-model. Each of the observations in a dataset is thus associated with its
-own prediction, comparison, and slope estimates. Below, we will see that
-it can be useful to marginalize (or “average over”) unit-level estimates
-to report an “average prediction”, “average comparison”, or “average
-slope”.</p>
-<p>One ambiguous aspect of the definitions above is that the word
-“marginal” comes up in two different and <em>opposite</em> ways:</p>
+<p>Predictions, comparisons, and slopes are fundamentally unit-level (or “conditional”) quantities. Except in the simplest linear case, estimates will typically vary based on the values of all the regressors in a model. Each of the observations in a dataset is thus associated with its own prediction, comparison, and slope estimates. Below, we will see that it can be useful to marginalize (or “average over”) unit-level estimates to report an “average prediction”, “average comparison”, or “average slope”.</p>
+<p>One ambiguous aspect of the definitions above is that the word “marginal” comes up in two different and <em>opposite</em> ways:</p>
 <ol style="list-style-type: decimal">
-<li>In “marginal effects,” we refer to the effect of a tiny (marginal)
-change in the regressor on the outcome. This is a slope, or
-derivative.</li>
-<li>In “marginal means,” we refer to the process of marginalizing across
-rows of a prediction grid. This is an average, or integral.</li>
+<li>In “marginal effects,” we refer to the effect of a tiny (marginal) change in the regressor on the outcome. This is a slope, or derivative.</li>
+<li>In “marginal means,” we refer to the process of marginalizing across rows of a prediction grid. This is an average, or integral.</li>
 </ol>
-<p>On this website and in this package, we reserve the expression
-“marginal effect” to mean a “slope” or “partial derivative”.</p>
-<p>The <code>marginaleffects</code> package includes functions to
-estimate, average, plot, and summarize all of the estimands described
-above. The objects produced by <code>marginaleffects</code> are “tidy”:
-they produce simple data frames in “long” format. They are also
-“standards-compliant” and work seamlessly with standard functions like
-<code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and
-<code><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance()</a></code>, as well with <a href="https://vincentarelbundock.github.io/marginaleffects/">external
-packages like <code>modelsummary</code></a> or <code>ggplot2</code>.</p>
-<p>We now apply <code>marginaleffects</code> functions to compute each
-of the estimands described above. First, we fit a linear regression
-model with multiplicative interactions:</p>
+<p>On this website and in this package, we reserve the expression “marginal effect” to mean a “slope” or “partial derivative”.</p>
+<p>The <code>marginaleffects</code> package includes functions to estimate, average, plot, and summarize all of the estimands described above. The objects produced by <code>marginaleffects</code> are “tidy”: they produce simple data frames in “long” format. They are also “standards-compliant” and work seamlessly with standard functions like <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and <code><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance()</a></code>, as well with <a href="https://vincentarelbundock.github.io/marginaleffects/">external packages like <code>modelsummary</code></a> or <code>ggplot2</code>.</p>
+<p>We now apply <code>marginaleffects</code> functions to compute each of the estimands described above. First, we fit a linear regression model with multiplicative interactions:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">*</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
-<p>Then, we call the <code><a href="../reference/predictions.html">predictions()</a></code> function. As noted
-above, predictions are unit-level estimates, so there is one specific
-prediction per observation. By default, the <code><a href="../reference/predictions.html">predictions()</a></code>
-function makes one prediction per observation in the dataset that was
-used to fit the original model. Since <code>mtcars</code> has 32 rows,
-the <code><a href="../reference/predictions.html">predictions()</a></code> outcome also has 32 rows:</p>
+<p>Then, we call the <code><a href="../reference/predictions.html">predictions()</a></code> function. As noted above, predictions are unit-level estimates, so there is one specific prediction per observation. By default, the <code><a href="../reference/predictions.html">predictions()</a></code> function makes one prediction per observation in the dataset that was used to fit the original model. Since <code>mtcars</code> has 32 rows, the <code><a href="../reference/predictions.html">predictions()</a></code> outcome also has 32 rows:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pre</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
@@ -198,13 +152,8 @@ the <code><a href="../reference/predictions.html">predictions()</a></code> outco
 <span><span class="co">##     21.46     1.0719 20.022 &lt; 2.22e-16 19.361  23.56 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
-<span><span class="co">## Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, hp, wt, am</span></span></code></pre>
-<p>Now, we use the <code><a href="../reference/comparisons.html">comparisons()</a></code> function to compute the
-different in predicted outcome when each of the predictors is
-incremented by 1 unit (one predictor at a time, holding all others
-constant). Once again, comparisons are unit-level quantities. And since
-there are 3 predictors in the model and our data has 32 rows, we obtain
-96 comparisons:</p>
+<span><span class="co">## Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span></code></pre>
+<p>Now, we use the <code><a href="../reference/comparisons.html">comparisons()</a></code> function to compute the different in predicted outcome when each of the predictors is incremented by 1 unit (one predictor at a time, holding all others constant). Once again, comparisons are unit-level quantities. And since there are 3 predictors in the model and our data has 32 rows, we obtain 96 comparisons:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
@@ -227,10 +176,8 @@ there are 3 predictors in the model and our data has 32 rows, we obtain
 <span><span class="co">##    am    1 - 0 -0.236915    1.58642 -0.1493 0.88128622  -3.34625  2.8724165 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
-<span><span class="co">## Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
-<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function allows customized queries.
-For example, what happens to the predicted outcome when the
-<code>hp</code> variable increases from 100 to 120?</p>
+<span><span class="co">## Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb, eps</span></span></code></pre>
+<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function allows customized queries. For example, what happens to the predicted outcome when the <code>hp</code> variable increases from 100 to 120?</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -248,9 +195,8 @@ For example, what happens to the predicted outcome when the
 <span><span class="co">##    hp 120 - 100  -0.6350     0.3323 -1.9112 0.0559829 -1.2862  0.016213 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
-<span><span class="co">## Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
-<p>What happens to the predicted outcome when the <code>wt</code>
-variable increases by 1 standard deviation about its mean?</p>
+<span><span class="co">## Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb, eps</span></span></code></pre>
+<p>What happens to the predicted outcome when the <code>wt</code> variable increases by 1 standard deviation about its mean?</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -268,11 +214,8 @@ variable increases by 1 standard deviation about its mean?</p>
 <span><span class="co">##    hp (x + sd/2) - (x - sd/2)  -2.1769     1.1390 -1.9112 0.0559829 -4.409  0.05558 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
-<span><span class="co">## Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
-<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function also allows users to specify
-arbitrary functions of predictions, with the <code>transform_pre</code>
-argument. For example, what is the average ratio between predicted Miles
-per Gallon after an increase of 50 units in Horsepower?</p>
+<span><span class="co">## Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb, eps</span></span></code></pre>
+<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function also allows users to specify arbitrary functions of predictions, with the <code>transform_pre</code> argument. For example, what is the average ratio between predicted Miles per Gallon after an increase of 50 units in Horsepower?</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -284,11 +227,8 @@ per Gallon after an increase of 50 units in Horsepower?</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre>
-<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/comparisons.html">Comparisons
-vignette for detailed explanations and more options.</a></p>
-<p>The <code><a href="../reference/slopes.html">slopes()</a></code> function allows us to compute the partial
-derivative of the outcome equation with respect to each of the
-predictors. Once again, we obtain a data frame with 96 rows:</p>
+<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/comparisons.html">Comparisons vignette for detailed explanations and more options.</a></p>
+<p>The <code><a href="../reference/slopes.html">slopes()</a></code> function allows us to compute the partial derivative of the outcome equation with respect to each of the predictors. Once again, we obtain a data frame with 96 rows:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
@@ -298,35 +238,26 @@ predictors. Once again, we obtain a data frame with 96 rows:</p>
 <code class="sourceCode R"><span><span class="va">mfx</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Term  Estimate Std. Error       z   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
-<span><span class="co">##    hp -0.036906    0.01850 -1.9947 0.04607449  -0.07317 -0.0006429</span></span>
-<span><span class="co">##    hp -0.028689    0.01563 -1.8357 0.06640282  -0.05932  0.0019422</span></span>
+<span><span class="co">##    hp -0.036906    0.01850 -1.9947 0.04607455  -0.07317 -0.0006429</span></span>
+<span><span class="co">##    hp -0.028689    0.01563 -1.8357 0.06640277  -0.05932  0.0019422</span></span>
 <span><span class="co">##    hp -0.046572    0.02259 -2.0619 0.03922051  -0.09084 -0.0023017</span></span>
 <span><span class="co">##    hp -0.042271    0.01328 -3.1824 0.00146054  -0.06831 -0.0162375</span></span>
 <span><span class="co">##    hp -0.039018    0.01341 -2.9095 0.00362022  -0.06530 -0.0127338</span></span>
 <span><span class="co">## --- 86 rows omitted. See ?avg_slopes and ?print.marginaleffects --- </span></span>
-<span><span class="co">##    am  4.080730    3.93509  1.0370 0.29973145  -3.63191 11.7933719</span></span>
-<span><span class="co">##    am  2.106353    2.28920  0.9201 0.35750674  -2.38040  6.5931035</span></span>
-<span><span class="co">##    am  0.895066    1.64419  0.5444 0.58617947  -2.32749  4.1176205</span></span>
-<span><span class="co">##    am  4.027219    3.24024  1.2429 0.21391291  -2.32353 10.3779680</span></span>
-<span><span class="co">##    am -0.236915    1.58642 -0.1493 0.88128623  -3.34625  2.8724169 </span></span>
+<span><span class="co">##    am  4.080730    3.93511  1.0370 0.29973348  -3.63195 11.7934042</span></span>
+<span><span class="co">##    am  2.106353    2.28920  0.9201 0.35750681  -2.38040  6.5931041</span></span>
+<span><span class="co">##    am  0.895066    1.64419  0.5444 0.58617955  -2.32749  4.1176212</span></span>
+<span><span class="co">##    am  4.027219    3.24024  1.2429 0.21391272  -2.32353 10.3779654</span></span>
+<span><span class="co">##    am -0.236915    1.58643 -0.1493 0.88128651  -3.34625  2.8724244 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
-<span><span class="co">## Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
+<span><span class="co">## Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb, eps</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="grid">Grid<a class="anchor" aria-label="anchor" href="#grid"></a>
 </h2>
-<p>Predictions, comparisons, and slopes are typically “conditional”
-quantities which depend on the values of all the predictors in the
-model. By default, <code>marginaleffects</code> functions estimate
-quantities of interest for empirical distribution of the data (i.e., for
-each row of the original dataset). However, users can specify the exact
-values of the predictors they want to investigate by using the
-<code>newdata</code> argument.</p>
-<p><code>newdata</code> accepts data frames, shortcut strings, or a call
-to the <code><a href="../reference/datagrid.html">datagrid()</a></code> function. For example, to compute the
-predicted outcome for a hypothetical car with all predictors equal to
-the sample mean or median, we can do:</p>
+<p>Predictions, comparisons, and slopes are typically “conditional” quantities which depend on the values of all the predictors in the model. By default, <code>marginaleffects</code> functions estimate quantities of interest for empirical distribution of the data (i.e., for each row of the original dataset). However, users can specify the exact values of the predictors they want to investigate by using the <code>newdata</code> argument.</p>
+<p><code>newdata</code> accepts data frames, shortcut strings, or a call to the <code><a href="../reference/datagrid.html">datagrid()</a></code> function. For example, to compute the predicted outcome for a hypothetical car with all predictors equal to the sample mean or median, we can do:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -343,10 +274,7 @@ the sample mean or median, we can do:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, hp, wt, am</span></span></code></pre>
-<p>The <a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagrid.html"><code>datagrid</code>
-function gives us a powerful way to define a grid of predictors.</a> All
-the variables not mentioned explicitly in <code><a href="../reference/datagrid.html">datagrid()</a></code> are
-fixed to their mean or mode:</p>
+<p>The <a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagrid.html"><code>datagrid</code> function gives us a powerful way to define a grid of predictors.</a> All the variables not mentioned explicitly in <code><a href="../reference/datagrid.html">datagrid()</a></code> are fixed to their mean or mode:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -362,10 +290,7 @@ fixed to their mean or mode:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, hp, am, wt</span></span></code></pre>
-<p>The same mechanism is available in <code><a href="../reference/comparisons.html">comparisons()</a></code> and
-<code><a href="../reference/slopes.html">slopes()</a></code>. To estimate the partial derivative of
-<code>mpg</code> with respect to <code>wt</code>, when <code>am</code>
-is equal to 0 and 1, while other predictors are held at their means:</p>
+<p>The same mechanism is available in <code><a href="../reference/comparisons.html">comparisons()</a></code> and <code><a href="../reference/slopes.html">slopes()</a></code>. To estimate the partial derivative of <code>mpg</code> with respect to <code>wt</code>, when <code>am</code> is equal to 0 and 1, while other predictors are held at their means:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -373,14 +298,12 @@ is equal to 0 and 1, while other predictors are held at their means:</p>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Term Estimate Std. Error      z Pr(&gt;|z|)  2.5 %  97.5 % am</span></span>
-<span><span class="co">##    wt   -2.676      1.419 -1.886 0.059355 -5.458  0.1056  0</span></span>
+<span><span class="co">##    wt   -2.676      1.419 -1.886 0.059354 -5.458  0.1056  0</span></span>
 <span><span class="co">##    wt   -5.432      2.152 -2.524 0.011605 -9.651 -1.2139  1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
-<p>We can also plot how predictions, comparisons, or slopes change
-across different values of the predictors using <a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html">three
-powerful plotting functions:</a></p>
+<p>We can also plot how predictions, comparisons, or slopes change across different values of the predictors using <a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html">three powerful plotting functions:</a></p>
 <ul>
 <li>
 <code>plot_predictions</code>: Conditional Adjusted Predictions</li>
@@ -389,40 +312,22 @@ powerful plotting functions:</a></p>
 <li>
 <code>plot_slopes</code>: Conditional Marginal Effects</li>
 </ul>
-<p>For example, this plot shows the outcomes predicted by our model for
-different values of the <code>wt</code> and <code>am</code>
-variables:</p>
+<p>For example, this plot shows the outcomes predicted by our model for different values of the <code>wt</code> and <code>am</code> variables:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"wt"</span> <span class="op">=</span> <span class="st">"threenum"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="marginaleffects_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
-<p>This plot shows how the derivative of <code>mpg</code> with respect
-to <code>am</code> varies as a function of <code>wt</code> and
-<code>hp</code>:</p>
+<p>This plot shows how the derivative of <code>mpg</code> with respect to <code>am</code> varies as a function of <code>wt</code> and <code>hp</code>:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"am"</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"wt"</span> <span class="op">=</span> <span class="st">"minmax"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="marginaleffects_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
-<p>See this vignette for more information: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html">Plots,
-interactions, predictions, contrasts, and slopes</a></p>
+<p>See this vignette for more information: <a href="https://vincentarelbundock.github.io/marginaleffects/articles/plot.html">Plots, interactions, predictions, contrasts, and slopes</a></p>
 </div>
 <div class="section level2">
 <h2 id="averaging">Averaging<a class="anchor" aria-label="anchor" href="#averaging"></a>
 </h2>
-<p>Since predictions, comparisons, and slopes are conditional
-quantities, they can be a bit unwieldy. Often, it can be useful to
-report a one-number summary instead of one estimate per observation.
-Instead of presenting “conditional” estimates, some methodologists
-recommend reporting “marginal” estimates, that is, an average of
-unit-level estimates.</p>
-<p>(This use of the word “marginal” as “averaging” should not be
-confused with the term “marginal effect” which, in the econometrics
-tradition, corresponds to a partial derivative, or the effect of a
-“small/marginal” change.)</p>
-<p>To marginalize (average over) our unit-level estimates, we can use
-the <code>by</code> argument or the one of the convenience functions:
-<code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, or
-<code><a href="../reference/slopes.html">avg_slopes()</a></code>. For example, both of these commands give us
-the same result: the average predicted outcome in the
-<code>mtcars</code> dataset:</p>
+<p>Since predictions, comparisons, and slopes are conditional quantities, they can be a bit unwieldy. Often, it can be useful to report a one-number summary instead of one estimate per observation. Instead of presenting “conditional” estimates, some methodologists recommend reporting “marginal” estimates, that is, an average of unit-level estimates.</p>
+<p>(This use of the word “marginal” as “averaging” should not be confused with the term “marginal effect” which, in the econometrics tradition, corresponds to a partial derivative, or the effect of a “small/marginal” change.)</p>
+<p>To marginalize (average over) our unit-level estimates, we can use the <code>by</code> argument or the one of the convenience functions: <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, or <code><a href="../reference/slopes.html">avg_slopes()</a></code>. For example, both of these commands give us the same result: the average predicted outcome in the <code>mtcars</code> dataset:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">avg_predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -435,9 +340,7 @@ the same result: the average predicted outcome in the
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 20.09062</span></span></code></pre>
-<p>The main <code>marginaleffects</code> functions all include a
-<code>by</code> argument, which allows us to marginalize within
-sub-groups of the data. For example,</p>
+<p>The main <code>marginaleffects</code> functions all include a <code>by</code> argument, which allows us to marginalize within sub-groups of the data. For example,</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -451,17 +354,13 @@ sub-groups of the data. For example,</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: type, term, contrast, am, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre>
-<p>Marginal Means are a special case of predictions, which are
-marginalized (or averaged) across a balanced grid of categorical
-predictors. To illustrate, we estimate a new model with categorical
-predictors:</p>
+<p>Marginal Means are a special case of predictions, which are marginalized (or averaged) across a balanced grid of categorical predictors. To illustrate, we estimate a new model with categorical predictors:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
 <span><span class="va">mod_cat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
-<p>We can compute marginal means manually using the functions already
-described:</p>
+<p>We can compute marginal means manually using the functions already described:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">avg_predictions</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod_cat</span>,</span>
@@ -474,8 +373,7 @@ described:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: type, am, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
-<p>For convenience, the <code>marginaleffects</code> package also
-includes a <code><a href="../reference/marginal_means.html">marginal_means()</a></code> function:</p>
+<p>For convenience, the <code>marginaleffects</code> package also includes a <code><a href="../reference/marginal_means.html">marginal_means()</a></code> function:</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span><span class="va">mod_cat</span>, variables <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -486,25 +384,19 @@ includes a <code><a href="../reference/marginal_means.html">marginal_means()</a>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Results averaged over levels of: am, cyl </span></span>
 <span><span class="co">## Columns: type, term, value, am, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">The
-Marginal Means vignette</a> offers more detail.</p>
+<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">The Marginal Means vignette</a> offers more detail.</p>
 </div>
 <div class="section level2">
 <h2 id="hypothesis-and-equivalence-tests">Hypothesis and equivalence tests<a class="anchor" aria-label="anchor" href="#hypothesis-and-equivalence-tests"></a>
 </h2>
-<p>The <code><a href="../reference/hypotheses.html">hypotheses()</a></code> function and the
-<code>hypothesis</code> argument can be used to conduct linear and
-non-linear hypothesis tests on model coefficients, or on any of the
-quantities computed by the functions introduced above.</p>
+<p>The <code><a href="../reference/hypotheses.html">hypotheses()</a></code> function and the <code>hypothesis</code> argument can be used to conduct linear and non-linear hypothesis tests on model coefficients, or on any of the quantities computed by the functions introduced above.</p>
 <p>Consider this model:</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">qsec</span> <span class="op">*</span> <span class="va">drat</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## (Intercept)        qsec        drat   qsec:drat </span></span>
 <span><span class="co">##  12.3371987  -1.0241183  -3.4371461   0.5973153</span></span></code></pre>
-<p>Can we reject the null hypothesis that the <code>drat</code>
-coefficient is 2 times the size of the <code>qsec</code>
-coefficient?</p>
+<p>Can we reject the null hypothesis that the <code>drat</code> coefficient is 2 times the size of the <code>qsec</code> coefficient?</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, <span class="st">"drat = 2 * qsec"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -513,9 +405,7 @@ coefficient?</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  </span></span>
 <span><span class="co">## Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
-<p>We can ask the same question but refer to parameters by position,
-with indices <code>b1</code>, <code>b2</code>, <code>b3</code>,
-etc.:</p>
+<p>We can ask the same question but refer to parameters by position, with indices <code>b1</code>, <code>b2</code>, <code>b3</code>, etc.:</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span><span class="va">mod</span>, <span class="st">"b3 = 2 * b2"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -524,9 +414,7 @@ etc.:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  </span></span>
 <span><span class="co">## Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
-<p>The main functions in <code>marginaleffects</code> all have a
-<code>hypothesis</code> argument, which means that we can do complex
-model testing. For example, consider two slope estimates:</p>
+<p>The main functions in <code>marginaleffects</code> all have a <code>hypothesis</code> argument, which means that we can do complex model testing. For example, consider two slope estimates:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -534,13 +422,12 @@ model testing. For example, consider two slope estimates:</p>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsec <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Term Estimate Std. Error     z Pr(&gt;|z|)   2.5 % 97.5 % qsec</span></span>
-<span><span class="co">##  drat    5.224      3.791 1.378 0.168217 -2.2064  12.65 14.5</span></span>
-<span><span class="co">##  drat   10.241      5.161 1.984 0.047232  0.1252  20.36 22.9</span></span>
+<span><span class="co">##  drat    5.224      3.791 1.378 0.168216 -2.2064  12.65 14.5</span></span>
+<span><span class="co">##  drat   10.241      5.161 1.984 0.047233  0.1251  20.36 22.9</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, drat, qsec, eps</span></span></code></pre>
-<p>Are these two slopes significantly different from one another? To
-test this, we can use the <code>hypothesis</code> argument:</p>
+<p>Are these two slopes significantly different from one another? To test this, we can use the <code>hypothesis</code> argument:</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>  <span class="va">mod</span>,</span>
@@ -553,32 +440,22 @@ test this, we can use the <code>hypothesis</code> argument:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre>
-<p>Now, imagine that for theoretical (or substantive or clinical)
-reasons, we only care about slopes larger than 2. We can use the
-<code><a href="../reference/hypotheses.html">hypotheses()</a></code> function to conduct an equivalence test:</p>
+<p>Now, imagine that for theoretical (or substantive or clinical) reasons, we only care about slopes larger than 2. We can use the <code><a href="../reference/hypotheses.html">hypotheses()</a></code> function to conduct an equivalence test:</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##  Term Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %      p (Inf)    p (Sup)     p (Eq)</span></span>
-<span><span class="co">##  qsec    1.124     0.4331 2.595  0.0094487 0.2752  1.973 2.740290e-13 0.02158503 0.02158503</span></span>
-<span><span class="co">##  drat    7.224     1.3652 5.292 1.2122e-07 4.5484  9.900 7.062316e-12 0.99993505 0.99993505</span></span>
+<span><span class="co">##  qsec    1.124     0.4331 2.595  0.0094487 0.2752  1.973 2.740295e-13 0.02158503 0.02158503</span></span>
+<span><span class="co">##  drat    7.224     1.3652 5.292 1.2122e-07 4.5484  9.900 7.062377e-12 0.99993505 0.99993505</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, statistic.noninf, statistic.nonsup, p.value.noninf, p.value.nonsup, p.value.equiv</span></span></code></pre>
-<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis
-Tests and Custom Contrasts vignette</a> for background, details, and for
-instructions on how to conduct hypothesis tests in more complex
-situations.</p>
+<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Hypothesis Tests and Custom Contrasts vignette</a> for background, details, and for instructions on how to conduct hypothesis tests in more complex situations.</p>
 </div>
 <div class="section level2">
 <h2 id="more">More!<a class="anchor" aria-label="anchor" href="#more"></a>
 </h2>
-<p>There is <em>much</em> more you can do with
-<code>marginaleffects</code>. Return to the <a href="index.html">Table
-of Contents</a> to read the vignettes, learn how to report marginal
-effects in <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">nice tables
-with the <code>modelsummary</code> package</a>, how to define your own
-prediction “grid”, and much more. ****</p>
+<p>There is <em>much</em> more you can do with <code>marginaleffects</code>. Return to the <a href="index.html">Table of Contents</a> to read the vignettes, learn how to report marginal effects in <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">nice tables with the <code>modelsummary</code> package</a>, how to define your own prediction “grid”, and much more. ****</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

@@ -69,8 +69,7 @@
 
 
 
-
-<div class="row">
+<script src="brms_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Bayesian Analysis with brms</h1>
             
@@ -81,37 +80,19 @@
 
     
     
-<p>The <code>marginaleffects</code> package offers convenience functions
-to compute and display predictions, contrasts, and marginal effects from
-bayesian models estimated by the <code>brms</code> package. To compute
-these quantities, <code>marginaleffects</code> relies on workhorse
-functions from the <code>brms</code> package to draw from the posterior
-distribution. The type of draws used is controlled by using the
-<code>type</code> argument of the <code>predictions</code> or
-<code>slopes</code> functions:</p>
+<p>The <code>marginaleffects</code> package offers convenience functions to compute and display predictions, contrasts, and marginal effects from bayesian models estimated by the <code>brms</code> package. To compute these quantities, <code>marginaleffects</code> relies on workhorse functions from the <code>brms</code> package to draw from the posterior distribution. The type of draws used is controlled by using the <code>type</code> argument of the <code>predictions</code> or <code>slopes</code> functions:</p>
 <ul>
 <li>
-<code>type = "response"</code>: Compute posterior draws of the
-expected value using the <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">brms::posterior_epred</a></code>
-function.</li>
+<code>type = "response"</code>: Compute posterior draws of the expected value using the <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">brms::posterior_epred</a></code> function.</li>
 <li>
-<code>type = "link"</code>: Compute posterior draws of the linear
-predictor using the <code><a href="https://mc-stan.org/rstantools/reference/posterior_linpred.html" class="external-link">brms::posterior_linpred</a></code> function.</li>
+<code>type = "link"</code>: Compute posterior draws of the linear predictor using the <code><a href="https://mc-stan.org/rstantools/reference/posterior_linpred.html" class="external-link">brms::posterior_linpred</a></code> function.</li>
 <li>
-<code>type = "prediction"</code>: Compute posterior draws of the
-posterior predictive distribution using the
-<code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html" class="external-link">brms::posterior_predict</a></code> function.</li>
+<code>type = "prediction"</code>: Compute posterior draws of the posterior predictive distribution using the <code><a href="https://mc-stan.org/rstantools/reference/posterior_predict.html" class="external-link">brms::posterior_predict</a></code> function.</li>
 </ul>
-<p>The <code>predictions</code> and <code>slopes</code> functions can
-also pass additional arguments to the <code>brms</code> prediction
-functions via the <code>...</code> ellipsis. For example, if
-<code>mod</code> is a mixed-effects model, then this command will
-compute 10 draws from the posterior predictive distribution, while
-ignoring all group-level effects:</p>
+<p>The <code>predictions</code> and <code>slopes</code> functions can also pass additional arguments to the <code>brms</code> prediction functions via the <code>...</code> ellipsis. For example, if <code>mod</code> is a mixed-effects model, then this command will compute 10 draws from the posterior predictive distribution, while ignoring all group-level effects:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"prediction"</span>, ndraws <span class="op">=</span> <span class="fl">10</span>, re_formula <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p>See the <code>brms</code> documentation for a list of available
-arguments:</p>
+<p>See the <code>brms</code> documentation for a list of available arguments:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">?</span><span class="fu">brms</span><span class="fu">::</span><span class="va"><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">posterior_epred</a></span></span>
 <span><span class="op">?</span><span class="fu">brms</span><span class="fu">::</span><span class="va"><a href="https://mc-stan.org/rstantools/reference/posterior_linpred.html" class="external-link">posterior_linpred</a></span></span>
@@ -119,8 +100,7 @@ arguments:</p>
 <div class="section level2">
 <h2 id="logistic-regression-with-multiplicative-interactions">Logistic regression with multiplicative interactions<a class="anchor" aria-label="anchor" href="#logistic-regression-with-multiplicative-interactions"></a>
 </h2>
-<p>Load libraries and download data on passengers of the Titanic from <a href="https://vincentarelbundock.github.io/Rdatasets/" class="external-link">the Rdatasets
-archive:</a></p>
+<p>Load libraries and download data on passengers of the Titanic from <a href="https://vincentarelbundock.github.io/Rdatasets/" class="external-link">the Rdatasets archive:</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
@@ -138,11 +118,7 @@ archive:</a></p>
 <div class="section level3">
 <h3 id="adjusted-predictions">Adjusted predictions<a class="anchor" aria-label="anchor" href="#adjusted-predictions"></a>
 </h3>
-<p>We can compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">adjusted
-predicted values</a> of the outcome variable (i.e., probability of
-survival aboard the Titanic) using the <code>predictions</code>
-function. By default, this function calculates predictions for each row
-of the dataset:</p>
+<p>We can compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">adjusted predicted values</a> of the outcome variable (i.e., probability of survival aboard the Titanic) using the <code>predictions</code> function. By default, this function calculates predictions for each row of the dataset:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
@@ -156,35 +132,29 @@ of the dataset:</p>
 <span><span class="co">#&gt;    0.2731 0.2029 0.3518</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, survived, woman, age, passengerClass</span></span></code></pre></div>
-<p>To visualize the relationship between the outcome and one of the
-regressors, we can plot conditional adjusted predictions with the
-<code>plot_predictions</code> function:</p>
+<span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, X, survived, sex, age, passengerClass, woman</span></span></code></pre></div>
+<p>To visualize the relationship between the outcome and one of the regressors, we can plot conditional adjusted predictions with the <code>plot_predictions</code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
-<p>Compute adjusted predictions for some user-specified values of the
-regressors, using the <code>newdata</code> argument and the
-<code>datagrid</code> function:</p>
+<p>Compute adjusted predictions for some user-specified values of the regressors, using the <code>newdata</code> argument and the <code>datagrid</code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>woman <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,</span>
 <span>                                       passengerClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pred</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate   2.5 % 97.5 % woman passengerClass</span></span>
-<span><span class="co">#&gt;    0.5149 0.43192 0.6019     0            1st</span></span>
-<span><span class="co">#&gt;    0.2013 0.15362 0.2613     0            2nd</span></span>
-<span><span class="co">#&gt;    0.0875 0.06556 0.1141     0            3rd</span></span>
-<span><span class="co">#&gt;    0.9364 0.90661 0.9588     1            1st</span></span>
-<span><span class="co">#&gt;    0.7783 0.70897 0.8346     1            2nd</span></span>
-<span><span class="co">#&gt;    0.5701 0.49378 0.6442     1            3rd</span></span>
+<span><span class="co">#&gt;  Estimate   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;    0.5149 0.43192 0.6019</span></span>
+<span><span class="co">#&gt;    0.2013 0.15362 0.2613</span></span>
+<span><span class="co">#&gt;    0.0875 0.06556 0.1141</span></span>
+<span><span class="co">#&gt;    0.9364 0.90661 0.9588</span></span>
+<span><span class="co">#&gt;    0.7783 0.70897 0.8346</span></span>
+<span><span class="co">#&gt;    0.5701 0.49378 0.6442</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, survived, age, woman, passengerClass</span></span></code></pre></div>
-<p>The <code>posterior_draws</code> function samples from the posterior
-distribution of the model, and produces a data frame with
-<code>drawid</code> and <code>draw</code> columns.</p>
+<p>The <code>posterior_draws</code> function samples from the posterior distribution of the model, and produces a data frame with <code>drawid</code> and <code>draw</code> columns.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
@@ -206,11 +176,7 @@ distribution of the model, and produces a data frame with
 <div class="section level3">
 <h3 id="marginal-effects">Marginal effects<a class="anchor" aria-label="anchor" href="#marginal-effects"></a>
 </h3>
-<p>Use <code><a href="../reference/slopes.html">slopes()</a></code> to <a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">compute
-marginal effects (slopes of the regression equation)</a> for each row of
-the dataset, and use <code>)</code> to compute “Average Marginal
-Effects”, that is, the average of all observation-level marginal
-effects:</p>
+<p>Use <code><a href="../reference/slopes.html">slopes()</a></code> to <a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">compute marginal effects (slopes of the regression equation)</a> for each row of the dataset, and use <code>)</code> to compute “Average Marginal Effects”, that is, the average of all observation-level marginal effects:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
@@ -229,9 +195,8 @@ effects:</p>
 <span><span class="co">#&gt;  passengerClass 3rd - 1st -0.4364994 -0.5260837 -0.3497621 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, survived, woman, age, passengerClass, eps</span></span></code></pre></div>
-<p>Compute marginal effects with some regressors fixed at user-specified
-values, and other regressors held at their means:</p>
+<span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, X, survived, sex, age, passengerClass, woman, eps</span></span></code></pre></div>
+<p>Compute marginal effects with some regressors fixed at user-specified values, and other regressors held at their means:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -251,25 +216,22 @@ values, and other regressors held at their means:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">mod</span>, effect <span class="op">=</span> <span class="st">"woman"</span>, condition <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-14-1.png" width="100%"></p>
-<p>The <code>posterior_draws</code> produces a dataset with
-<code>drawid</code> and <code>draw</code> columns:</p>
+<p>The <code>posterior_draws</code> produces a dataset with <code>drawid</code> and <code>draw</code> columns:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 16736000       17</span></span>
+<span><span class="co">#&gt; [1] 16736000       19</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">draws</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   drawid      draw rowid     type  term contrast   estimate   conf.low conf.high predicted predicted_hi predicted_lo survived woman     age passengerClass   eps</span></span>
-<span><span class="co">#&gt; 1      1 0.1633609     1 response woman    dY/dX 0.15298096 0.10883007 0.2051898 0.9366604    0.9366751    0.9366604        1     1 29.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 2      1 0.1359009     2 response woman    dY/dX 0.13546458 0.03607654 0.2970409 0.8493050    0.8493174    0.8493050        1     0  0.9167            1st 1e-04</span></span>
-<span><span class="co">#&gt; 3      1 0.0615405     3 response woman    dY/dX 0.05878909 0.02875607 0.1009453 0.9433293    0.9433358    0.9433293        0     1  2.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 4      1 0.7088821     4 response woman    dY/dX 0.65453708 0.56699300 0.7442501 0.5131011    0.5131652    0.5131011        0     0 30.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 5      1 0.1473759     5 response woman    dY/dX 0.13828737 0.09722433 0.1863969 0.9374937    0.9375085    0.9374937        0     1 25.0000            1st 1e-04</span></span>
-<span><span class="co">#&gt; 6      1 0.6635099     6 response woman    dY/dX 0.70740470 0.58935737 0.8406470 0.2730542    0.2731252    0.2730542        1     0 48.0000            1st 1e-04</span></span></code></pre></div>
-<p>We can use this dataset to plot our results. For example, to plot the
-posterior density of the marginal effect of <code>age</code> when the
-<code>woman</code> variable is equal to 0 or 1:</p>
+<span><span class="co">#&gt;   drawid      draw rowid     type  term contrast   estimate   conf.low conf.high predicted predicted_hi predicted_lo                               X survived    sex     age passengerClass woman   eps</span></span>
+<span><span class="co">#&gt; 1      1 0.1633609     1 response woman    dY/dX 0.15298096 0.10883007 0.2051898 0.9366604    0.9366751    0.9366604   Allen, Miss. Elisabeth Walton        1 female 29.0000            1st     1 1e-04</span></span>
+<span><span class="co">#&gt; 2      1 0.1359009     2 response woman    dY/dX 0.13546458 0.03607654 0.2970409 0.8493050    0.8493174    0.8493050  Allison, Master. Hudson Trevor        1   male  0.9167            1st     0 1e-04</span></span>
+<span><span class="co">#&gt; 3      1 0.0615405     3 response woman    dY/dX 0.05878909 0.02875607 0.1009453 0.9433293    0.9433358    0.9433293    Allison, Miss. Helen Loraine        0 female  2.0000            1st     1 1e-04</span></span>
+<span><span class="co">#&gt; 4      1 0.7088821     4 response woman    dY/dX 0.65453708 0.56699300 0.7442501 0.5131011    0.5131652    0.5131011 Allison, Mr. Hudson Joshua Crei        0   male 30.0000            1st     0 1e-04</span></span>
+<span><span class="co">#&gt; 5      1 0.1473759     5 response woman    dY/dX 0.13828737 0.09722433 0.1863969 0.9374937    0.9375085    0.9374937 Allison, Mrs. Hudson J C (Bessi        0 female 25.0000            1st     1 1e-04</span></span>
+<span><span class="co">#&gt; 6      1 0.6635099     6 response woman    dY/dX 0.70740470 0.58935737 0.8406470 0.2730542    0.2731252    0.2730542             Anderson, Mr. Harry        1   male 48.0000            1st     0 1e-04</span></span></code></pre></div>
+<p>We can use this dataset to plot our results. For example, to plot the posterior density of the marginal effect of <code>age</code> when the <code>woman</code> variable is equal to 0 or 1:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"age"</span>,</span>
@@ -287,13 +249,7 @@ posterior density of the marginal effect of <code>age</code> when the
 <div class="section level2">
 <h2 id="random-effects-model">Random effects model<a class="anchor" aria-label="anchor" href="#random-effects-model"></a>
 </h2>
-<p>This section replicates some of the analyses of a random effects
-model published in Andrew Heiss’ blog post: <a href="https://www.andrewheiss.com/blog/2021/11/10/ame-bayes-re-guide" class="external-link">“A
-guide to correctly calculating posterior predictions and average
-marginal effects with multilevel Bayesian models.”</a> The objective is
-mainly to illustrate the use of <code>marginaleffects</code>. Please
-refer to the original post for a detailed discussion of the quantities
-computed below.</p>
+<p>This section replicates some of the analyses of a random effects model published in Andrew Heiss’ blog post: <a href="https://www.andrewheiss.com/blog/2021/11/10/ame-bayes-re-guide" class="external-link">“A guide to correctly calculating posterior predictions and average marginal effects with multilevel Bayesian models.”</a> The objective is mainly to illustrate the use of <code>marginaleffects</code>. Please refer to the original post for a detailed discussion of the quantities computed below.</p>
 <p>Load libraries and download data:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
@@ -322,12 +278,7 @@ computed below.</p>
 <div class="section level3">
 <h3 id="posterior-predictions">Posterior predictions<a class="anchor" aria-label="anchor" href="#posterior-predictions"></a>
 </h3>
-<p>To compute posterior predictions for specific values of the
-regressors, we use the <code>newdata</code> argument and the
-<code>datagrid</code> function. We also use the <code>type</code>
-argument to compute two types of predictions: accounting for residual
-(observation-level) residual variance (<code>prediction</code>) or
-ignoring it (<code>response</code>).</p>
+<p>To compute posterior predictions for specific values of the regressors, we use the <code>newdata</code> argument and the <code>datagrid</code> function. We also use the <code>type</code> argument to compute two types of predictions: accounting for residual (observation-level) residual variance (<code>prediction</code>) or ignoring it (<code>response</code>).</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">mod</span>,</span>
 <span>              party_autonomy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span>
@@ -351,13 +302,7 @@ ignoring it (<code>response</code>).</p>
 <div class="section level3">
 <h3 id="marginal-effects-and-contrasts">Marginal effects and contrasts<a class="anchor" aria-label="anchor" href="#marginal-effects-and-contrasts"></a>
 </h3>
-<p>As noted in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Marginal
-Effects vignette</a>, there should be one distinct marginal effect for
-each combination of regressor values. Here, we consider only one
-combination of regressor values, where <code>region</code> is “Middle
-East and North Africa”, and <code>civil_liberties</code> is 0.5. Then,
-we calculate the mean of the posterior distribution of marginal
-effects:</p>
+<p>As noted in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Marginal Effects vignette</a>, there should be one distinct marginal effect for each combination of regressor values. Here, we consider only one combination of regressor values, where <code>region</code> is “Middle East and North Africa”, and <code>civil_liberties</code> is 0.5. Then, we calculate the mean of the posterior distribution of marginal effects:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>                       newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>civil_liberties <span class="op">=</span> <span class="fl">.5</span>,</span>
@@ -370,8 +315,7 @@ effects:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, media_index, party_autonomy, civil_liberties, region, eps</span></span></code></pre></div>
-<p>Use the <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> to extract draws from the
-posterior distribution of marginal effects, and plot them:</p>
+<p>Use the <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> to extract draws from the posterior distribution of marginal effects, and plot them:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span></span>
@@ -403,8 +347,7 @@ posterior distribution of marginal effects, and plot them:</p>
 <span>         y <span class="op">=</span> <span class="st">"Media index (predicted)"</span>,</span>
 <span>         fill <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-25-1.png" width="100%"></p>
-<p>The slope of this line for different values of civil liberties can be
-obtained with:</p>
+<p>The slope of this line for different values of civil liberties can be obtained with:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span></span>
@@ -431,13 +374,7 @@ obtained with:</p>
 <span>         y <span class="op">=</span> <span class="st">"Posterior density"</span>,</span>
 <span>         fill <span class="op">=</span> <span class="st">"Civil liberties"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-27-1.png" width="100%"></p>
-<p>The <code>slopes</code> function can use the ellipsis
-(<code>...</code>) to push any argument forward to the
-<code>posterior_predict</code> function. This can alter the types of
-predictions returned. For example, <a href="https://cran.r-project.org/web/packages/brms/brms.pdf" class="external-link">the
-<code>re_formula=NA</code> argument of the
-<code>posterior_predict.brmsfit</code> method</a> will compute
-marginaleffects <em>without</em> including any group-level effects:</p>
+<p>The <code>slopes</code> function can use the ellipsis (<code>...</code>) to push any argument forward to the <code>posterior_predict</code> function. This can alter the types of predictions returned. For example, <a href="https://cran.r-project.org/web/packages/brms/brms.pdf" class="external-link">the <code>re_formula=NA</code> argument of the <code>posterior_predict.brmsfit</code> method</a> will compute marginaleffects <em>without</em> including any group-level effects:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -536,8 +473,7 @@ marginaleffects <em>without</em> including any group-level effects:</p>
 <span>         y <span class="op">=</span> <span class="st">""</span>,</span>
 <span>         fill <span class="op">=</span> <span class="st">"Party autonomy"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-33-1.png" width="100%"></p>
-<p>TRUE/FALSE contrasts (marginal effects) of party autonomy by
-region:</p>
+<p>TRUE/FALSE contrasts (marginal effects) of party autonomy by region:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -557,14 +493,7 @@ region:</p>
 <div class="section level3">
 <h3 id="hypothetical-groups">Hypothetical groups<a class="anchor" aria-label="anchor" href="#hypothetical-groups"></a>
 </h3>
-<p>We can also obtain predictions or marginal effects for a hypothetical
-group instead of one of the observed regions. To achieve this, we create
-a dataset with <code>NA</code> in the <code>region</code> column. Then
-we call the <code>marginaleffects</code> or <code>predictions</code>
-functions with the <code>allow_new_levels</code> argument. This argument
-is pushed through via the ellipsis (<code>...</code>) to the
-<code>posterior_epred</code> function of the <code>brms</code>
-package:</p>
+<p>We can also obtain predictions or marginal effects for a hypothetical group instead of one of the observed regions. To achieve this, we create a dataset with <code>NA</code> in the <code>region</code> column. Then we call the <code>marginaleffects</code> or <code>predictions</code> functions with the <code>allow_new_levels</code> argument. This argument is pushed through via the ellipsis (<code>...</code>) to the <code>posterior_epred</code> function of the <code>brms</code> package:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>civil_liberties <span class="op">=</span> <span class="fl">.5</span>,</span>
 <span>                  party_autonomy <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -592,8 +521,7 @@ package:</p>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">output</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">output</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">emp</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">emp</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">firm</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span>, backend <span class="op">=</span> <span class="st">"cmdstanr"</span>, family <span class="op">=</span> <span class="st">"bernoulli"</span><span class="op">)</span></span></code></pre></div>
-<p>We can compute adjusted predictions for a given value of
-<code>x</code> and for each firm (random effects) as follows:</p>
+<p>We can compute adjusted predictions for a given value of <code>x</code> and for each firm (random effects) as follows:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, firm <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
@@ -608,9 +536,7 @@ package:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, y, x, firm</span></span></code></pre></div>
-<p>We can average/marginalize/integrate across random effects with the
-<code><a href="../reference/predictions.html">avg_predictions()</a></code> function or the <code>by</code>
-argument:</p>
+<p>We can average/marginalize/integrate across random effects with the <code><a href="../reference/predictions.html">avg_predictions()</a></code> function or the <code>by</code> argument:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">avg_predictions</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, firm <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -628,17 +554,7 @@ argument:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
-<p>We can also draw from the (assumed gaussian) population distribution
-of random effects, by asking <code><a href="../reference/predictions.html">predictions()</a></code> to make
-predictions for new “levels” of the random effects. If we then take an
-average of predictions using <code><a href="../reference/predictions.html">avg_predictions()</a></code> or the
-<code>by</code> argument, we will have <a href="https://joshuawiley.com/brmsmargins/articles/mixed-effects-slopes.html#integrating-out-random-effects" class="external-link">“integrated
-out the random effects”, as described in the <code>brmsmargins</code>
-package vignette.</a> In the code below, we make predictions for 100
-firm identifiers which were not in the original dataset. We also ask
-<code><a href="../reference/predictions.html">predictions()</a></code> to push forward the
-<code>allow_new_levels</code> and <code>sample_new_levels</code>
-arguments to the <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">brms::posterior_epred</a></code> function:</p>
+<p>We can also draw from the (assumed gaussian) population distribution of random effects, by asking <code><a href="../reference/predictions.html">predictions()</a></code> to make predictions for new “levels” of the random effects. If we then take an average of predictions using <code><a href="../reference/predictions.html">avg_predictions()</a></code> or the <code>by</code> argument, we will have <a href="https://joshuawiley.com/brmsmargins/articles/mixed-effects-slopes.html#integrating-out-random-effects" class="external-link">“integrated out the random effects”, as described in the <code>brmsmargins</code> package vignette.</a> In the code below, we make predictions for 100 firm identifiers which were not in the original dataset. We also ask <code><a href="../reference/predictions.html">predictions()</a></code> to push forward the <code>allow_new_levels</code> and <code>sample_new_levels</code> arguments to the <code><a href="https://mc-stan.org/rstantools/reference/posterior_epred.html" class="external-link">brms::posterior_epred</a></code> function:</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -648,13 +564,12 @@ arguments to the <code><a href="https://mc-stan.org/rstantools/reference/posteri
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4512 0.3401 0.5667</span></span>
-<span><span class="co">#&gt;  1   0.5497 0.4388 0.6638</span></span>
+<span><span class="co">#&gt;  0   0.4512 0.3383 0.5639</span></span>
+<span><span class="co">#&gt;  1   0.5502 0.4313 0.6619</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
-<p>We can “integrate out” random effects in the other
-<code>slopes</code> functions too. For instance,</p>
+<p>We can “integrate out” random effects in the other <code>slopes</code> functions too. For instance,</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -662,13 +577,12 @@ arguments to the <code><a href="https://mc-stan.org/rstantools/reference/posteri
 <span>    allow_new_levels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09773 0.04823 0.1613</span></span>
+<span><span class="co">#&gt;  Term Contrast Estimate  2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09586 0.0463 0.1609</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
-<p>This is nearly equivalent the <code>brmsmargins</code> command output
-(with slight variations due to different random seeds):</p>
+<p>This is nearly equivalent the <code>brmsmargins</code> command output (with slight variations due to different random seeds):</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://joshuawiley.com/brmsmargins/" class="external-link">brmsmargins</a></span><span class="op">)</span></span>
 <span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://joshuawiley.com/brmsmargins/reference/brmsmargins.html" class="external-link">brmsmargins</a></span><span class="op">(</span></span>
@@ -680,18 +594,15 @@ arguments to the <code><a href="https://mc-stan.org/rstantools/reference/posteri
 <span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            M        Mdn         LL       UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09884977 0.09736143 0.04723462 0.160932          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
-<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative
-software vignette</a> for more information on
-<code>brmsmargins</code>.</p>
+<span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
+<span><span class="co">#&gt; 1 0.09867373 0.09665591 0.04792878 0.1618069          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="multinomial-logit">Multinomial logit<a class="anchor" aria-label="anchor" href="#multinomial-logit"></a>
 </h2>
-<p>Fit a model with categorical outcome (heating system choice in
-California houses) and logit link:</p>
+<p>Fit a model with categorical outcome (heating system choice in California houses) and logit link:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/Heating.csv"</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
@@ -701,8 +612,7 @@ California houses) and logit link:</p>
 <div class="section level3">
 <h3 id="adjusted-predictions-1">Adjusted predictions<a class="anchor" aria-label="anchor" href="#adjusted-predictions-1"></a>
 </h3>
-<p>Compute predicted probabilities for each level of the outcome
-variable:</p>
+<p>Compute predicted probabilities for each level of the outcome variable:</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
@@ -717,7 +627,7 @@ variable:</p>
 <span><span class="co">#&gt;     ec  0.07086 0.04546 0.10360</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, group, estimate, conf.low, conf.high, depvar, ic.gc, oc.gc</span></span></code></pre></div>
+<span><span class="co">#&gt; Columns: rowid, type, group, estimate, conf.low, conf.high, X, idcase, depvar, ic.gc, ic.gr, ic.ec, ic.er, ic.hp, oc.gc, oc.gr, oc.ec, oc.er, oc.hp, income, agehed, rooms, region, pb.gc, pb.gr, pb.ec, pb.er, pb.hp</span></span></code></pre></div>
 <p>Extract posterior draws and plot them:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">draws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
@@ -728,10 +638,7 @@ variable:</p>
 <span>         y <span class="op">=</span> <span class="st">"Density"</span>,</span>
 <span>         fill <span class="op">=</span> <span class="st">"Heating system"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-46-1.png" width="100%"></p>
-<p>Use the <code>plot_predictions</code> function to plot conditional
-adjusted predictions for each level of the outcome variable
-<code>gear</code>, conditional on the value of the <code>mpg</code>
-regressor:</p>
+<p>Use the <code>plot_predictions</code> function to plot conditional adjusted predictions for each level of the outcome variable <code>gear</code>, conditional on the value of the <code>mpg</code> regressor:</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"oc.gc"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group</span><span class="op">)</span> <span class="op">+</span></span>
@@ -759,17 +666,15 @@ regressor:</p>
 <div class="section level2">
 <h2 id="hurdle-models">Hurdle models<a class="anchor" aria-label="anchor" href="#hurdle-models"></a>
 </h2>
-<p>This section replicates some analyses from <a href="https://www.andrewheiss.com/blog/2022/05/09/hurdle-lognormal-gaussian-brms/#emmeans-with-hurdle-models" class="external-link">yet
-another amazing blog post by Andrew Heiss.</a></p>
-<p>To begin, we estimate a hurdle model in <code>brms</code> with random
-effects, using data from the <code>gapminder</code> package: 704G</p>
+<p>This section replicates some analyses from <a href="https://www.andrewheiss.com/blog/2022/05/09/hurdle-lognormal-gaussian-brms/#emmeans-with-hurdle-models" class="external-link">yet another amazing blog post by Andrew Heiss.</a></p>
+<p>To begin, we estimate a hurdle model in <code>brms</code> with random effects, using data from the <code>gapminder</code> package: 704G</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">cmdstanr</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/cmdstanr/" class="external-link">cmdstanr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -780,7 +685,7 @@ effects, using data from the <code>gapminder</code> package: 704G</p>
 <span><span class="va">WARMUP</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span><span class="va">BAYES_SEED</span> <span class="op">&lt;-</span> <span class="fl">1234</span></span>
 <span></span>
-<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="co"># Make a bunch of GDP values 0</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,</span>
@@ -857,8 +762,7 @@ effects, using data from the <code>gapminder</code> package: 704G</p>
 <span>    condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"hu"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-54-1.png" width="100%"></p>
-<p>Predictions with more than one condition and the
-<code>re_formula</code> argument from <code>brms</code>:</p>
+<p>Predictions with more than one condition and the <code>re_formula</code> argument from <code>brms</code>:</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -869,10 +773,7 @@ effects, using data from the <code>gapminder</code> package: 704G</p>
 <div class="section level3">
 <h3 id="extract-draws-with-posterior_draws">Extract draws with <code>posterior_draws()</code><a class="anchor" aria-label="anchor" href="#extract-draws-with-posterior_draws"></a>
 </h3>
-<p>The <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> function extract raw samples from
-the posterior from objects produced by <code>marginaleffects</code>.
-This allows us to use richer geoms and summaries, such as those in the
-<code>ggdist</code> package:</p>
+<p>The <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> function extract raw samples from the posterior from objects produced by <code>marginaleffects</code>. This allows us to use richer geoms and summaries, such as those in the <code>ggdist</code> package:</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -890,8 +791,7 @@ This allows us to use richer geoms and summaries, such as those in the
 <div class="section level3">
 <h3 id="average-contrasts">Average Contrasts<a class="anchor" aria-label="anchor" href="#average-contrasts"></a>
 </h3>
-<p>What happens to <code>gdpPercap</code> when <code>lifeExp</code>
-increases by one?</p>
+<p>What happens to <code>gdpPercap</code> when <code>lifeExp</code> increases by one?</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -901,8 +801,7 @@ increases by one?</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
-<p>What happens to <code>gdpPercap</code> when <code>lifeExp</code>
-increases by one standard deviation?</p>
+<p>What happens to <code>gdpPercap</code> when <code>lifeExp</code> increases by one standard deviation?</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lifeExp <span class="op">=</span> <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -911,9 +810,7 @@ increases by one standard deviation?</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
-<p>What happens to <code>gdpPercap</code> when <code>lifeExp</code>
-increases from 50 to 60 and <code>year</code> simultaneously increases
-its min to its max?</p>
+<p>What happens to <code>gdpPercap</code> when <code>lifeExp</code> increases from 50 to 60 and <code>year</code> simultaneously increases its min to its max?</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -921,23 +818,11 @@ its min to its max?</p>
 <span>    cross <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  C: lifeExp   C: year Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min   1001.5 522.5   1330</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min   1001.5 522.5   1330</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min   1001.5 522.5   1330</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min   1001.5 522.5   1330</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min   1001.5 522.5   1330</span></span>
-<span><span class="co">#&gt; --- 1670 rows omitted. See ?print.marginaleffects --- </span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min    466.9 112.6   1299</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min    466.9 112.6   1299</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min    466.9 112.6   1299</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min    466.9 112.6   1299</span></span>
-<span><span class="co">#&gt;     60 - 50 Max - Min    466.9 112.6   1299 </span></span>
+<span><span class="co">#&gt;     60 - 50 Max - Min    834.7 523.1   1404</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, term, contrast_lifeExp, contrast_year, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre></div>
-<p>Plot draws from the posterior distribution of average contrasts
-(<em>not</em> the same thing as draws from the posterior distribution of
-contrasts):</p>
+<span><span class="co">#&gt; Columns: type, term, contrast_lifeExp, contrast_year, estimate, conf.low, conf.high</span></span></code></pre></div>
+<p>Plot draws from the posterior distribution of average contrasts (<em>not</em> the same thing as draws from the posterior distribution of contrasts):</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -949,8 +834,7 @@ contrasts):</p>
 <div class="section level3">
 <h3 id="marginal-effects-slopes">Marginal effects (slopes)<a class="anchor" aria-label="anchor" href="#marginal-effects-slopes"></a>
 </h3>
-<p>Average Marginal Effect of <code>lifeExp</code> on different scales
-and for different parameters:</p>
+<p>Average Marginal Effect of <code>lifeExp</code> on different scales and for different parameters:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1002,9 +886,7 @@ and for different parameters:</p>
 <span>    condition <span class="op">=</span> <span class="st">"lifeExp"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"hu"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="brms_files/figure-html/unnamed-chunk-62-1.png" width="100%"></p>
-<p>Or we can call <code><a href="../reference/slopes.html">slopes()</a></code> or <code><a href="../reference/comparisons.html">comparisons()</a></code>
-with <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> function to have even more
-control:</p>
+<p>Or we can call <code><a href="../reference/slopes.html">slopes()</a></code> or <code><a href="../reference/comparisons.html">comparisons()</a></code> with <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> function to have even more control:</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -1022,15 +904,8 @@ control:</p>
 <div class="section level2">
 <h2 id="bayesian-estimates-and-credible-intervals">Bayesian estimates and credible intervals<a class="anchor" aria-label="anchor" href="#bayesian-estimates-and-credible-intervals"></a>
 </h2>
-<p>For bayesian models like those produced by the <code>brms</code> or
-<code>rstanarm</code> packages, the <code>marginaleffects</code> package
-functions report the median of the posterior distribution as their main
-estimates.</p>
-<p>The default credible intervals are equal-tailed intervals
-(quantiles), and the default function to identify the center of the
-distribution is the median. Users can customize the type of intervals
-reported by setting global options. Note that both the reported estimate
-and the intervals change slightly:</p>
+<p>For bayesian models like those produced by the <code>brms</code> or <code>rstanarm</code> packages, the <code>marginaleffects</code> package functions report the median of the posterior distribution as their main estimates.</p>
+<p>The default credible intervals are equal-tailed intervals (quantiles), and the default function to identify the center of the distribution is the median. Users can customize the type of intervals reported by setting global options. Note that both the reported estimate and the intervals change slightly:</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/insight/" class="external-link">insight</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
@@ -1060,14 +935,9 @@ and the intervals change slightly:</p>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="random-variables-posterior-and-ggdist">Random variables: <code>posterior</code> and
-<code>ggdist</code><a class="anchor" aria-label="anchor" href="#random-variables-posterior-and-ggdist"></a>
+<h2 id="random-variables-posterior-and-ggdist">Random variables: <code>posterior</code> and <code>ggdist</code><a class="anchor" aria-label="anchor" href="#random-variables-posterior-and-ggdist"></a>
 </h2>
-<p>Recent versions of the <code>posterior</code>, <code>brms</code>, and
-<code>ggdist</code> packages make it easy to draw, summarize and plot
-random variables. The <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> can produce objects
-of class <code>rvar</code> which make it easy to use those features by
-returning a data frame with a column of type <code>rvar</code>:</p>
+<p>Recent versions of the <code>posterior</code>, <code>brms</code>, and <code>ggdist</code> packages make it easy to draw, summarize and plot random variables. The <code><a href="../reference/posterior_draws.html">posterior_draws()</a></code> can produce objects of class <code>rvar</code> which make it easy to use those features by returning a data frame with a column of type <code>rvar</code>:</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
@@ -1080,8 +950,8 @@ returning a data frame with a column of type <code>rvar</code>:</p>
 <span><span class="va">rvar</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  am Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   0    17.09  14.9  19.42</span></span>
-<span><span class="co">#&gt;   1    24.38  21.6  27.08</span></span>
+<span><span class="co">#&gt;   0    17.10 14.72  19.43</span></span>
+<span><span class="co">#&gt;   1    24.31 21.65  27.06</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, am, estimate, conf.low, conf.high, rvar</span></span>
@@ -1097,9 +967,7 @@ returning a data frame with a column of type <code>rvar</code>:</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">bernoulli</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>           seed <span class="op">=</span> <span class="fl">1024</span>, silent <span class="op">=</span> <span class="fl">2</span>, chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
-<p>Notice that we can compute average contrasts in two different ways,
-using the <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> function or the
-<code>transform_pre</code> argument:</p>
+<p>Notice that we can compute average contrasts in two different ways, using the <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> function or the <code>transform_pre</code> argument:</p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1118,8 +986,7 @@ using the <code><a href="../reference/comparisons.html">avg_comparisons()</a></c
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre></div>
-<p>Now, we use the <code>hypothesis</code> argument to compare the first
-to the second rows of the <code><a href="../reference/comparisons.html">comparisons()</a></code> output:</p>
+<p>Now, we use the <code>hypothesis</code> argument to compare the first to the second rows of the <code><a href="../reference/comparisons.html">comparisons()</a></code> output:</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -1131,13 +998,7 @@ to the second rows of the <code><a href="../reference/comparisons.html">comparis
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, estimate, conf.low, conf.high</span></span></code></pre></div>
-<p>The <code>hypotheses</code> function of the <code>brms</code> package
-can also perform non-linear hypothesis testing, and it generates some
-convenient statistics and summaries. This function accepts a D-by-P
-matrix of draws from the posterior distribution, where D is the number
-of draws and N is the number of parameters. We can obtain such a matrix
-using the <code>posterior_draws(x, shape = "DxP")</code>, and we can
-simply add a couple calls to our chain of operations:</p>
+<p>The <code>hypotheses</code> function of the <code>brms</code> package can also perform non-linear hypothesis testing, and it generates some convenient statistics and summaries. This function accepts a D-by-P matrix of draws from the posterior distribution, where D is the number of draws and N is the number of parameters. We can obtain such a matrix using the <code>posterior_draws(x, shape = "DxP")</code>, and we can simply add a couple calls to our chain of operations:</p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"DxP"</span><span class="op">)</span> <span class="op">|&gt;</span></span>

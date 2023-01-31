@@ -69,7 +69,7 @@
 
 
 
-<script src="marginalmeans_files/kePrint-0.0.1/kePrint.js"></script><link href="marginalmeans_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="marginalmeans_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="marginalmeans_files/kePrint-0.0.1/kePrint.js"></script><link href="marginalmeans_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Marginal Means</h1>
@@ -81,18 +81,13 @@
 
     
     
-<p>In the context of this package, “marginal means” refer to the values
-obtained by this three step process:</p>
+<p>In the context of this package, “marginal means” refer to the values obtained by this three step process:</p>
 <ol style="list-style-type: decimal">
-<li>Construct a “grid” of predictor values with all combinations of
-categorical variables, and where numeric variables are held at their
-means.</li>
+<li>Construct a “grid” of predictor values with all combinations of categorical variables, and where numeric variables are held at their means.</li>
 <li>Calculate adjusted predictions for each cell in that grid.</li>
-<li>Take the average of those adjusted predictions across one dimension
-of the grid to obtain the marginal means.</li>
+<li>Take the average of those adjusted predictions across one dimension of the grid to obtain the marginal means.</li>
 </ol>
-<p>For example, consider a model with a numeric, a factor, and a logical
-predictor:</p>
+<p>For example, consider a model with a numeric, a factor, and a logical predictor:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -100,15 +95,12 @@ predictor:</p>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html" class="external-link">as.logical</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
-<p>Using the <code>predictions</code> function, we set the
-<code>hp</code> variable at its mean and compute predictions for all
-combinations for <code>am</code> and <code>cyl</code>:</p>
+<p>Using the <code>predictions</code> function, we set the <code>hp</code> variable at its mean and compute predictions for all combinations for <code>am</code> and <code>cyl</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="va">unique</span>, cyl <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>For illustration purposes, it is useful to reshape the above
-results:</p>
+<p>For illustration purposes, it is useful to reshape the above results:</p>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -195,10 +187,7 @@ Marginal means by am
 </tr>
 </tbody>
 </table>
-<p>The marginal means by <code>am</code> and <code>cyl</code> are
-obtained by taking the mean of the adjusted predictions across cells.
-The <code>marginal_means</code> function gives us the same results
-easily:</p>
+<p>The marginal means by <code>am</code> and <code>cyl</code> are obtained by taking the mean of the adjusted predictions across cells. The <code>marginal_means</code> function gives us the same results easily:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -212,9 +201,7 @@ easily:</p>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Results averaged over levels of: cyl, am </span></span>
 <span><span class="co">#&gt; Columns: type, term, value, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>We could obtain the same results with the <code>by</code> argument of
-the <code><a href="../reference/predictions.html">predictions()</a></code> function, which allows us to marginalize
-across some predictors:</p>
+<p>We could obtain the same results with the <code>by</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function, which allows us to marginalize across some predictors:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -240,8 +227,7 @@ across some predictors:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, cyl, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>The same results can be achieved using the <a href="https://cran.r-project.org/package=emmeans" class="external-link">powerful
-<code>emmeans</code> package</a>:</p>
+<p>The same results can be achieved using the <a href="https://cran.r-project.org/package=emmeans" class="external-link">powerful <code>emmeans</code> package</a>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">mod</span>, specs <span class="op">=</span> <span class="st">"cyl"</span><span class="op">)</span></span>
@@ -262,10 +248,7 @@ across some predictors:</p>
 <div class="section level2">
 <h2 id="interactions">Interactions<a class="anchor" aria-label="anchor" href="#interactions"></a>
 </h2>
-<p>By default, the <code><a href="../reference/marginal_means.html">marginal_means()</a></code> function calculates
-marginal means for each categorical predictor one after the other. We
-can also compute marginal means for <em>combinations</em> of categories
-by setting <code>cross=TRUE</code>:</p>
+<p>By default, the <code><a href="../reference/marginal_means.html">marginal_means()</a></code> function calculates marginal means for each categorical predictor one after the other. We can also compute marginal means for <em>combinations</em> of categories by setting <code>cross=TRUE</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
 <span></span>
@@ -275,9 +258,7 @@ by setting <code>cross=TRUE</code>:</p>
 <span>    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">*</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">PClass</span><span class="op">)</span>,</span>
 <span>    family <span class="op">=</span> <span class="va">binomial</span>,</span>
 <span>    data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
-<p>Regardless of the scale of the predictions (<code>type</code>
-argument), <code><a href="../reference/marginal_means.html">marginal_means()</a></code> always computes standard errors
-using the Delta Method:</p>
+<p>Regardless of the scale of the predictions (<code>type</code> argument), <code><a href="../reference/marginal_means.html">marginal_means()</a></code> always computes standard errors using the Delta Method:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span></span>
 <span>    <span class="va">titanic</span>,</span>
@@ -285,17 +266,16 @@ using the Delta Method:</p>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    Term  Value   Mean Std. Error</span></span>
-<span><span class="co">#&gt;     Sex female 0.7383    0.02069</span></span>
-<span><span class="co">#&gt;     Sex   male 0.2354    0.02025</span></span>
 <span><span class="co">#&gt;  PClass    1st 0.7076    0.02726</span></span>
 <span><span class="co">#&gt;  PClass    2nd 0.5113    0.02350</span></span>
 <span><span class="co">#&gt;  PClass    3rd 0.2417    0.02814</span></span>
+<span><span class="co">#&gt;     Sex female 0.7383    0.02069</span></span>
+<span><span class="co">#&gt;     Sex   male 0.2354    0.02025</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Results averaged over levels of: Sex, PClass </span></span>
 <span><span class="co">#&gt; Columns: type, term, value, estimate, std.error</span></span></code></pre></div>
-<p>When the model is linear or on the link scale, it also produces
-confidence intervals:</p>
+<p>When the model is linear or on the link scale, it also produces confidence intervals:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span></span>
 <span>    <span class="va">titanic</span>,</span>
@@ -303,17 +283,16 @@ confidence intervals:</p>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    Term  Value     Mean Std. Error        z   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
-<span><span class="co">#&gt;     Sex female  1.64069     0.2055   7.9838 1.4190e-15  1.2379  2.0435</span></span>
-<span><span class="co">#&gt;     Sex   male -1.33991     0.1237 -10.8278 &lt; 2.22e-16 -1.5825 -1.0974</span></span>
 <span><span class="co">#&gt;  PClass    1st  1.63065     0.2705   6.0279 1.6609e-09  1.1005  2.1609</span></span>
 <span><span class="co">#&gt;  PClass    2nd  0.09968     0.2110   0.4725    0.63657 -0.3138  0.5132</span></span>
 <span><span class="co">#&gt;  PClass    3rd -1.27917     0.1550  -8.2553 &lt; 2.22e-16 -1.5829 -0.9755</span></span>
+<span><span class="co">#&gt;     Sex female  1.64069     0.2055   7.9838 1.4190e-15  1.2379  2.0435</span></span>
+<span><span class="co">#&gt;     Sex   male -1.33991     0.1237 -10.8278 &lt; 2.22e-16 -1.5825 -1.0974</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Results averaged over levels of: Sex, PClass </span></span>
 <span><span class="co">#&gt; Columns: type, term, value, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>It is easy to transform those link-scale marginal means with
-arbitrary functions using the <code>transform_post</code> argument:</p>
+<p>It is easy to transform those link-scale marginal means with arbitrary functions using the <code>transform_post</code> argument:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span></span>
 <span>    <span class="va">titanic</span>,</span>
@@ -322,18 +301,17 @@ arbitrary functions using the <code>transform_post</code> argument:</p>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    Term  Value   Mean   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     Sex female 0.8376 1.4190e-15 0.7752 0.8853</span></span>
-<span><span class="co">#&gt;     Sex   male 0.2075 &lt; 2.22e-16 0.1704 0.2502</span></span>
 <span><span class="co">#&gt;  PClass    1st 0.8363 1.6609e-09 0.7503 0.8967</span></span>
 <span><span class="co">#&gt;  PClass    2nd 0.5249    0.63657 0.4222 0.6256</span></span>
 <span><span class="co">#&gt;  PClass    3rd 0.2177 &lt; 2.22e-16 0.1704 0.2738</span></span>
+<span><span class="co">#&gt;     Sex female 0.8376 1.4190e-15 0.7752 0.8853</span></span>
+<span><span class="co">#&gt;     Sex   male 0.2075 &lt; 2.22e-16 0.1704 0.2502</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
 <span><span class="co">#&gt; Results averaged over levels of: Sex, PClass </span></span>
 <span><span class="co">#&gt; Columns: type, term, value, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p><code><a href="../reference/marginal_means.html">marginal_means()</a></code> defaults to reporting EMMs for each
-category individually, without cross-margins:</p>
+<p><code><a href="../reference/marginal_means.html">marginal_means()</a></code> defaults to reporting EMMs for each category individually, without cross-margins:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">titanic2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span></span>
 <span>    <span class="va">Survived</span> <span class="op">~</span> <span class="va">Sex</span> <span class="op">+</span> <span class="va">PClass</span> <span class="op">+</span> <span class="va">Age</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">PClass</span><span class="op">)</span>,</span>
@@ -345,11 +323,11 @@ category individually, without cross-margins:</p>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"PClass"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    Term  Value   Mean   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     Sex female 0.7854 &lt; 2.22e-16 0.7308 0.8315</span></span>
-<span><span class="co">#&gt;     Sex   male 0.2085 &lt; 2.22e-16 0.1709 0.2519</span></span>
 <span><span class="co">#&gt;  PClass    1st 0.7778 7.4982e-11 0.7060 0.8362</span></span>
 <span><span class="co">#&gt;  PClass    2nd 0.4903    0.82106 0.4072 0.5740</span></span>
 <span><span class="co">#&gt;  PClass    3rd 0.2195 4.2475e-14 0.1683 0.2811</span></span>
+<span><span class="co">#&gt;     Sex female 0.7854 &lt; 2.22e-16 0.7308 0.8315</span></span>
+<span><span class="co">#&gt;     Sex   male 0.2085 &lt; 2.22e-16 0.1709 0.2519</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
@@ -372,13 +350,12 @@ category individually, without cross-margins:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, Sex, PClass, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
+<span><span class="co">#&gt; Columns: type, Sex, PClass, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="group-averages-with-the-by-argument">Group averages with the <code>by</code> argument<a class="anchor" aria-label="anchor" href="#group-averages-with-the-by-argument"></a>
 </h2>
-<p>We can collapse marginal means via averaging using the
-<code>by</code> argument:</p>
+<p>We can collapse marginal means via averaging using the <code>by</code> argument:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
@@ -401,8 +378,7 @@ category individually, without cross-margins:</p>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
 <span><span class="co">#&gt; Results averaged over levels of: cyl, vs, am </span></span>
 <span><span class="co">#&gt; Columns: by, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>And we can use the <code>hypothesis</code> argument to compare those
-new collapsed subgroups:</p>
+<p>And we can use the <code>hypothesis</code> argument to compare those new collapsed subgroups:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="va">by</span>, variables <span class="op">=</span> <span class="st">"cyl"</span>, hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -417,15 +393,12 @@ new collapsed subgroups:</p>
 <div class="section level2">
 <h2 id="custom-contrasts-and-linear-combinations">Custom Contrasts and Linear Combinations<a class="anchor" aria-label="anchor" href="#custom-contrasts-and-linear-combinations"></a>
 </h2>
-<p>See the vignette on <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Custom
-Contrasts and Combinations</a></p>
+<p>See the vignette on <a href="https://vincentarelbundock.github.io/marginaleffects/articles/hypothesis.html">Custom Contrasts and Combinations</a></p>
 </div>
 <div class="section level2">
 <h2 id="tidy-summaries">Tidy summaries<a class="anchor" aria-label="anchor" href="#tidy-summaries"></a>
 </h2>
-<p>The <code>summary</code>, <code>tidy</code>, and <code>glance</code>
-functions are also available to summarize and manipulate the
-results:</p>
+<p>The <code>summary</code>, <code>tidy</code>, and <code>glance</code> functions are also available to summarize and manipulate the results:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span></span>
@@ -462,16 +435,12 @@ results:</p>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
 <span><span class="co">#&gt; Results averaged over levels of: cyl, vs, am </span></span>
 <span><span class="co">#&gt; Columns: type, term, value, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Thanks to those tidiers, we can also present the results in the style
-of a regression table <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">using the
-<code>modelsummary</code> package.</a> For examples, see <a href="https://vincentarelbundock.github.io/marginaleffects/articles/modelsummary.html">the
-tables and plots vignette.</a></p>
+<p>Thanks to those tidiers, we can also present the results in the style of a regression table <a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">using the <code>modelsummary</code> package.</a> For examples, see <a href="https://vincentarelbundock.github.io/marginaleffects/articles/modelsummary.html">the tables and plots vignette.</a></p>
 </div>
 <div class="section level2">
 <h2 id="case-study-multinomial-logit">Case study: Multinomial Logit<a class="anchor" aria-label="anchor" href="#case-study-multinomial-logit"></a>
 </h2>
-<p>This example requires version 0.2.0 of the
-<code>marginaleffects</code> package.</p>
+<p>This example requires version 0.2.0 of the <code>marginaleffects</code> package.</p>
 <p>To begin, we generate data and estimate a large model:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span></span>
@@ -491,14 +460,11 @@ tables and plots vignette.</a></p>
 <span><span class="va">void</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html" class="external-link">capture.output</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">.</span>, <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
-<p>Try to compute marginal means, but realize that your grid won’t fit
-in memory:</p>
+<p>Try to compute marginal means, but realize that your grid won’t fit in memory:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error: You are trying to create a prediction grid with more than 1 billion rows, which is likely to exceed the memory and computational power available on your local machine. Presumably this is because you are considering many variables with many levels. All of the functions in the `marginaleffects` package include arguments to specify a restricted list of variables over which to create a prediction grid.</span></span></code></pre></div>
-<p>Use the <code>variables</code> and <code>variables_grid</code>
-arguments to compute marginal means over a more reasonably sized
-grid:</p>
+<p>Use the <code>variables</code> and <code>variables_grid</code> arguments to compute marginal means over a more reasonably sized grid:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/marginal_means.html">marginal_means</a></span><span class="op">(</span><span class="va">mod</span>,</span>
 <span>              type <span class="op">=</span> <span class="st">"probs"</span>,</span>
@@ -508,37 +474,22 @@ grid:</p>
 <div class="section level2">
 <h2 id="plot-conditional-marginal-means">Plot conditional marginal means<a class="anchor" aria-label="anchor" href="#plot-conditional-marginal-means"></a>
 </h2>
-<p>The <code>marginaleffects</code> package offers several functions to
-plot how some quantities vary as a function of others:</p>
+<p>The <code>marginaleffects</code> package offers several functions to plot how some quantities vary as a function of others:</p>
 <ul>
 <li>
-<code>plot_predictions</code>: Conditional adjusted predictions –
-how does the predicted outcome change as a function of regressors?</li>
+<code>plot_predictions</code>: Conditional adjusted predictions – how does the predicted outcome change as a function of regressors?</li>
 <li>
-<code>plot_comparisons</code>: Conditional comparisons – how do
-contrasts change as a function of regressors?</li>
+<code>plot_comparisons</code>: Conditional comparisons – how do contrasts change as a function of regressors?</li>
 <li>
-<code>plot_slopes</code>: Conditional marginal effects – how does
-the slope change as a function of regressors?</li>
+<code>plot_slopes</code>: Conditional marginal effects – how does the slope change as a function of regressors?</li>
 </ul>
-<p>There is no analogous function for marginal means. However, it is
-very easy to achieve a similar effect using the
-<code><a href="../reference/predictions.html">predictions()</a></code> function, its <code>by</code> argument, and
-standard plotting functions. In the example below, we take these
-steps:</p>
+<p>There is no analogous function for marginal means. However, it is very easy to achieve a similar effect using the <code><a href="../reference/predictions.html">predictions()</a></code> function, its <code>by</code> argument, and standard plotting functions. In the example below, we take these steps:</p>
 <ol style="list-style-type: decimal">
-<li>Estimate a model with one continuous (<code>hp</code>) and one
-categorical regressor (<code>cyl</code>).</li>
-<li>Create a perfectly “balanced” data grid for each combination of
-<code>hp</code> and <code>cyl</code>. This is specified by the user in
-the <code><a href="../reference/datagrid.html">datagrid()</a></code> call.</li>
-<li>Compute fitted values (aka “adjusted predictions”) for each cell of
-the grid.</li>
-<li>Use the <code>by</code> argument to take the average of predicted
-values for each value of <code>hp</code>, across margins of
-<code>cyl</code>.</li>
-<li>Compute standard errors around the averaged predicted values (i.e.,
-marginal means).</li>
+<li>Estimate a model with one continuous (<code>hp</code>) and one categorical regressor (<code>cyl</code>).</li>
+<li>Create a perfectly “balanced” data grid for each combination of <code>hp</code> and <code>cyl</code>. This is specified by the user in the <code><a href="../reference/datagrid.html">datagrid()</a></code> call.</li>
+<li>Compute fitted values (aka “adjusted predictions”) for each cell of the grid.</li>
+<li>Use the <code>by</code> argument to take the average of predicted values for each value of <code>hp</code>, across margins of <code>cyl</code>.</li>
+<li>Compute standard errors around the averaged predicted values (i.e., marginal means).</li>
 <li>Create symmetric confidence intervals in the usual manner.</li>
 <li>Plot the results.</li>
 </ol>
