@@ -119,16 +119,20 @@
 </h3>
 <p>We can compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">adjusted predicted values</a> of the outcome variable (i.e., probability of survival aboard the Titanic) using the <code>predictions</code> function. By default, this function calculates predictions for each row of the dataset:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;    0.9367 0.9070 0.9590</span></span>
-<span><span class="co">#&gt;    0.8493 0.7453 0.9187</span></span>
-<span><span class="co">#&gt;    0.9433 0.8949 0.9704</span></span>
-<span><span class="co">#&gt;    0.5131 0.4302 0.6000</span></span>
-<span><span class="co">#&gt;    0.9375 0.9080 0.9601</span></span>
-<span><span class="co">#&gt;    0.2731 0.2029 0.3518</span></span>
+<span><span class="co">#&gt;  Estimate    2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt;  0.936660 0.906967 0.95901</span></span>
+<span><span class="co">#&gt;  0.849305 0.745301 0.91867</span></span>
+<span><span class="co">#&gt;  0.943329 0.894859 0.97042</span></span>
+<span><span class="co">#&gt;  0.513101 0.430243 0.59996</span></span>
+<span><span class="co">#&gt;  0.937494 0.908005 0.96006</span></span>
+<span><span class="co">#&gt; --- 1036 rows omitted. See ?avg_predictions and ?print.marginaleffects --- </span></span>
+<span><span class="co">#&gt;  0.037634 0.023489 0.05812</span></span>
+<span><span class="co">#&gt;  0.585921 0.501708 0.66631</span></span>
+<span><span class="co">#&gt;  0.104330 0.080088 0.13365</span></span>
+<span><span class="co">#&gt;  0.101658 0.077891 0.13068</span></span>
+<span><span class="co">#&gt;  0.091624 0.069135 0.11885 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, X, survived, sex, age, passengerClass, woman</span></span></code></pre></div>
@@ -563,8 +567,8 @@
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4506 0.3399 0.5648</span></span>
-<span><span class="co">#&gt;  1   0.5507 0.4365 0.6657</span></span>
+<span><span class="co">#&gt;  0   0.4528 0.3373 0.5666</span></span>
+<span><span class="co">#&gt;  1   0.5519 0.4317 0.6639</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -576,8 +580,8 @@
 <span>    allow_new_levels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09725 0.0489 0.1609</span></span>
+<span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09588 0.04719 0.1583</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -593,8 +597,8 @@
 <span>  contrasts <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="st">"AME x"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09882362 0.09714842 0.04927386 0.1611242          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt;            M        Mdn         LL      UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
+<span><span class="co">#&gt; 1 0.09959796 0.09750104 0.04766284 0.16236          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -949,8 +953,8 @@
 <span><span class="va">rvar</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  am Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   0    17.13 14.79  19.34</span></span>
-<span><span class="co">#&gt;   1    24.33 21.59  27.05</span></span>
+<span><span class="co">#&gt;   0    17.12 14.84  19.53</span></span>
+<span><span class="co">#&gt;   1    24.37 21.54  27.27</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, am, estimate, conf.low, conf.high, rvar</span></span>
