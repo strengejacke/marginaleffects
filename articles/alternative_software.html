@@ -111,7 +111,7 @@
 </h2>
 <p>The <a href="https://cran.r-project.org/web/packages/emmeans/index.html" class="external-link"><code>emmeans</code> package</a> is developed by Russell V. Lenth and colleagues. <code>emmeans</code> is a truly incredible piece of software, and a trailblazer in the <code>R</code> ecosystem. It is an <em>extremely</em> powerful package whose functionality overlaps <code>marginaleffects</code> to a significant degree: marginal means, contrasts, and slopes. Even if the two packages can compute many of the same quantities, <code>emmeans</code> and <code>marginaleffects</code> have pretty different philosophies with respect to user interface and computation.</p>
 <p>An <code>emmeans</code> analysis typically starts by computing <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">“marginal means”</a> by holding all numeric covariates at their means, and by averaging across a balanced grid of categorical predictors. Then, users can use the <code><a href="https://rdrr.io/pkg/emmeans/man/contrast.html" class="external-link">contrast()</a></code> function to estimate the difference between marginal means.</p>
-<p>The <code>marginaleffects</code> package supplies a <code>marginal_means</code> function which can also compute marginal means. However, the typical analysis is more squarely centered on predicted/fitted values. This is a useful starting point because, in many cases, analysts will find it easy and intuitive to express their scientific queries in terms of changes in predicted values. For example,</p>
+<p>The <code>marginaleffects</code> package supplies a <code>marginal_means</code> function which can replicate most <code>emmeans</code> analyses by computing marginal means. However, the typical analysis is more squarely centered on predicted/fitted values. This is a useful starting point because, in many cases, analysts will find it easy and intuitive to express their scientific queries in terms of changes in predicted values. For example,</p>
 <ul>
 <li>How does the average predicted probability of survival differ between treatment and control group?</li>
 <li>What is the difference between the predicted wage of college and high school graduates?</li>
@@ -132,8 +132,8 @@
 <ul>
 <li>Support more model types.</li>
 <li>Simpler, more intuitive, and highly consistent user interface.</li>
-<li>Easier to compute average marginal effects and unit-level marginal effects for whole datasets.</li>
-<li>Easier to compute marginal effects (slopes) for custom grids and continuous regressors.</li>
+<li>Easier to compute average slopes or unit-level contrasts for whole datasets.</li>
+<li>Easier to compute slopes (aka marginal effects, trends, or partial derivatives) for custom grids and continuous regressors.</li>
 <li>Easier to implement causal inference strategies like the parametric g-formula and regression adjustement in experiments (see vignettes).</li>
 <li>Allows the computation of arbitrary quantities of interest via user-supplied functions and automatic delta method inference.</li>
 <li>Common plots are easy with the <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code>, <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code>, and <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> functions.</li>
@@ -142,8 +142,8 @@
 <p>AFAICT, the main advantages of <code>emmeans</code> over <code>marginaleffects</code> are:</p>
 <ul>
 <li>Omnibus tests.</li>
-<li>Equivalence and noninferiority tests.</li>
 <li>Multiplicity adjustments.</li>
+<li>Marginal means (but not slopes or contrasts) are often faster to compute.</li>
 </ul>
 <p>Please let me know if you find other features in <code>emmeans</code> so I can add them to this list.</p>
 <p>The <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal Means Vignette</a> includes side-by-side comparisons of <code>emmeans</code> and <code>marginaleffects</code> to compute marginal means. The rest of this section compares the syntax for contrasts and marginaleffects.</p>
@@ -456,12 +456,12 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">mar</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb   fitted se.fitted   dydx_cyl    dydx_hp   dydx_wt Var_dydx_cyl  Var_dydx_hp Var_dydx_wt X_weights X_at_number</span></span>
-<span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 22.82043 0.6876212 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 22.01285 0.6056817 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 25.96040 0.7349593 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 20.93608 0.5800910 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 17.16780 0.8322986 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
-<span><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 20.25036 0.6638322 -0.9416168 -0.0180381 -3.166973    0.3035105 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 22.82043 0.6876212 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 22.01285 0.6056817 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 25.96040 0.7349593 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 20.93608 0.5800910 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 17.16780 0.8322986 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
+<span><span class="co">#&gt; 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 20.25036 0.6638322 -0.9416168 -0.0180381 -3.166973    0.3035104 0.0001410451   0.5484521        NA           1</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -484,12 +484,12 @@
 <code class="sourceCode R"><span><span class="va">mar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins</a></span><span class="op">(</span><span class="va">mod</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">prediction</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/prediction/man/mean_or_mode.html" class="external-link">mean_or_mode</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span>, unit_ses <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">mar</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        mpg    cyl     disp       hp     drat      wt     qsec     vs      am   gear   carb   fitted se.fitted   dydx_cyl    dydx_hp   dydx_wt Var_dydx_cyl  Var_dydx_hp Var_dydx_wt SE_dydx_cyl SE_dydx_hp SE_dydx_wt X_weights X_at_number</span></span>
-<span><span class="co">#&gt; 1 20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125 20.09062 0.4439832 -0.9416168 -0.0180381 -3.166973    0.3035082 0.0001410457     0.54846   0.5509157 0.01187627  0.7405808        NA           1</span></span>
+<span><span class="co">#&gt; 1 20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375 0.40625 3.6875 2.8125 20.09062 0.4439832 -0.9416168 -0.0180381 -3.166973    0.3035013 0.0001410453     0.54846   0.5509096 0.01187625  0.7405808        NA           1</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %    97.5 %</span></span>
-<span><span class="co">#&gt;   cyl -0.94162    0.55092 -1.709   0.087417 -2.02139  0.138160</span></span>
+<span><span class="co">#&gt;   cyl -0.94162    0.55092 -1.709   0.087417 -2.02139  0.138159</span></span>
 <span><span class="co">#&gt;    hp -0.01804    0.01188 -1.519   0.128803 -0.04132  0.005239</span></span>
 <span><span class="co">#&gt;    wt -3.16697    0.74058 -4.276 1.8997e-05 -4.61847 -1.715471</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -695,7 +695,7 @@ hp           |
 <span><span class="va">J_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">J</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="va">J_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">J_mean</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">J_mean</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.03486650 0.03882204 0.01251382</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.03486650 0.03882203 0.01251382</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">

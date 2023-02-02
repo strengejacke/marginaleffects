@@ -75,7 +75,11 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 [![status](https://tinyverse.netlify.com/badge/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 --><p>Compute and plot predictions, slopes, marginal means, and comparisons (contrasts, risk ratios, odds ratios, etc.) for over 70 classes of statistical models in R. Conduct linear and non-linear hypothesis tests, as well as equivalence tests using the delta method.</p>
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/">The <code>marginaleffects</code> website</a> includes a <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">“Get started”</a> tutorial and 25+ <a href="https://vincentarelbundock.github.io/marginaleffects/articles/index.html">vignettes, case studies, and technical notes.</a></p>
+<p>The website includes a <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">“Get started” tutorial</a> and over 25 <a href="https://vincentarelbundock.github.io/marginaleffects/articles/index.html">vignettes, case studies, and technical notes.</a></p>
+<!--
+* [CRAN release](https://vincentarelbundock.github.io/marginaleffects/)
+* [Development version](https://vincentarelbundock.github.io/marginaleffects/dev)
+-->
 </div>
 <div class="section level1">
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -106,12 +110,12 @@
 <li>
 <em>Efficient:</em> <a href="https://vincentarelbundock.github.io/marginaleffects/articles/performance.html">Some operations</a> are orders of magnitude faster than with the <code>margins</code> package, and the memory footprint is much smaller.</li>
 <li>
+<em>Valid:</em> When possible, <a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html">numerical results are checked</a> against alternative software like <code>Stata</code> or other <code>R</code> packages.</li>
+<li>
 <em>Thin:</em> Few dependencies.</li>
 <li>
-<em>Standards-compliant:</em> <code>marginaleffects</code> follows “tidy” principles and returns objects that work with standard functions like <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and <code><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance()</a></code>. These objects are easy to program with and feed to <a href="https://vincentarelbundock.github.io/marginaleffects/">other packages like <code>modelsummary</code>.</a>
+<em>Standards-compliant:</em> <code>marginaleffects</code> follows “tidy” principles and returns objects that work with standard functions like <code>plot</code>, <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and <code><a href="https://generics.r-lib.org/reference/glance.html" class="external-link">glance()</a></code>. These objects are easy to program with and feed to <a href="https://vincentarelbundock.github.io/marginaleffects/">other packages like <code>modelsummary</code>.</a>
 </li>
-<li>
-<em>Valid:</em> When possible, <a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html">numerical results are checked</a> against alternative software like <code>Stata</code> or other <code>R</code> packages. Unfortunately, it is not possible to test every model type, so users are still strongly encouraged to cross-check their results.</li>
 <li>
 <em>Extensible:</em> Adding support for new models is very easy, often requiring less than 10 lines of new code. Please submit <a href="https://github.com/vincentarelbundock/marginaleffects/issues" class="external-link">feature requests on Github.</a>
 </li>
@@ -123,9 +127,9 @@
 <h1 id="what">What?<a class="anchor" aria-label="anchor" href="#what"></a>
 </h1>
 <p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot three principal quantities of interest: (1) predictions, (2) comparisons, and (3) slopes. In addition, the package includes a convenience function to compute a fourth estimand, “marginal means”, which is a special case of averaged predictions. <code>marginaleffects</code> can also average (or “marginalize”) unit-level (or “conditional”) estimates of all those quantities, and conduct hypothesis tests on them.</p>
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions:</a></p>
+<p><a href="https://vincentarelbundock.github.io/articles/predictions.html" class="external-link">Predictions:</a></p>
 <blockquote><p>The outcome predicted by a fitted model on a specified scale for a given combination of values of the predictor variables, such as their observed values, their means, or factor levels. a.k.a. Fitted values, adjusted predictions. <code><a href="reference/predictions.html">predictions()</a></code>, <code><a href="reference/predictions.html">avg_predictions()</a></code>, <code><a href="reference/plot_predictions.html">plot_predictions()</a></code>.</p></blockquote>
-<p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/comparisons.html">Comparisons:</a></p>
+<p><a href="https://vincentarelbundock.github.io/articles/comparisons.html" class="external-link">Comparisons:</a></p>
 <blockquote><p>Compare the predictions made by a model for different regressor values (e.g., college graduates vs. others): contrasts, differences, risk ratios, odds, etc. <code><a href="reference/comparisons.html">comparisons()</a></code>, <code><a href="reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="reference/plot_comparisons.html">plot_comparisons()</a></code>.</p></blockquote>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes:</a></p>
 <blockquote><p>Partial derivative of the regression equation with respect to a regressor of interest. a.k.a. Marginal effects, trends. <code><a href="reference/slopes.html">slopes()</a></code>, <code><a href="reference/slopes.html">avg_slopes()</a></code>, <code><a href="reference/plot_slopes.html">plot_slopes()</a></code>.</p></blockquote>
@@ -143,7 +147,7 @@
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/comparisons.html"><code>avg_predictions()</code></a></td>
+<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/avg_comparisons.html"><code>avg_predictions()</code></a></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -155,7 +159,7 @@
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/comparisons.html"><code>avg_comparisons()</code></a></td>
+<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/avg_comparisons.html"><code>avg_comparisons()</code></a></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -167,7 +171,7 @@
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/slopes.html"><code>avg_slopes()</code></a></td>
+<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/avg_slopes.html"><code>avg_slopes()</code></a></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -183,7 +187,7 @@
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagrid.html"><code>datagridcf()</code></a></td>
+<td align="left"><a href="https://vincentarelbundock.github.io/marginaleffects/reference/datagridcf.html"><code>datagridcf()</code></a></td>
 </tr>
 <tr class="odd">
 <td align="left">Hypothesis &amp; Equivalence</td>
