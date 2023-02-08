@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -199,7 +199,7 @@ Marginal means by am
 <span><span class="co">#&gt;    am  TRUE 22.48     0.8343 26.94 &lt; 2.22e-16 20.84  24.11</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Results averaged over levels of: cyl, am </span></span>
+<span><span class="co">#&gt; Results averaged over levels of: hp, cyl, am </span></span>
 <span><span class="co">#&gt; Columns: type, term, value, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
 <p>We could obtain the same results with the <code>by</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function, which allows us to marginalize across some predictors:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -209,8 +209,8 @@ Marginal means by am
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="va">unique</span>, cyl <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     am Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   TRUE    22.48     0.8343 26.94 &lt; 2.22e-16 20.84  24.11</span></span>
 <span><span class="co">#&gt;  FALSE    18.32     0.7854 23.33 &lt; 2.22e-16 16.78  19.86</span></span>
+<span><span class="co">#&gt;   TRUE    22.48     0.8343 26.94 &lt; 2.22e-16 20.84  24.11</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, am, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
@@ -221,8 +221,8 @@ Marginal means by am
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="va">unique</span>, cyl <span class="op">=</span> <span class="va">unique</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  cyl Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;    6    18.96      1.073 17.67 &lt; 2.22e-16 16.86  21.06</span></span>
 <span><span class="co">#&gt;    4    22.88      1.357 16.87 &lt; 2.22e-16 20.23  25.54</span></span>
+<span><span class="co">#&gt;    6    18.96      1.073 17.67 &lt; 2.22e-16 16.86  21.06</span></span>
 <span><span class="co">#&gt;    8    19.35      1.377 14.05 &lt; 2.22e-16 16.65  22.05</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
@@ -245,6 +245,13 @@ Marginal means by am
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Results are averaged over the levels of: cyl </span></span>
 <span><span class="co">#&gt; Confidence level used: 0.95</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="marginal-means-vs--average-predictions">Marginal Means vs. Average Predictions<a class="anchor" aria-label="anchor" href="#marginal-means-vs--average-predictions"></a>
+</h2>
+<p>What should scientists report? Marginal means or average predictions?</p>
+<p>Many analysts ask this question, but unfortunately there isn’t a single answer. As explained above, marginal means are a special case of predictions, made on a perfectly balanced grid of categorical predictors, with numeric predictors held at their means, and marginalized with respect to some focal variables. Whether the analyst prefers to report this specific type of marginal means or another kind of average prediction will depend on the characteristics of the sample and the population to which they want to generalize.</p>
+<p>After reading this vignette and the discussion of <code>emmeans</code> in the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">Alternative Software vignette</a>, you may want to consult with a statistician to discuss your specific real-world problem and make an informed choice.</p>
+</div>
 <div class="section level2">
 <h2 id="interactions">Interactions<a class="anchor" aria-label="anchor" href="#interactions"></a>
 </h2>
@@ -376,7 +383,7 @@ Marginal means by am
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
-<span><span class="co">#&gt; Results averaged over levels of: cyl, vs, am </span></span>
+<span><span class="co">#&gt; Results averaged over levels of: vs, am, cyl </span></span>
 <span><span class="co">#&gt; Columns: by, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
 <p>And we can use the <code>hypothesis</code> argument to compare those new collapsed subgroups:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -387,7 +394,7 @@ Marginal means by am
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
-<span><span class="co">#&gt; Results averaged over levels of: cyl, vs, am </span></span>
+<span><span class="co">#&gt; Results averaged over levels of: vs, am, cyl </span></span>
 <span><span class="co">#&gt; Columns: term, estimate, p.value, conf.low, conf.high</span></span></code></pre></div>
 </div>
 <div class="section level2">

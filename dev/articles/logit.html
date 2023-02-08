@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,6 +98,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">modelsummary</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rms/" class="external-link">rms</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span></span>
@@ -135,9 +136,9 @@ txSK
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.065)
 </td>
 </tr>
@@ -195,16 +196,20 @@ RMSE
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
-<span>    variables <span class="op">=</span> <span class="st">"tx"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    variables <span class="op">=</span> <span class="st">"tx"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error     z Pr(&gt;|z|)     2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0010742  0.0004967 2.163 0.030559 0.0001007 0.002048</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0008573  0.0003800 2.256 0.024056 0.0001126 0.001602</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0017798  0.0007784 2.286 0.022234 0.0002541 0.003305</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0011367  0.0004999 2.274 0.022970 0.0001570 0.002117</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0013655  0.0005934 2.301 0.021383 0.0002025 0.002529</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0024016  0.0010127 2.371 0.017720 0.0004167 0.004386</span></span>
+<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error     z   Pr(&gt;|z|)      2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0010742  0.0004967 2.163 0.03055900  1.007e-04 0.002048</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0008573  0.0003800 2.256 0.02405605  1.126e-04 0.001602</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0017798  0.0007784 2.286 0.02223446  2.541e-04 0.003305</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0011367  0.0004999 2.274 0.02296960  1.570e-04 0.002117</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0013655  0.0005934 2.301 0.02138288  2.025e-04 0.002529</span></span>
+<span><span class="co">#&gt; --- 30500 rows omitted. See ?avg_comparisons and ?print.marginaleffects --- </span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0024287  0.0008080 3.006 0.00264898  8.450e-04 0.004012</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0121303  0.0039010 3.110 0.00187380  4.484e-03 0.019776</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0368116  0.0103587 3.554 0.00037987  1.651e-02 0.057114</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0229691  0.0069827 3.289 0.00100394  9.283e-03 0.036655</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0497069  0.0128528 3.867 0.00011000  2.452e-02 0.074898 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>Population-averaged (aka “marginal”) adjusted risk difference (<a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html">see this vignette</a>) can be obtained using the <code>avg_*()</code> functions or using the <code>by</code> argument:</p>
@@ -237,13 +242,13 @@ RMSE
 <span>    <span class="va">mod</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"tx"</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"lnoravg"</span>,</span>
-<span>    transform_post <span class="op">=</span> <span class="va">exp</span><span class="op">)</span></span>
+<span>    transform_post <span class="op">=</span> <span class="st">"exp"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term                 Contrast Estimate   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
 <span><span class="co">#&gt;    tx ln(odds(SK) / odds(tPA))    1.192 9.4701e-05 1.091  1.301</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
+<span><span class="co">#&gt; Post-transformation:  exp </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -252,43 +257,48 @@ RMSE
 <p>Instead of estimating one-number summaries, we can focus on unit-level proportion differences using <code><a href="../reference/comparisons.html">comparisons()</a></code>. This function applies the fitted logistic regression model to predict outcome probabilities for each patient, i.e., unit-level.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"tx"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
+<span><span class="va">cmp</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error     z Pr(&gt;|z|)     2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0010742  0.0004967 2.163 0.030559 0.0001007 0.002048</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0008573  0.0003800 2.256 0.024056 0.0001126 0.001602</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0017798  0.0007784 2.286 0.022234 0.0002541 0.003305</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0011367  0.0004999 2.274 0.022970 0.0001570 0.002117</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0013655  0.0005934 2.301 0.021383 0.0002025 0.002529</span></span>
-<span><span class="co">#&gt;    tx SK - tPA 0.0024016  0.0010127 2.371 0.017720 0.0004167 0.004386</span></span>
+<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error     z   Pr(&gt;|z|)      2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0010742  0.0004967 2.163 0.03055900  1.007e-04 0.002048</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0008573  0.0003800 2.256 0.02405605  1.126e-04 0.001602</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0017798  0.0007784 2.286 0.02223446  2.541e-04 0.003305</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0011367  0.0004999 2.274 0.02296960  1.570e-04 0.002117</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0013655  0.0005934 2.301 0.02138288  2.025e-04 0.002529</span></span>
+<span><span class="co">#&gt; --- 30500 rows omitted. See ?avg_comparisons and ?print.marginaleffects --- </span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0024287  0.0008080 3.006 0.00264898  8.450e-04 0.004012</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0121303  0.0039010 3.110 0.00187380  4.484e-03 0.019776</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0368116  0.0103587 3.554 0.00037987  1.651e-02 0.057114</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0229691  0.0069827 3.289 0.00100394  9.283e-03 0.036655</span></span>
+<span><span class="co">#&gt;    tx SK - tPA 0.0497069  0.0128528 3.867 0.00011000  2.452e-02 0.074898 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response</span></span></code></pre></div>
 <p>Show the predicted probability for individual patients under both treatment alternatives.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cmp</span><span class="op">$</span><span class="va">predicted_hi</span>,</span>
-<span>     y <span class="op">=</span> <span class="va">cmp</span><span class="op">$</span><span class="va">predicted_lo</span>,</span>
-<span>     main <span class="op">=</span> <span class="st">"Risk of Mortality"</span>,</span>
-<span>     xlab <span class="op">=</span> <span class="st">"SK"</span>,</span>
-<span>     ylab <span class="op">=</span> <span class="st">"tPA"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cmp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">predicted_hi</span>, <span class="va">predicted_lo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="fl">1</span>, intercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"SK"</span>, y <span class="op">=</span> <span class="st">"tPA"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="logit_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
-<p>Lastly, present the entire distribution of unit-level proportion differences and its mean and median.</p>
+<p>We can present the entire distribution of unit-level proportion differences an a cumulative distribution function:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span>,</span>
-<span>     breaks <span class="op">=</span> <span class="fl">100</span>,</span>
-<span>     main <span class="op">=</span> <span class="st">"Distribution of unit-level contrasts"</span>,</span>
-<span>     xlab <span class="op">=</span> <span class="st">"SK - tPA"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cmp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_ecdf.html" class="external-link">stat_ecdf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="logit_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
+<p>Or the same information as a histogram with the mean and median.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cmp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkgreen"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"SK - TPA"</span>, title <span class="op">=</span> <span class="st">"Distribution of unit-level contrasts"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="logit_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="appendix">Appendix<a class="anchor" aria-label="anchor" href="#appendix"></a>
 </h3>
 <p><code><a href="../reference/comparisons.html">comparisons()</a></code> performed the following calculations under the hood:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span>  <span class="op">&lt;-</span> <span class="va">gusto</span></span>
 <span></span>
 <span><span class="va">d</span><span class="op">$</span><span class="va">tx</span> <span class="op">=</span> <span class="st">"SK"</span></span>
@@ -299,10 +309,10 @@ RMSE
 <span></span>
 <span><span class="va">comparison</span> <span class="op">&lt;-</span> <span class="va">predicted_hi</span> <span class="op">-</span> <span class="va">predicted_lo</span></span></code></pre></div>
 <p>The original dataset contains 30510 patients, thus <code><a href="../reference/comparisons.html">comparisons()</a></code> generates an output with same amount of rows.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">gusto</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 30510</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">cmp</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 30510</span></span></code></pre></div>
 </div>

@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -235,8 +235,8 @@
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">mtcars</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"drat"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Estimate Std. Error      z   Pr(&gt;|z|)  2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;    hp -0.05179   0.009293 -5.573 2.5050e-08 -0.070 -0.03357</span></span>
 <span><span class="co">#&gt;  drat  4.69816   1.191633  3.943 8.0596e-05  2.363  7.03372</span></span>
+<span><span class="co">#&gt;    hp -0.05179   0.009293 -5.573 2.5059e-08 -0.070 -0.03357</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
@@ -244,13 +244,13 @@
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     23.42     0.6711 34.89 &lt; 2.22e-16 22.10  24.73</span></span>
-<span><span class="co">#&gt;     23.42     0.6711 34.89 &lt; 2.22e-16 22.10  24.73</span></span>
-<span><span class="co">#&gt;     24.06     0.7204 33.40 &lt; 2.22e-16 22.65  25.47</span></span>
-<span><span class="co">#&gt;     19.56     0.9988 19.59 &lt; 2.22e-16 17.61  21.52</span></span>
-<span><span class="co">#&gt;     16.53     0.7354 22.47 &lt; 2.22e-16 15.09  17.97</span></span>
-<span><span class="co">#&gt;     18.32     1.3433 13.64 &lt; 2.22e-16 15.69  20.95</span></span>
+<span><span class="co">#&gt;  Estimate Std. Error     z   Pr(&gt;|z|) 2.5 % 97.5 %  mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt;     23.42     0.6711 34.89 &lt; 2.22e-16 22.10  24.73 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt;     23.42     0.6711 34.89 &lt; 2.22e-16 22.10  24.73 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt;     24.06     0.7204 33.40 &lt; 2.22e-16 22.65  25.47 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt;     19.56     0.9988 19.59 &lt; 2.22e-16 17.61  21.52 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt;     16.53     0.7354 22.47 &lt; 2.22e-16 15.09  17.97 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span><span class="co">#&gt;     18.32     1.3433 13.64 &lt; 2.22e-16 15.69  20.95 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span></code></pre></div>

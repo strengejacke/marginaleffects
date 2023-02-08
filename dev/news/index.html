@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,19 +51,35 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.8.1.9001" id="marginaleffects-0819001">marginaleffects 0.8.1.9001<a class="anchor" aria-label="anchor" href="#marginaleffects-0819001"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.9.0.9000" id="marginaleffects-0909000">marginaleffects 0.9.0.9000<a class="anchor" aria-label="anchor" href="#marginaleffects-0909000"></a></h2>
+<p>New models supported:</p>
+<ul><li><code>MCMCglmm</code></li></ul><p>Other:</p>
+<ul><li>Major performance improvements for many functions. Thanks to Etienne Bacher.</li>
+<li>The <code>variables_grid</code> argument in <code><a href="../reference/marginal_means.html">marginal_means()</a></code> is renamed to <code>newdata</code>. Backward compatibility is maintained.</li>
+<li>
+<code>avg_*()</code> returns an informative error when <code>vcov</code> is “satterthwaite” or “kenward-roger”</li>
+<li>“satterthwaite” and “kenward-roger” are now supported when <code>newdata</code> is not <code>NULL</code>
+</li>
+<li>
+<code>print.marginaleffects</code> now prints all columns supplied to <code>newdata</code>
+</li>
+</ul><p>Bugfixes:</p>
+<ul><li>
+<code>brms</code> models with multivariate outcome collapsed categories in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Issue <a href="https://github.com/vincentarelbundock/marginaleffects/issues/639" class="external-link">#639</a></li></ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.9.0" id="marginaleffects-090">marginaleffects 0.9.0<a class="anchor" aria-label="anchor" href="#marginaleffects-090"></a></h2><p class="text-muted">CRAN release: 2023-02-01</p>
 <p>Breaking changes:</p>
 <ul><li>All functions return an <code>estimate</code> column instead of the function-specific <code>predicted</code>, <code>comparisons</code>, <code>dydx</code>, etc. This change only affects unit-level estimates, and not average estimates, which already used the <code>estimate</code> column name.</li>
 <li>The <code>transform_avg</code> argument in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> deprecated. Use <code>transform_post</code> instead.</li>
 <li>
-<code>plot_*()</code> now return the actual variable names supplied to the <code>condition</code> argument, rather than the opaque “condition1”, “condition2”, etc.</li>
+<code>plot_*(draw=FALSE)</code> now return the actual variable names supplied to the <code>condition</code> argument, rather than the opaque “condition1”, “condition2”, etc.</li>
 </ul><p>New models supported:</p>
 <ul><li>
 <code>blme</code> package.</li></ul><p>New features:</p>
 <ul><li>New functions: <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="../reference/slopes.html">avg_slopes()</a></code>
 </li>
 <li>Equivalence, non-inferiority, and non-superiority tests with the <code><a href="../reference/hypotheses.html">hypotheses()</a></code> function and <code>equivalence</code> argument.</li>
-<li>New experimental <code><a href="../reference/inferences.html">inferences()</a></code> function: simulation-based inferences and bootstrap with <code>boot</code>, .</li>
+<li>New experimental <code><a href="../reference/inferences.html">inferences()</a></code> function: simulation-based inferences and bootstrap using the <code>boot</code>, <code>rsample</code>, and <code>fwb</code> package.</li>
 <li>New <code>df</code> argument to set degrees of freedom manually for p and CI.</li>
 <li>Pretty <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> for all objects.</li>
 <li>
@@ -77,12 +93,9 @@
 </li>
 </ul></li>
 <li>All arguments from the main functions are now available through <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>, and <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>: <code>conf_level</code>, <code>transform_post</code>, etc.</li>
-<li>Bayesian posterior distribution summaries can be customized using global options:<ul><li><code>options("marginaleffects_posterior_interval" = "eti")</code></li>
-<li><code>options("marginaleffects_posterior_interval" = "hdi")</code></li>
-<li><code>options("marginaleffects_posterior_center" = median)</code></li>
-<li><code>options("marginaleffects_posterior_center" = mean)</code></li>
-</ul></li>
-</ul><p>Renamed functions (backward-compatibility is maintained):</p>
+<li>Bayesian posterior distribution summaries (median, mean, HDI, quantiles) can be customized using global options. See <code><a href="../reference/comparisons.html">?comparisons</a></code>
+</li>
+</ul><p>Renamed functions (backward-compatibility is maintained by keeping the old function names as aliases):</p>
 <ul><li>
 <code><a href="../reference/marginaleffects.html">marginaleffects()</a></code> -&gt; <code><a href="../reference/slopes.html">slopes()</a></code>
 </li>
@@ -102,11 +115,11 @@
 <code><a href="../reference/plot_cco.html">plot_cco()</a></code> -&gt; <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code>
 </li>
 </ul><p>Bug fixes:</p>
-<ul><li>Incorrect results: In 0.8.1, <code>plot_c*()</code> the <code>threenum</code> and <code>minmax</code> labels did not correspond to the correct numeric values.</li>
+<ul><li>Incorrect results: In 0.8.1, <code>plot_*()</code> the <code>threenum</code> and <code>minmax</code> labels did not correspond to the correct numeric values.</li>
 <li>Fix corner case for slopes when the dataset includes infinite values.</li>
 <li>
 <code>mlogit</code> error with factors.</li>
-<li>The <code>vcov</code> argument accepts functions for most models.</li>
+<li>The <code>vcov</code> argument now accepts functions for most models.</li>
 </ul><p>Other:</p>
 <ul><li>Removed major performance bottleneck for <code><a href="../reference/slopes.html">slopes()</a></code>
 </li></ul></div>

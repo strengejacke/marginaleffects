@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
 <div class="section level2">
 <h2 id="fitting-a-numpyro-model">Fitting a <code>NumPyro</code> model<a class="anchor" aria-label="anchor" href="#fitting-a-numpyro-model"></a>
 </h2>
-<p>To begin, we load the <code>reticulate</code> package which allows us to interact with the Python interpreter from an <code>R</code> session. Then, we write a <code>NumPyro</code> model and we load it to memory using the <code><a href="https://rstudio.github.io/reticulate/reference/source_python.html" class="external-link">source_python()</a></code> function. The important functions to note in the Python code are:</p>
+<p>To begin, we load the <code>reticulate</code> package which allows us to interact with the Python interpreter from an <code>R</code> session. Then, we write a <code>NumPyro</code> model and we load it to memory using the <code>source_python()</code> function. The important functions to note in the Python code are:</p>
 <ul>
 <li>
 <code>load_df()</code> downloads data on pulmonary fibrosis.</li>
@@ -177,7 +177,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">model</span>, file <span class="op">=</span> <span class="va">tmp</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># load functions</span></span>
-<span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/source_python.html" class="external-link">source_python</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
+<span><span class="fu">source_python</span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># download data</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">load_df</span><span class="op">(</span><span class="op">)</span></span>

@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,8 +150,8 @@
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"groupid"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  groupid Estimate Std. Error      z   Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;        1   0.8889    0.10283  8.645 &lt; 2.22e-16 0.6874  1.090</span></span>
 <span><span class="co">#&gt;        0   0.8750    0.07697 11.368 &lt; 2.22e-16 0.7241  1.026</span></span>
+<span><span class="co">#&gt;        1   0.8889    0.10283  8.645 &lt; 2.22e-16 0.6874  1.090</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, groupid, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
@@ -164,8 +164,8 @@
 <span>    transform_post <span class="op">=</span> <span class="fu"><a href="https://easystats.github.io/insight/reference/link_inverse.html" class="external-link">link_inverse</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  groupid Estimate Pr(&gt;|z|)  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;        1   0.9136 0.038094 0.5323 0.9899</span></span>
 <span><span class="co">#&gt;        0   0.9229 0.024783 0.5781 0.9905</span></span>
+<span><span class="co">#&gt;        1   0.9136 0.038094 0.5323 0.9899</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Post-transformation:  transform_post </span></span>
@@ -253,17 +253,17 @@
 <span><span class="va">mod</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"simulation"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   Estimate Std. Error     2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  7.836e-01     0.2011 2.692e-01 0.9732</span></span>
-<span><span class="co">#&gt;  7.836e-01     0.1687 3.537e-01 0.9628</span></span>
-<span><span class="co">#&gt;  8.983e-01     0.1459 4.474e-01 0.9896</span></span>
-<span><span class="co">#&gt;  8.742e-01     0.2182 2.194e-01 0.9961</span></span>
-<span><span class="co">#&gt;  1.307e-02     0.1949 7.772e-05 0.7696</span></span>
+<span><span class="co">#&gt;  7.836e-01     0.1976 2.461e-01 0.9709</span></span>
+<span><span class="co">#&gt;  7.836e-01     0.1680 3.164e-01 0.9617</span></span>
+<span><span class="co">#&gt;  8.983e-01     0.1378 4.966e-01 0.9887</span></span>
+<span><span class="co">#&gt;  8.742e-01     0.2206 1.891e-01 0.9956</span></span>
+<span><span class="co">#&gt;  1.307e-02     0.1865 6.458e-05 0.7103</span></span>
 <span><span class="co">#&gt; --- 22 rows omitted. See ?avg_predictions and ?print.marginaleffects --- </span></span>
-<span><span class="co">#&gt;  3.828e-01     0.2939 1.796e-02 0.9555</span></span>
-<span><span class="co">#&gt;  1.211e-06     0.1256 4.108e-12 0.3768</span></span>
-<span><span class="co">#&gt;  6.887e-03     0.1580 3.430e-05 0.6333</span></span>
-<span><span class="co">#&gt;  8.071e-11     0.1562 2.220e-16 0.6899</span></span>
-<span><span class="co">#&gt;  7.953e-01     0.1718 3.552e-01 0.9655 </span></span>
+<span><span class="co">#&gt;  3.828e-01     0.3023 1.737e-02 0.9621</span></span>
+<span><span class="co">#&gt;  1.211e-06     0.1190 8.932e-13 0.3162</span></span>
+<span><span class="co">#&gt;  6.887e-03     0.1601 2.756e-05 0.6606</span></span>
+<span><span class="co">#&gt;  8.071e-11     0.1417 2.220e-16 0.3141</span></span>
+<span><span class="co">#&gt;  7.953e-01     0.1703 3.103e-01 0.9649 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span>
@@ -271,10 +271,10 @@
 <span><span class="va">mod</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span>vcov <span class="op">=</span> <span class="op">~</span><span class="va">gear</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"simulation"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast  Estimate Std. Error    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;  gear    4 - 3 -0.040454   0.054401 -0.09097 0.130660</span></span>
-<span><span class="co">#&gt;  gear    5 - 3 -0.182993   0.261857 -0.48636 0.325206</span></span>
+<span><span class="co">#&gt;  gear    4 - 3 -0.040453   0.054402 -0.09097 0.130651</span></span>
+<span><span class="co">#&gt;  gear    5 - 3 -0.182995   0.261857 -0.48634 0.325185</span></span>
 <span><span class="co">#&gt;    hp    dY/dX -0.004762   0.004451 -0.01158 0.005102</span></span>
-<span><span class="co">#&gt;    wt    dY/dX  0.016483   0.306082 -0.62666 0.655099</span></span>
+<span><span class="co">#&gt;    wt    dY/dX  0.016483   0.306082 -0.62666 0.655081</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, conf.low, conf.high</span></span></code></pre></div>
@@ -369,7 +369,7 @@
 <span>                newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>                vcov <span class="op">=</span> <span class="st">"kenward-roger"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term     Contrast Estimate Std. Error      z Pr(&gt;|z|)   2.5 %   97.5 %</span></span>
+<span><span class="co">#&gt;  Term     Contrast Estimate Std. Error      t Pr(&gt;|t|)   2.5 %   97.5 %</span></span>
 <span><span class="co">#&gt;    hp        dY/dX -0.05184    0.01519 -3.413  0.09643 -0.1306  0.02687</span></span>
 <span><span class="co">#&gt;    am TRUE - FALSE  4.66614    1.28244  3.638  0.08742 -1.9798 11.31212</span></span>
 <span><span class="co">#&gt; </span></span>

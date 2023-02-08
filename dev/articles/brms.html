@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,16 +120,20 @@
 </h3>
 <p>We can compute <a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">adjusted predicted values</a> of the outcome variable (i.e., probability of survival aboard the Titanic) using the <code>predictions</code> function. By default, this function calculates predictions for each row of the dataset:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;    0.9367 0.9070 0.9590</span></span>
-<span><span class="co">#&gt;    0.8493 0.7453 0.9187</span></span>
-<span><span class="co">#&gt;    0.9433 0.8949 0.9704</span></span>
-<span><span class="co">#&gt;    0.5131 0.4302 0.6000</span></span>
-<span><span class="co">#&gt;    0.9375 0.9080 0.9601</span></span>
-<span><span class="co">#&gt;    0.2731 0.2029 0.3518</span></span>
+<span><span class="co">#&gt;  Estimate    2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt;  0.936660 0.906967 0.95901</span></span>
+<span><span class="co">#&gt;  0.849305 0.745301 0.91867</span></span>
+<span><span class="co">#&gt;  0.943329 0.894859 0.97042</span></span>
+<span><span class="co">#&gt;  0.513101 0.430243 0.59996</span></span>
+<span><span class="co">#&gt;  0.937494 0.908005 0.96006</span></span>
+<span><span class="co">#&gt; --- 1036 rows omitted. See ?avg_predictions and ?print.marginaleffects --- </span></span>
+<span><span class="co">#&gt;  0.037634 0.023489 0.05812</span></span>
+<span><span class="co">#&gt;  0.585921 0.501708 0.66631</span></span>
+<span><span class="co">#&gt;  0.104330 0.080088 0.13365</span></span>
+<span><span class="co">#&gt;  0.101658 0.077891 0.13068</span></span>
+<span><span class="co">#&gt;  0.091624 0.069135 0.11885 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, X, survived, sex, age, passengerClass, woman</span></span></code></pre></div>
@@ -144,13 +148,13 @@
 <span>                                       passengerClass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pred</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;    0.5149 0.43192 0.6019</span></span>
-<span><span class="co">#&gt;    0.2013 0.15362 0.2613</span></span>
-<span><span class="co">#&gt;    0.0875 0.06556 0.1141</span></span>
-<span><span class="co">#&gt;    0.9364 0.90661 0.9588</span></span>
-<span><span class="co">#&gt;    0.7783 0.70897 0.8346</span></span>
-<span><span class="co">#&gt;    0.5701 0.49378 0.6442</span></span>
+<span><span class="co">#&gt;  Estimate   2.5 % 97.5 %      age woman passengerClass</span></span>
+<span><span class="co">#&gt;    0.5149 0.43192 0.6019 29.88113     0            1st</span></span>
+<span><span class="co">#&gt;    0.2013 0.15362 0.2613 29.88113     0            2nd</span></span>
+<span><span class="co">#&gt;    0.0875 0.06556 0.1141 29.88113     0            3rd</span></span>
+<span><span class="co">#&gt;    0.9364 0.90661 0.9588 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;    0.7783 0.70897 0.8346 29.88113     1            2nd</span></span>
+<span><span class="co">#&gt;    0.5701 0.49378 0.6442 29.88113     1            3rd</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, conf.low, conf.high, survived, age, woman, passengerClass</span></span></code></pre></div>
@@ -204,11 +208,11 @@
 <span>        woman <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>        passengerClass <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;            Term  Contrast   Estimate     2.5 %    97.5 % woman passengerClass</span></span>
-<span><span class="co">#&gt;           woman     dY/dX  0.1562784  0.111359  0.208756     1            1st</span></span>
-<span><span class="co">#&gt;             age     dY/dX -0.0002383 -0.001355  0.000871     1            1st</span></span>
-<span><span class="co">#&gt;  passengerClass 2nd - 1st -0.1574416 -0.223275 -0.102890     1            1st</span></span>
-<span><span class="co">#&gt;  passengerClass 3rd - 1st -0.3653764 -0.438319 -0.294769     1            1st</span></span>
+<span><span class="co">#&gt;            Term  Contrast   Estimate     2.5 %    97.5 %      age woman passengerClass</span></span>
+<span><span class="co">#&gt;           woman     dY/dX  0.1562784  0.111359  0.208756 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;             age     dY/dX -0.0002383 -0.001355  0.000871 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;  passengerClass 2nd - 1st -0.1574416 -0.223275 -0.102890 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;  passengerClass 3rd - 1st -0.3653764 -0.438319 -0.294769 29.88113     1            1st</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, survived, age, woman, passengerClass, eps</span></span></code></pre></div>
@@ -309,9 +313,9 @@
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;             Term     Contrast Estimate  2.5 % 97.5 % civil_liberties                       region</span></span>
-<span><span class="co">#&gt;   party_autonomy TRUE - FALSE   0.2517 0.1663 0.3356             0.5 Middle East and North Africa</span></span>
-<span><span class="co">#&gt;  civil_liberties        dY/dX   0.8160 0.6214 1.0066             0.5 Middle East and North Africa</span></span>
+<span><span class="co">#&gt;             Term     Contrast Estimate  2.5 % 97.5 % party_autonomy civil_liberties                       region</span></span>
+<span><span class="co">#&gt;   party_autonomy TRUE - FALSE   0.2517 0.1663 0.3356           TRUE             0.5 Middle East and North Africa</span></span>
+<span><span class="co">#&gt;  civil_liberties        dY/dX   0.8160 0.6214 1.0066           TRUE             0.5 Middle East and North Africa</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, media_index, party_autonomy, civil_liberties, region, eps</span></span></code></pre></div>
@@ -564,8 +568,8 @@
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4495 0.3438 0.5625</span></span>
-<span><span class="co">#&gt;  1   0.5493 0.4382 0.6683</span></span>
+<span><span class="co">#&gt;  0   0.4522 0.3383 0.5684</span></span>
+<span><span class="co">#&gt;  1   0.5510 0.4374 0.6644</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -578,7 +582,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09624 0.04754 0.1621</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09623 0.04779 0.1633</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -595,7 +599,7 @@
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            M        Mdn         LL       UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09891742 0.09627681 0.04692624 0.161644          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.09887085 0.09639794 0.04645624 0.163488          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -651,13 +655,17 @@
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Group  Term Estimate   2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;     ec ic.gc   4.3839   4.007   4.7376</span></span>
-<span><span class="co">#&gt;     er ic.gc   0.0928  -0.270   0.4149</span></span>
-<span><span class="co">#&gt;     gc ic.gc  -7.9963  -8.498  -7.4477</span></span>
-<span><span class="co">#&gt;     ec oc.gc  19.3866  17.717  20.9493</span></span>
-<span><span class="co">#&gt;     er oc.gc   0.4105  -1.194   1.8349</span></span>
-<span><span class="co">#&gt;     gc oc.gc -35.3623 -37.581 -32.9363</span></span>
+<span><span class="co">#&gt;  Group  Term   Estimate      2.5 %    97.5 %</span></span>
+<span><span class="co">#&gt;     ec ic.gc -1.773e-04 -3.961e-04 2.368e-05</span></span>
+<span><span class="co">#&gt;     er ic.gc  1.653e-05 -2.256e-04 2.506e-04</span></span>
+<span><span class="co">#&gt;     gc ic.gc  1.380e-05 -3.724e-04 3.998e-04</span></span>
+<span><span class="co">#&gt;     gr ic.gc  4.243e-05 -2.365e-04 3.295e-04</span></span>
+<span><span class="co">#&gt;     hp ic.gc  1.073e-04 -7.726e-05 2.967e-04</span></span>
+<span><span class="co">#&gt;     ec oc.gc  4.877e-04 -4.035e-04 1.447e-03</span></span>
+<span><span class="co">#&gt;     er oc.gc -1.020e-03 -2.069e-03 2.983e-05</span></span>
+<span><span class="co">#&gt;     gc oc.gc  1.044e-03 -7.393e-04 2.784e-03</span></span>
+<span><span class="co">#&gt;     gr oc.gc  9.458e-05 -1.186e-03 1.342e-03</span></span>
+<span><span class="co">#&gt;     hp oc.gc -5.853e-04 -1.453e-03 2.296e-04</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, group, term, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -674,7 +682,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">cmdstanr</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/cmdstanr/" class="external-link">cmdstanr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span></span>
@@ -685,7 +693,7 @@
 <span><span class="va">WARMUP</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span><span class="va">BAYES_SEED</span> <span class="op">&lt;-</span> <span class="fl">1234</span></span>
 <span></span>
-<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op">|&gt;</span> </span>
+<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="co"># Make a bunch of GDP values 0</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>prob_zero <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&lt;</span> <span class="fl">50</span>, <span class="fl">0.3</span>, <span class="fl">0.02</span><span class="op">)</span>,</span>
@@ -943,32 +951,123 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"am"</span><span class="op">)</span></span>
-<span><span class="va">rvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span><span class="va">p</span>, shape <span class="op">=</span> <span class="st">"rvar"</span><span class="op">)</span> </span>
-<span><span class="va">rvar</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">bernoulli</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  am Estimate 2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   0    17.09 14.87  19.37</span></span>
-<span><span class="co">#&gt;   1    24.38 21.49  27.12</span></span>
+<span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 1).</span></span>
+<span><span class="co">#&gt; Chain 1: </span></span>
+<span><span class="co">#&gt; Chain 1: Gradient evaluation took 1.4e-05 seconds</span></span>
+<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.</span></span>
+<span><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
+<span><span class="co">#&gt; Chain 1: </span></span>
+<span><span class="co">#&gt; Chain 1: </span></span>
+<span><span class="co">#&gt; Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1: </span></span>
+<span><span class="co">#&gt; Chain 1:  Elapsed Time: 0.077049 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.040058 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.117107 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: type, am, estimate, conf.low, conf.high, rvar</span></span>
+<span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 2).</span></span>
+<span><span class="co">#&gt; Chain 2: </span></span>
+<span><span class="co">#&gt; Chain 2: Gradient evaluation took 7e-06 seconds</span></span>
+<span><span class="co">#&gt; Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.</span></span>
+<span><span class="co">#&gt; Chain 2: Adjust your expectations accordingly!</span></span>
+<span><span class="co">#&gt; Chain 2: </span></span>
+<span><span class="co">#&gt; Chain 2: </span></span>
+<span><span class="co">#&gt; Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2: </span></span>
+<span><span class="co">#&gt; Chain 2:  Elapsed Time: 0.082653 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 2:                0.065409 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2:                0.148062 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 2: </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 3).</span></span>
+<span><span class="co">#&gt; Chain 3: </span></span>
+<span><span class="co">#&gt; Chain 3: Gradient evaluation took 1.3e-05 seconds</span></span>
+<span><span class="co">#&gt; Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.</span></span>
+<span><span class="co">#&gt; Chain 3: Adjust your expectations accordingly!</span></span>
+<span><span class="co">#&gt; Chain 3: </span></span>
+<span><span class="co">#&gt; Chain 3: </span></span>
+<span><span class="co">#&gt; Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3: </span></span>
+<span><span class="co">#&gt; Chain 3:  Elapsed Time: 0.100607 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 3:                0.030898 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3:                0.131505 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 3: </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 4).</span></span>
+<span><span class="co">#&gt; Chain 4: </span></span>
+<span><span class="co">#&gt; Chain 4: Gradient evaluation took 7e-06 seconds</span></span>
+<span><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.</span></span>
+<span><span class="co">#&gt; Chain 4: Adjust your expectations accordingly!</span></span>
+<span><span class="co">#&gt; Chain 4: </span></span>
+<span><span class="co">#&gt; Chain 4: </span></span>
+<span><span class="co">#&gt; Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4: </span></span>
+<span><span class="co">#&gt; Chain 4:  Elapsed Time: 0.05747 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 4:                0.040988 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4:                0.098458 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 4:</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">rvar</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">am</span>, xdist <span class="op">=</span> <span class="va">rvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"rvar"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">term</span>, xdist <span class="op">=</span> <span class="va">rvar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slabinterval.html" class="external-link">stat_slabinterval</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="brms_files/figure-html/unnamed-chunk-66-1.png" width="100%"></p>
+<p><img src="brms_files/figure-html/unnamed-chunk-65-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="non-linear-hypothesis-testing">Non-linear hypothesis testing<a class="anchor" aria-label="anchor" href="#non-linear-hypothesis-testing"></a>
 </h2>
 <p>We begin by estimating a model:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brm.html" class="external-link">brm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/brmsfamily.html" class="external-link">bernoulli</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>           seed <span class="op">=</span> <span class="fl">1024</span>, silent <span class="op">=</span> <span class="fl">2</span>, chains <span class="op">=</span> <span class="fl">4</span>, iter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
 <p>Notice that we can compute average contrasts in two different ways, using the <code><a href="../reference/comparisons.html">avg_comparisons()</a></code> function or the <code>transform_pre</code> argument:</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate    2.5 %  97.5 %</span></span>
@@ -987,7 +1086,7 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo</span></span></code></pre></div>
 <p>Now, we use the <code>hypothesis</code> argument to compare the first to the second rows of the <code><a href="../reference/comparisons.html">comparisons()</a></code> output:</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
 <span>    transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span>,</span>
@@ -999,13 +1098,13 @@
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, estimate, conf.low, conf.high</span></span></code></pre></div>
 <p>The <code>hypotheses</code> function of the <code>brms</code> package can also perform non-linear hypothesis testing, and it generates some convenient statistics and summaries. This function accepts a D-by-P matrix of draws from the posterior distribution, where D is the number of draws and N is the number of parameters. We can obtain such a matrix using the <code>posterior_draws(x, shape = "DxP")</code>, and we can simply add a couple calls to our chain of operations:</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, transform_pre <span class="op">=</span> <span class="st">"differenceavg"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="../reference/posterior_draws.html">posterior_draws</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"DxP"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">brms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/brms/man/hypothesis.brmsfit.html" class="external-link">hypothesis</a></span><span class="op">(</span><span class="st">"b2 - b1 &gt; .2"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Hypothesis Tests for class :</span></span>
 <span><span class="co">#&gt;         Hypothesis Estimate Est.Error CI.Lower CI.Upper Evid.Ratio Post.Prob Star</span></span>
-<span><span class="co">#&gt; 1 (b2-b1)-(.2) &gt; 0    -0.07      0.02    -0.12    -0.04          0         0     </span></span>
+<span><span class="co">#&gt; 1 (b2-b1)-(.2) &gt; 0    -0.33      0.02    -0.36    -0.28          0         0     </span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; 'CI': 90%-CI for one-sided and 95%-CI for two-sided hypotheses.</span></span>
 <span><span class="co">#&gt; '*': For one-sided hypotheses, the posterior probability exceeds 95%;</span></span>

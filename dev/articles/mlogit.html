@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,10 +108,10 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Group Term   Estimate Std. Error        z   Pr(&gt;|z|)     2.5 %     97.5 %</span></span>
 <span><span class="co">#&gt;      3   hp -3.438e-05   0.002253 -0.01526 0.98782440 -0.004450  0.0043815</span></span>
-<span><span class="co">#&gt;      3  mpg -7.131e-02   0.026441 -2.69703 0.00699606 -0.123134 -0.0194886</span></span>
 <span><span class="co">#&gt;      4   hp -4.667e-03   0.002199 -2.12294 0.03375920 -0.008976 -0.0003583</span></span>
-<span><span class="co">#&gt;      4  mpg  1.591e-02   0.020003  0.79525 0.42646997 -0.023298  0.0551125</span></span>
 <span><span class="co">#&gt;      5   hp  4.702e-03   0.001304  3.60439 0.00031289  0.002145  0.0072584</span></span>
+<span><span class="co">#&gt;      3  mpg -7.131e-02   0.026441 -2.69703 0.00699606 -0.123134 -0.0194886</span></span>
+<span><span class="co">#&gt;      4  mpg  1.591e-02   0.020003  0.79525 0.42646997 -0.023298  0.0551125</span></span>
 <span><span class="co">#&gt;      5  mpg  5.540e-02   0.016469  3.36416 0.00076776  0.023126  0.0876827</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  probs </span></span>
@@ -232,7 +232,7 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="va">TravelMode</span><span class="op">$</span><span class="va">mode</span>, newdata <span class="op">=</span> <span class="va">TravelMode</span><span class="op">)</span></span>
 <span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">nd</span>, gcost <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span> <span class="op">==</span> <span class="va">i</span>, <span class="fl">30</span>, <span class="va">gcost</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">nd</span><span class="op">)</span></span>
+<span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">nd</span><span class="op">)</span></span>
 <span><span class="va">nd</span></span>
 <span><span class="co">#&gt;    individual choice wait vcost travel gcost income size  mode</span></span>
 <span><span class="co">#&gt; 1           1     no   35    48    486    30     35    2   air</span></span>
@@ -260,7 +260,7 @@
 <span><span class="co">#&gt;    car income  2.659e-05  4.321e-05  0.6154 0.53832121 -0.0000581  0.0001113</span></span>
 <span><span class="co">#&gt;  train income -6.939e-03  1.860e-03 -3.7298 0.00019166 -0.0105848 -0.0032924</span></span>
 <span><span class="co">#&gt;    air   size -2.124e-01  6.027e-02 -3.5247 0.00042400 -0.3305707 -0.0943084</span></span>
-<span><span class="co">#&gt;    bus   size  6.062e-02  3.791e-02  1.5993 0.10974996 -0.0136709  0.1349205</span></span>
+<span><span class="co">#&gt;    bus   size  6.062e-02  3.791e-02  1.5993 0.10974995 -0.0136709  0.1349205</span></span>
 <span><span class="co">#&gt;    car   size  2.378e-03  1.571e-03  1.5130 0.13028300 -0.0007024  0.0054575</span></span>
 <span><span class="co">#&gt;  train   size  1.494e-01  4.286e-02  3.4870 0.00048852  0.0654413  0.2334331</span></span>
 <span><span class="co">#&gt; </span></span>

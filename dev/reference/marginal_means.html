@@ -22,7 +22,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@ https://vincentarelbundock.github.io/marginaleffects/
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Marginal Means</h1>
-      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/marginalmeans.R" class="external-link"><code>R/marginalmeans.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/R/marginal_means.R" class="external-link"><code>R/marginal_means.R</code></a></small>
       <div class="d-none name"><code>marginal_means.Rd</code></div>
     </div>
 
@@ -75,7 +75,7 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">marginal_means</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  variables <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  variables_grid <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  newdata <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vcov <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -96,20 +96,16 @@ package website, or scroll down this page for a full list of vignettes:</p><ul><
 
 
 <dt>variables</dt>
-<dd><p>character vector Categorical predictors over which to
-compute marginal means. <code>NULL</code> calculates marginal means for all logical,
-character, or factor variables in the dataset used to fit <code>model</code>. Set
-<code>cross=TRUE</code> to compute marginal means at combinations of the
-predictors specified in the <code>variables</code> argument.</p></dd>
+<dd><p>Focal variables</p><ul><li><p>Character vector of variable names: compute marginal means for each category of the listed variables.</p></li>
+<li><p><code>NULL</code>: calculate marginal means for all logical, character, or factor variables in the dataset used to fit <code>model</code>. Hint:  Set <code>cross=TRUE</code> to compute marginal means for combinations of focal variables.</p></li>
+</ul></dd>
 
 
-<dt>variables_grid</dt>
-<dd><p>character vector Categorical predictors used to
-construct the prediction grid over which adjusted predictions are averaged
-(character vector). <code>NULL</code> creates a grid with all combinations of all
-categorical predictors. This grid can be very large when there are many
-variables and many response levels, so it is advisable to select a limited
-number of variables in the <code>variables</code> and <code>variables_grid</code> arguments.</p></dd>
+<dt>newdata</dt>
+<dd><p>Grid of predictor values over which we marginalize.</p><ul><li><p><code>NULL</code> create a grid with all combinations of all categorical predictors in the model. Warning: can be expensive.</p></li>
+<li><p>Character vector: subset of categorical variables to use when building the balanced grid of predictors. Other variables are held to their mean or mode.</p></li>
+<li><p>Data frame: A data frame which includes all the predictors in the original model. The full dataset is replicated once for every combination of the focal variables in the <code>variables</code> argument, using the <code><a href="datagrid.html">datagridcf()</a></code> function.</p></li>
+</ul></dd>
 
 
 <dt>vcov</dt>
@@ -175,9 +171,9 @@ on the link scale before backtransforming them using the inverse link function.<
 
 
 <dt>wts</dt>
-<dd><p>character value. Weights to use in the averaging.</p><ul><li><p>"equal": each combination of variables in <code>variables_grid</code> gets an equal weight.</p></li>
-<li><p>"cells": each combination of values for the variables in the <code>variables_grid</code> gets a weight proportional to its frequency in the original data.</p></li>
-<li><p>"proportional": each combination of values for the variables in the <code>variables_grid</code> -- except for those in the <code>variables</code> argument -- gets a weight proportional to its frequency in the original data.</p></li>
+<dd><p>character value. Weights to use in the averaging.</p><ul><li><p>"equal": each combination of variables in <code>newdata</code> gets equal weight.</p></li>
+<li><p>"cells": each combination of values for the variables in the <code>newdata</code> gets a weight proportional to its frequency in the original data.</p></li>
+<li><p>"proportional": each combination of values for the variables in <code>newdata</code> -- except for those in the <code>variables</code> argument -- gets a weight proportional to its frequency in the original data.</p></li>
 </ul></dd>
 
 
@@ -208,8 +204,8 @@ combination.</p>
     <p>This function begins by calling the <code>predictions</code> function to obtain a
 grid of predictors, and adjusted predictions for each cell. The grid
 includes all combinations of the categorical variables listed in the
-<code>variables</code> and <code>variables_grid</code> arguments, or all combinations of the
-categorical variables used to fit the model if <code>variables_grid</code> is <code>NULL</code>.
+<code>variables</code> and <code>newdata</code> arguments, or all combinations of the
+categorical variables used to fit the model if <code>newdata</code> is <code>NULL</code>.
 In the prediction grid, numeric variables are held at their means.</p>
 <p>After constructing the grid and filling the grid with adjusted predictions,
 <code>marginal_means</code> computes marginal means for the variables listed in the
@@ -273,7 +269,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span>   cyl     8 16.21      1.073 15.11 &lt; 2.22e-16 14.11  18.31</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: cyl, carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am, cyl </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, value, cyl, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -290,7 +286,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span>      8 16.21      1.073 15.11 &lt; 2.22e-16 14.11  18.31</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: cyl, carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am, cyl </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: by, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -304,7 +300,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span>  4 &amp; 6 - 8 5.538      1.513 3.66 0.00025192 2.573  8.504</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: cyl, carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am, cyl </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -368,7 +364,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span>    am  TRUE 23.11      0.974 23.724 &lt; 2.22e-16 21.20  25.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am, carb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: hp, am, carb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, value, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -381,7 +377,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span>  b2=b1 -0.5143      1.478 -0.348  0.72786 -3.411  2.382</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am, carb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -391,7 +387,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span>  custom -0.5143      1.478 -0.348  0.72786 -3.411  2.382</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am, carb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
@@ -409,7 +405,7 @@ posterior using the function supplied to the
 <span class="r-out co"><span class="r-pr">#&gt;</span>     B -0.5143      1.478 -0.348  0.72786  -3.411  2.382</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: carb, am </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results averaged over levels of: am, carb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: term, estimate, std.error, statistic, p.value, conf.low, conf.high </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>

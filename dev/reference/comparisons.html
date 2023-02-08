@@ -38,7 +38,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.8.1.9126</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +137,7 @@ slopes, elasticities, etc.</p><ul><li><p><code>comparisons()</code>: unit-level 
 
 
 <dt>newdata</dt>
-<dd><p><code>NULL</code>, data frame, string, or <code><a href="datagrid.html">datagrid()</a></code> call. Determines the predictor values for which to compute contrasts.</p><ul><li><p><code>NULL</code> (default): Unit-level contrasts for each observed value in the original dataset.</p></li>
+<dd><p>Grid of predictor values at which we evaluate the comparisons.</p><ul><li><p><code>NULL</code> (default): Unit-level contrasts for each observed value in the original dataset (empirical distribution).</p></li>
 <li><p>data frame: Unit-level contrasts for each row of the <code>newdata</code> data frame.</p></li>
 <li><p>string:</p><ul><li><p>"mean": Contrasts at the Mean. Contrasts when each predictor is held at its mean or mode.</p></li>
 <li><p>"median": Contrasts at the Median. Contrasts when each predictor is held at its median or mode.</p></li>
@@ -153,7 +153,7 @@ slopes, elasticities, etc.</p><ul><li><p><code>comparisons()</code>: unit-level 
 
 
 <dt>variables</dt>
-<dd><p><code>NULL</code>, character vector, or named list. The subset of variables for which to compute contrasts.</p><ul><li><p><code>NULL</code>: compute contrasts for all the variables in the model object (can be slow).</p></li>
+<dd><p>Focal variables</p><ul><li><p><code>NULL</code>: compute comparisons for all the variables in the model object (can be slow).</p></li>
 <li><p>Character vector: subset of variables (usually faster).</p></li>
 <li><p>Named list: names identify the subset of variables of interest, and values define the type of contrast to compute. Acceptable values depend on the variable type:</p><ul><li><p>Factor or character variables:</p><ul><li><p>"reference": Each factor level is compared to the factor reference (base) level</p></li>
 <li><p>"all": All combinations of observed levels</p></li>
@@ -396,9 +396,9 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="co"># Contrasts at the mean</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3   0.6667     0.1174 5.676 1.3751e-08 0.4365 0.8969</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3   1.0000     0.1566 6.386 1.7026e-10 0.6931 1.3069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 % gear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    4 - 3   0.6667     0.1174 5.676 1.3751e-08 0.4365 0.8969    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  gear    5 - 3   1.0000     0.1566 6.386 1.7026e-10 0.6931 1.3069    3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, am, gear </span>
@@ -444,13 +444,20 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">drat</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">m</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, newdata <span class="op">=</span> <span class="fu"><a href="datagrid.html">datagrid</a></span><span class="op">(</span>FUN_factor <span class="op">=</span> <span class="va">unique</span>, FUN_numeric <span class="op">=</span> <span class="va">median</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast Estimate Std. Error      z  Pr(&gt;|z|)    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast Estimate Std. Error      z  Pr(&gt;|z|)    2.5 %   97.5 %  hp  drat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604 123 3.695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604 123 3.695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604 123 3.695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604 123 3.695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604 123 3.695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.04523    0.01489 -3.037 0.0023856 -0.07441 -0.01604 123 3.695</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  cyl am</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    6  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    6  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    8  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    8  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, drat, cyl, am, eps </span>
@@ -635,8 +642,8 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast Estimate Std. Error       z   Pr(&gt;|z|)   2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.06878     0.0182 -3.7797 0.00015703 -0.1044 -0.03311</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    am    1 - 0  4.69801     1.0601  4.4316 9.3531e-06  2.6202  6.77580</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp       +1 -0.06878     0.0182 -3.7797 0.00015703 -0.1044 -0.03311</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    vs    1 - 0 -0.29433     2.3379 -0.1259 0.89981407 -4.8766  4.28789</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
@@ -647,10 +654,10 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">avg_comparisons</span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"hp"</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"vs"</span>, <span class="st">"am"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Term Contrast vs am Estimate Std. Error      z  Pr(&gt;|z|)    2.5 %    97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(+1)  0  1 -0.03685    0.01240 -2.971 0.0029676 -0.06116 -0.012540</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(+1)  1  1 -0.11115    0.04634 -2.399 0.0164473 -0.20197 -0.020336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(+1)  1  0 -0.09941    0.05345 -1.860 0.0628876 -0.20417  0.005344</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(+1)  0  0 -0.04215    0.02477 -1.702 0.0887904 -0.09070  0.006394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(+1)  0  1 -0.03685    0.01240 -2.971 0.0029676 -0.06116 -0.012540</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(+1)  1  0 -0.09941    0.05345 -1.860 0.0628876 -0.20417  0.005344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    hp mean(+1)  1  1 -0.11115    0.04634 -2.399 0.0164473 -0.20197 -0.020336</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  response </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Columns: type, term, contrast, vs, am, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo </span>
@@ -664,11 +671,11 @@ posterior using the function supplied to the
 <span class="r-in"><span><span class="fu">comparisons</span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"probs"</span>, by <span class="op">=</span> <span class="va">by</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Term  By   Estimate Std. Error        z  Pr(&gt;|z|)    2.5 %   97.5 %</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   mpg 3,4  0.0004635   0.005796  0.07997 0.9362637 -0.01090  0.01182</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    am 3,4 -0.2227925   0.079558 -2.80038 0.0051042 -0.37872 -0.06686</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    vs 3,4  0.1021021   0.073236  1.39416 0.1632708 -0.04144  0.24564</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   mpg   5 -0.0009270   0.011592 -0.07997 0.9362637 -0.02365  0.02179</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    am   5  0.4455851   0.159116  2.80038 0.0051042  0.13372  0.75745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   mpg 3,4  0.0004635   0.005796  0.07997 0.9362637 -0.01090  0.01182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   mpg   5 -0.0009270   0.011592 -0.07997 0.9362637 -0.02365  0.02179</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    vs 3,4  0.1021021   0.073236  1.39416 0.1632708 -0.04144  0.24564</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    vs   5 -0.2042041   0.146472 -1.39416 0.1632708 -0.49128  0.08287</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Prediction type:  probs </span>
