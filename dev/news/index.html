@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9014</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9017</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +67,8 @@
 <li>
 <code>avg_predictions(model, variables = "x")</code> computes average counterfactual predictions by subgroups of <code>x</code>
 </li>
+<li>
+<code><a href="../reference/hypotheses.html">hypotheses()</a></code> now works on lists and in calls to <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map()</a></code>, etc.</li>
 </ul><p>Bugfixes:</p>
 <ul><li>
 <code>brms</code> models with multivariate outcome collapsed categories in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Issue <a href="https://github.com/vincentarelbundock/marginaleffects/issues/639" class="external-link">#639</a></li></ul></div>

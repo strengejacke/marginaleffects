@@ -30,7 +30,7 @@ https://vincentarelbundock.github.io/marginaleffects/
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9014</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9017</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +137,7 @@ https://vincentarelbundock.github.io/marginaleffects/
 
 <dt>variables</dt>
 <dd><p>Counterfactual variables.</p><ul><li><p>Output:</p><ul><li><p><code>predictions()</code>: The entire dataset is replicated once for each unique combination of <code>variables</code>, and predictions are made.</p></li>
-<li><p><code>avg_predictions()</code>: The entire dataset is replicated, predictions are made, and they are marginalized by <code>variables</code>. categories.</p></li>
+<li><p><code>avg_predictions()</code>: The entire dataset is replicated, predictions are made, and they are marginalized by <code>variables</code> categories.</p></li>
 <li><p>Warning: This can be expensive in large datasets.</p></li>
 <li><p>Warning: Users who need "conditional" predictions should use the <code>newdata</code> argument instead of <code>variables</code>.</p></li>
 </ul></li>
