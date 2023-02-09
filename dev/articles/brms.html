@@ -568,8 +568,8 @@
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4514 0.3410 0.5652</span></span>
-<span><span class="co">#&gt;  1   0.5494 0.4377 0.6628</span></span>
+<span><span class="co">#&gt;  0   0.4518 0.3380 0.5689</span></span>
+<span><span class="co">#&gt;  1   0.5521 0.4331 0.6649</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -582,7 +582,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09661 0.04959 0.1631</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09747 0.04783 0.1617</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -599,7 +599,7 @@
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09914806 0.09706086 0.04929884 0.1628619          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.09916071 0.09726787 0.04752513 0.1638219          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -955,8 +955,8 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 1).</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1: Gradient evaluation took 7e-06 seconds</span></span>
-<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.</span></span>
+<span><span class="co">#&gt; Chain 1: Gradient evaluation took 6e-06 seconds</span></span>
+<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.</span></span>
 <span><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
@@ -973,9 +973,9 @@
 <span><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1:  Elapsed Time: 0.024525 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.015858 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.040383 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 1:  Elapsed Time: 0.02985 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.013758 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.043608 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 2).</span></span>
@@ -998,9 +998,9 @@
 <span><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 2: </span></span>
-<span><span class="co">#&gt; Chain 2:  Elapsed Time: 0.023311 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 2:                0.019244 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 2:                0.042555 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 2:  Elapsed Time: 0.02438 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 2:                0.014132 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2:                0.038512 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 2: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 3).</span></span>
@@ -1023,15 +1023,15 @@
 <span><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 3: </span></span>
-<span><span class="co">#&gt; Chain 3:  Elapsed Time: 0.02515 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 3:                0.012038 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 3:                0.037188 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 3:  Elapsed Time: 0.02669 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 3:                0.013384 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3:                0.040074 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 3: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 4).</span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
-<span><span class="co">#&gt; Chain 4: Gradient evaluation took 2e-06 seconds</span></span>
-<span><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.</span></span>
+<span><span class="co">#&gt; Chain 4: Gradient evaluation took 4e-06 seconds</span></span>
+<span><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.</span></span>
 <span><span class="co">#&gt; Chain 4: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
@@ -1048,9 +1048,9 @@
 <span><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
-<span><span class="co">#&gt; Chain 4:  Elapsed Time: 0.025892 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 4:                0.015476 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 4:                0.041368 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 4:  Elapsed Time: 0.029541 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 4:                0.013239 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4:                0.04278 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 4:</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>
