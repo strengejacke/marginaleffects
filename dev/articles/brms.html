@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9017</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9023</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -208,11 +208,11 @@
 <span>        woman <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>        passengerClass <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;            Term  Contrast   Estimate     2.5 %    97.5 %      age woman passengerClass</span></span>
-<span><span class="co">#&gt;           woman     dY/dX  0.1562784  0.111359  0.208756 29.88113     1            1st</span></span>
-<span><span class="co">#&gt;             age     dY/dX -0.0002383 -0.001355  0.000871 29.88113     1            1st</span></span>
-<span><span class="co">#&gt;  passengerClass 2nd - 1st -0.1574416 -0.223275 -0.102890 29.88113     1            1st</span></span>
-<span><span class="co">#&gt;  passengerClass 3rd - 1st -0.3653764 -0.438319 -0.294769 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;            Term  Contrast   Estimate     2.5 %    97.5 %  survived      age woman passengerClass</span></span>
+<span><span class="co">#&gt;           woman     dY/dX  0.1562784  0.111359  0.208756 0.4082218 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;             age     dY/dX -0.0002383 -0.001355  0.000871 0.4082218 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;  passengerClass 2nd - 1st -0.1574416 -0.223275 -0.102890 0.4082218 29.88113     1            1st</span></span>
+<span><span class="co">#&gt;  passengerClass 3rd - 1st -0.3653764 -0.438319 -0.294769 0.4082218 29.88113     1            1st</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, survived, age, woman, passengerClass, eps</span></span></code></pre></div>
@@ -313,9 +313,9 @@
 <span>                                          region <span class="op">=</span> <span class="st">"Middle East and North Africa"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;             Term     Contrast Estimate  2.5 % 97.5 % party_autonomy civil_liberties                       region</span></span>
-<span><span class="co">#&gt;   party_autonomy TRUE - FALSE   0.2517 0.1663 0.3356           TRUE             0.5 Middle East and North Africa</span></span>
-<span><span class="co">#&gt;  civil_liberties        dY/dX   0.8160 0.6214 1.0066           TRUE             0.5 Middle East and North Africa</span></span>
+<span><span class="co">#&gt;             Term     Contrast Estimate  2.5 % 97.5 % media_index party_autonomy civil_liberties                       region</span></span>
+<span><span class="co">#&gt;   party_autonomy TRUE - FALSE   0.2517 0.1663 0.3356   0.6723184           TRUE             0.5 Middle East and North Africa</span></span>
+<span><span class="co">#&gt;  civil_liberties        dY/dX   0.8160 0.6214 1.0066   0.6723184           TRUE             0.5 Middle East and North Africa</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, media_index, party_autonomy, civil_liberties, region, eps</span></span></code></pre></div>
@@ -361,10 +361,10 @@
 <span>    variables <span class="op">=</span> <span class="st">"civil_liberties"</span><span class="op">)</span></span>
 <span><span class="va">mfx</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;             Term Estimate  2.5 % 97.5 % civil_liberties party_autonomy                       region</span></span>
-<span><span class="co">#&gt;  civil_liberties   0.4900 0.3609 0.6388             0.2          FALSE Middle East and North Africa</span></span>
-<span><span class="co">#&gt;  civil_liberties   0.8071 0.6122 0.9927             0.5          FALSE Middle East and North Africa</span></span>
-<span><span class="co">#&gt;  civil_liberties   0.8069 0.6745 0.9337             0.8          FALSE Middle East and North Africa</span></span>
+<span><span class="co">#&gt;             Term Estimate  2.5 % 97.5 % media_index civil_liberties party_autonomy                       region</span></span>
+<span><span class="co">#&gt;  civil_liberties   0.4900 0.3609 0.6388   0.6723184             0.2          FALSE Middle East and North Africa</span></span>
+<span><span class="co">#&gt;  civil_liberties   0.8071 0.6122 0.9927   0.6723184             0.5          FALSE Middle East and North Africa</span></span>
+<span><span class="co">#&gt;  civil_liberties   0.8069 0.6745 0.9337   0.6723184             0.8          FALSE Middle East and North Africa</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, estimate, conf.low, conf.high, predicted, predicted_hi, predicted_lo, media_index, civil_liberties, party_autonomy, region, eps</span></span></code></pre></div>
@@ -568,8 +568,8 @@
 <span>    by <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  x Estimate  2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  0   0.4518 0.3380 0.5689</span></span>
-<span><span class="co">#&gt;  1   0.5521 0.4331 0.6649</span></span>
+<span><span class="co">#&gt;  0   0.4514 0.3401 0.5689</span></span>
+<span><span class="co">#&gt;  1   0.5507 0.4379 0.6658</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, x, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -582,7 +582,7 @@
 <span>    sample_new_levels <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Contrast Estimate   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;     x    1 - 0  0.09747 0.04783 0.1617</span></span>
+<span><span class="co">#&gt;     x    1 - 0  0.09645 0.04733 0.1625</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, conf.low, conf.high</span></span></code></pre></div>
@@ -599,7 +599,7 @@
 <span>  effects <span class="op">=</span> <span class="st">"integrateoutRE"</span><span class="op">)</span></span>
 <span><span class="va">bm</span><span class="op">$</span><span class="va">ContrastSummary</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label</span></span>
-<span><span class="co">#&gt; 1 0.09916071 0.09726787 0.04752513 0.1638219          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 0.09912167 0.09719498 0.04792486 0.1636839          NA         NA 0.95    ETI &lt;NA&gt; &lt;NA&gt; AME x</span></span></code></pre></div>
 <p>See the <a href="https://vincentarelbundock.github.io/marginaleffects/articles/alternative_software.html">alternative software vignette</a> for more information on <code>brmsmargins</code>.</p>
 </div>
 </div>
@@ -955,8 +955,8 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 1).</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1: Gradient evaluation took 6e-06 seconds</span></span>
-<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.</span></span>
+<span><span class="co">#&gt; Chain 1: Gradient evaluation took 8e-06 seconds</span></span>
+<span><span class="co">#&gt; Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.</span></span>
 <span><span class="co">#&gt; Chain 1: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
@@ -973,9 +973,9 @@
 <span><span class="co">#&gt; Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
-<span><span class="co">#&gt; Chain 1:  Elapsed Time: 0.02985 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.013758 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 1:                0.043608 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 1:  Elapsed Time: 0.030665 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.013942 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 1:                0.044607 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 1: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 2).</span></span>
@@ -998,9 +998,9 @@
 <span><span class="co">#&gt; Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 2: </span></span>
-<span><span class="co">#&gt; Chain 2:  Elapsed Time: 0.02438 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 2:                0.014132 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 2:                0.038512 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 2:  Elapsed Time: 0.025081 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 2:                0.0151 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 2:                0.040181 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 2: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 3).</span></span>
@@ -1023,15 +1023,15 @@
 <span><span class="co">#&gt; Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 3: </span></span>
-<span><span class="co">#&gt; Chain 3:  Elapsed Time: 0.02669 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 3:                0.013384 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 3:                0.040074 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 3:  Elapsed Time: 0.024682 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 3:                0.013867 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 3:                0.038549 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 3: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SAMPLING FOR MODEL '5f54edf6a24cb51f1bc002cfa3e7994b' NOW (CHAIN 4).</span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
-<span><span class="co">#&gt; Chain 4: Gradient evaluation took 4e-06 seconds</span></span>
-<span><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.</span></span>
+<span><span class="co">#&gt; Chain 4: Gradient evaluation took 3e-06 seconds</span></span>
+<span><span class="co">#&gt; Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.</span></span>
 <span><span class="co">#&gt; Chain 4: Adjust your expectations accordingly!</span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
@@ -1048,9 +1048,9 @@
 <span><span class="co">#&gt; Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)</span></span>
 <span><span class="co">#&gt; Chain 4: </span></span>
-<span><span class="co">#&gt; Chain 4:  Elapsed Time: 0.029541 seconds (Warm-up)</span></span>
-<span><span class="co">#&gt; Chain 4:                0.013239 seconds (Sampling)</span></span>
-<span><span class="co">#&gt; Chain 4:                0.04278 seconds (Total)</span></span>
+<span><span class="co">#&gt; Chain 4:  Elapsed Time: 0.027577 seconds (Warm-up)</span></span>
+<span><span class="co">#&gt; Chain 4:                0.016759 seconds (Sampling)</span></span>
+<span><span class="co">#&gt; Chain 4:                0.044336 seconds (Total)</span></span>
 <span><span class="co">#&gt; Chain 4:</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span></span>

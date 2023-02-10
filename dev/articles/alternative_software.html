@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9017</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9023</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -175,10 +175,10 @@
 <span>            newdata <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>            variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast Estimate Std. Error         z Pr(&gt;|z|)   2.5 %  97.5 %       hp</span></span>
-<span><span class="co">#&gt;   cyl    6 - 4  -0.9049       1.63 -0.555059  0.57885    -4.1    2.29 146.6875</span></span>
-<span><span class="co">#&gt;   cyl    8 - 4 -19.5418    4367.17 -0.004475  0.99643 -8579.0 8539.95 146.6875</span></span>
-<span><span class="co">#&gt;   cyl    8 - 6 -18.6369    4367.17 -0.004268  0.99660 -8578.1 8540.85 146.6875</span></span>
+<span><span class="co">#&gt;  Term Contrast Estimate Std. Error         z Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt;   cyl    6 - 4  -0.9049       1.63 -0.555059  0.57885    -4.1    2.29</span></span>
+<span><span class="co">#&gt;   cyl    8 - 4 -19.5418    4367.17 -0.004475  0.99643 -8579.0 8539.95</span></span>
+<span><span class="co">#&gt;   cyl    8 - 6 -18.6369    4367.17 -0.004268  0.99660 -8578.1 8540.85</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, hp, cyl</span></span></code></pre></div>
@@ -194,10 +194,10 @@
 <span></span>
 <span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast   Estimate Std. Error         z Pr(&gt;|z|)      2.5 %    97.5 %       hp cyl</span></span>
-<span><span class="co">#&gt;    hp       +1 -1.558e-10  6.804e-07 -0.000229  0.99982 -1.334e-06 1.333e-06 146.6875   8</span></span>
-<span><span class="co">#&gt;   cyl    6 - 4 -2.222e-01  3.916e-01 -0.567315  0.57050 -9.898e-01 5.454e-01 146.6875   8</span></span>
-<span><span class="co">#&gt;   cyl    8 - 4 -5.947e-01  5.097e-01 -1.166640  0.24336 -1.594e+00 4.044e-01 146.6875   8</span></span>
+<span><span class="co">#&gt;  Term Contrast   Estimate Std. Error         z Pr(&gt;|z|)      2.5 %    97.5 %</span></span>
+<span><span class="co">#&gt;    hp       +1 -1.558e-10  6.804e-07 -0.000229  0.99982 -1.334e-06 1.333e-06</span></span>
+<span><span class="co">#&gt;   cyl    6 - 4 -2.222e-01  3.916e-01 -0.567315  0.57050 -9.898e-01 5.454e-01</span></span>
+<span><span class="co">#&gt;   cyl    8 - 4 -5.947e-01  5.097e-01 -1.166640  0.24336 -1.594e+00 4.044e-01</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, hp, cyl, eps</span></span></code></pre></div>
@@ -316,10 +316,10 @@
 <span></span>
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error       z Pr(&gt;|z|)    2.5 %  97.5 %       hp cyl</span></span>
-<span><span class="co">#&gt;    hp    dY/dX -0.007852    0.01111 -0.7069  0.47964 -0.02962 0.01392 146.6875   4</span></span>
-<span><span class="co">#&gt;   cyl    6 - 4 -0.222185    0.39164 -0.5673  0.57050 -0.98979 0.54542 146.6875   4</span></span>
-<span><span class="co">#&gt;   cyl    8 - 4 -0.594685    0.50974 -1.1666  0.24336 -1.59376 0.40439 146.6875   4</span></span>
+<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error       z Pr(&gt;|z|)    2.5 %  97.5 %     vs       hp cyl</span></span>
+<span><span class="co">#&gt;    hp    dY/dX -0.007852    0.01111 -0.7069  0.47964 -0.02962 0.01392 0.4375 146.6875   4</span></span>
+<span><span class="co">#&gt;   cyl    6 - 4 -0.222185    0.39164 -0.5673  0.57050 -0.98979 0.54542 0.4375 146.6875   4</span></span>
+<span><span class="co">#&gt;   cyl    8 - 4 -0.594685    0.50974 -1.1666  0.24336 -1.59376 0.40439 0.4375 146.6875   4</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, hp, cyl, eps</span></span></code></pre></div>
@@ -333,10 +333,10 @@
 <span></span>
 <span><span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, type <span class="op">=</span> <span class="st">"link"</span>, newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error         z Pr(&gt;|z|)      2.5 %    97.5 %       hp cyl</span></span>
-<span><span class="co">#&gt;    hp    dY/dX  -0.03257  3.388e-02 -0.961445  0.33633 -9.898e-02 3.383e-02 146.6875   4</span></span>
-<span><span class="co">#&gt;   cyl    6 - 4  -0.90487  1.630e+00 -0.555059  0.57885 -4.100e+00 2.290e+00 146.6875   4</span></span>
-<span><span class="co">#&gt;   cyl    8 - 4 -19.54176  4.367e+03 -0.004475  0.99643 -8.579e+03 8.540e+03 146.6875   4</span></span>
+<span><span class="co">#&gt;  Term Contrast  Estimate Std. Error         z Pr(&gt;|z|)      2.5 %    97.5 %     vs       hp cyl</span></span>
+<span><span class="co">#&gt;    hp    dY/dX  -0.03257  3.388e-02 -0.961445  0.33633 -9.898e-02 3.383e-02 0.4375 146.6875   4</span></span>
+<span><span class="co">#&gt;   cyl    6 - 4  -0.90487  1.630e+00 -0.555059  0.57885 -4.100e+00 2.290e+00 0.4375 146.6875   4</span></span>
+<span><span class="co">#&gt;   cyl    8 - 4 -19.54176  4.367e+03 -0.004475  0.99643 -8.579e+03 8.540e+03 0.4375 146.6875   4</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  link </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, vs, hp, cyl, eps</span></span></code></pre></div>

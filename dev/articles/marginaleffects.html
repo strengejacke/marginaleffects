@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9017</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9023</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -297,9 +297,9 @@
 <span>  variables <span class="op">=</span> <span class="st">"wt"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>am <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">##  Term Estimate Std. Error      z Pr(&gt;|z|)  2.5 %  97.5 %       hp      wt am</span></span>
-<span><span class="co">##    wt   -2.676      1.419 -1.886 0.059355 -5.458  0.1056 146.6875 3.21725  0</span></span>
-<span><span class="co">##    wt   -5.432      2.152 -2.524 0.011605 -9.651 -1.2139 146.6875 3.21725  1</span></span>
+<span><span class="co">##  Term Estimate Std. Error      z Pr(&gt;|z|)  2.5 %  97.5 %      mpg       hp      wt am</span></span>
+<span><span class="co">##    wt   -2.676      1.419 -1.886 0.059355 -5.458  0.1056 20.09062 146.6875 3.21725  0</span></span>
+<span><span class="co">##    wt   -5.432      2.152 -2.524 0.011605 -9.651 -1.2139 20.09062 146.6875 3.21725  1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, hp, wt, am, eps</span></span></code></pre>
@@ -421,9 +421,9 @@
 <span>  variables <span class="op">=</span> <span class="st">"drat"</span>,</span>
 <span>  newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>qsec <span class="op">=</span> <span class="va">range</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">##  Term Estimate Std. Error     z Pr(&gt;|z|)   2.5 % 97.5 %     drat qsec</span></span>
-<span><span class="co">##  drat    5.224      3.791 1.378 0.168218 -2.2065  12.65 3.596563 14.5</span></span>
-<span><span class="co">##  drat   10.241      5.161 1.984 0.047233  0.1251  20.36 3.596563 22.9</span></span>
+<span><span class="co">##  Term Estimate Std. Error     z Pr(&gt;|z|)   2.5 % 97.5 %      mpg     drat qsec</span></span>
+<span><span class="co">##  drat    5.224      3.791 1.378 0.168218 -2.2065  12.65 20.09062 3.596563 14.5</span></span>
+<span><span class="co">##  drat   10.241      5.161 1.984 0.047233  0.1251  20.36 20.09062 3.596563 22.9</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Prediction type:  response </span></span>
 <span><span class="co">## Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, mpg, drat, qsec, eps</span></span></code></pre>
@@ -444,7 +444,7 @@
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">##  Term Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %      p (Inf)    p (Sup)     p (Eq)</span></span>
+<span><span class="co">##  Term Estimate Std. Error     z   Pr(&gt;|z|)  2.5 % 97.5 %   p (NonInf) p (NonSup)  p (Equiv)</span></span>
 <span><span class="co">##  drat    7.224     1.3652 5.292 1.2122e-07 4.5484  9.900 7.062313e-12 0.99993505 0.99993505</span></span>
 <span><span class="co">##  qsec    1.124     0.4331 2.595  0.0094487 0.2752  1.973 2.740286e-13 0.02158502 0.02158502</span></span>
 <span><span class="co">## </span></span>
