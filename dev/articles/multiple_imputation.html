@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="marginaleffects">
-<title>Multiple Imputation • marginaleffects</title>
+<title>Multiple Imputation and Missing Data • marginaleffects</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Multiple Imputation">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Multiple Imputation and Missing Data">
 <meta property="og:description" content="marginaleffects">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9023</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9040</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,10 +69,10 @@
 
 
 
-<script src="multiple_imputation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="multiple_imputation_files/kePrint-0.0.1/kePrint.js"></script><link href="multiple_imputation_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Multiple Imputation</h1>
+      <img src="" class="logo" alt=""><h1>Multiple Imputation and Missing Data</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/vincentarelbundock/marginaleffects/blob/HEAD/vignettes/multiple_imputation.Rmd" class="external-link"><code>vignettes/multiple_imputation.Rmd</code></a></small>
@@ -81,611 +81,190 @@
 
     
     
-<p>The <code>marginaleffects</code> package offers convenience functions to compute and display predictions, contrasts, and marginal effects from models with multiple imputation from the <code>mice</code> package. The workflow follows Rubin’s rules (Rubin, 1987, p. 76) that uses the following steps:</p>
+<p>The <code>marginaleffects</code> package offers convenience functions
+to compute and display predictions, contrasts, and marginal effects from
+models with multiple imputation from the <code>mice</code> package. The
+workflow follows Rubin’s rules (Rubin, 1987, p. 76), via the following
+steps:</p>
 <ol style="list-style-type: decimal">
 <li>Impute n data sets</li>
 <li>Fit in each of the n imputed data sets</li>
 <li>Marginal effects in each of the n data sets</li>
 <li>Pool results</li>
 </ol>
-<p>To highlight the workflow, we can consider 3 situations: linear regression, logistic regression, and multilevel models with <code>lme4</code>. To show the linear and logistic models, we are going to use the classic <code>mtcars</code> data set but we will artificially add missing data. For the multilevel models, we will use the <code>sleepstudy</code> data set from <code>lme4</code>.</p>
+<p>To highlight the workflow, we consider a simple linear regression
+model, although the same workflow should work with any model type which
+supports the <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">stats::update()</a></code> function, which
+<code>marginaleffects</code> uses internally to re-fit models with the
+imputed datasets.</p>
+<p>The user interface is almost exactly the same as the one used for <a href="bootstrap.html">bootstraping or simulation-based inference (see
+vignette).</a></p>
 <div class="section level2">
-<h2 id="linear-regression-with-mice">Linear Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#linear-regression-with-mice"></a>
+<h2 id="imputation-with-mice">Imputation with <code>mice</code><a class="anchor" aria-label="anchor" href="#imputation-with-mice"></a>
 </h2>
-<p>Let’s first set up the data.</p>
+<p>First, we insert missing observations randomly in a dataset and we
+impute the dataset using the <code>mice</code> package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/amices/mice" class="external-link">mice</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">modelsummary</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">am</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">12</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">mpg</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">16</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">dat</span><span class="op">$</span><span class="va">hp</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">13</span>, <span class="fl">18</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
-<p>The next steps are to use <code>mice</code> to create the imputed data sets. Here, we are asking for <code>m = 20</code> imputations. Importantly, when mice creates the multiple imputation, it creates a list of data sets. So here, <code>dat_mice</code> has 20 nearly identical versions of the data in a list where any missing values were imputed.</p>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">iris</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">Sepal.Length</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>, <span class="fl">40</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>, <span class="fl">40</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">Species</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>, <span class="fl">40</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="va">dat_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/mice.html" class="external-link">mice</a></span><span class="op">(</span><span class="va">dat</span>, m <span class="op">=</span> <span class="fl">20</span>, printFlag <span class="op">=</span> <span class="cn">FALSE</span>, .Random.seed <span class="op">=</span> <span class="fl">1024</span><span class="op">)</span></span></code></pre></div>
+<p>Then, we fit a simple model using those partially missing
+observations (with list-wise deletion):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/mice.html" class="external-link">mice</a></span><span class="op">(</span><span class="va">dat</span>, m <span class="op">=</span> <span class="fl">20</span>, printFlag <span class="op">=</span> <span class="cn">FALSE</span>, .Random.seed <span class="op">=</span> <span class="fl">1024</span><span class="op">)</span></span>
-<span><span class="va">dat_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html" class="external-link">complete</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
-<p>To work with the list of data sets, we’ll create a function (in this case called <code>fit_reg</code>) that fits the model and computes the marginal effects.</p>
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">~</span> <span class="va">Sepal.Length</span> <span class="op">*</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Species</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<p>Now we use a <code>marginaleffects</code> function to compute
+quantities of interest:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>Using this function, we can apply it to each data set in the <code>dat_mice</code> list using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>. From there, we can pool and get a summary.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error       z   Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt;  Sepal.Length               dY/dX  0.04262    0.05220  0.8165  0.4142376</span></span>
+<span><span class="co">#&gt;   Sepal.Width               dY/dX  0.22462    0.07760  2.8944  0.0037988</span></span>
+<span><span class="co">#&gt;       Species versicolor - setosa  1.16431    0.09887 11.7758 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt;       Species  virginica - setosa  1.84298    0.12357 14.9139 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt;     2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;  -0.05969 0.1449</span></span>
+<span><span class="co">#&gt;   0.07252 0.3767</span></span>
+<span><span class="co">#&gt;   0.97052 1.3581</span></span>
+<span><span class="co">#&gt;   1.60077 2.0852</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
+<p>Finally, we use the <code><a href="../reference/inferences.html">inferences()</a></code> function to feed the
+multiply imputed data to the inference engine:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_reg</span><span class="op">)</span></span>
-<span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    contrast    estimate  std.error statistic      df      p.value</span></span>
-<span><span class="co">#&gt; 1   hp mean(dY/dX) -0.06537005 0.01148708 -5.690745 4647.06 1.342529e-08</span></span></code></pre></div>
-<p>We can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_mice</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error      t   Pr(&gt;|t|)</span></span>
+<span><span class="co">#&gt;  Sepal.Length               dY/dX  0.08388    0.05044  1.663  0.0998518</span></span>
+<span><span class="co">#&gt;   Sepal.Width               dY/dX  0.21318    0.07725  2.760  0.0069696</span></span>
+<span><span class="co">#&gt;       Species versicolor - setosa  1.09732    0.09830 11.163 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt;       Species  virginica - setosa  1.70989    0.12079 14.156 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt;     2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;  -0.01635 0.1841</span></span>
+<span><span class="co">#&gt;   0.05978 0.3666</span></span>
+<span><span class="co">#&gt;   0.90211 1.2925</span></span>
+<span><span class="co">#&gt;   1.46936 1.9504</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, df, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
+<p>All the usual arguments of the <code>marginaleffects</code> functions
+should be available.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Listwise Deletion"</span> <span class="op">=</span> <span class="va">mod_missing</span>,</span>
-<span>    <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,</span>
-<span>    <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Listwise Deletion
-</th>
-<th style="text-align:center;">
-Complete
-</th>
-<th style="text-align:center;">
- Multiple Imputation
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-hp
-</td>
-<td style="text-align:center;">
-−0.063
-</td>
-<td style="text-align:center;">
-−0.068
-</td>
-<td style="text-align:center;">
-−0.065
-</td>
-</tr>
-<tr>
-<td style="text-align:left;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.010)
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Num.Obs.
-</td>
-<td style="text-align:center;">
-25
-</td>
-<td style="text-align:center;">
-32
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2
-</td>
-<td style="text-align:center;">
-0.573
-</td>
-<td style="text-align:center;">
-0.602
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2 Adj.
-</td>
-<td style="text-align:center;">
-0.555
-</td>
-<td style="text-align:center;">
-0.589
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-143.6
-</td>
-<td style="text-align:center;">
-181.2
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
-<td style="text-align:center;">
-147.3
-</td>
-<td style="text-align:center;">
-185.6
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Log.Lik.
-</td>
-<td style="text-align:center;">
-−68.815
-</td>
-<td style="text-align:center;">
-−87.619
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-F
-</td>
-<td style="text-align:center;">
-30.881
-</td>
-<td style="text-align:center;">
-45.460
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-3.79
-</td>
-<td style="text-align:center;">
-3.74
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level2">
-<h2 id="categories-and-contrasts-problem-and-solution">Categories and Contrasts: Problem and Solution<a class="anchor" aria-label="anchor" href="#categories-and-contrasts-problem-and-solution"></a>
-</h2>
-<p>One particular problem arises in the cases of contrasts and categorical predictors. To see it, notice that when there are contrasts or categorical predictors, the <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code> method of <code>marginaleffects</code> identifies unique estimates using two columns called <code>term</code> and <code>contrast</code>:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_mice</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;          Term                        Contrast    Species Estimate Std. Error</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)     setosa  0.12043    0.06038</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX) versicolor  0.05689    0.05263</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)  virginica  0.07350    0.05032</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)     setosa  0.13006    0.09330</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX) versicolor  0.21981    0.07748</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)  virginica  0.29032    0.10587</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)     setosa  1.09732    0.09830</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa) versicolor  1.09732    0.09830</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)  virginica  1.09732    0.09830</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)     setosa  1.70989    0.12079</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa) versicolor  1.70989    0.12079</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)  virginica  1.70989    0.12079</span></span>
+<span><span class="co">#&gt;       t   Pr(&gt;|t|)      2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;   1.995  0.0490008  0.0005384 0.2403</span></span>
+<span><span class="co">#&gt;   1.081  0.2824659 -0.0475996 0.1614</span></span>
+<span><span class="co">#&gt;   1.461  0.1475911 -0.0264714 0.1735</span></span>
+<span><span class="co">#&gt;   1.394  0.1661075 -0.0548159 0.3149</span></span>
+<span><span class="co">#&gt;   2.837  0.0055377  0.0660455 0.3736</span></span>
+<span><span class="co">#&gt;   2.742  0.0073554  0.0800091 0.5006</span></span>
+<span><span class="co">#&gt;  11.163 &lt; 2.22e-16  0.9021140 1.2925</span></span>
+<span><span class="co">#&gt;  11.163 &lt; 2.22e-16  0.9021140 1.2925</span></span>
+<span><span class="co">#&gt;  11.163 &lt; 2.22e-16  0.9021140 1.2925</span></span>
+<span><span class="co">#&gt;  14.156 &lt; 2.22e-16  1.4693649 1.9504</span></span>
+<span><span class="co">#&gt;  14.156 &lt; 2.22e-16  1.4693649 1.9504</span></span>
+<span><span class="co">#&gt;  14.156 &lt; 2.22e-16  1.4693649 1.9504</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, Species, estimate, std.error, predicted, predicted_hi, predicted_lo, df, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
+<p>Note that the original <code>mice</code> object can be retrieved from
+an attribute:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
-<span><span class="co">#&gt;   type     term  contrast       estim…¹ std.e…² stati…³  p.value conf.…⁴ conf.…⁵</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> response cyl   mean(6) - mea…   -<span style="color: #BB0000;">7.81</span>    1.67   -<span style="color: #BB0000;">4.67</span> 2.96<span style="color: #949494;">e</span><span style="color: #BB0000;">- 6</span>   -<span style="color: #BB0000;">11.1</span>   -<span style="color: #BB0000;">4.54</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> response cyl   mean(8) - mea…  -<span style="color: #BB0000;">11.9</span>     1.38   -<span style="color: #BB0000;">8.64</span> 5.55<span style="color: #949494;">e</span><span style="color: #BB0000;">-18</span>   -<span style="color: #BB0000;">14.6</span>   -<span style="color: #BB0000;">9.19</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​conf.low, ⁵​conf.high</span></span></span></code></pre></div>
-<p>This poses problems because the <code><a href="https://amices.org/mice/reference/pool.html" class="external-link">mice::pool</a></code> function merges estimates based <em>only</em> on the <code>term</code> column. This means that our original procedure will erroneously combine different contrast levels. For example:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_mice</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="st">"inferences"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Class: mipo    m = 20 </span></span>
+<span><span class="co">#&gt;    term                        contrast  m   estimate        ubar           b</span></span>
+<span><span class="co">#&gt; 1     1                     mean(dY/dX) 20 0.12042870 0.002001708 0.001565474</span></span>
+<span><span class="co">#&gt; 2     2                     mean(dY/dX) 20 0.05689308 0.001529897 0.001181262</span></span>
+<span><span class="co">#&gt; 3     3                     mean(dY/dX) 20 0.07349917 0.001365281 0.001110945</span></span>
+<span><span class="co">#&gt; 4     4                     mean(dY/dX) 20 0.13005747 0.005115597 0.003418963</span></span>
+<span><span class="co">#&gt; 5     5                     mean(dY/dX) 20 0.21981376 0.003358538 0.002519360</span></span>
+<span><span class="co">#&gt; 6     6                     mean(dY/dX) 20 0.29032384 0.006068529 0.004894850</span></span>
+<span><span class="co">#&gt; 7     7 mean(versicolor) - mean(setosa) 20 1.09732257 0.005294550 0.004160623</span></span>
+<span><span class="co">#&gt; 8     8 mean(versicolor) - mean(setosa) 20 1.09732257 0.005294550 0.004160623</span></span>
+<span><span class="co">#&gt; 9     9 mean(versicolor) - mean(setosa) 20 1.09732257 0.005294550 0.004160623</span></span>
+<span><span class="co">#&gt; 10   10  mean(virginica) - mean(setosa) 20 1.70988780 0.007342690 0.006902343</span></span>
+<span><span class="co">#&gt; 11   11  mean(virginica) - mean(setosa) 20 1.70988780 0.007342690 0.006902343</span></span>
+<span><span class="co">#&gt; 12   12  mean(virginica) - mean(setosa) 20 1.70988780 0.007342690 0.006902343</span></span>
+<span><span class="co">#&gt;              t dfcom        df       riv    lambda       fmi</span></span>
+<span><span class="co">#&gt; 1  0.003645455   Inf  93.45166 0.8211724 0.4509032 0.4622891</span></span>
+<span><span class="co">#&gt; 2  0.002770222   Inf  94.77891 0.8107246 0.4477349 0.4590311</span></span>
+<span><span class="co">#&gt; 3  0.002531773   Inf  89.50333 0.8543977 0.4607414 0.4724006</span></span>
+<span><span class="co">#&gt; 4  0.008705508   Inf 111.73120 0.7017580 0.4123724 0.4226159</span></span>
+<span><span class="co">#&gt; 5  0.006003866   Inf  97.87157 0.7876427 0.4406041 0.4516953</span></span>
+<span><span class="co">#&gt; 6  0.011208122   Inf  90.35701 0.8469257 0.4585597 0.4701590</span></span>
+<span><span class="co">#&gt; 7  0.009663204   Inf  92.96094 0.8251229 0.4520917 0.4635111</span></span>
+<span><span class="co">#&gt; 8  0.009663204   Inf  92.96094 0.8251229 0.4520917 0.4635111</span></span>
+<span><span class="co">#&gt; 9  0.009663204   Inf  92.96094 0.8251229 0.4520917 0.4635111</span></span>
+<span><span class="co">#&gt; 10 0.014590150   Inf  77.00190 0.9870307 0.4967365 0.5093178</span></span>
+<span><span class="co">#&gt; 11 0.014590150   Inf  77.00190 0.9870307 0.4967365 0.5093178</span></span>
+<span><span class="co">#&gt; 12 0.014590150   Inf  77.00190 0.9870307 0.4967365 0.5093178</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="imputation-with-amelia">Imputation with <code>Amelia</code><a class="anchor" aria-label="anchor" href="#imputation-with-amelia"></a>
+</h2>
+<p>An alternative to <code>mice</code> is the <code>Amelia</code>
+package. The <code>amelia</code> function returns an object with an
+“<code>imputations</code>” list of imputed data frames. We can pass this
+list to the <code>inferences</code> function, just as we did above:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_reg</span><span class="op">)</span></span>
-<span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gking.harvard.edu/amelia" class="external-link">Amelia</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term          contrast   estimate std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  cyl mean(6) - mean(4)  -7.061948  1.757949 -4.017152 1182.100 6.262453e-05</span></span>
-<span><span class="co">#&gt; 2  cyl mean(8) - mean(4) -11.476948  1.466407 -7.826577 1150.565 1.130572e-14</span></span></code></pre></div>
-<p>One hack to work around this limitation is to assign a custom class to the object and to create a custom <code>tidy</code> method that combines the <code>term</code> and <code>contrast</code> columns:</p>
+<span><span class="va">dat_amelia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Amelia/man/amelia.html" class="external-link">amelia</a></span><span class="op">(</span><span class="va">dat</span>, noms <span class="op">=</span> <span class="st">"Species"</span>, p2s <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">$</span><span class="va">imputations</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit_reg</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="co"># the next line assigns a custom class</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"custom"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error       z   Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt;  Sepal.Length                  +1  0.04262    0.05220  0.8165  0.4142376</span></span>
+<span><span class="co">#&gt;   Sepal.Width                  +1  0.22462    0.07760  2.8944  0.0037988</span></span>
+<span><span class="co">#&gt;       Species versicolor - setosa  1.16431    0.09887 11.7758 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt;       Species  virginica - setosa  1.84298    0.12357 14.9139 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt;     2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;  -0.05969 0.1449</span></span>
+<span><span class="co">#&gt;   0.07252 0.3767</span></span>
+<span><span class="co">#&gt;   0.97052 1.3581</span></span>
+<span><span class="co">#&gt;   1.60077 2.0852</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
 <span></span>
-<span><span class="co"># this custom method will be called automatically for all objects produced by fit_reg()</span></span>
-<span><span class="va">tidy.custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">marginaleffects</span><span class="fu">:::</span><span class="fu">tidy.slopes</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
-<span>    <span class="va">out</span><span class="op">$</span><span class="va">term</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">term</span>, <span class="va">out</span><span class="op">$</span><span class="va">contrast</span><span class="op">)</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_reg</span><span class="op">)</span></span>
-<span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                    term          contrast   estimate std.error statistic</span></span>
-<span><span class="co">#&gt; 1 cyl mean(6) - mean(4) mean(6) - mean(4)  -7.061948  1.757949 -4.017152</span></span>
-<span><span class="co">#&gt; 2 cyl mean(8) - mean(4) mean(8) - mean(4) -11.476948  1.466407 -7.826577</span></span>
-<span><span class="co">#&gt;         df      p.value</span></span>
-<span><span class="co">#&gt; 1 1182.100 6.262453e-05</span></span>
-<span><span class="co">#&gt; 2 1150.565 1.130572e-14</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="logistic-regression-with-mice">Logistic Regression with <code>mice</code><a class="anchor" aria-label="anchor" href="#logistic-regression-with-mice"></a>
-</h2>
-<p>For the logistic regression, we’ll work with the same <code>dat_mice</code> imputed data sets. We’ll update our function to run the logistic regression that we want and call it <code>fit_logistic</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit_logistic</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>Using this function, we can apply it to each data set in the <code>dat_mice</code> list using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>. From there, we can pool and get a summary.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="va">fit_logistic</span><span class="op">)</span></span>
-<span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    contrast   estimate  std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1  mpg mean(dY/dX) 0.04880646 0.01061515  4.597811 274.8004 6.519182e-06</span></span></code></pre></div>
-<p>Again, we can compare this with what the model would have looked like without any missing data. The estimates, again, are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">dat</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span>, data <span class="op">=</span> <span class="va">mtcars</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
-<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Listwise Deletion"</span> <span class="op">=</span> <span class="va">mod_missing</span>,</span>
-<span>    <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,</span>
-<span>    <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Listwise Deletion
-</th>
-<th style="text-align:center;">
-Complete
-</th>
-<th style="text-align:center;">
- Multiple Imputation
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-mpg
-</td>
-<td style="text-align:center;">
-0.044
-</td>
-<td style="text-align:center;">
-0.046
-</td>
-<td style="text-align:center;">
-0.049
-</td>
-</tr>
-<tr>
-<td style="text-align:left;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.009)
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.009)
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(0.011)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Num.Obs.
-</td>
-<td style="text-align:center;">
-24
-</td>
-<td style="text-align:center;">
-32
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-24.0
-</td>
-<td style="text-align:center;">
-33.7
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
-<td style="text-align:center;">
-26.4
-</td>
-<td style="text-align:center;">
-36.6
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Log.Lik.
-</td>
-<td style="text-align:center;">
-−10.023
-</td>
-<td style="text-align:center;">
-−14.838
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-F
-</td>
-<td style="text-align:center;">
-5.702
-</td>
-<td style="text-align:center;">
-7.148
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-0.37
-</td>
-<td style="text-align:center;">
-0.39
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level2">
-<h2 id="multilevel-modeling-with-lme4">Multilevel Modeling with <code>lme4</code><a class="anchor" aria-label="anchor" href="#multilevel-modeling-with-lme4"></a>
-</h2>
-<p>Our last example with use data from <code>lme4</code> known as <code>sleepstudy</code>. Let’s first set up the data. We randomly create missing in the outcome variable known as <code>Reaction</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sleepstudy"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">dat2</span> <span class="op">&lt;-</span> <span class="va">sleepstudy</span></span>
-<span><span class="va">dat2</span><span class="op">$</span><span class="va">Reaction</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">180</span>, <span class="fl">10</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
-<p>As before, the next steps are to use <code>mice</code> to create the imputed data sets.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_mice2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/mice.html" class="external-link">mice</a></span><span class="op">(</span><span class="va">dat2</span>, m <span class="op">=</span> <span class="fl">20</span>, printFlag <span class="op">=</span> <span class="cn">FALSE</span>, .Random.seed <span class="op">=</span> <span class="fl">1024</span><span class="op">)</span></span>
-<span><span class="va">dat_mice2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html" class="external-link">complete</a></span><span class="op">(</span><span class="va">dat_mice2</span>, <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
-<p>To work with the list of data sets, we’ll create a function (in this case called <code>fit_reg</code>) that fits the model and computes the marginal effects.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit_mlm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Days</span><span class="op">|</span><span class="va">Subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>Using this function, we can apply it to each data set in the <code>dat_mice</code> list using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>. From there, we can pool and get a summary.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">dat_mice2</span>, <span class="va">fit_mlm</span><span class="op">)</span></span>
-<span><span class="va">mod_imputation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/pool.html" class="external-link">pool</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod_imputation</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   term    contrast estimate std.error statistic       df      p.value</span></span>
-<span><span class="co">#&gt; 1 Days mean(dY/dX) 10.25971  1.563251  6.563063 172.3149 5.950207e-10</span></span></code></pre></div>
-<p>Like the previous models, we can compare this with what the model would have looked like without any missing data. The estimates are very similar (within one standard error) and the p-value for the imputed models is slightly higher than the full model (as expected).</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Days</span><span class="op">|</span><span class="va">Subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">sleepstudy</span><span class="op">)</span></span>
-<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">Days</span><span class="op">|</span><span class="va">Subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat2</span><span class="op">)</span></span>
-<span><span class="va">mod_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_complete</span><span class="op">)</span></span>
-<span><span class="va">mod_missing</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">mod_missing</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Listwise Deletion"</span> <span class="op">=</span> <span class="va">mod_missing</span>,</span>
-<span>    <span class="st">"Complete"</span> <span class="op">=</span> <span class="va">mod_complete</span>,</span>
-<span>    <span class="st">"Multiple Imputation"</span> <span class="op">=</span> <span class="va">mod_imputation</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Listwise Deletion
-</th>
-<th style="text-align:center;">
-Complete
-</th>
-<th style="text-align:center;">
- Multiple Imputation
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Days
-</td>
-<td style="text-align:center;">
-10.407
-</td>
-<td style="text-align:center;">
-10.467
-</td>
-<td style="text-align:center;">
-10.260
-</td>
-</tr>
-<tr>
-<td style="text-align:left;box-shadow: 0px 1px">
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(1.622)
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(1.546)
-</td>
-<td style="text-align:center;box-shadow: 0px 1px">
-(1.563)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Num.Obs.
-</td>
-<td style="text-align:center;">
-170
-</td>
-<td style="text-align:center;">
-180
-</td>
-<td style="text-align:center;">
-180
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Num.Imp.
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-20
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2 Marg.
-</td>
-<td style="text-align:center;">
-0.274
-</td>
-<td style="text-align:center;">
-0.279
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-R2 Cond.
-</td>
-<td style="text-align:center;">
-0.796
-</td>
-<td style="text-align:center;">
-0.799
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AIC
-</td>
-<td style="text-align:center;">
-1664.9
-</td>
-<td style="text-align:center;">
-1755.6
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BIC
-</td>
-<td style="text-align:center;">
-1683.7
-</td>
-<td style="text-align:center;">
-1774.8
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ICC
-</td>
-<td style="text-align:center;">
-0.7
-</td>
-<td style="text-align:center;">
-0.7
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-RMSE
-</td>
-<td style="text-align:center;">
-23.55
-</td>
-<td style="text-align:center;">
-23.44
-</td>
-<td style="text-align:center;">
-</td>
-</tr>
-</tbody>
-</table>
+<span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_amelia</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error       t   Pr(&gt;|t|)</span></span>
+<span><span class="co">#&gt;  Sepal.Length                  +1  0.36189    0.06637  5.4522 8.5774e-06</span></span>
+<span><span class="co">#&gt;   Sepal.Width                  +1 -0.08778    0.09970 -0.8805 0.38673588</span></span>
+<span><span class="co">#&gt;       Species versicolor - setosa  0.60299    0.14199  4.2467 0.00069611</span></span>
+<span><span class="co">#&gt;       Species  virginica - setosa  1.06329    0.17598  6.0422 1.9230e-05</span></span>
+<span><span class="co">#&gt;    2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;   0.2258 0.4980</span></span>
+<span><span class="co">#&gt;  -0.2928 0.1172</span></span>
+<span><span class="co">#&gt;   0.3005 0.9055</span></span>
+<span><span class="co">#&gt;   0.6894 1.4372</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Prediction type:  response </span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, df, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

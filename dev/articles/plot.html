@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9023</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9040</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,8 @@
 
 
 
-<script src="plot_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Plots: Interactions, Predictions, Comparisons, and Slopes</h1>
             
@@ -80,23 +81,35 @@
 
     
     
-<p>The <code>marginaleffects</code> package includes several flexible functions to plot estimates and to display interactions:</p>
+<p>The <code>marginaleffects</code> package includes several flexible
+functions to plot estimates and to display interactions:</p>
 <ul>
-<li>Plot the raw output of <code><a href="../reference/slopes.html">slopes()</a></code> or <code><a href="../reference/comparisons.html">comparisons()</a></code>
+<li>Plot the raw output of <code><a href="../reference/slopes.html">slopes()</a></code> or
+<code><a href="../reference/comparisons.html">comparisons()</a></code>
 </li>
 <li>Interaction / conditional / heterogenous:
 <ul>
 <li>
-<code>plot_predictions</code>: Conditional Predictions (equivalent to <code><a href="../reference/predictions.html">predictions()</a></code>)</li>
+<code>plot_predictions</code>: Conditional Predictions (equivalent
+to <code><a href="../reference/predictions.html">predictions()</a></code>)</li>
 <li>
-<code>plot_comparisons</code>: Conditional Contrasts (equivalent to <code><a href="../reference/comparisons.html">comparisons()</a></code>)</li>
+<code>plot_comparisons</code>: Conditional Contrasts (equivalent to
+<code><a href="../reference/comparisons.html">comparisons()</a></code>)</li>
 <li>
-<code>plot_slopes</code>: Conditional Slopes (aka “Marginal Effects”; equivalent to <code><a href="../reference/slopes.html">slopes()</a></code>)</li>
+<code>plot_slopes</code>: Conditional Slopes (aka “Marginal
+Effects”; equivalent to <code><a href="../reference/slopes.html">slopes()</a></code>)</li>
 </ul>
 </li>
 </ul>
-<p>The “interaction” or “conditional” plotting functionality is designed to display how the outcome or how the effect of a predictor changes with respect to another variable.</p>
-<p>This vignette focuses on <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code>, but the same ideas apply to <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> and <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code> as well. In the examples below, we will use the <code>patchwork</code> package to combine plots and the <code>ggplot2</code> package to customize their content and appearance:</p>
+<p>The “interaction” or “conditional” plotting functionality is designed
+to display how the outcome or how the effect of a predictor changes with
+respect to another variable.</p>
+<p>This vignette focuses on <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code>, but the
+same ideas apply to <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> and
+<code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code> as well. In the examples below, we will
+use the <code>patchwork</code> package to combine plots and the
+<code>ggplot2</code> package to customize their content and
+appearance:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
@@ -104,17 +117,22 @@
 <div class="section level2">
 <h2 id="interactions-conditional-adjusted-predictions">Interactions: Conditional Adjusted Predictions<a class="anchor" aria-label="anchor" href="#interactions-conditional-adjusted-predictions"></a>
 </h2>
-<p>Consider a linear model with interactions, where the relationship between <code>hp</code> and <code>mpg</code> is conditional on the values of <code>wt</code> and <code>cyl</code>:</p>
+<p>Consider a linear model with interactions, where the relationship
+between <code>hp</code> and <code>mpg</code> is conditional on the
+values of <code>wt</code> and <code>cyl</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">*</span> <span class="va">wt</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="st">"hp"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plot_files/figure-html/unnamed-chunk-3-1.png" width="100%"></p>
-<p>We can show the predicted values of <code>mpg</code> for different values of different predictors:</p>
+<p>We can show the predicted values of <code>mpg</code> for different
+values of different predictors:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hp"</span>, <span class="st">"cyl"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plot_files/figure-html/unnamed-chunk-4-1.png" width="100%"></p>
-<p>We can include a 3rd conditioning variable, specify what values we want to consider, and use one of several string shortcuts for common reference values (“threenum”, “minmax”, “quartile”, etc.):</p>
+<p>We can include a 3rd conditioning variable, specify what values we
+want to consider, and use one of several string shortcuts for common
+reference values (“threenum”, “minmax”, “quartile”, etc.):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>hp <span class="op">=</span> <span class="fl">110</span><span class="op">:</span><span class="fl">120</span>, <span class="st">"wt"</span> <span class="op">=</span> <span class="st">"threenum"</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span></span>
 <span></span>
@@ -128,7 +146,11 @@
 <div class="section level2">
 <h2 id="customizing-plots">Customizing plots<a class="anchor" aria-label="anchor" href="#customizing-plots"></a>
 </h2>
-<p>A very useful feature of the plotting functions in this package is that they produce normal <code>ggplot2</code> objects. So we can customize them to our heart’s content, using <code>ggplot2</code> itself, or one of the many packages designed to augment its functionalities:</p>
+<p>A very useful feature of the plotting functions in this package is
+that they produce normal <code>ggplot2</code> objects. So we can
+customize them to our heart’s content, using <code>ggplot2</code>
+itself, or one of the many packages designed to augment its
+functionalities:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/malcolmbarrett/ggokabeito" class="external-link">ggokabeito</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel" class="external-link">ggrepel</a></span><span class="op">)</span></span>
@@ -147,7 +169,10 @@
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://malcolmbarrett.github.io/ggokabeito/reference/scale_okabe_ito.html" class="external-link">scale_color_okabe_ito</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plot_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
-<p>All the plotting functions work with all the model supported by the <code>marginaleffects</code> package, so we can plot the output of a logistic regression model. This plot shows the probability of survival aboard the Titanic, for different ages and different ticket classes:</p>
+<p>All the plotting functions work with all the model supported by the
+<code>marginaleffects</code> package, so we can plot the output of a
+logistic regression model. This plot shows the probability of survival
+aboard the Titanic, for different ages and different ticket classes:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
 <span></span>
@@ -166,12 +191,15 @@
 <span>        y <span class="op">=</span> <span class="va">Survived</span>,</span>
 <span>        side <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">Survived</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"bottom"</span>, <span class="st">"top"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plot_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
-<p>Thanks to <a href="https://bayesf22-notebook.classes.andrewheiss.com/bayes-rules/13-chapter.html" class="external-link">Andrew Heiss</a> who inspired this plot.</p>
+<p>Thanks to <a href="https://bayesf22-notebook.classes.andrewheiss.com/bayes-rules/13-chapter.html" class="external-link">Andrew
+Heiss</a> who inspired this plot.</p>
 </div>
 <div class="section level2">
 <h2 id="fits-and-smooths">Fits and smooths<a class="anchor" aria-label="anchor" href="#fits-and-smooths"></a>
 </h2>
-<p>We can compare the model predictors with fits and smoothers using the <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth()</a></code> function from the <code>ggplot2</code> package:</p>
+<p>We can compare the model predictors with fits and smoothers using the
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth()</a></code> function from the <code>ggplot2</code>
+package:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Stat2Data/Titanic.csv"</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
@@ -185,51 +213,62 @@
 <div class="section level2">
 <h2 id="extreme-customization">Extreme customization<a class="anchor" aria-label="anchor" href="#extreme-customization"></a>
 </h2>
-<p>Designing effective data visualizations requires a lot of customization to the specific context and data. The plotting functions in <code>marginaleffects</code> offer a powerful way to iterate quickly between plots and models, but they obviously cannot support all the features that users may want. Thankfully, it is very easy to use the <code>slopes</code> functions to generate datasets that can then be used in <code>ggplot2</code> or any other data visualization tool. Just use the <code>draw</code> argument:</p>
+<p>Designing effective data visualizations requires a lot of
+customization to the specific context and data. The plotting functions
+in <code>marginaleffects</code> offer a powerful way to iterate quickly
+between plots and models, but they obviously cannot support all the
+features that users may want. Thankfully, it is very easy to use the
+<code>slopes</code> functions to generate datasets that can then be used
+in <code>ggplot2</code> or any other data visualization tool. Just use
+the <code>draw</code> argument:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Age"</span>, <span class="st">"PClass"</span><span class="op">)</span>, draw <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   rowid     type  estimate  std.error statistic      p.value  conf.low</span></span>
-<span><span class="co">#&gt; 1     1 response 0.8717909 0.04858089 17.945140 5.237868e-72 0.7436448</span></span>
-<span><span class="co">#&gt; 2     2 response 0.7632110 0.06638393 11.496924 1.367008e-30 0.6107369</span></span>
-<span><span class="co">#&gt; 3     3 response 0.4079623 0.07663813  5.323228 1.019416e-07 0.2700636</span></span>
-<span><span class="co">#&gt; 4     4 response 0.8594973 0.04914581 17.488719 1.746399e-68 0.7337014</span></span>
-<span><span class="co">#&gt; 5     5 response 0.7360650 0.06490403 11.340821 8.236762e-30 0.5916568</span></span>
-<span><span class="co">#&gt; 6     6 response 0.3859279 0.06737162  5.728346 1.014148e-08 0.2647067</span></span>
-<span><span class="co">#&gt;   conf.high Survived     Age PClass</span></span>
-<span><span class="co">#&gt; 1 0.9409650        0 0.17000    1st</span></span>
-<span><span class="co">#&gt; 2 0.8687919        0 0.17000    2nd</span></span>
-<span><span class="co">#&gt; 3 0.5620556        0 0.17000    3rd</span></span>
-<span><span class="co">#&gt; 4 0.9314231        0 3.12125    1st</span></span>
-<span><span class="co">#&gt; 5 0.8429591        0 3.12125    2nd</span></span>
-<span><span class="co">#&gt; 6 0.5231643        0 3.12125    3rd</span></span></code></pre></div>
+<span><span class="co">#&gt;   rowid type  estimate      p.value  conf.low conf.high  Survived     Age</span></span>
+<span><span class="co">#&gt; 1     1 link 0.8717909 1.032561e-05 0.7436448 0.9409650 0.4140212 0.17000</span></span>
+<span><span class="co">#&gt; 2     2 link 0.7632110 1.441860e-03 0.6107369 0.8687919 0.4140212 0.17000</span></span>
+<span><span class="co">#&gt; 3     3 link 0.4079623 2.405455e-01 0.2700636 0.5620556 0.4140212 0.17000</span></span>
+<span><span class="co">#&gt; 4     4 link 0.8594973 8.574701e-06 0.7337014 0.9314231 0.4140212 3.12125</span></span>
+<span><span class="co">#&gt; 5     5 link 0.7360650 2.141210e-03 0.5916568 0.8429591 0.4140212 3.12125</span></span>
+<span><span class="co">#&gt; 6     6 link 0.3859279 1.023011e-01 0.2647067 0.5231643 0.4140212 3.12125</span></span>
+<span><span class="co">#&gt;   PClass</span></span>
+<span><span class="co">#&gt; 1    1st</span></span>
+<span><span class="co">#&gt; 2    2nd</span></span>
+<span><span class="co">#&gt; 3    3rd</span></span>
+<span><span class="co">#&gt; 4    1st</span></span>
+<span><span class="co">#&gt; 5    2nd</span></span>
+<span><span class="co">#&gt; 6    3rd</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="groups-and-categorical-outcomes">Groups and categorical outcomes<a class="anchor" aria-label="anchor" href="#groups-and-categorical-outcomes"></a>
 </h2>
-<p>In some models, <code>marginaleffects</code> functions generate different estimates for different groups, such as categorical outcomes. For example,</p>
+<p>In some models, <code>marginaleffects</code> functions generate
+different estimates for different groups, such as categorical outcomes.
+For example,</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">MASS</a></span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/polr.html" class="external-link">polr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">+</span> <span class="va">hp</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Group Estimate Std. Error       z   Pr(&gt;|z|)     2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;      3 0.531596   0.112672  4.7181 2.3807e-06 1.169e-03 0.9991</span></span>
-<span><span class="co">#&gt;      3 0.531596   0.112672  4.7181 2.3807e-06 1.169e-03 0.9991</span></span>
-<span><span class="co">#&gt;      3 0.449160   0.120036  3.7419 0.00018264 7.312e-04 0.9989</span></span>
-<span><span class="co">#&gt;      3 0.494359   0.111137  4.4482 8.6591e-06 9.159e-04 0.9990</span></span>
-<span><span class="co">#&gt;      3 0.421265   0.113957  3.6967 0.00021843 4.143e-04 0.9992</span></span>
+<span><span class="co">#&gt;  Group Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt;      3 0.531596   0.112672  4.7181 2.3807e-06  0.3107631 0.75243</span></span>
+<span><span class="co">#&gt;      3 0.531596   0.112672  4.7181 2.3807e-06  0.3107631 0.75243</span></span>
+<span><span class="co">#&gt;      3 0.449160   0.120036  3.7419 0.00018264  0.2138946 0.68443</span></span>
+<span><span class="co">#&gt;      3 0.494359   0.111137  4.4482 8.6591e-06  0.2765352 0.71218</span></span>
+<span><span class="co">#&gt;      3 0.421265   0.113957  3.6967 0.00021843  0.1979129 0.64462</span></span>
 <span><span class="co">#&gt; --- 86 rows omitted. See ?avg_predictions and ?print.marginaleffects --- </span></span>
-<span><span class="co">#&gt;      5 0.689397   0.195008  3.5352 0.00040744 2.313e-04 1.0000</span></span>
-<span><span class="co">#&gt;      5 0.164953   0.130661  1.2624 0.20678702 4.412e-05 0.9989</span></span>
-<span><span class="co">#&gt;      5 0.124546   0.069841  1.7833 0.07453997 6.412e-05 0.9968</span></span>
-<span><span class="co">#&gt;      5 0.377925   0.326811  1.1564 0.24751620 4.415e-05 0.9999</span></span>
-<span><span class="co">#&gt;      5 0.066739   0.045573  1.4644 0.14307241 6.821e-05 0.9868 </span></span>
+<span><span class="co">#&gt;      5 0.689397   0.195008  3.5352 0.00040744  0.3071872 1.07161</span></span>
+<span><span class="co">#&gt;      5 0.164953   0.130661  1.2624 0.20678702 -0.0911382 0.42104</span></span>
+<span><span class="co">#&gt;      5 0.124546   0.069841  1.7833 0.07453997 -0.0123394 0.26143</span></span>
+<span><span class="co">#&gt;      5 0.377925   0.326811  1.1564 0.24751620 -0.2626125 1.01846</span></span>
+<span><span class="co">#&gt;      5 0.066739   0.045573  1.4644 0.14307241 -0.0225821 0.15606 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  probs </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, group, estimate, std.error, statistic, p.value, conf.low, conf.high, mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb</span></span></code></pre></div>
-<p>We can plot those estimates in the same way as before, by specifying <code>group</code> as one of the conditional variable, or by adding that column to a <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code> call:</p>
+<span><span class="co">#&gt; Columns: rowid, type, group, estimate, std.error, statistic, p.value, conf.low, conf.high, gear, mpg, hp</span></span></code></pre></div>
+<p>We can plot those estimates in the same way as before, by specifying
+<code>group</code> as one of the conditional variable, or by adding that
+column to a <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code> call:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">mod</span>, condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"group"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"probs"</span>, vcov <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plot_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>

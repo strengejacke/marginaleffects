@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9023</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9040</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,8 @@
 
 
 
-<script src="faq_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>FAQ</h1>
             
@@ -84,21 +85,42 @@
 <h2 id="stack-overflow-questions">Stack Overflow questions<a class="anchor" aria-label="anchor" href="#stack-overflow-questions"></a>
 </h2>
 <ul>
-<li><a href="https://stackoverflow.com/questions/72723687/plot-cap-response-curve-for-counterfactual-data" class="external-link"><code>plot_predictions()</code> over a range of unobserved values</a></li>
-<li><a href="https://stackoverflow.com/questions/73126378/marginal-effects-plot-of-plm/73127507#73127507" class="external-link">Plot the marginal effects from a <code>plm</code> package model</a></li>
-<li><a href="https://stackoverflow.com/questions/73303108/marginal-effects-for-de-meaned-polynomials-in-mixed-models/73305398#73305398" class="external-link">Models with demeaned, polynomials, or transformed variables</a></li>
+<li><a href="https://stackoverflow.com/questions/72723687/plot-cap-response-curve-for-counterfactual-data" class="external-link"><code>plot_predictions()</code>
+over a range of unobserved values</a></li>
+<li><a href="https://stackoverflow.com/questions/73126378/marginal-effects-plot-of-plm/73127507#73127507" class="external-link">Plot
+the marginal effects from a <code>plm</code> package model</a></li>
+<li><a href="https://stackoverflow.com/questions/73303108/marginal-effects-for-de-meaned-polynomials-in-mixed-models/73305398#73305398" class="external-link">Models
+with demeaned, polynomials, or transformed variables</a></li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="calling-marginaleffects-in-functions-loops-environments-or-after-re-assigning-variables">Calling <code>marginaleffects</code> in functions, loops, environments, or after re-assigning variables<a class="anchor" aria-label="anchor" href="#calling-marginaleffects-in-functions-loops-environments-or-after-re-assigning-variables"></a>
+<h2 id="calling-marginaleffects-in-functions-loops-environments-or-after-re-assigning-variables">Calling <code>marginaleffects</code> in functions, loops,
+environments, or after re-assigning variables<a class="anchor" aria-label="anchor" href="#calling-marginaleffects-in-functions-loops-environments-or-after-re-assigning-variables"></a>
 </h2>
-<p>Functions from the <code>marginaleffects</code> package can sometimes fail when they are called inside a function, loop, or other environments. To see why, it is important to know that <code>marginaleffects</code> often needs to operate on the original data that was used to fit the model. To extract this original data, we use the <code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> function from the <code>insight</code> package.</p>
-<p>In most cases, <code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> can extract the data which is stored inside the model object created by the modeling package. However, some modeling packages do <em>not</em> save the original data in the model object (in order to save memory). In those cases, <code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> will parse the call to find the name of the data object, and will search for that data object in the global environment. When users fit models in a different environment (e.g., function calls), <code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> may not be able to retrieve the original data.</p>
-<p>A related problem can arise if users fit a model, but then assign a new value to the variable that used to store the dataset.</p>
+<p>Functions from the <code>marginaleffects</code> package can sometimes
+fail when they are called inside a function, loop, or other
+environments. To see why, it is important to know that
+<code>marginaleffects</code> often needs to operate on the original data
+that was used to fit the model. To extract this original data, we use
+the <code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> function from the <code>insight</code>
+package.</p>
+<p>In most cases, <code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> can extract the data which is
+stored inside the model object created by the modeling package. However,
+some modeling packages do <em>not</em> save the original data in the
+model object (in order to save memory). In those cases,
+<code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> will parse the call to find the name of the data
+object, and will search for that data object in the global environment.
+When users fit models in a different environment (e.g., function calls),
+<code><a href="https://easystats.github.io/insight/reference/get_data.html" class="external-link">get_data()</a></code> may not be able to retrieve the original
+data.</p>
+<p>A related problem can arise if users fit a model, but then assign a
+new value to the variable that used to store the dataset.</p>
 <p>Recommendations:</p>
 <ol style="list-style-type: decimal">
-<li>Supply your dataset explicitly to the <code>newdata</code> argument of <code>slopes</code> functions.</li>
-<li>Avoid assigning a new value to a variable that you use to store a dataset for model fitting.</li>
+<li>Supply your dataset explicitly to the <code>newdata</code> argument
+of <code>slopes</code> functions.</li>
+<li>Avoid assigning a new value to a variable that you use to store a
+dataset for model fitting.</li>
 </ol>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

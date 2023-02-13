@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9023</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9040</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,8 @@
 
 
 
-<script src="gam_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Generalized Additive Models</h1>
             
@@ -83,7 +84,9 @@
 <div class="section level2">
 <h2 id="estimate-a-gam-model">Estimate a GAM model<a class="anchor" aria-label="anchor" href="#estimate-a-gam-model"></a>
 </h2>
-<p>We will estimate a GAM model using the <code>mgcv</code> package and the <code>simdat</code> dataset distributed with the <code>itsadug</code> package:</p>
+<p>We will estimate a GAM model using the <code>mgcv</code> package and
+the <code>simdat</code> dataset distributed with the
+<code>itsadug</code> package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">itsadug</span><span class="op">)</span></span>
@@ -133,34 +136,43 @@
 <span><span class="co">#&gt; fREML = 2.3795e+05  Scale est. = 31.601    n = 75600</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="adjusted-predictions-predictions-and-plot_predictions">Adjusted Predictions: <code>predictions()</code> and <code>plot_predictions()</code><a class="anchor" aria-label="anchor" href="#adjusted-predictions-predictions-and-plot_predictions"></a>
+<h2 id="adjusted-predictions-predictions-and-plot_predictions">Adjusted Predictions: <code>predictions()</code> and
+<code>plot_predictions()</code><a class="anchor" aria-label="anchor" href="#adjusted-predictions-predictions-and-plot_predictions"></a>
 </h2>
-<p>Compute adjusted predictions for each observed combination of regressor in the dataset used to fit the model. This gives us a dataset with the same number of rows as the original data, but new columns with predicted values and uncertainty estimates:</p>
+<p>Compute adjusted predictions for each observed combination of
+regressor in the dataset used to fit the model. This gives us a dataset
+with the same number of rows as the original data, but new columns with
+predicted values and uncertainty estimates:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 75600    14</span></span>
+<span><span class="co">#&gt; [1] 75600    12</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Estimate Std. Error      z   Pr(&gt;|z|)    2.5 %   97.5 %</span></span>
-<span><span class="co">#&gt;   -1.8739     0.1992 -9.406 &lt; 2.22e-16 -2.26432 -1.48339</span></span>
-<span><span class="co">#&gt;   -1.3463     0.1817 -7.407 1.2879e-13 -1.70252 -0.99006</span></span>
-<span><span class="co">#&gt;   -0.8191     0.1671 -4.901 9.5203e-07 -1.14669 -0.49156</span></span>
+<span><span class="co">#&gt;   -1.8739     0.1992 -9.406 &lt; 2.22e-16 -2.26431 -1.48340</span></span>
+<span><span class="co">#&gt;   -1.3463     0.1817 -7.407 1.2879e-13 -1.70251 -0.99007</span></span>
+<span><span class="co">#&gt;   -0.8191     0.1671 -4.901 9.5203e-07 -1.14668 -0.49157</span></span>
 <span><span class="co">#&gt;   -0.2930     0.1561 -1.877   0.060455 -0.59884  0.01288</span></span>
 <span><span class="co">#&gt;    0.2313     0.1489  1.553   0.120383 -0.06058  0.52316</span></span>
-<span><span class="co">#&gt;    0.7527     0.1455  5.172 2.3113e-07  0.46745  1.03787</span></span>
+<span><span class="co">#&gt;    0.7527     0.1455  5.172 2.3113e-07  0.46746  1.03787</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, Group, Time, Trial, Condition, Subject, Y</span></span></code></pre></div>
-<p>We can easily plot adjusted predictions for different values of a regressor using the <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> function:</p>
+<span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, Y, Group, Time, Subject</span></span></code></pre></div>
+<p>We can easily plot adjusted predictions for different values of a
+regressor using the <code><a href="../reference/plot_predictions.html">plot_predictions()</a></code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_predictions.html">plot_predictions</a></span><span class="op">(</span><span class="va">model</span>, condition <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gam_files/figure-html/unnamed-chunk-5-1.png" width="100%"></p>
 </div>
 <div class="section level2">
-<h2 id="marginal-effects-slopes-and-plot_slopes">Marginal Effects: <code>slopes()</code> and <code>plot_slopes()</code><a class="anchor" aria-label="anchor" href="#marginal-effects-slopes-and-plot_slopes"></a>
+<h2 id="marginal-effects-slopes-and-plot_slopes">Marginal Effects: <code>slopes()</code> and
+<code>plot_slopes()</code><a class="anchor" aria-label="anchor" href="#marginal-effects-slopes-and-plot_slopes"></a>
 </h2>
-<p>Marginal effects are slopes of the prediction equation. They are an observation-level quantity. The <code><a href="../reference/slopes.html">slopes()</a></code> function produces a dataset with the same number of rows as the original data, but with new columns for the slop and uncertainty estimates:</p>
+<p>Marginal effects are slopes of the prediction equation. They are an
+observation-level quantity. The <code><a href="../reference/slopes.html">slopes()</a></code> function produces
+a dataset with the same number of rows as the original data, but with
+new columns for the slop and uncertainty estimates:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mfx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">slopes</a></span><span class="op">(</span><span class="va">model</span>, variables <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span></span>
@@ -174,17 +186,26 @@
 <span><span class="co">#&gt;  Time  0.02572   0.001092 23.54 &lt; 2.22e-16 0.02358 0.02786</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Group, Time, Trial, Condition, Subject, Y, eps</span></span></code></pre></div>
-<p>We can plot marginal effects for different values of a regressor using the <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> function. This next plot shows the slope of the prediction equation, that is, the slope of the previous plot, at every value of the <code>Time</code> variable.</p>
+<span><span class="co">#&gt; Columns: rowid, type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, Y, Group, Time, Subject, eps</span></span></code></pre></div>
+<p>We can plot marginal effects for different values of a regressor
+using the <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> function. This next plot shows the
+slope of the prediction equation, that is, the slope of the previous
+plot, at every value of the <code>Time</code> variable.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_slopes.html">plot_slopes</a></span><span class="op">(</span><span class="va">model</span>, effect <span class="op">=</span> <span class="st">"Time"</span>, condition <span class="op">=</span> <span class="st">"Time"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gam_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
-<p>The marginal effects in this plot can be interpreted as measuring the change in <code>Y</code> that is associated with a small increase in <code>Time</code>, for different baseline values of <code>Time</code>.</p>
+<p>The marginal effects in this plot can be interpreted as measuring the
+change in <code>Y</code> that is associated with a small increase in
+<code>Time</code>, for different baseline values of
+<code>Time</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="excluding-terms">Excluding terms<a class="anchor" aria-label="anchor" href="#excluding-terms"></a>
 </h2>
-<p>The <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method of the <code>mgcv</code> package allows users to “exclude” some smoothing terms, using the <code>exclude</code> argument. You can pass the same argument to any function in the <code>marginaleffects</code> package:</p>
+<p>The <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> method of the <code>mgcv</code> package
+allows users to “exclude” some smoothing terms, using the
+<code>exclude</code> argument. You can pass the same argument to any
+function in the <code>marginaleffects</code> package:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/predictions.html">predictions</a></span><span class="op">(</span><span class="va">model</span>, newdata <span class="op">=</span> <span class="st">"mean"</span>, exclude <span class="op">=</span> <span class="st">"s(Subject)"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -193,7 +214,8 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, estimate, std.error, statistic, p.value, conf.low, conf.high, Y, Group, Time, Subject</span></span></code></pre></div>
-<p>See the documentation in <code>?mgcv:::predict.bam</code> for details.</p>
+<p>See the documentation in <code>?mgcv:::predict.bam</code> for
+details.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
