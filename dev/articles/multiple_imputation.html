@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9040</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9042</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
 
 
 
-
+<script src="multiple_imputation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="multiple_imputation_files/kePrint-0.0.1/kePrint.js"></script><link href="multiple_imputation_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Multiple Imputation and Missing Data</h1>
@@ -81,32 +81,24 @@
 
     
     
-<p>The <code>marginaleffects</code> package offers convenience functions
-to compute and display predictions, contrasts, and marginal effects from
-models with multiple imputation from the <code>mice</code> package. The
-workflow follows Rubin’s rules (Rubin, 1987, p. 76), via the following
-steps:</p>
+<p>The <code>marginaleffects</code> package offers convenience functions to compute and display predictions, contrasts, and marginal effects from models with multiple imputation from the <code>mice</code> package. The workflow follows Rubin’s rules (Rubin, 1987, p. 76), via the following steps:</p>
 <ol style="list-style-type: decimal">
-<li>Impute n data sets</li>
-<li>Fit in each of the n imputed data sets</li>
-<li>Marginal effects in each of the n data sets</li>
-<li>Pool results</li>
+<li>Impute <span class="math inline">\(M\)</span> data sets.</li>
+<li>Fit in each of the <span class="math inline">\(M\)</span> imputed data sets.</li>
+<li>Compute marginal effects in each of the <span class="math inline">\(M\)</span> data sets.</li>
+<li>Pool results using Rubin’s rules.</li>
 </ol>
-<p>To highlight the workflow, we consider a simple linear regression
-model, although the same workflow should work with any model type which
-supports the <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">stats::update()</a></code> function, which
-<code>marginaleffects</code> uses internally to re-fit models with the
-imputed datasets.</p>
-<p>The user interface is almost exactly the same as the one used for <a href="bootstrap.html">bootstraping or simulation-based inference (see
-vignette).</a></p>
+<p>To highlight the workflow, we consider a simple linear regression model, although the same workflow should work with any model type which is fit using a formula interface and a <code>data</code> argument.</p>
+<p><code>marginaleffects</code> support the <code>mice</code> impuation package, and any other package which can return a list of imputed data frames.</p>
 <div class="section level2">
-<h2 id="imputation-with-mice">Imputation with <code>mice</code><a class="anchor" aria-label="anchor" href="#imputation-with-mice"></a>
+<h2 id="mice">
+<code>mice</code><a class="anchor" aria-label="anchor" href="#mice"></a>
 </h2>
-<p>First, we insert missing observations randomly in a dataset and we
-impute the dataset using the <code>mice</code> package:</p>
+<p>First, we insert missing observations randomly in a dataset and we impute the dataset using the <code>mice</code> package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/amices/mice" class="external-link">mice</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1024</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">iris</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">Sepal.Length</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>, <span class="fl">40</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
@@ -114,157 +106,753 @@ impute the dataset using the <code>mice</code> package:</p>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">Species</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>, <span class="fl">40</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span></span>
 <span><span class="va">dat_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/mice.html" class="external-link">mice</a></span><span class="op">(</span><span class="va">dat</span>, m <span class="op">=</span> <span class="fl">20</span>, printFlag <span class="op">=</span> <span class="cn">FALSE</span>, .Random.seed <span class="op">=</span> <span class="fl">1024</span><span class="op">)</span></span></code></pre></div>
-<p>Then, we fit a simple model using those partially missing
-observations (with list-wise deletion):</p>
+<p>Then, we use the standard <code>mice</code> syntax to produce an object of class <code>mira</code> with all the models:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">~</span> <span class="va">Sepal.Length</span> <span class="op">*</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Species</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></code></pre></div>
-<p>Now we use a <code>marginaleffects</code> function to compute
-quantities of interest:</p>
+<code class="sourceCode R"><span><span class="va">mod_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">dat_mice</span>, <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">~</span> <span class="va">Sepal.Length</span> <span class="op">*</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Finally, we feed the <code>mira</code> object to a <code>marginaleffects</code> function:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mfx_mice</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod_mice</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span></span>
+<span><span class="va">mfx_mice</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error       z Pr(&gt;|z|)    2.5 %</span></span>
-<span><span class="co">#&gt;  Sepal.Length               dY/dX  0.04567    0.05613  0.8137 0.415839 -0.06434</span></span>
-<span><span class="co">#&gt;   Sepal.Width               dY/dX  0.17683    0.08359  2.1155 0.034387  0.01300</span></span>
-<span><span class="co">#&gt;       Species versicolor - setosa  1.16792    0.12280  9.5108  &lt; 2e-16  0.92723</span></span>
-<span><span class="co">#&gt;       Species  virginica - setosa  1.78258    0.13286 13.4166  &lt; 2e-16  1.52217</span></span>
-<span><span class="co">#&gt;  97.5 %</span></span>
-<span><span class="co">#&gt;  0.1557</span></span>
-<span><span class="co">#&gt;  0.3407</span></span>
-<span><span class="co">#&gt;  1.4086</span></span>
-<span><span class="co">#&gt;  2.0430</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Finally, we use the <code><a href="../reference/inferences.html">inferences()</a></code> function to feed the
-multiply imputed data to the inference engine:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_mice</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error      t Pr(&gt;|t|)     2.5 %</span></span>
-<span><span class="co">#&gt;  Sepal.Length               dY/dX  0.08236    0.04361  1.888 0.060437 -0.003647</span></span>
-<span><span class="co">#&gt;   Sepal.Width               dY/dX  0.17573    0.07767  2.262 0.026608  0.020962</span></span>
-<span><span class="co">#&gt;       Species versicolor - setosa  1.12015    0.09304 12.040  &lt; 2e-16  0.936457</span></span>
-<span><span class="co">#&gt;       Species  virginica - setosa  1.71015    0.10567 16.184  &lt; 2e-16  1.501223</span></span>
-<span><span class="co">#&gt;  97.5 %</span></span>
-<span><span class="co">#&gt;  0.1684</span></span>
-<span><span class="co">#&gt;  0.3305</span></span>
-<span><span class="co">#&gt;  1.3038</span></span>
-<span><span class="co">#&gt;  1.9191</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, df, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>All the usual arguments of the <code>marginaleffects</code> functions
-should be available.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_mice</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;          Term                        Contrast    Species Estimate Std. Error</span></span>
-<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)     setosa  0.09136    0.05116</span></span>
-<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX) versicolor  0.07447    0.05169</span></span>
-<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)  virginica  0.08081    0.04407</span></span>
-<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)     setosa  0.15473    0.08726</span></span>
-<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX) versicolor  0.17761    0.07941</span></span>
-<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)  virginica  0.19429    0.10605</span></span>
-<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)     setosa  1.12015    0.09304</span></span>
-<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa) versicolor  1.12015    0.09304</span></span>
-<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)  virginica  1.12015    0.09304</span></span>
-<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)     setosa  1.71015    0.10567</span></span>
-<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa) versicolor  1.71015    0.10567</span></span>
-<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)  virginica  1.71015    0.10567</span></span>
-<span><span class="co">#&gt;       t Pr(&gt;|t|)     2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;   1.786 0.075409 -0.009424 0.1921</span></span>
-<span><span class="co">#&gt;   1.441 0.152494 -0.027964 0.1769</span></span>
-<span><span class="co">#&gt;   1.834 0.068331 -0.006142 0.1678</span></span>
-<span><span class="co">#&gt;   1.773 0.078131 -0.017625 0.3271</span></span>
-<span><span class="co">#&gt;   2.236 0.028559  0.019178 0.3360</span></span>
-<span><span class="co">#&gt;   1.832 0.072466 -0.018331 0.4069</span></span>
-<span><span class="co">#&gt;  12.040  &lt; 2e-16  0.936457 1.3038</span></span>
-<span><span class="co">#&gt;  12.040  &lt; 2e-16  0.936457 1.3038</span></span>
-<span><span class="co">#&gt;  12.040  &lt; 2e-16  0.936457 1.3038</span></span>
-<span><span class="co">#&gt;  16.184  &lt; 2e-16  1.501223 1.9191</span></span>
-<span><span class="co">#&gt;  16.184  &lt; 2e-16  1.501223 1.9191</span></span>
-<span><span class="co">#&gt;  16.184  &lt; 2e-16  1.501223 1.9191</span></span>
+<span><span class="co">#&gt;          Term                        Contrast    Species Estimate Std. Error       t   Pr(&gt;|t|)    2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)     setosa  0.06331    0.05683  1.1142  0.2835093 -0.05828 0.1849</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX) versicolor  0.03352    0.05091  0.6583  0.5166778 -0.07162 0.1387</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)  virginica  0.04272    0.04937  0.8652  0.3984044 -0.06108 0.1465</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)     setosa  0.19856    0.07830  2.5360  0.0122490  0.04384 0.3533</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX) versicolor  0.23908    0.05638  4.2402 2.3242e-05  0.12851 0.3496</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)  virginica  0.26991    0.07465  3.6157  0.0005069  0.12149 0.4183</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)     setosa  1.16615    0.08467 13.7722 &lt; 2.22e-16  0.99637 1.3359</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa) versicolor  1.16615    0.08467 13.7722 &lt; 2.22e-16  0.99637 1.3359</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)  virginica  1.16615    0.08467 13.7722 &lt; 2.22e-16  0.99637 1.3359</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)     setosa  1.76722    0.10097 17.5022 &lt; 2.22e-16  1.56231 1.9721</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa) versicolor  1.76722    0.10097 17.5022 &lt; 2.22e-16  1.56231 1.9721</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)  virginica  1.76722    0.10097 17.5022 &lt; 2.22e-16  1.56231 1.9721</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, Species, estimate, std.error, predicted, predicted_hi, predicted_lo, df, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Note that the original <code>mice</code> object can be retrieved from
-an attribute:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_mice</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="st">"inferences"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Class: mipo    m = 20 </span></span>
-<span><span class="co">#&gt;    term                        contrast  m   estimate        ubar            b</span></span>
-<span><span class="co">#&gt; 1     1                     mean(dY/dX) 20 0.09135811 0.001875695 0.0007061105</span></span>
-<span><span class="co">#&gt; 2     2                     mean(dY/dX) 20 0.07447174 0.001562004 0.0010569801</span></span>
-<span><span class="co">#&gt; 3     3                     mean(dY/dX) 20 0.08081333 0.001316937 0.0005956926</span></span>
-<span><span class="co">#&gt; 4     4                     mean(dY/dX) 20 0.15472974 0.004958780 0.0025284787</span></span>
-<span><span class="co">#&gt; 5     5                     mean(dY/dX) 20 0.17760743 0.002996827 0.0031522893</span></span>
-<span><span class="co">#&gt; 6     6                     mean(dY/dX) 20 0.19428573 0.004581334 0.0063486175</span></span>
-<span><span class="co">#&gt; 7     7 mean(versicolor) - mean(setosa) 20 1.12014604 0.005725499 0.0027907916</span></span>
-<span><span class="co">#&gt; 8     8 mean(versicolor) - mean(setosa) 20 1.12014604 0.005725499 0.0027907916</span></span>
-<span><span class="co">#&gt; 9     9 mean(versicolor) - mean(setosa) 20 1.12014604 0.005725499 0.0027907916</span></span>
-<span><span class="co">#&gt; 10   10  mean(virginica) - mean(setosa) 20 1.71015152 0.007035852 0.0039334875</span></span>
-<span><span class="co">#&gt; 11   11  mean(virginica) - mean(setosa) 20 1.71015152 0.007035852 0.0039334875</span></span>
-<span><span class="co">#&gt; 12   12  mean(virginica) - mean(setosa) 20 1.71015152 0.007035852 0.0039334875</span></span>
-<span><span class="co">#&gt;              t dfcom        df       riv    lambda       fmi</span></span>
-<span><span class="co">#&gt; 1  0.002617111   Inf 236.74130 0.3952753 0.2832956 0.2892746</span></span>
-<span><span class="co">#&gt; 2  0.002671833   Inf 110.11845 0.7105161 0.4153811 0.4257175</span></span>
-<span><span class="co">#&gt; 3  0.001942414   Inf 183.23749 0.4749484 0.3220102 0.3292911</span></span>
-<span><span class="co">#&gt; 4  0.007613682   Inf 156.25931 0.5353943 0.3487015 0.3568806</span></span>
-<span><span class="co">#&gt; 5  0.006306730   Inf  68.98130 1.1044696 0.5248209 0.5380237</span></span>
-<span><span class="co">#&gt; 6  0.011247383   Inf  54.09033 1.4550451 0.5926755 0.6069450</span></span>
-<span><span class="co">#&gt; 7  0.008655831   Inf 165.78212 0.5118036 0.3385384 0.3463765</span></span>
-<span><span class="co">#&gt; 8  0.008655831   Inf 165.78212 0.5118036 0.3385384 0.3463765</span></span>
-<span><span class="co">#&gt; 9  0.008655831   Inf 165.78212 0.5118036 0.3385384 0.3463765</span></span>
-<span><span class="co">#&gt; 10 0.011166014   Inf 138.87236 0.5870166 0.3698869 0.3787697</span></span>
-<span><span class="co">#&gt; 11 0.011166014   Inf 138.87236 0.5870166 0.3698869 0.3787697</span></span>
-<span><span class="co">#&gt; 12 0.011166014   Inf 138.87236 0.5870166 0.3698869 0.3787697</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="imputation-with-amelia">Imputation with <code>Amelia</code><a class="anchor" aria-label="anchor" href="#imputation-with-amelia"></a>
+<h2 id="other-imputation-packages-amelia-missranger-or-lists-of-imputed-data-frames-">Other imputation packages: <code>Amelia</code>, <code>missRanger</code>, or lists of imputed data frames.<a class="anchor" aria-label="anchor" href="#other-imputation-packages-amelia-missranger-or-lists-of-imputed-data-frames-"></a>
 </h2>
-<p>An alternative to <code>mice</code> is the <code>Amelia</code>
-package. The <code>amelia</code> function returns an object with an
-“<code>imputations</code>” list of imputed data frames. We can pass this
-list to the <code>inferences</code> function, just as we did above:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>Several <code>R</code> packages can impute missing data. Indeed, <a href="https://cran.r-project.org/web/views/MissingData.html" class="external-link">the <code>Missing Data CRAN View</code></a> lists at least a dozen alternative packages. Since user interface changes a lot from package to package, supports a single workflow which can be used, with some adaptation, with all imputation packages:</p>
+<ol style="list-style-type: decimal">
+<li>Use an external package to create a list of imputed data frames</li>
+<li>Use the <code><a href="https://rdrr.io/pkg/miceadds/man/datalist2mids.html" class="external-link">datalist2mids()</a></code> function from the <code>miceadds</code> package to convert the list of data frames to a <code>mids</code> object.</li>
+<li>Use the <code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> function to fit models, as illustrated in the <code>mice</code> section above.</li>
+</ol>
+<p>Consider two imputation packages, which can both generate lists of imputed datasets: <code>Amelia</code> and <code>missRanger</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gking.harvard.edu/amelia" class="external-link">Amelia</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/alexanderrobitzsch/miceadds" class="external-link">miceadds</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mayer79/missRanger" class="external-link">missRanger</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">dat_amelia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Amelia/man/amelia.html" class="external-link">amelia</a></span><span class="op">(</span><span class="va">dat</span>, noms <span class="op">=</span> <span class="st">"Species"</span>, p2s <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">$</span><span class="va">imputations</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co"># impute data</span></span>
+<span><span class="va">dat_amelia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Amelia/man/amelia.html" class="external-link">amelia</a></span><span class="op">(</span><span class="va">dat</span>, noms <span class="op">=</span> <span class="st">"Species"</span>, p2s <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">$</span><span class="va">imputations</span></span>
+<span><span class="va">dat_missRanger</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/pkg/missRanger/man/missRanger.html" class="external-link">missRanger</a></span><span class="op">(</span><span class="va">dat</span>, verbose <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># convert lists of imputed datasets to `mids` objects</span></span>
+<span><span class="va">mids_amelia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/miceadds/man/datalist2mids.html" class="external-link">datlist2mids</a></span><span class="op">(</span><span class="va">dat_amelia</span><span class="op">)</span></span>
+<span><span class="va">mids_missRanger</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/miceadds/man/datalist2mids.html" class="external-link">datlist2mids</a></span><span class="op">(</span><span class="va">dat_missRanger</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># fit models</span></span>
+<span><span class="va">mod_amelia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mids_amelia</span>, <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">~</span> <span class="va">Sepal.Length</span> <span class="op">*</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mod_missRanger</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mids_missRanger</span>, <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">~</span> <span class="va">Sepal.Length</span> <span class="op">*</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># `Amelia` slopes</span></span>
+<span><span class="va">mfx_amelia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod_amelia</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span></span>
+<span><span class="va">mfx_amelia</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error       z Pr(&gt;|z|)    2.5 %</span></span>
-<span><span class="co">#&gt;  Sepal.Length                  +1  0.04567    0.05613  0.8137 0.415839 -0.06434</span></span>
-<span><span class="co">#&gt;   Sepal.Width                  +1  0.17683    0.08359  2.1155 0.034387  0.01300</span></span>
-<span><span class="co">#&gt;       Species versicolor - setosa  1.16792    0.12280  9.5108  &lt; 2e-16  0.92723</span></span>
-<span><span class="co">#&gt;       Species  virginica - setosa  1.78258    0.13286 13.4166  &lt; 2e-16  1.52217</span></span>
-<span><span class="co">#&gt;  97.5 %</span></span>
-<span><span class="co">#&gt;  0.1557</span></span>
-<span><span class="co">#&gt;  0.3407</span></span>
-<span><span class="co">#&gt;  1.4086</span></span>
-<span><span class="co">#&gt;  2.0430</span></span>
+<span><span class="co">#&gt;          Term                        Contrast    Species Estimate Std. Error       t  Pr(&gt;|t|)    2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)     setosa  0.33502    0.10117  3.3114 0.0193935  0.07943 0.5906</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX) versicolor  0.26587    0.08511  3.1240 0.0174345  0.06333 0.4684</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)  virginica  0.28929    0.08467  3.4168 0.0146743  0.08104 0.4975</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)     setosa -0.15895    0.19151 -0.8300 0.4449007 -0.65347 0.3356</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX) versicolor -0.06108    0.14031 -0.4353 0.6807981 -0.41760 0.2954</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)  virginica  0.01563    0.12561  0.1244 0.9033432 -0.26252 0.2938</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)     setosa  0.70779    0.21017  3.3678 0.0244099  0.14389 1.2717</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa) versicolor  0.70779    0.21017  3.3678 0.0244099  0.14389 1.2717</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)  virginica  0.70779    0.21017  3.3678 0.0244099  0.14389 1.2717</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)     setosa  1.16531    0.22709  5.1315 0.0049871  0.56088 1.7697</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa) versicolor  1.16531    0.22709  5.1315 0.0049871  0.56088 1.7697</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)  virginica  1.16531    0.22709  5.1315 0.0049871  0.56088 1.7697</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span>
+<span><span class="co">#&gt; Columns: type, term, contrast, Species, estimate, std.error, predicted, predicted_hi, predicted_lo, df, statistic, p.value, conf.low, conf.high</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/inferences.html">inferences</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"mi"</span>, midata <span class="op">=</span> <span class="va">dat_amelia</span><span class="op">)</span></span>
+<span><span class="co"># `missRanger` slopes</span></span>
+<span><span class="va">mfx_missRanger</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod_missRanger</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span></span>
+<span><span class="va">mfx_amelia</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;          Term            Contrast Estimate Std. Error      t   Pr(&gt;|t|)   2.5 %</span></span>
-<span><span class="co">#&gt;  Sepal.Length                  +1   0.3652    0.08351  4.372 0.00071597  0.1852</span></span>
-<span><span class="co">#&gt;   Sepal.Width                  +1  -0.1505    0.13900 -1.083 0.30486142 -0.4610</span></span>
-<span><span class="co">#&gt;       Species versicolor - setosa   0.5610    0.19534  2.872 0.01527360  0.1307</span></span>
-<span><span class="co">#&gt;       Species  virginica - setosa   1.0069    0.20607  4.886 0.00040142  0.5567</span></span>
-<span><span class="co">#&gt;  97.5 %</span></span>
-<span><span class="co">#&gt;  0.5452</span></span>
-<span><span class="co">#&gt;  0.1600</span></span>
-<span><span class="co">#&gt;  0.9912</span></span>
-<span><span class="co">#&gt;  1.4572</span></span>
+<span><span class="co">#&gt;          Term                        Contrast    Species Estimate Std. Error       t  Pr(&gt;|t|)    2.5 % 97.5 %</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)     setosa  0.33502    0.10117  3.3114 0.0193935  0.07943 0.5906</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX) versicolor  0.26587    0.08511  3.1240 0.0174345  0.06333 0.4684</span></span>
+<span><span class="co">#&gt;  Sepal.Length                     mean(dY/dX)  virginica  0.28929    0.08467  3.4168 0.0146743  0.08104 0.4975</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)     setosa -0.15895    0.19151 -0.8300 0.4449007 -0.65347 0.3356</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX) versicolor -0.06108    0.14031 -0.4353 0.6807981 -0.41760 0.2954</span></span>
+<span><span class="co">#&gt;   Sepal.Width                     mean(dY/dX)  virginica  0.01563    0.12561  0.1244 0.9033432 -0.26252 0.2938</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)     setosa  0.70779    0.21017  3.3678 0.0244099  0.14389 1.2717</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa) versicolor  0.70779    0.21017  3.3678 0.0244099  0.14389 1.2717</span></span>
+<span><span class="co">#&gt;       Species mean(versicolor) - mean(setosa)  virginica  0.70779    0.21017  3.3678 0.0244099  0.14389 1.2717</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)     setosa  1.16531    0.22709  5.1315 0.0049871  0.56088 1.7697</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa) versicolor  1.16531    0.22709  5.1315 0.0049871  0.56088 1.7697</span></span>
+<span><span class="co">#&gt;       Species  mean(virginica) - mean(setosa)  virginica  1.16531    0.22709  5.1315 0.0049871  0.56088 1.7697</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
-<span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, df, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
+<span><span class="co">#&gt; Columns: type, term, contrast, Species, estimate, std.error, predicted, predicted_hi, predicted_lo, df, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="comparing-results-with-different-imputation-software">Comparing results with different imputation software<a class="anchor" aria-label="anchor" href="#comparing-results-with-different-imputation-software"></a>
+</h2>
+<p>We can use the <code>modelsummary</code> package to compare the results with listwise delection to the results using different imputations software:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">modelsummary</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># listwise deletion slopes</span></span>
+<span><span class="va">mod_lwd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Petal.Width</span> <span class="op">~</span> <span class="va">Sepal.Length</span> <span class="op">*</span> <span class="va">Sepal.Width</span> <span class="op">+</span> <span class="va">Species</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span><span class="va">mfx_lwd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/slopes.html">avg_slopes</a></span><span class="op">(</span><span class="va">mod_lwd</span>, by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># regression table</span></span>
+<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"LWD"</span> <span class="op">=</span> <span class="va">mfx_lwd</span>,</span>
+<span>    <span class="st">"mice"</span> <span class="op">=</span> <span class="va">mfx_mice</span>,</span>
+<span>    <span class="st">"Amelia"</span> <span class="op">=</span> <span class="va">mfx_amelia</span>,</span>
+<span>    <span class="st">"missRanger"</span> <span class="op">=</span> <span class="va">mfx_missRanger</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">models</span>, shape <span class="op">=</span> <span class="va">term</span> <span class="op">:</span> <span class="va">contrast</span> <span class="op">+</span> <span class="va">Species</span> <span class="op">~</span> <span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Species
+</th>
+<th style="text-align:center;">
+LWD
+</th>
+<th style="text-align:center;">
+mice
+</th>
+<th style="text-align:center;">
+Amelia
+</th>
+<th style="text-align:center;">
+missRanger
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Sepal.Length mean(dY/dX)
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+0.033
+</td>
+<td style="text-align:center;">
+0.063
+</td>
+<td style="text-align:center;">
+0.335
+</td>
+<td style="text-align:center;">
+0.058
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+(0.061)
+</td>
+<td style="text-align:center;">
+(0.057)
+</td>
+<td style="text-align:center;">
+(0.101)
+</td>
+<td style="text-align:center;">
+(0.041)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+0.050
+</td>
+<td style="text-align:center;">
+0.034
+</td>
+<td style="text-align:center;">
+0.266
+</td>
+<td style="text-align:center;">
+0.068
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+(0.061)
+</td>
+<td style="text-align:center;">
+(0.051)
+</td>
+<td style="text-align:center;">
+(0.085)
+</td>
+<td style="text-align:center;">
+(0.039)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:center;">
+0.043
+</td>
+<td style="text-align:center;">
+0.043
+</td>
+<td style="text-align:center;">
+0.289
+</td>
+<td style="text-align:center;">
+0.064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:center;">
+(0.058)
+</td>
+<td style="text-align:center;">
+(0.049)
+</td>
+<td style="text-align:center;">
+(0.085)
+</td>
+<td style="text-align:center;">
+(0.037)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sepal.Width mean(dY/dX)
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+0.274
+</td>
+<td style="text-align:center;">
+0.199
+</td>
+<td style="text-align:center;">
+−0.159
+</td>
+<td style="text-align:center;">
+0.232
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+(0.091)
+</td>
+<td style="text-align:center;">
+(0.078)
+</td>
+<td style="text-align:center;">
+(0.192)
+</td>
+<td style="text-align:center;">
+(0.069)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+0.255
+</td>
+<td style="text-align:center;">
+0.239
+</td>
+<td style="text-align:center;">
+−0.061
+</td>
+<td style="text-align:center;">
+0.218
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+(0.074)
+</td>
+<td style="text-align:center;">
+(0.056)
+</td>
+<td style="text-align:center;">
+(0.140)
+</td>
+<td style="text-align:center;">
+(0.055)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:center;">
+0.234
+</td>
+<td style="text-align:center;">
+0.270
+</td>
+<td style="text-align:center;">
+0.016
+</td>
+<td style="text-align:center;">
+0.206
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:center;">
+(0.083)
+</td>
+<td style="text-align:center;">
+(0.075)
+</td>
+<td style="text-align:center;">
+(0.126)
+</td>
+<td style="text-align:center;">
+(0.068)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Species mean(versicolor) - mean(setosa)
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+1.157
+</td>
+<td style="text-align:center;">
+1.166
+</td>
+<td style="text-align:center;">
+0.708
+</td>
+<td style="text-align:center;">
+1.160
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+(0.097)
+</td>
+<td style="text-align:center;">
+(0.085)
+</td>
+<td style="text-align:center;">
+(0.210)
+</td>
+<td style="text-align:center;">
+(0.071)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+1.157
+</td>
+<td style="text-align:center;">
+1.166
+</td>
+<td style="text-align:center;">
+0.708
+</td>
+<td style="text-align:center;">
+1.160
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+(0.097)
+</td>
+<td style="text-align:center;">
+(0.085)
+</td>
+<td style="text-align:center;">
+(0.210)
+</td>
+<td style="text-align:center;">
+(0.071)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:center;">
+1.157
+</td>
+<td style="text-align:center;">
+1.166
+</td>
+<td style="text-align:center;">
+0.708
+</td>
+<td style="text-align:center;">
+1.160
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:center;">
+(0.097)
+</td>
+<td style="text-align:center;">
+(0.085)
+</td>
+<td style="text-align:center;">
+(0.210)
+</td>
+<td style="text-align:center;">
+(0.071)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Species mean(virginica) - mean(setosa)
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+1.839
+</td>
+<td style="text-align:center;">
+1.767
+</td>
+<td style="text-align:center;">
+1.165
+</td>
+<td style="text-align:center;">
+1.779
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:center;">
+(0.123)
+</td>
+<td style="text-align:center;">
+(0.101)
+</td>
+<td style="text-align:center;">
+(0.227)
+</td>
+<td style="text-align:center;">
+(0.082)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+1.839
+</td>
+<td style="text-align:center;">
+1.767
+</td>
+<td style="text-align:center;">
+1.165
+</td>
+<td style="text-align:center;">
+1.779
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:center;">
+(0.123)
+</td>
+<td style="text-align:center;">
+(0.101)
+</td>
+<td style="text-align:center;">
+(0.227)
+</td>
+<td style="text-align:center;">
+(0.082)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:center;">
+1.839
+</td>
+<td style="text-align:center;">
+1.767
+</td>
+<td style="text-align:center;">
+1.165
+</td>
+<td style="text-align:center;">
+1.779
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:left;box-shadow: 0px 1px">
+virginica
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.123)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.101)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.227)
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.082)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+150
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+0.953
+</td>
+<td style="text-align:center;">
+0.944
+</td>
+<td style="text-align:center;">
+0.845
+</td>
+<td style="text-align:center;">
+0.947
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+0.949
+</td>
+<td style="text-align:center;">
+0.942
+</td>
+<td style="text-align:center;">
+0.839
+</td>
+<td style="text-align:center;">
+0.945
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AIC
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+−34.0
+</td>
+<td style="text-align:center;">
+−76.0
+</td>
+<td style="text-align:center;">
+77.7
+</td>
+<td style="text-align:center;">
+−84.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIC
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+−19.3
+</td>
+<td style="text-align:center;">
+−55.0
+</td>
+<td style="text-align:center;">
+98.8
+</td>
+<td style="text-align:center;">
+−62.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Log.Lik.
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+23.997
+</td>
+<td style="text-align:center;">
+45.018
+</td>
+<td style="text-align:center;">
+−31.845
+</td>
+<td style="text-align:center;">
+48.999
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+220.780
+</td>
+<td style="text-align:center;">
+488.599
+</td>
+<td style="text-align:center;">
+156.870
+</td>
+<td style="text-align:center;">
+516.801
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+0.16
+</td>
+<td style="text-align:center;">
+0.18
+</td>
+<td style="text-align:center;">
+0.30
+</td>
+<td style="text-align:center;">
+0.17
+</td>
+</tr>
+</tbody>
+</table>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9040</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9042</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
 
 
 
-<script src="supported_models_files/kePrint-0.0.1/kePrint.js"></script><link href="supported_models_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="supported_models_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="supported_models_files/kePrint-0.0.1/kePrint.js"></script><link href="supported_models_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Supported Models</h1>
@@ -84,39 +84,19 @@
 <div class="section level2">
 <h2 id="adjusted-predictions-and-marginal-means">Adjusted predictions and marginal means<a class="anchor" aria-label="anchor" href="#adjusted-predictions-and-marginal-means"></a>
 </h2>
-<p>Under the hood, <code>marginaleffects</code>’s
-<code>predictions</code> and <code>marginal_means</code> functions use
-the <code>insight</code> package to retrieve adjusted predictions from a
-wide variety of models. Currently, <code>insight</code> <a href="https://easystats.github.io/insight/#list-of-supported-models-by-class" class="external-link">supports
-very many model types</a>, and most should work out-of-the-box with the
-<code>predictions</code> function. If you run into problems, do not
-hesitate to <a href="https://github.com/vincentarelbundock/marginaleffects/issues" class="external-link">report
-them on Github or via email.</a></p>
+<p>Under the hood, <code>marginaleffects</code>’s <code>predictions</code> and <code>marginal_means</code> functions use the <code>insight</code> package to retrieve adjusted predictions from a wide variety of models. Currently, <code>insight</code> <a href="https://easystats.github.io/insight/#list-of-supported-models-by-class" class="external-link">supports very many model types</a>, and most should work out-of-the-box with the <code>predictions</code> function. If you run into problems, do not hesitate to <a href="https://github.com/vincentarelbundock/marginaleffects/issues" class="external-link">report them on Github or via email.</a></p>
 </div>
 <div class="section level2">
 <h2 id="marginal-effects-and-contrasts">Marginal effects and contrasts<a class="anchor" aria-label="anchor" href="#marginal-effects-and-contrasts"></a>
 </h2>
-<p>This table shows the list of 76 model types for which the
-<code><a href="../reference/slopes.html">slopes()</a></code> function can compute slopes and contrasts. There
-are three main alternative software packages to compute such slopes (1)
-<code>Stata</code>’s <code>margins</code> command, (2) <code>R</code>’s
-<code><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins::margins</a></code> function, and (3) <code>R</code>’s
-<code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> function. The <a href="https://github.com/vincentarelbundock/marginaleffects/tree/main/inst/tinytest" class="external-link">test
-suite hosted on Github</a> compares the numerical equivalence of results
-produced by <code>marginaleffects</code> to those produced by all 3
-alternative software packages:</p>
+<p>This table shows the list of 76 model types for which the <code><a href="../reference/slopes.html">slopes()</a></code> function can compute slopes and contrasts. There are three main alternative software packages to compute such slopes (1) <code>Stata</code>’s <code>margins</code> command, (2) <code>R</code>’s <code><a href="https://rdrr.io/pkg/margins/man/margins.html" class="external-link">margins::margins</a></code> function, and (3) <code>R</code>’s <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> function. The <a href="https://github.com/vincentarelbundock/marginaleffects/tree/main/inst/tinytest" class="external-link">test suite hosted on Github</a> compares the numerical equivalence of results produced by <code>marginaleffects</code> to those produced by all 3 alternative software packages:</p>
 <ul>
-<li>✓: a green check means that the results of at least one model are
-equal to a reasonable tolerance.</li>
-<li>✖: a red cross means that the results are <em>not</em> identical;
-extra caution is warranted.</li>
-<li>U: a grey U means that computing slopes for a model type is
-<em>unsupported</em> by alternative packages, but supported by
-<code>marginaleffects</code>.</li>
+<li>✓: a green check means that the results of at least one model are equal to a reasonable tolerance.</li>
+<li>✖: a red cross means that the results are <em>not</em> identical; extra caution is warranted.</li>
+<li>U: a grey U means that computing slopes for a model type is <em>unsupported</em> by alternative packages, but supported by <code>marginaleffects</code>.</li>
 <li>An empty cell means means that no comparison has been made yet.</li>
 </ul>
-<p>I am <em>very</em> eager to add support for new models. Feel free to
-file a request or submit code on Github.</p>
+<p>I am <em>very</em> eager to add support for new models. Feel free to file a request or submit code on Github.</p>
 <table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>

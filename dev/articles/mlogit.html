@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9040</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9042</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,8 +69,7 @@
 
 
 
-
-<div class="row">
+<script src="mlogit_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Multinomial Logit and Discrete Choice Models</h1>
             
@@ -81,10 +80,7 @@
 
     
     
-<p>Several packages in the <code>R</code> ecosystem allow users to
-estimate multinomial logit model and discrete choice models. This case
-study illustrates the use of <code>marginaleffects</code> with the
-<code>nnet</code> and <code>mlogit</code> packages.</p>
+<p>Several packages in the <code>R</code> ecosystem allow users to estimate multinomial logit model and discrete choice models. This case study illustrates the use of <code>marginaleffects</code> with the <code>nnet</code> and <code>mlogit</code> packages.</p>
 <p>We begin by loading two libraries:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
@@ -93,13 +89,7 @@ study illustrates the use of <code>marginaleffects</code> with the
 <h2 id="nnet-package">
 <code>nnet</code> package<a class="anchor" aria-label="anchor" href="#nnet-package"></a>
 </h2>
-<p>The <code>multinom</code> function of the <code>nnet</code> package
-allows users to fit log-linear models via neural networks. The
-<code>data</code> used for this function is a data frame with one
-observation per row, and the response variable is coded a factor. All
-the <code>marginaleffects</code> package function work seamlessly with
-this model. For example, we can estimate a model and compute average
-marginal effects as follows:</p>
+<p>The <code>multinom</code> function of the <code>nnet</code> package allows users to fit log-linear models via neural networks. The <code>data</code> used for this function is a data frame with one observation per row, and the response variable is coded a factor. All the <code>marginaleffects</code> package function work seamlessly with this model. For example, we can estimate a model and compute average marginal effects as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">nnet</a></span><span class="op">)</span></span>
 <span></span>
@@ -126,11 +116,7 @@ marginal effects as follows:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  probs </span></span>
 <span><span class="co">#&gt; Columns: type, group, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Notice that in such models, we get one marginal effect for each term,
-for each level of the response variable. For this reason, we should use
-<code>"group"</code> in the <code>condition</code> argument (or
-<code>facet_*()</code> function) when calling one of the plotting
-functions:</p>
+<p>Notice that in such models, we get one marginal effect for each term, for each level of the response variable. For this reason, we should use <code>"group"</code> in the <code>condition</code> argument (or <code>facet_*()</code> function) when calling one of the plotting functions:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -153,10 +139,7 @@ functions:</p>
 <h2 id="mlogit-package">
 <code>mlogit</code> package<a class="anchor" aria-label="anchor" href="#mlogit-package"></a>
 </h2>
-<p>The <code>mlogit</code> package uses <code>data</code> in a slightly
-different structure, with one row per observation-choice combination.
-For example, this data on choice of travel mode includes 4 rows per
-individual, one for each mode of transportation:</p>
+<p>The <code>mlogit</code> package uses <code>data</code> in a slightly different structure, with one row per observation-choice combination. For example, this data on choice of travel mode includes 4 rows per individual, one for each mode of transportation:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"AER"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://cran.r-project.org/package=mlogit" class="external-link">"mlogit"</a></span><span class="op">)</span></span>
@@ -188,21 +171,10 @@ individual, one for each mode of transportation:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, group, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>Note that the <code>slopes</code> function will always return
-estimates of zero for regressors before the vertical bar in the formula.
-This is because the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> function supplied by the
-<code>mlogit</code> package does not produce different predictions for
-different values of these variables.</p>
-<p>To compute different kinds of marginal effects, we can construct
-customized data frames and feed them to the <code>newdata</code>
-argument of the <code>slopes</code> function.</p>
-<p><strong>Important:</strong> The <code>newdata</code> argument for
-<code>mlogit</code> models must be a “balanced” data frame, that is, it
-must have a number of rows that is a multiple of the number of
-choices.</p>
-<p>If we want to compute the slope of the response function (marginal
-effects) when each of the predictors is fixed to its global mean, we can
-do:</p>
+<p>Note that the <code>slopes</code> function will always return estimates of zero for regressors before the vertical bar in the formula. This is because the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> function supplied by the <code>mlogit</code> package does not produce different predictions for different values of these variables.</p>
+<p>To compute different kinds of marginal effects, we can construct customized data frames and feed them to the <code>newdata</code> argument of the <code>slopes</code> function.</p>
+<p><strong>Important:</strong> The <code>newdata</code> argument for <code>mlogit</code> models must be a “balanced” data frame, that is, it must have a number of rows that is a multiple of the number of choices.</p>
+<p>If we want to compute the slope of the response function (marginal effects) when each of the predictors is fixed to its global mean, we can do:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="va">TravelMode</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wait"</span>, <span class="st">"gcost"</span>, <span class="st">"income"</span>, <span class="st">"size"</span><span class="op">)</span>,</span>
@@ -228,9 +200,7 @@ do:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, group, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>If we want to compute marginal effects with the <code>gcost</code>
-and <code>wait</code> fixed at their mean value, <em>conditional</em> on
-the choice of transportation mode:</p>
+<p>If we want to compute marginal effects with the <code>gcost</code> and <code>wait</code> fixed at their mean value, <em>conditional</em> on the choice of transportation mode:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="va">TravelMode</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">mode</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -258,8 +228,7 @@ the choice of transportation mode:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, group, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>We can also explore more complex alternatives. Here, for example,
-only one alternative is affected by cost reduction:</p>
+<p>We can also explore more complex alternatives. Here, for example, only one alternative is affected by cost reduction:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="va">TravelMode</span><span class="op">$</span><span class="va">mode</span>, newdata <span class="op">=</span> <span class="va">TravelMode</span><span class="op">)</span></span>
 <span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">nd</span>, gcost <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span> <span class="op">==</span> <span class="va">i</span>, <span class="fl">30</span>, <span class="va">gcost</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -287,7 +256,7 @@ only one alternative is affected by cost reduction:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Group   Term   Estimate Std. Error       z   Pr(&gt;|z|)      2.5 %     97.5 %</span></span>
 <span><span class="co">#&gt;    air income  8.240e-03  2.463e-03  3.3454 0.00082164  0.0034123  0.0130668</span></span>
-<span><span class="co">#&gt;    bus income -1.328e-03  1.304e-03 -1.0183 0.30853209 -0.0038827  0.0012276</span></span>
+<span><span class="co">#&gt;    bus income -1.328e-03  1.304e-03 -1.0183 0.30853207 -0.0038827  0.0012276</span></span>
 <span><span class="co">#&gt;    car income  2.659e-05  4.321e-05  0.6154 0.53832121 -0.0000581  0.0001113</span></span>
 <span><span class="co">#&gt;  train income -6.939e-03  1.860e-03 -3.7298 0.00019166 -0.0105848 -0.0032924</span></span>
 <span><span class="co">#&gt;    air   size -2.124e-01  6.027e-02 -3.5247 0.00042400 -0.3305707 -0.0943084</span></span>
