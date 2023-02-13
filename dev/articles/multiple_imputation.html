@@ -91,12 +91,12 @@ steps:</p>
 <li>Fit in each of the <span class="math inline">\(M\)</span> imputed
 data sets.</li>
 <li>Compute marginal effects in each of the <span class="math inline">\(M\)</span> data sets.</li>
-<li>Pool results using Rubin’s rules.</li>
+<li>Pool results.</li>
 </ol>
 <p>To highlight the workflow, we consider a simple linear regression
 model, although the same workflow should work with any model type which
 is fit using a formula interface and a <code>data</code> argument.</p>
-<p><code>marginaleffects</code> support the <code>mice</code> impuation
+<p><code>marginaleffects</code> support the <code>mice</code> imputation
 package, and any other package which can return a list of imputed data
 frames.</p>
 <div class="section level2">
@@ -149,16 +149,19 @@ object of class <code>mira</code> with all the models:</p>
 </h2>
 <p>Several <code>R</code> packages can impute missing data. Indeed, <a href="https://cran.r-project.org/web/views/MissingData.html" class="external-link">the
 <code>Missing Data CRAN View</code></a> lists at least a dozen
-alternative packages. Since user interface changes a lot from package to
-package, supports a single workflow which can be used, with some
-adaptation, with all imputation packages:</p>
+alternatives. Since user interface changes a lot from package to
+package, <code>marginaleffects</code> supports a single workflow which
+can be used, with some adaptation, to with all imputation packages:</p>
 <ol style="list-style-type: decimal">
-<li>Use an external package to create a list of imputed data frames</li>
-<li>Use the <code><a href="https://rdrr.io/pkg/miceadds/man/datalist2mids.html" class="external-link">datalist2mids()</a></code> function from the
-<code>miceadds</code> package to convert the list of data frames to a
-<code>mids</code> object.</li>
+<li>Use an external package to create a list of imputed data
+frames.</li>
+<li>Apply the <code><a href="https://rdrr.io/pkg/miceadds/man/datalist2mids.html" class="external-link">datalist2mids()</a></code> function from the
+<code>miceadds</code> package to convert the list of imputed data frames
+to a <code>mids</code> object.</li>
 <li>Use the <code><a href="https://rdrr.io/r/base/with.html" class="external-link">with()</a></code> function to fit models, as illustrated
 in the <code>mice</code> section above.</li>
+<li>Pass the <code>mids</code> object to a <code>marginaleffects</code>
+function.</li>
 </ol>
 <p>Consider two imputation packages, which can both generate lists of
 imputed datasets: <code>Amelia</code> and <code>missRanger</code>.</p>
