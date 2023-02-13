@@ -78,7 +78,8 @@
 <code><a href="../reference/datagrid.html">datagrid()</a></code> and <code>plot_*()</code> functions are faster in datasets with many extraneous columns.</li>
 </ul><p>Bugfixes:</p>
 <ul><li>
-<code>brms</code> models with multivariate outcome collapsed categories in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Issue <a href="https://github.com/vincentarelbundock/marginaleffects/issues/639" class="external-link">#639</a></li></ul></div>
+<code>brms</code> models with multivariate outcome collapsed categories in <code><a href="../reference/comparisons.html">comparisons()</a></code>. Issue <a href="https://github.com/vincentarelbundock/marginaleffects/issues/639" class="external-link">#639</a></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.0" id="marginaleffects-090">marginaleffects 0.9.0<a class="anchor" aria-label="anchor" href="#marginaleffects-090"></a></h2><p class="text-muted">CRAN release: 2023-02-01</p>
 <p>Breaking changes:</p>
@@ -88,7 +89,8 @@
 <code>plot_*(draw=FALSE)</code> now return the actual variable names supplied to the <code>condition</code> argument, rather than the opaque “condition1”, “condition2”, etc.</li>
 </ul><p>New models supported:</p>
 <ul><li>
-<code>blme</code> package.</li></ul><p>New features:</p>
+<code>blme</code> package.</li>
+</ul><p>New features:</p>
 <ul><li>New functions: <code><a href="../reference/predictions.html">avg_predictions()</a></code>, <code><a href="../reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="../reference/slopes.html">avg_slopes()</a></code>
 </li>
 <li>Equivalence, non-inferiority, and non-superiority tests with the <code><a href="../reference/hypotheses.html">hypotheses()</a></code> function and <code>equivalence</code> argument.</li>
@@ -96,12 +98,14 @@
 <li>New <code>df</code> argument to set degrees of freedom manually for p and CI.</li>
 <li>Pretty <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> for all objects.</li>
 <li>
-<code>by</code> argument<ul><li>
+<code>by</code> argument
+<ul><li>
 <code>TRUE</code> returns average (marginal) predictions, comparisons, or slopes.</li>
 <li>Supports bayesian models.</li>
 </ul></li>
 <li>
-<code>hypothesis</code> argument<ul><li>Numeric value sets the null used in calculating Z and p.</li>
+<code>hypothesis</code> argument
+<ul><li>Numeric value sets the null used in calculating Z and p.</li>
 <li>Example: <code>comparisons(mod, transform_pre = "ratio", hypothesis = 1)</code>
 </li>
 </ul></li>
@@ -135,7 +139,8 @@
 <li>The <code>vcov</code> argument now accepts functions for most models.</li>
 </ul><p>Other:</p>
 <ul><li>Removed major performance bottleneck for <code><a href="../reference/slopes.html">slopes()</a></code>
-</li></ul></div>
+</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.1" id="marginaleffects-081">marginaleffects 0.8.1<a class="anchor" aria-label="anchor" href="#marginaleffects-081"></a></h2><p class="text-muted">CRAN release: 2022-11-23</p>
 <ul><li>
@@ -157,18 +162,22 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.8.0" id="marginaleffects-080">marginaleffects 0.8.0<a class="anchor" aria-label="anchor" href="#marginaleffects-080"></a></h2><p class="text-muted">CRAN release: 2022-11-02</p>
 <p>Breaking change:</p>
-<ul><li>The <code>interaction</code> argument is deprecated and replaced by the <code>cross</code> argument. This is to reduce ambiguity with respect to the <code>interaction</code> argument in <code>emmeans</code>, which does something completely different, akin to the difference-in-differences illustrated in the Interactions vignette.</li></ul><p>71 classes of models supported, including the new:</p>
+<ul><li>The <code>interaction</code> argument is deprecated and replaced by the <code>cross</code> argument. This is to reduce ambiguity with respect to the <code>interaction</code> argument in <code>emmeans</code>, which does something completely different, akin to the difference-in-differences illustrated in the Interactions vignette.</li>
+</ul><p>71 classes of models supported, including the new:</p>
 <ul><li><code><a href="https://rdrr.io/pkg/rms/man/ols.html" class="external-link">rms::ols</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/rms/man/lrm.html" class="external-link">rms::lrm</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/rms/man/orm.html" class="external-link">rms::orm</a></code></li>
 </ul><p>New features:</p>
 <ul><li>Plots: <code><a href="../reference/plot_cme.html">plot_cme()</a></code>, <code><a href="../reference/plot_cap.html">plot_cap()</a></code>, and <code><a href="../reference/plot_cco.html">plot_cco()</a></code> are now much more flexible in specifying the comparisons to display. The <code>condition</code> argument accepts lists, functions, and shortcuts for common reference values, such as “minmax”, “threenum”, etc.</li>
 <li>
-<code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function is more flexible:<ul><li>Accepts functions to specify custom differences in numeric variables (e.g., forward and backward differencing).</li>
+<code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function is more flexible:
+<ul><li>Accepts functions to specify custom differences in numeric variables (e.g., forward and backward differencing).</li>
 <li>Can specify pairs of factors to compare in the <code>variables</code> argument of the <code>comparisons</code> function.</li>
 </ul></li>
 <li>
-<code>variables</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function is more flexible:<ul><li>Accepts shortcut strings, functions, and vectors of arbitrary length.</li></ul></li>
+<code>variables</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function is more flexible:
+<ul><li>Accepts shortcut strings, functions, and vectors of arbitrary length.</li>
+</ul></li>
 <li>Integrate out random effects in bayesian <code>brms</code> models (see Bayesian analysis vignette)</li>
 </ul><p>New vignettes:</p>
 <ul><li>Experiments</li>
@@ -188,7 +197,8 @@
 <li>
 <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code> accepts a <code>wts</code> argument with values: “equal”, “proportional”, “cells”.</li>
 <li>
-<code>by</code> argument<ul><li>accepts data frames for complex groupings.</li>
+<code>by</code> argument
+<ul><li>accepts data frames for complex groupings.</li>
 <li>in <code>marginalmeans</code> only accepts data frames.</li>
 <li>accepts “group” to group by response level.</li>
 <li>works with bayesian models.</li>
@@ -196,7 +206,8 @@
 <li>
 <code>byfun</code> argument for the <code><a href="../reference/predictions.html">predictions()</a></code> function to aggregate using different functions.</li>
 <li>
-<code>hypothesis</code> argument<ul><li>The matrix column names are used as labels for hypothesis tests.</li>
+<code>hypothesis</code> argument
+<ul><li>The matrix column names are used as labels for hypothesis tests.</li>
 <li>Better labels with “sequential”, “reference”, “pairwise”.</li>
 <li>new shortcuts “revpairwise”, “revsequential”, “revreference”</li>
 </ul></li>
@@ -204,7 +215,8 @@
 <code>wts</code> argument is respected in <code>by</code> argument and with <code>*avg</code> shortcuts in the <code>transform_pre</code> argument.</li>
 <li>
 <code>tidy.predictions()</code> and <code>tidy.marginalmeans()</code> get a new <code>transform_avg</code> argument.</li>
-<li>New vignettes:<ul><li>Unit-level contrasts in logistic regressions. Thanks to <a href="https://github.com/arthur-albuquerque" class="external-link">@arthur-albuquerque</a>.</li>
+<li>New vignettes:
+<ul><li>Unit-level contrasts in logistic regressions. Thanks to <a href="https://github.com/arthur-albuquerque" class="external-link">@arthur-albuquerque</a>.</li>
 <li>Python Numpy models in <code>marginaleffects</code>. Thanks to <a href="https://github.com/timpipeseek" class="external-link">@timpipeseek</a>.</li>
 <li>Bootstrap example in standard errors vignette.</li>
 </ul></li>
@@ -217,7 +229,8 @@
 </li>
 <li>Character vectors are no longer supported in the <code>variables</code> argument of the <code><a href="../reference/predictions.html">predictions()</a></code> function. Use <code>newdata="fivenum"</code> or “grid”, “mean”, or “median” instead.</li>
 </ul><p>Critical bug fix:</p>
-<ul><li>Contrasts with interactions were incorrect in version 0.6.0. The error should have been obvious to most analysts in most cases (weird-looking alignment). Thanks to <a href="https://github.com/vmikk" class="external-link">@vmikk</a>.</li></ul><p>New supported packages and models:</p>
+<ul><li>Contrasts with interactions were incorrect in version 0.6.0. The error should have been obvious to most analysts in most cases (weird-looking alignment). Thanks to <a href="https://github.com/vmikk" class="external-link">@vmikk</a>.</li>
+</ul><p>New supported packages and models:</p>
 <ul><li><code><a href="https://rdrr.io/pkg/survival/man/clogit.html" class="external-link">survival::clogit</a></code></li>
 <li>
 <code>biglm</code>: The main quantities can be computed, but not the delta method standard errors. See <a href="https://github.com/vincentarelbundock/marginaleffects/issues/387" class="external-link uri">https://github.com/vincentarelbundock/marginaleffects/issues/387</a>
@@ -248,7 +261,8 @@
 <h2 class="pkg-version" data-toc-text="0.6.0" id="marginaleffects-060">marginaleffects 0.6.0<a class="anchor" aria-label="anchor" href="#marginaleffects-060"></a></h2><p class="text-muted">CRAN release: 2022-06-20</p>
 <p>New supported packages and models:</p>
 <ul><li>
-<code>tidymodels</code> objects of class <code>tidy_model</code> are supported if the fit engine is supported by <code>marginaleffects</code>.</li></ul><p>New function:</p>
+<code>tidymodels</code> objects of class <code>tidy_model</code> are supported if the fit engine is supported by <code>marginaleffects</code>.</li>
+</ul><p>New function:</p>
 <ul><li>
 <code><a href="../reference/deltamethod.html">deltamethod()</a></code>: Hypothesis tests on functions of parameters</li>
 <li>
@@ -305,7 +319,8 @@
 <li>
 <code>transform_post</code> argument allows back transformation before returning the final results. Available in <code><a href="../reference/comparisons.html">comparisons()</a></code>, <code><a href="../reference/marginalmeans.html">marginalmeans()</a></code>, <code><a href="https://rdrr.io/pkg/PairedData/man/summary.html" class="external-link">summary()</a></code>, <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy()</a></code>.</li>
 <li>The <code>variables</code> argument of the <code><a href="../reference/comparisons.html">comparisons()</a></code> function accepts a named list to specify variable-specific contrast types.</li>
-<li>Robust standard errors with the <code>vcov</code> argument. This requires version 0.17.1 of the <code>insight</code> package.<ul><li>
+<li>Robust standard errors with the <code>vcov</code> argument. This requires version 0.17.1 of the <code>insight</code> package.
+<ul><li>
 <code>sandwich</code> package shortcuts: <code>vcov = "HC3"</code>, <code>"HC2"</code>, <code>"NeweyWest"</code>, and more.</li>
 <li>Mixed effects models: <code>vcov = "satterthwaite"</code> or <code>"kenward-roger"</code>
 </li>
@@ -334,11 +349,14 @@
 <li>Mixed effects models (Bayesian and Frequentist)</li>
 <li>Transformations and Custom Contrasts: Adjusted Risk Ratio Example</li>
 </ul><p>Argument name changes (backward compatibility is preserved:</p>
-<ul><li>Everywhere:<ul><li>
+<ul><li>Everywhere:
+<ul><li>
 <code>conf.level</code> -&gt; <code>conf_level</code>
-</li></ul></li>
+</li>
+</ul></li>
 <li>
-<code><a href="../reference/datagrid.html">datagrid()</a></code>:<ul><li>
+<code><a href="../reference/datagrid.html">datagrid()</a></code>:
+<ul><li>
 <code>FUN.factor</code> -&gt; <code>FUN_factor</code> (same for related arguments)</li>
 <li>
 <code>grid.type</code> -&gt; <code>grid_type</code>
@@ -362,7 +380,8 @@
 <h2 class="pkg-version" data-toc-text="0.4.0" id="marginaleffects-040">marginaleffects 0.4.0<a class="anchor" aria-label="anchor" href="#marginaleffects-040"></a></h2><p class="text-muted">CRAN release: 2022-03-13</p>
 <p>New function:</p>
 <ul><li>
-<code><a href="../reference/comparisons.html">comparisons()</a></code> computes contrasts</li></ul><p>Misc:</p>
+<code><a href="../reference/comparisons.html">comparisons()</a></code> computes contrasts</li>
+</ul><p>Misc:</p>
 <ul><li>Speed optimizations</li>
 <li>
 <code><a href="../reference/predictions.html">predictions()</a></code> and <code><a href="../reference/plot_cap.html">plot_cap()</a></code> include confidence intervals for linear models</li>
@@ -371,7 +390,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.4" id="marginaleffects-034">marginaleffects 0.3.4<a class="anchor" aria-label="anchor" href="#marginaleffects-034"></a></h2><p class="text-muted">CRAN release: 2022-03-03</p>
-<ul><li>Bug fixes</li></ul></div>
+<ul><li>Bug fixes</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.3" id="marginaleffects-033">marginaleffects 0.3.3<a class="anchor" aria-label="anchor" href="#marginaleffects-033"></a></h2><p class="text-muted">CRAN release: 2022-01-26</p>
 <p>New supported models:</p>
@@ -443,17 +463,22 @@
 <h2 class="pkg-version" data-toc-text="0.2.0" id="marginaleffects-020">marginaleffects 0.2.0<a class="anchor" aria-label="anchor" href="#marginaleffects-020"></a></h2><p class="text-muted">CRAN release: 2021-10-18</p>
 <p>Breaking change:</p>
 <ul><li>
-<code>data</code> argument becomes <code>newdata</code> in all functions.</li></ul><p>New supported packages and models:</p>
+<code>data</code> argument becomes <code>newdata</code> in all functions.</li>
+</ul><p>New supported packages and models:</p>
 <ul><li><code>lme4:glmer.nb</code></li>
 <li><code><a href="https://rdrr.io/pkg/mgcv/man/gam.html" class="external-link">mgcv::gam</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/ordinal/man/clm.html" class="external-link">ordinal::clm</a></code></li>
 <li><code>mgcv</code></li>
 </ul><p><code>marginalmeans</code>:</p>
-<ul><li>New <code>variables_grid</code> argument</li></ul><p><code>predictions</code>:</p>
+<ul><li>New <code>variables_grid</code> argument</li>
+</ul><p><code>predictions</code>:</p>
 <ul><li>Support <code>mgcv</code>
-</li></ul><p><code>plot_cap</code></p>
-<ul><li>New <code>type</code> argument</li></ul><p>Misc:</p>
-<ul><li>New validity checks and tests</li></ul></div>
+</li>
+</ul><p><code>plot_cap</code></p>
+<ul><li>New <code>type</code> argument</li>
+</ul><p>Misc:</p>
+<ul><li>New validity checks and tests</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="marginaleffects-010">marginaleffects 0.1.0<a class="anchor" aria-label="anchor" href="#marginaleffects-010"></a></h2><p class="text-muted">CRAN release: 2021-09-29</p>
 <p>First release. Bravo!</p>

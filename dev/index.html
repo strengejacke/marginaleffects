@@ -75,7 +75,8 @@
 [![R-CMD-check](https://github/To cl.com/vincentarelbundock/marginaleffects/workflows/R-CMD-check/badge.svg)](https://github.com/vincentarelbundock/marginaleffects/actions)
 [![CRAN status](https://www.r-pkg.org/badges/version/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
 [![status](https://tinyverse.netlify.com/badge/marginaleffects)](https://CRAN.R-project.org/package=marginaleffects)
---><p>Compute and plot predictions, slopes, marginal means, and comparisons (contrasts, risk ratios, odds ratios, etc.) for over <a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html">74 classes</a> of statistical models in R. Conduct linear and non-linear hypothesis tests, as well as equivalence tests using the delta method.</p>
+-->
+<p>Compute and plot predictions, slopes, marginal means, and comparisons (contrasts, risk ratios, odds ratios, etc.) for over <a href="https://vincentarelbundock.github.io/marginaleffects/articles/supported_models.html">74 classes</a> of statistical models in R. Conduct linear and non-linear hypothesis tests, as well as equivalence tests using the delta method.</p>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/">The <code>marginaleffects</code> website</a> includes a <a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginaleffects.html">“Get started”</a> tutorial and 25+ <a href="https://vincentarelbundock.github.io/marginaleffects/articles/index.html">vignettes, case studies, and technical notes.</a></p>
 </div>
 <div class="section level1">
@@ -91,14 +92,14 @@
 <span>    repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://vincentarelbundock.r-universe.dev"</span>, <span class="st">"https://easystats.r-universe.dev"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><em>Restart <code>R</code> completely before moving on.</em></p>
 <p>Arel-Bundock V (2023). <em>marginaleffects: Predictions, Comparisons, Slopes, Marginal Means, and Hypothesis Tests</em>. R package version 0.9.0, <a href="https://vincentarelbundock.github.io/marginaleffects/" class="uri">https://vincentarelbundock.github.io/marginaleffects/</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="va">@Manual</span>{<span class="ot">marginaleffects</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="dt">title</span> = {marginaleffects: Predictions, Comparisons, Slopes, Marginal Means, and Hypothesis</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>Tests},</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  <span class="dt">author</span> = {Vincent Arel-Bundock},</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="dt">year</span> = {2023},</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  <span class="dt">note</span> = {R package version 0.9.0},</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="dt">url</span> = {https://vincentarelbundock.github.io/marginaleffects/},</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@Manual</span>{<span class="ot">marginaleffects</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {marginaleffects: Predictions, Comparisons, Slopes, Marginal Means, and Hypothesis</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Tests},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Vincent Arel-Bundock},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2023},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span> = {R package version 0.9.0},</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span> = {https://vincentarelbundock.github.io/marginaleffects/},</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="why">Why?<a class="anchor" aria-label="anchor" href="#why"></a>
@@ -134,14 +135,26 @@
 </h1>
 <p>The <code>marginaleffects</code> package allows <code>R</code> users to compute and plot three principal quantities of interest: (1) predictions, (2) comparisons, and (3) slopes. In addition, the package includes a convenience function to compute a fourth estimand, “marginal means”, which is a special case of averaged predictions. <code>marginaleffects</code> can also average (or “marginalize”) unit-level (or “conditional”) estimates of all those quantities, and conduct hypothesis tests on them.</p>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/predictions.html">Predictions:</a></p>
-<blockquote><p>The outcome predicted by a fitted model on a specified scale for a given combination of values of the predictor variables, such as their observed values, their means, or factor levels. a.k.a. Fitted values, adjusted predictions. <code><a href="reference/predictions.html">predictions()</a></code>, <code><a href="reference/predictions.html">avg_predictions()</a></code>, <code><a href="reference/plot_predictions.html">plot_predictions()</a></code>.</p></blockquote>
+<blockquote>
+<p>The outcome predicted by a fitted model on a specified scale for a given combination of values of the predictor variables, such as their observed values, their means, or factor levels. a.k.a. Fitted values, adjusted predictions. <code><a href="reference/predictions.html">predictions()</a></code>, <code><a href="reference/predictions.html">avg_predictions()</a></code>, <code><a href="reference/plot_predictions.html">plot_predictions()</a></code>.</p>
+</blockquote>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/comparisons.html">Comparisons:</a></p>
-<blockquote><p>Compare the predictions made by a model for different regressor values (e.g., college graduates vs. others): contrasts, differences, risk ratios, odds, etc. <code><a href="reference/comparisons.html">comparisons()</a></code>, <code><a href="reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="reference/plot_comparisons.html">plot_comparisons()</a></code>.</p></blockquote>
+<blockquote>
+<p>Compare the predictions made by a model for different regressor values (e.g., college graduates vs. others): contrasts, differences, risk ratios, odds, etc. <code><a href="reference/comparisons.html">comparisons()</a></code>, <code><a href="reference/comparisons.html">avg_comparisons()</a></code>, <code><a href="reference/plot_comparisons.html">plot_comparisons()</a></code>.</p>
+</blockquote>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/slopes.html">Slopes:</a></p>
-<blockquote><p>Partial derivative of the regression equation with respect to a regressor of interest. a.k.a. Marginal effects, trends. <code><a href="reference/slopes.html">slopes()</a></code>, <code><a href="reference/slopes.html">avg_slopes()</a></code>, <code><a href="reference/plot_slopes.html">plot_slopes()</a></code>.</p></blockquote>
+<blockquote>
+<p>Partial derivative of the regression equation with respect to a regressor of interest. a.k.a. Marginal effects, trends. <code><a href="reference/slopes.html">slopes()</a></code>, <code><a href="reference/slopes.html">avg_slopes()</a></code>, <code><a href="reference/plot_slopes.html">plot_slopes()</a></code>.</p>
+</blockquote>
 <p><a href="https://vincentarelbundock.github.io/marginaleffects/articles/marginalmeans.html">Marginal Means:</a></p>
-<blockquote><p>Predictions of a model, averaged across a “reference grid” of categorical predictors. <code><a href="reference/marginalmeans.html">marginalmeans()</a></code>.</p></blockquote>
+<blockquote>
+<p>Predictions of a model, averaged across a “reference grid” of categorical predictors. <code><a href="reference/marginalmeans.html">marginalmeans()</a></code>.</p>
+</blockquote>
 <table class="table">
+<colgroup>
+<col width="20%">
+<col width="79%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Goal</th>
 <th align="left">Function</th>

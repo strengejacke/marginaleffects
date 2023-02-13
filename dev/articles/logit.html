@@ -69,7 +69,7 @@
 
 
 
-<script src="logit_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="logit_files/kePrint-0.0.1/kePrint.js"></script><link href="logit_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="logit_files/kePrint-0.0.1/kePrint.js"></script><link href="logit_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Logistic Regression</h1>
@@ -81,9 +81,21 @@
 
     
     
-<p>This vignette replicates some of the analyses in this excellent blog post by Frank Harrell: <a href="https://www.fharrell.com/post/rdist/" class="external-link">Avoiding One-Number Summaries of Treatment Effects for RCTs with Binary Outcomes</a>. Here, we show how one-number summaries and the entire distribution unit-level contrasts can be easily computed with <code><a href="../reference/comparisons.html">comparisons()</a></code>.</p>
-<p>Dr. Harrell discusses summaries from logistic regression models in the blog post above. He focuses on a context in which one is interested in comparing two groups, such as in randomized controlled trials. He highlights potential pitfalls of presenting “one-number summaries”, e.g., odds ratio and mean proportion difference. Finally, he recommends focusing on the entire distribution of proportion difference between groups.</p>
-<p>For clarification, we use the following terms interchangeably in the context of logistic regression where the covariate of interest is categorical:</p>
+<p>This vignette replicates some of the analyses in this excellent blog
+post by Frank Harrell: <a href="https://www.fharrell.com/post/rdist/" class="external-link">Avoiding One-Number
+Summaries of Treatment Effects for RCTs with Binary Outcomes</a>. Here,
+we show how one-number summaries and the entire distribution unit-level
+contrasts can be easily computed with <code><a href="../reference/comparisons.html">comparisons()</a></code>.</p>
+<p>Dr. Harrell discusses summaries from logistic regression models in
+the blog post above. He focuses on a context in which one is interested
+in comparing two groups, such as in randomized controlled trials. He
+highlights potential pitfalls of presenting “one-number summaries”,
+e.g., odds ratio and mean proportion difference. Finally, he recommends
+focusing on the entire distribution of proportion difference between
+groups.</p>
+<p>For clarification, we use the following terms interchangeably in the
+context of logistic regression where the covariate of interest is
+categorical:</p>
 <ul>
 <li>Contrast</li>
 <li>Proportion difference</li>
@@ -93,8 +105,11 @@
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
-<p>We focus on subset data from the <a href="https://www.nejm.org/doi/full/10.1056/NEJM199309023291001" class="external-link">GUSTO-I study</a>, where patients were randomly assigned to accelerated tissue plasminogen activator (tPA) or streptokinase (SK).</p>
-<p>Load libraries, data and fit a covariate-adjusted logistic regression model.</p>
+<p>We focus on subset data from the <a href="https://www.nejm.org/doi/full/10.1056/NEJM199309023291001" class="external-link">GUSTO-I
+study</a>, where patients were randomly assigned to accelerated tissue
+plasminogen activator (tPA) or streptokinase (SK).</p>
+<p>Load libraries, data and fit a covariate-adjusted logistic regression
+model.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/marginaleffects/">marginaleffects</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/modelsummary/" class="external-link">modelsummary</a></span><span class="op">)</span></span>
@@ -115,7 +130,9 @@
 <div class="section level3">
 <h3 id="one-number-summaries">One-Number Summaries<a class="anchor" aria-label="anchor" href="#one-number-summaries"></a>
 </h3>
-<p>As usual, we can produce a one-number summary of the relationship of interest by exponentiating the coefficients, which yields an Odds Ratio (OR):</p>
+<p>As usual, we can produce a one-number summary of the relationship of
+interest by exponentiating the coefficients, which yields an Odds Ratio
+(OR):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://vincentarelbundock.github.io/modelsummary/reference/modelsummary.html" class="external-link">modelsummary</a></span><span class="op">(</span><span class="va">mod</span>, exponentiate <span class="op">=</span> <span class="cn">TRUE</span>, coef_omit <span class="op">=</span> <span class="st">"^(?!txSK)"</span><span class="op">)</span> </span></code></pre></div>
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -192,7 +209,11 @@ RMSE
 </tr>
 </tbody>
 </table>
-<p>Unlike ORs, adjusted risk differences vary from individual to individual based on the values of the control variables. The <code><a href="../reference/comparisons.html">comparisons()</a></code> function can compute adjusted risk differences for every individual. Here, we display only the first 6 of them:</p>
+<p>Unlike ORs, adjusted risk differences vary from individual to
+individual based on the values of the control variables. The
+<code><a href="../reference/comparisons.html">comparisons()</a></code> function can compute adjusted risk
+differences for every individual. Here, we display only the first 6 of
+them:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -213,7 +234,9 @@ RMSE
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, day30, tx, age, Killip, sysbp, pulse, pmi, miloc, sex</span></span></code></pre></div>
-<p>Population-averaged (aka “marginal”) adjusted risk difference (<a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html">see this vignette</a>) can be obtained using the <code>avg_*()</code> functions or using the <code>by</code> argument:</p>
+<p>Population-averaged (aka “marginal”) adjusted risk difference (<a href="https://vincentarelbundock.github.io/marginaleffects/articles/gformula.html">see
+this vignette</a>) can be obtained using the <code>avg_*()</code>
+functions or using the <code>by</code> argument:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"tx"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -222,8 +245,14 @@ RMSE
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
-<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function above computed the predicted probability of mortality (<code>day30==1</code>) for each observed row of the data in two counterfactual cases: when <code>tx</code> is “SK”, and when <code>tx</code> is “tPA”. Then, it computed the differences between these two sets of predictions. Finally, it computed the population-average of risk differences.</p>
-<p>Instead of risk <em>differences</em>, we could compute population-averaged (marginal) adjusted risk <em>ratios</em>:</p>
+<p>The <code><a href="../reference/comparisons.html">comparisons()</a></code> function above computed the predicted
+probability of mortality (<code>day30==1</code>) for each observed row
+of the data in two counterfactual cases: when <code>tx</code> is “SK”,
+and when <code>tx</code> is “tPA”. Then, it computed the differences
+between these two sets of predictions. Finally, it computed the
+population-average of risk differences.</p>
+<p>Instead of risk <em>differences</em>, we could compute
+population-averaged (marginal) adjusted risk <em>ratios</em>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/comparisons.html">avg_comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="va">mod</span>,</span>
@@ -253,7 +282,10 @@ RMSE
 <div class="section level3">
 <h3 id="unit-level-summaries">Unit-level Summaries<a class="anchor" aria-label="anchor" href="#unit-level-summaries"></a>
 </h3>
-<p>Instead of estimating one-number summaries, we can focus on unit-level proportion differences using <code><a href="../reference/comparisons.html">comparisons()</a></code>. This function applies the fitted logistic regression model to predict outcome probabilities for each patient, i.e., unit-level.</p>
+<p>Instead of estimating one-number summaries, we can focus on
+unit-level proportion differences using <code><a href="../reference/comparisons.html">comparisons()</a></code>. This
+function applies the fitted logistic regression model to predict outcome
+probabilities for each patient, i.e., unit-level.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comparisons.html">comparisons</a></span><span class="op">(</span><span class="va">mod</span>, variables <span class="op">=</span> <span class="st">"tx"</span><span class="op">)</span></span>
 <span><span class="va">cmp</span></span>
@@ -273,7 +305,8 @@ RMSE
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, day30, tx, age, Killip, sysbp, pulse, pmi, miloc, sex</span></span></code></pre></div>
-<p>Show the predicted probability for individual patients under both treatment alternatives.</p>
+<p>Show the predicted probability for individual patients under both
+treatment alternatives.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cmp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">predicted_hi</span>, <span class="va">predicted_lo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -281,7 +314,8 @@ RMSE
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"SK"</span>, y <span class="op">=</span> <span class="st">"tPA"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="logit_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
-<p>We can present the entire distribution of unit-level proportion differences an a cumulative distribution function:</p>
+<p>We can present the entire distribution of unit-level proportion
+differences an a cumulative distribution function:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">cmp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_ecdf.html" class="external-link">stat_ecdf</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="logit_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
@@ -297,7 +331,8 @@ RMSE
 <div class="section level3">
 <h3 id="appendix">Appendix<a class="anchor" aria-label="anchor" href="#appendix"></a>
 </h3>
-<p><code><a href="../reference/comparisons.html">comparisons()</a></code> performed the following calculations under the hood:</p>
+<p><code><a href="../reference/comparisons.html">comparisons()</a></code> performed the following calculations under
+the hood:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d</span>  <span class="op">&lt;-</span> <span class="va">gusto</span></span>
 <span></span>
@@ -308,7 +343,9 @@ RMSE
 <span><span class="va">predicted_lo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">mod</span>, newdata <span class="op">=</span> <span class="va">d</span>, type <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">comparison</span> <span class="op">&lt;-</span> <span class="va">predicted_hi</span> <span class="op">-</span> <span class="va">predicted_lo</span></span></code></pre></div>
-<p>The original dataset contains 30510 patients, thus <code><a href="../reference/comparisons.html">comparisons()</a></code> generates an output with same amount of rows.</p>
+<p>The original dataset contains 30510 patients, thus
+<code><a href="../reference/comparisons.html">comparisons()</a></code> generates an output with same amount of
+rows.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">gusto</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 30510</span></span></code></pre></div>
