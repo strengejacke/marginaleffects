@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9043</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9045</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -788,12 +788,12 @@ periods:</p>
 <span>    id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"trt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">did</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    id trt time          y</span></span>
-<span><span class="co">#&gt; 1:  1   1  pre  0.2111379</span></span>
-<span><span class="co">#&gt; 2:  2   1  pre  1.5617831</span></span>
-<span><span class="co">#&gt; 3:  3   0  pre -1.0456872</span></span>
-<span><span class="co">#&gt; 4:  4   1  pre  0.1077862</span></span>
-<span><span class="co">#&gt; 5:  5   0  pre -0.2267256</span></span>
-<span><span class="co">#&gt; 6:  6   0  pre -0.3043739</span></span></code></pre></div>
+<span><span class="co">#&gt; 1:  1   1  pre  0.3584910</span></span>
+<span><span class="co">#&gt; 2:  2   1  pre  0.7231972</span></span>
+<span><span class="co">#&gt; 3:  3   1  pre -0.0440785</span></span>
+<span><span class="co">#&gt; 4:  4   0  pre -0.3748833</span></span>
+<span><span class="co">#&gt; 5:  5   1  pre  0.3508554</span></span>
+<span><span class="co">#&gt; 6:  6   0  pre -1.3990697</span></span></code></pre></div>
 <p>Then, we estimate a linear model with a multiple interaction between
 the time and the treatment indicators. We also compute contrasts at the
 mean for each treatment level:</p>
@@ -805,9 +805,9 @@ mean for each treatment level:</p>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    variables <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Term   Contrast Estimate Std. Error       z   Pr(&gt;|z|)   2.5 % 97.5 % trt</span></span>
-<span><span class="co">#&gt;  time post - pre 0.004097    0.07582 0.05404     0.9569 -0.1445 0.1527   0</span></span>
-<span><span class="co">#&gt;  time post - pre 0.327785    0.07476 4.38435 1.1633e-05  0.1813 0.4743   1</span></span>
+<span><span class="co">#&gt;  Term   Contrast Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 % trt</span></span>
+<span><span class="co">#&gt;  time post - pre -0.09149    0.07336 -1.247    0.21232 -0.2353 0.05228   0</span></span>
+<span><span class="co">#&gt;  time post - pre  0.32828    0.07900  4.155 3.2484e-05  0.1734 0.48312   1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: rowid, type, term, contrast, estimate, std.error, statistic, p.value, conf.low, conf.high, predicted, predicted_hi, predicted_lo, y, time, trt</span></span></code></pre></div>
@@ -820,8 +820,8 @@ the Diff-in-Diff estimate:</p>
 <span>    newdata <span class="op">=</span> <span class="fu"><a href="../reference/datagrid.html">datagrid</a></span><span class="op">(</span>trt <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    hypothesis <span class="op">=</span> <span class="st">"pairwise"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;           Term Estimate Std. Error     z  Pr(&gt;|z|)   2.5 % 97.5 %</span></span>
-<span><span class="co">#&gt;  Row 1 - Row 2  -0.3237     0.1065 -3.04 0.0023662 -0.5324 -0.115</span></span>
+<span><span class="co">#&gt;           Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 %</span></span>
+<span><span class="co">#&gt;  Row 1 - Row 2  -0.4198     0.1078 -3.894 9.8732e-05 -0.6311 -0.2085</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high</span></span></code></pre></div>
@@ -930,7 +930,7 @@ test to check if this is the case:</p>
 <span>    <span class="fu"><a href="../reference/hypotheses.html">hypotheses</a></span><span class="op">(</span>equivalence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  Term Estimate Std. Error      z   Pr(&gt;|z|)   2.5 %  97.5 % p (NonInf)   p (NonSup)  p (Equiv)</span></span>
-<span><span class="co">#&gt;    hp -0.06685    0.01105 -6.052 1.4269e-09 -0.0885 -0.0452 0.00134666 7.442542e-52 0.00134666</span></span>
+<span><span class="co">#&gt;    hp -0.06685    0.01105 -6.052 1.4269e-09 -0.0885 -0.0452 0.00134666 7.442524e-52 0.00134666</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Prediction type:  response </span></span>
 <span><span class="co">#&gt; Columns: type, term, estimate, std.error, statistic, p.value, conf.low, conf.high, statistic.noninf, statistic.nonsup, p.value.noninf, p.value.nonsup, p.value.equiv</span></span></code></pre></div>

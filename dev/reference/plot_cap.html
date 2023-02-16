@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9043</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9045</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,10 +60,14 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_cap</span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  condition <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vcov <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conf_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  transform_post <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  points <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  rug <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  gray <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  draw <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -76,9 +80,18 @@
 
 
 <dt>condition</dt>
-<dd><p>character vector or named list of length smaller than 4. Character vectors must be the names of the predictor variables to display. The names of the list must The first element is displayed on the x-axis. The second element determines the colors. The third element creates facets. Other variables are held at their means or modes. Lists can include these types of values:</p><ul><li><p>Numeric vector</p></li>
+<dd><p>Conditional predictions</p><ul><li><p>Character vector (max length 3): Names of the predictors to display.</p></li>
+<li><p>Named list (max length 3): List names correspond to predictors. List elements can be:</p><ul><li><p>Numeric vector</p></li>
 <li><p>Function which returns a numeric vector or a set of unique categorical values</p></li>
 <li><p>Shortcut strings for common reference values: "minmax", "quartile", "threenum"</p></li>
+</ul></li>
+<li><p>1: x-axis. 2: color. 3: facets.</p></li>
+</ul></dd>
+
+
+<dt>by</dt>
+<dd><p>Marginal predictions</p><ul><li><p>Character vector (max length 3): Names of the categorical predictors to marginalize across.</p></li>
+<li><p>1: x-axis. 2: color. 3: facets.</p></li>
 </ul></dd>
 
 
@@ -112,6 +125,18 @@ the <code>marginaleffects:::type_dictionary</code> dataframe.</p></dd>
 
 <dt>transform_post</dt>
 <dd><p>(experimental) A function applied to unit-level adjusted predictions and confidence intervals just before the function returns results. For bayesian models, this function is applied to individual draws from the posterior distribution, before computing summaries.</p></dd>
+
+
+<dt>points</dt>
+<dd><p>Number between 0 and 1 which controls the transparency of raw data points. 0 (default) does not display any points.</p></dd>
+
+
+<dt>rug</dt>
+<dd><p>TRUE displays tick marks on the axes to mark the distribution of raw data.</p></dd>
+
+
+<dt>gray</dt>
+<dd><p>FALSE grayscale or color plot</p></dd>
 
 
 <dt>draw</dt>

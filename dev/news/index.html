@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">marginaleffects</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9043</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.9.0.9045</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,14 @@
 <ul><li><code><a href="https://rdrr.io/pkg/MCMCglmm/man/MCMCglmm.html" class="external-link">MCMCglmm::MCMCglmm</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/Rchoice/man/hetprob.html" class="external-link">Rchoice::hetprob</a></code></li>
 <li><code><a href="https://rdrr.io/pkg/Rchoice/man/ivpml.html" class="external-link">Rchoice::ivpml</a></code></li>
+</ul><p>Plotting functions improvements:</p>
+<ul><li>New <code>by</code> argument to display marginal estimates by subgroup.</li>
+<li>New <code>rug</code> argument to display tick marks in the margins.</li>
+<li>New <code>points</code> argument to display a scatter plot.</li>
+<li>New <code>gray</code> argument to plot in grayscale.</li>
+<li>
+<code>effect</code> argument is renamed to <code>variables</code> in <code><a href="../reference/plot_slopes.html">plot_slopes()</a></code> and <code><a href="../reference/plot_comparisons.html">plot_comparisons()</a></code>. This improves consistency with the analogous <code><a href="../reference/slopes.html">slopes()</a></code> and <code><a href="../reference/comparisons.html">comparisons()</a></code> functions.</li>
+<li>The plotting vignette was completely re-written.</li>
 </ul><p>Other:</p>
 <ul><li>
 <code><a href="../reference/inferences.html">inferences()</a></code> supports multiple imputation.</li>
