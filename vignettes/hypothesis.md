@@ -296,8 +296,8 @@ hypotheses(
   hypothesis = "median = mean"
 )
 #> 
-#>           Term Estimate Std. Error     z Pr(>|z|)   S  2.5 % 97.5 %
-#>  median = mean  0.00257    0.00693 0.371     0.71 0.5 -0.011 0.0162
+#>           Term Estimate Std. Error     z Pr(>|z|)   S   2.5 % 97.5 %
+#>  median = mean   0.0012    0.00937 0.128    0.898 0.2 -0.0172 0.0196
 #> 
 #> Columns: term, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high
 ```
