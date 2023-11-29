@@ -67,11 +67,6 @@ sanitize_model_specific.glmmTMB <- function(model, vcov = NULL, calling_function
             "Set `vcov = FALSE` or explicitly provide a variance-covariance-matrix for the `vcov` argument to calculate standard errors."
         )
     }
-    REML <- as.list(insight::get_call(model))[["REML"]]
-    if (isTRUE(REML) && !identical(vcov, FALSE)) {
-        msg <- insight::format_message("Uncertainty estimates cannot be computed for `glmmTMB` models with the `REML=TRUE` option. Either set `REML=FALSE` when fitting the model, or set `vcov=FALSE` when calling a `slopes` function to avoid this error.")
-        stop(msg, call. = FALSE)
-    }
 
     # we need an explicit check because predict.glmmTMB() generates other
     # warnings related to openMP, so our default warning-detection does not
